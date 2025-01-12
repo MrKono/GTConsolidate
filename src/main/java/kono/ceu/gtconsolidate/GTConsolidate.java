@@ -1,9 +1,5 @@
 package kono.ceu.gtconsolidate;
 
-
-import gregtech.GTInternalTags;
-import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
-import kono.ceu.gtconsolidate.api.util.Mods;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -14,18 +10,24 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import gregtech.GTInternalTags;
+
+import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
+import kono.ceu.gtconsolidate.api.util.Mods;
+import kono.ceu.gtconsolidate.common.CommonProxy;
+
 @Mod(modid = GTConsolidateValues.MODID,
-        name = GTConsolidateValues.MODNAME,
-        version = GTConsolidateValues.VERSION,
-        acceptedMinecraftVersions = "[1.12, 1.12.2]",
-        dependencies = GTInternalTags.DEP_VERSION_STRING + "required-after:" + Mods.Names.GREGICALITY_MULTIBLOCKS + ";" +
-                "after:" + Mods.Names.GREGTECH_FOOD_OPTION + ";")
+     name = GTConsolidateValues.MODNAME,
+     version = GTConsolidateValues.VERSION,
+     acceptedMinecraftVersions = "[1.12, 1.12.2]",
+     dependencies = GTInternalTags.DEP_VERSION_STRING + "required-after:" + Mods.Names.GREGICALITY_MULTIBLOCKS + ";" +
+             "after:" + Mods.Names.GREGTECH_FOOD_OPTION + ";")
 
 public class GTConsolidate {
 
     @SidedProxy(modId = GTConsolidateValues.MODID,
-            clientSide = "kono.ceu.materialreplication.client.ClientProxy",
-            serverSide = "kono.ceu.materialreplication.common.CommonProxy")
+                clientSide = "kono.ceu.gtconsolidate.client.ClientProxy",
+                serverSide = "kono.ceu.gtconsolidate.common.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.Instance
