@@ -18,11 +18,14 @@ import gregtech.loaders.recipe.RecyclingRecipes;
 
 import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
 import kono.ceu.gtconsolidate.api.util.Logs;
+import kono.ceu.gtconsolidate.common.machines.GTConsolidateMetaTileEntity;
 
 @Mod.EventBusSubscriber(modid = GTConsolidateValues.MODID)
 public class CommonProxy {
 
-    public void preInit(FMLPreInitializationEvent e) {}
+    public void preInit(FMLPreInitializationEvent e) {
+        GTConsolidateMetaTileEntity.init();
+    }
 
     public void init(FMLInitializationEvent e) {}
 
