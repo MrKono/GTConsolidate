@@ -10,7 +10,7 @@
 
 ## Info 
 **This mod Requires [GregTech CE: Unofficial](https://github.com/GregTechCEu/GregTech) !**<br>
-
+This mod is simple addon to that allows for a little multi-block parallelization.<br>
 You can include this mod in your modpack!
 
 ## Credits
