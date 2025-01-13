@@ -346,7 +346,7 @@ public class MetaTileEntityAdvancedFusionReactor extends RecipeMapMultiblockCont
                                boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(
-                I18n.format("gtconsolidate.machine.advanced_reactor.capacity",
+                I18n.format("gtconsolidate.machine.advanced_fusion_reactor.capacity",
                         calculateEnergyStorageFactor() / 1000000L));
         tooltip.add(I18n.format("gregtech.machine.fusion_reactor.overclocking"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", 16));
