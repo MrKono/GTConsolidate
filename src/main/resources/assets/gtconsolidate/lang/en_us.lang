@@ -4,13 +4,21 @@
 gtconsolidate.machine.advanced_fusion_reactor_luv.name=Advanced Fusion Reactor Computer Mark 1
 gtconsolidate.machine.advanced_fusion_reactor_zpm.name=Advanced Fusion Reactor Computer Mark 2
 gtconsolidate.machine.advanced_fusion_reactor_uv.name=Advanced Fusion Reactor Computer Mark 3
+gtconsolidate.machine.advanced_electric_blast_furnace.name=Advanced Electric Blast Furnace
+gtconsolidate.machine.elite_electric_blast_furnace.name=Elite Electric Blast Furnace
 
 ## Tooltips
 # Multi
 # Universal
 gtconsolidate.multiblock.tooltip.universal.limit=§cLimits: §7%s
+gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16=Energy hatch is §eonly 4A§7 or §e16A§7.
+gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16=Energy hatch is §eonly 16A§7.
+gtconsolidate.multiblock.tooltip.universal.limit.manual_maintenance=§eCannot use§7 Automatic Maintenance Hatch.
+
 # Adv. Fusion Reactor
 gtconsolidate.machine.advanced_fusion_reactor.tooltip1=Parallelized Fusion Reactor, but with limitations.
 gtconsolidate.machine.advanced_fusion_reactor.tooltip2=Can parallelize with the number of §bEnergy Hatches.
 gtconsolidate.machine.advanced_fusion_reactor.capacity=§7Energy Storage: §e%sM EU
-gtconsolidate.machine.advanced_fusion_reactor.limit=Energy hatch is §eonly 16A§7.
+
+# Adv. Electric Blast Furnace
+gtconsolidate.machine.advanced_ebf.tooltip=Parallelized Electric Blast Furnace, but with limitations
