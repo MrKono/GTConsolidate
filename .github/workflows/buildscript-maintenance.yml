@@ -13,8 +13,6 @@ on:
 jobs:
   buildscript-maintenance:
     runs-on: ubuntu-latest
-    # Avoid running this workflow on forks
-    if: github.repository == 'GregTechCEu/Buildscripts'
     permissions:
       contents: write
       pull-requests: write

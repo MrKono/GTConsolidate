@@ -1,0 +1,107 @@
+# Publishes the project to GitHub Releases, CurseForge, and Modrinth
+name: Publish Project
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Mod version'
+        required: true
+      release_type:
+        description: 'Release type'
+        type: choice
+        default: 'beta'
+        options:
+          - 'release'
+          - 'beta'
+          - 'alpha'
+
+env:
+  # link to the changelog with a format code for the version
+  CHANGELOG_LOCATION: "Changelog is available [here](https://github.com/${{ github.repository }}/releases/tag/GTConsolidate-v${{ github.event.inputs.version }}-${{ github.event.inputs.release_type }})"
+  # Version of the mod
+  FULL_VERSION: "${{ github.event.inputs.version }}-${{ github.event.inputs.release_type }}"
+  # type of release
+  NAME: "GTConsolidate"
+
+  # Curseforge and Modrinth project IDs
+  CURSEFORGE_PROJECT_ID: "1178654"
+  MODRINTH_PROJECT_ID: "FCpufqdT"
+
+concurrency:
+  group: publish-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Check if tag already exists
+        run: |
+          if git rev-parse --verify --quiet "v${{ github.event.inputs.version }}"; then
+            echo "Version ${{ github.event.inputs.version }} already exists, aborting workflow."
+            exit 1
+          fi
+
+      - name: Set version
+        run: sed -i "s/modVersion.*=.*/modVersion = ${{ env.FULL_VERSION }}/g" gradle.properties
+
+      - name: Commit and push gradle.properties
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Bump version to v${{ env.FULL_VERSION }}"
+          commit_options: '--no-verify'
+          file_pattern: gradle.properties
+          tagging_message: "v${{ env.FULL_VERSION }}"
+
+      - name: Setup Build
+        uses: ./.github/actions/build_setup
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build Project
+        run: ./gradlew --info build
+
+      - name: Publish to Curseforge and Modrinth
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          github-tag: "v${{ env.FULL_VERSION }}"
+          github-generate-changelog: true
+          github-draft: false
+          github-prerelease: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          modrinth-id: ${{ env.MODRINTH_PROJECT_ID }}
+          modrinth-token: "${{ secrets.MODRINTH_API_KEY }}"
+          modrinth-dependencies: |
+            tULldUx4(required)
+            tZiutdLG(required)
+          curseforge-id: ${{ env.CURSEFORGE_PROJECT_ID }}
+          curseforge-token: "${{ secrets.CURSEFORGE_API_KEY }}"
+          curseforge-dependencies: |
+            gregtech-ce-unofficial(required)
+            gregicality-multiblocks(required)
+            gregtech-food-option(recommended)
+          files: |
+            build/libs/!(*-@(dev|sources|javadoc)).jar
+            build/libs/*-@(sources).jar
+            build/libs/*-@(dev).jar
+          name: "${{ env.NAME }}-${{ env.FULL_VERSION }}.jar"
+          changelog: "Changelog is available [here](https://github.com/${{github.repository}}/blob/master/ChangeLog.md)"
+          version: "${{ github.event.inputs.version }}"
+          version-type: "${{ github.event.inputs.release_type }}"
+          loaders: |
+            forge
+          game-versions: |
+            1.12.2
+          java: |
+            8
+          retry-attempts: 2
