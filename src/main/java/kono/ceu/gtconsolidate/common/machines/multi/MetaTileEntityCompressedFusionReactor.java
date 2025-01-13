@@ -287,7 +287,7 @@ public class MetaTileEntityCompressedFusionReactor extends RecipeMapMultiblockCo
         this.outputFluidInventory = new FluidTankList(true, getAbilities(MultiblockAbility.EXPORT_FLUIDS));
         List<IEnergyContainer> energyInputs = getAbilities(MultiblockAbility.INPUT_ENERGY);
         this.inputEnergyContainers = new EnergyContainerList(energyInputs);
-        long euCapacity = calculateEnergyStorageFactor(energyInputs.size());
+        long euCapacity = calculateEnergyStorageFactor();
         this.energyContainer = new EnergyContainerHandler(this, euCapacity, GTValues.V[tier], 0, 0, 0) {
 
             @NotNull
@@ -298,8 +298,8 @@ public class MetaTileEntityCompressedFusionReactor extends RecipeMapMultiblockCo
         };
     }
 
-    private long calculateEnergyStorageFactor(int energyInputAmount) {
-        return 16 * energyInputAmount * (long) Math.pow(2, tier - 8) * 10000000L;
+    private long calculateEnergyStorageFactor() {
+        return 16 * (long) Math.pow(2, tier - 8) * 10000000L;
     }
 
     @Override
@@ -346,8 +346,10 @@ public class MetaTileEntityCompressedFusionReactor extends RecipeMapMultiblockCo
                                boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(
-                I18n.format("gregtech.machine.fusion_reactor.capacity", calculateEnergyStorageFactor(1) / 1000000L));
+                I18n.format("gtconsolidate.machine.fusion_reactor.capacity", calculateEnergyStorageFactor() / 1000000L));
         tooltip.add(I18n.format("gregtech.machine.fusion_reactor.overclocking"));
+        tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", 16));
+        tooltip.add(I18n.format("gtconsolidate.machine.fusion_reactor.parallel"));
     }
 
     @SideOnly(Side.CLIENT)

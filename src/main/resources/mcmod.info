@@ -1,12 +1,12 @@
 [{
     "modid": "${modid}",
     "name": "${modname}",
-    "description": "An example mod for Minecraft 1.12.2 with Forge",
+    "description": "A little multiblock parallelization for GTCEu",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "logoFile": "",
     "url": "",
-    "authorList": [],
+    "authorList": ["MrKo_no"],
     "credits": "",
-    "dependencies": []
+    "dependencies": ["gregtech", "gcym", "gtfo (Optional)"]
 }]

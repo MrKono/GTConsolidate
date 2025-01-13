@@ -2,6 +2,7 @@ package kono.ceu.gtconsolidate.common;
 
 import java.util.function.Function;
 
+import kono.ceu.gtconsolidate.loader.MultiMachineLoader;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -45,6 +46,7 @@ public class CommonProxy {
     @SubscribeEvent
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
         Logs.logger.info("Registering recipes...");
+        MultiMachineLoader.init();
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
