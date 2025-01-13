@@ -6,6 +6,11 @@ gtconsolidate.machine.advanced_fusion_reactor_zpm.name=Advanced Fusion Reactor C
 gtconsolidate.machine.advanced_fusion_reactor_uv.name=Advanced Fusion Reactor Computer Mark 3
 
 ## Tooltips
-## Adv. Fusion Reactor
+# Multi
+# Universal
+gtconsolidate.multiblock.tooltip.universal.limit=§cLimits: §7%s
+# Adv. Fusion Reactor
+gtconsolidate.machine.advanced_fusion_reactor.tooltip1=Parallelized Fusion Reactor, but with limitations.
+gtconsolidate.machine.advanced_fusion_reactor.tooltip2=Can parallelize with the number of §bEnergy Hatches.
 gtconsolidate.machine.advanced_fusion_reactor.capacity=§7Energy Storage: §e%sM EU
-gtconsolidate.machine.advanced_fusion_reactor.parallel=Can parallelize with the number of §bEnergy Hatches.
+gtconsolidate.machine.advanced_fusion_reactor.limit=Energy hatch is §eonly 16A§7.

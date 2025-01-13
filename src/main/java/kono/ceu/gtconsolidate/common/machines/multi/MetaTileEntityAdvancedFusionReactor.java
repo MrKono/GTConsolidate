@@ -345,12 +345,15 @@ public class MetaTileEntityAdvancedFusionReactor extends RecipeMapMultiblockCont
     public void addInformation(ItemStack stack, @Nullable World player, @NotNull List<String> tooltip,
                                boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
+        tooltip.add(I18n.format("gtconsolidate.machine.advanced_fusion_reactor.tooltip1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.advanced_fusion_reactor.tooltip2"));
+        tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", 16));
+        tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
+                I18n.format("gtconsolidate.machine.advanced_fusion_reactor.limit")));
         tooltip.add(
                 I18n.format("gtconsolidate.machine.advanced_fusion_reactor.capacity",
                         calculateEnergyStorageFactor() / 1000000L));
         tooltip.add(I18n.format("gregtech.machine.fusion_reactor.overclocking"));
-        tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", 16));
-        tooltip.add(I18n.format("gtconsolidate.machine.advanced_fusion_reactor.parallel"));
     }
 
     @SideOnly(Side.CLIENT)

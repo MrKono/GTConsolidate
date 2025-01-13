@@ -6,6 +6,11 @@ gtconsolidate.machine.advanced_fusion_reactor_zpm.name=発展型核融合炉 Mar
 gtconsolidate.machine.advanced_fusion_reactor_uv.name=発展型核融合炉 Mark 3
 
 ## Tooltips
-## Adv. Fusion Reactor
+# Multi
+# Universal
+gtconsolidate.multiblock.tooltip.universal.limit=§cLimits: §7%s
+# Adv. Fusion Reactor
+gtconsolidate.machine.advanced_fusion_reactor.tooltip1=並列化された核融合炉。ただし制限あり。
+gtconsolidate.machine.advanced_fusion_reactor.tooltip2=§bエナジーハッチ§7の数によって並列処理数が決定される。
 gtconsolidate.machine.advanced_fusion_reactor.capacity=§7蓄電量 §e%sM EU
-gtconsolidate.machine.advanced_fusion_reactor.parallel=§bエナジーハッチ§7の数によって並列処理数が決定される。
+gtconsolidate.machine.advanced_fusion_reactor.limit=エナジーハッチは§e16Aのみ§7。
