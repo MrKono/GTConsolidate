@@ -1,0 +1,11 @@
+## Machine
+# Single
+# Multi
+gtconsolidate.machine.advanced_fusion_reactor_luv.name=発展型核融合炉 Mark 1
+gtconsolidate.machine.advanced_fusion_reactor_zpm.name=発展型核融合炉 Mark 2
+gtconsolidate.machine.advanced_fusion_reactor_uv.name=発展型核融合炉 Mark 3
+
+## Tooltips
+## Adv. Fusion Reactor
+gtconsolidate.machine.advanced_fusion_reactor.capacity=§7蓄電量 §e%sM EU
+gtconsolidate.machine.advanced_fusion_reactor.parallel=§bエナジーハッチ§7の数によって並列処理数が決定される。
