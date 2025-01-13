@@ -1,11 +1,11 @@
 ## Machine
 # Single
 # Multi
-gtconsolidate.machine.compressed_fusion_reactor_luv.name=Advanced Fusion Reactor Computer Mark 1
-gtconsolidate.machine.compressed_fusion_reactor_zpm.name=Advanced Fusion Reactor Computer Mark 2
-gtconsolidate.machine.compressed_fusion_reactor_uv.name=Advanced Fusion Reactor Computer Mark 2
+gtconsolidate.machine.advanced_fusion_reactor_luv.name=Advanced Fusion Reactor Computer Mark 1
+gtconsolidate.machine.advanced_fusion_reactor_zpm.name=Advanced Fusion Reactor Computer Mark 2
+gtconsolidate.machine.advanced_fusion_reactor_uv.name=Advanced Fusion Reactor Computer Mark 2
 
 ## Tooltips
 ## Adv. Fusion Reactor
-gtconsolidate.machine.fusion_reactor.capacity=§7Energy Storage: §e%sM EU
-gtconsolidate.machine.fusion_reactor.parallel=Can parallelize with the number of §bEnergy Hatches.
+gtconsolidate.machine.advanced_fusion_reactor.capacity=§7Energy Storage: §e%sM EU
+gtconsolidate.machine.advanced_fusion_reactor.parallel=Can parallelize with the number of §bEnergy Hatches.

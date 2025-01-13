@@ -80,7 +80,7 @@ import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 
 import kono.ceu.gtconsolidate.common.machines.GTConsolidateMetaTileEntity;
 
-public class MetaTileEntityCompressedFusionReactor extends RecipeMapMultiblockController
+public class MetaTileEntityAdvancedFusionReactor extends RecipeMapMultiblockController
                                                    implements IFastRenderMetaTileEntity, IBloomEffect,
                                                    IParallelMultiblock {
 
@@ -95,7 +95,7 @@ public class MetaTileEntityCompressedFusionReactor extends RecipeMapMultiblockCo
     @SideOnly(Side.CLIENT)
     private boolean registeredBloomRenderTicket;
 
-    public MetaTileEntityCompressedFusionReactor(ResourceLocation metaTileEntityId, int tier) {
+    public MetaTileEntityAdvancedFusionReactor(ResourceLocation metaTileEntityId, int tier) {
         // super(metaTileEntityId, GTConsolidateRecipeMaps.COMPRESSED_FUSION_RECIPES);
         super(metaTileEntityId, RecipeMaps.FUSION_RECIPES);
         this.recipeMapWorkable = new CompressedFusionRecipeLogic(this);
@@ -113,7 +113,7 @@ public class MetaTileEntityCompressedFusionReactor extends RecipeMapMultiblockCo
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
-        return new MetaTileEntityCompressedFusionReactor(metaTileEntityId, tier);
+        return new MetaTileEntityAdvancedFusionReactor(metaTileEntityId, tier);
     }
 
     @Override
@@ -186,7 +186,7 @@ public class MetaTileEntityCompressedFusionReactor extends RecipeMapMultiblockCo
                 .aisle("####CC###CC####", "###w##WGW##s###", "####CC###CC####")
                 .aisle("######DCD######", "####GG###GG####", "######UCU######")
                 .aisle("###############", "######EME######", "###############")
-                .where('M', GTConsolidateMetaTileEntity.COMPRESSED_FUSION_REACTOR[t], EnumFacing.SOUTH)
+                .where('M', GTConsolidateMetaTileEntity.ADVANCED_FUSION_REACTOR[t], EnumFacing.SOUTH)
                 .where('C', getCasingState())
                 .where('G', MetaBlocks.TRANSPARENT_CASING.getState(
                         BlockGlassCasing.CasingType.FUSION_GLASS))
@@ -346,10 +346,10 @@ public class MetaTileEntityCompressedFusionReactor extends RecipeMapMultiblockCo
                                boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(
-                I18n.format("gtconsolidate.machine.fusion_reactor.capacity", calculateEnergyStorageFactor() / 1000000L));
+                I18n.format("gtconsolidate.machine.advanced_reactor.capacity", calculateEnergyStorageFactor() / 1000000L));
         tooltip.add(I18n.format("gregtech.machine.fusion_reactor.overclocking"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", 16));
-        tooltip.add(I18n.format("gtconsolidate.machine.fusion_reactor.parallel"));
+        tooltip.add(I18n.format("gtconsolidate.machine.advanced_fusion_reactor.parallel"));
     }
 
     @SideOnly(Side.CLIENT)
@@ -569,7 +569,7 @@ public class MetaTileEntityCompressedFusionReactor extends RecipeMapMultiblockCo
                 this.moveType = moveType;
             }
 
-            public ProgressWidget getWidget(MetaTileEntityCompressedFusionReactor instance) {
+            public ProgressWidget getWidget(MetaTileEntityAdvancedFusionReactor instance) {
                 return new ProgressWidget(
                         () -> instance.recipeMapWorkable.isActive() ?
                                 instance.progressBarSupplier.getSupplier(this).getAsDouble() : 0,
@@ -586,7 +586,7 @@ public class MetaTileEntityCompressedFusionReactor extends RecipeMapMultiblockCo
 
     private class CompressedFusionRecipeLogic extends GCYMMultiblockRecipeLogic {
 
-        public CompressedFusionRecipeLogic(MetaTileEntityCompressedFusionReactor tileEntity) {
+        public CompressedFusionRecipeLogic(MetaTileEntityAdvancedFusionReactor tileEntity) {
             super(tileEntity);
         }
 
@@ -654,7 +654,7 @@ public class MetaTileEntityCompressedFusionReactor extends RecipeMapMultiblockCo
             // MK3 reactor can overclock a MK2 recipe once, or a MK1 recipe twice.
             long euToStart = storage.getRecipePropertyValue(FusionEUToStartProperty.getInstance(), 0L);
             int fusionTier = FusionEUToStartProperty.getFusionTier(euToStart);
-            if (fusionTier != 0) fusionTier = MetaTileEntityCompressedFusionReactor.this.tier - fusionTier - 2;
+            if (fusionTier != 0) fusionTier = MetaTileEntityAdvancedFusionReactor.this.tier - fusionTier - 2;
             values[2] = Math.min(fusionTier, values[2]);
         }
 
@@ -675,7 +675,7 @@ public class MetaTileEntityCompressedFusionReactor extends RecipeMapMultiblockCo
         @Override
         protected void setActive(boolean active) {
             if (active != isActive) {
-                MetaTileEntityCompressedFusionReactor.this.progressBarSupplier.resetCountdown();
+                MetaTileEntityAdvancedFusionReactor.this.progressBarSupplier.resetCountdown();
             }
             super.setActive(active);
         }
