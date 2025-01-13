@@ -81,8 +81,8 @@ import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import kono.ceu.gtconsolidate.common.machines.GTConsolidateMetaTileEntity;
 
 public class MetaTileEntityAdvancedFusionReactor extends RecipeMapMultiblockController
-                                                   implements IFastRenderMetaTileEntity, IBloomEffect,
-                                                   IParallelMultiblock {
+                                                 implements IFastRenderMetaTileEntity, IBloomEffect,
+                                                 IParallelMultiblock {
 
     protected static final int NO_COLOR = 0;
 
@@ -346,7 +346,8 @@ public class MetaTileEntityAdvancedFusionReactor extends RecipeMapMultiblockCont
                                boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(
-                I18n.format("gtconsolidate.machine.advanced_reactor.capacity", calculateEnergyStorageFactor() / 1000000L));
+                I18n.format("gtconsolidate.machine.advanced_reactor.capacity",
+                        calculateEnergyStorageFactor() / 1000000L));
         tooltip.add(I18n.format("gregtech.machine.fusion_reactor.overclocking"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", 16));
         tooltip.add(I18n.format("gtconsolidate.machine.advanced_fusion_reactor.parallel"));

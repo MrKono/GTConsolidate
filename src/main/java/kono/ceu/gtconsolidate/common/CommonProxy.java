@@ -2,7 +2,6 @@ package kono.ceu.gtconsolidate.common;
 
 import java.util.function.Function;
 
-import kono.ceu.gtconsolidate.loader.MultiMachineLoader;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -20,6 +19,7 @@ import gregtech.loaders.recipe.RecyclingRecipes;
 import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
 import kono.ceu.gtconsolidate.api.util.Logs;
 import kono.ceu.gtconsolidate.common.machines.GTConsolidateMetaTileEntity;
+import kono.ceu.gtconsolidate.loader.MultiMachineLoader;
 
 @Mod.EventBusSubscriber(modid = GTConsolidateValues.MODID)
 public class CommonProxy {
