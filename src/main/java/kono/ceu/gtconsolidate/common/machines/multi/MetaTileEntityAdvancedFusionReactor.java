@@ -349,7 +349,7 @@ public class MetaTileEntityAdvancedFusionReactor extends RecipeMapMultiblockCont
         tooltip.add(I18n.format("gtconsolidate.machine.advanced_fusion_reactor.tooltip2"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", 16));
         tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
-                I18n.format("gtconsolidate.machine.advanced_fusion_reactor.limit")));
+                I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16")));
         tooltip.add(
                 I18n.format("gtconsolidate.machine.advanced_fusion_reactor.capacity",
                         calculateEnergyStorageFactor() / 1000000L));
