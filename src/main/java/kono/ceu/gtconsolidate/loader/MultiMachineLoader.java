@@ -13,6 +13,9 @@ import kono.ceu.gtconsolidate.common.machines.GTConsolidateMetaTileEntity;
 
 public class MultiMachineLoader {
 
+    private static final int sec = 20;
+    private static final int min = 60 * sec;
+
     public static void init() {
         CEuMultiBlock();
     }
@@ -24,18 +27,36 @@ public class MultiMachineLoader {
                 .input(OrePrefix.circuit, MarkerMaterials.Tier.LuV, 32)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[1])
                 .output(GTConsolidateMetaTileEntity.ADVANCED_FUSION_REACTOR[0])
-                .EUt(VA[UV]).duration(600).buildAndRegister();
+                .EUt(VA[UV]).duration(30 * sec).buildAndRegister();
         RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
                 .input(MetaTileEntities.FUSION_REACTOR[1], 16)
                 .input(OrePrefix.circuit, MarkerMaterials.Tier.ZPM, 32)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[1])
                 .output(GTConsolidateMetaTileEntity.ADVANCED_FUSION_REACTOR[1])
-                .EUt(VA[UV]).duration(1200).buildAndRegister();
+                .EUt(VA[UV]).duration(1 * min).buildAndRegister();
         RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
                 .input(MetaTileEntities.FUSION_REACTOR[2], 16)
                 .input(OrePrefix.circuit, MarkerMaterials.Tier.UV, 32)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[1])
                 .output(GTConsolidateMetaTileEntity.ADVANCED_FUSION_REACTOR[2])
-                .EUt(VA[UV]).duration(2400).buildAndRegister();
+                .EUt(VA[UV]).duration(2 * min).buildAndRegister();
+
+        // Adv. EBF
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.ELECTRIC_BLAST_FURNACE, 4)
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.IV, 8)
+                .input(GCYMMetaTileEntities.PARALLEL_HATCH[0])
+                .output(GTConsolidateMetaTileEntity.ADVANCED_EBF[0])
+                .EUt(VA[LuV]).duration(1 * min).buildAndRegister();
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.ELECTRIC_BLAST_FURNACE, 16)
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.LuV, 32)
+                .input(GCYMMetaTileEntities.PARALLEL_HATCH[1])
+                .output(GTConsolidateMetaTileEntity.ADVANCED_EBF[1])
+                .EUt(VA[LuV]).duration(2 * min).buildAndRegister();
+        RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder()
+                .input(GTConsolidateMetaTileEntity.ADVANCED_EBF[0], 4)
+                .output(GTConsolidateMetaTileEntity.ADVANCED_EBF[1])
+                .EUt(VA[ZPM]).duration(1 * min + 30 * sec).buildAndRegister();
     }
 }

@@ -1,6 +1,7 @@
 package kono.ceu.gtconsolidate.common.machines.multi;
 
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
+import static gregtech.api.util.RelativeDirection.*;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.*;
 
 import java.util.*;
@@ -8,6 +9,8 @@ import java.util.*;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -59,6 +62,7 @@ public class MetaTileEntityAdvancedEBF extends RecipeMapMultiblockController
 
     private final int maxParallel;
     private int blastFurnaceTemperature;
+    public int height;
 
     public MetaTileEntityAdvancedEBF(ResourceLocation metaTileEntity, int maxParallel) {
         super(metaTileEntity, RecipeMaps.BLAST_RECIPES);
@@ -71,9 +75,69 @@ public class MetaTileEntityAdvancedEBF extends RecipeMapMultiblockController
         return new MetaTileEntityAdvancedEBF(metaTileEntityId, maxParallel);
     }
 
+
+    @Override
+    protected BlockPattern createStructurePattern() {
+        return FactoryBlockPattern.start(RIGHT, FRONT, UP)
+                .aisle("XSX", "XXX", "XXX")
+                .aisle("CCC", "C#C", "CCC")
+                .aisle("CCC", "CIC", "CCC").setRepeatable(1, 4)
+                .aisle("XXX", "XMX", "XXX")
+                .where('S', selfPredicate())
+                .where('X',
+                        states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF))
+                                .setMinGlobalLimited(9)
+                                .or(autoAbilities(false, false, true, true, true, true, false))
+                                .or(energyHatchLimit(false, maxParallel == 4, true)
+                                        .setMinGlobalLimited(1).setMaxGlobalLimited(2))
+                                .or(manualMaintenance()))
+                .where('M', abilities(MultiblockAbility.MUFFLER_HATCH))
+                .where('C', heatingCoils())
+                .where('I', indicatorPredicate())
+                .where('#', air())
+                .build();
+    }
+
+    // This function is highly useful for detecting the length of this multiblock.
+    public static TraceabilityPredicate indicatorPredicate() {
+        return new TraceabilityPredicate((blockWorldState) -> {
+            if (air().test(blockWorldState)) {
+                blockWorldState.getMatchContext().increment("coilLayer", 1);
+                return true;
+            } else
+                return false;
+        });
+    }
+
+    @Override
+    public List<MultiblockShapeInfo> getMatchingShapes() {
+        ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder()
+                .aisle("EEM", "CCC", "CCC", "XXX")
+                .aisle("FXD", "C#C", "C#C", "XHX")
+                .aisle("ISO", "CCC", "CCC", "XXX")
+                .where('X', MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF))
+                .where('S', GTConsolidateMetaTileEntity.ADVANCED_EBF[maxParallel == 4 ? 0 : 1], EnumFacing.SOUTH)
+                .where('#', Blocks.AIR.getDefaultState())
+                .where('E', MetaTileEntities.ENERGY_INPUT_HATCH_4A[GTValues.LV], EnumFacing.NORTH)
+                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
+                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
+                .where('F', MetaTileEntities.FLUID_IMPORT_HATCH[GTValues.LV], EnumFacing.WEST)
+                .where('D', MetaTileEntities.FLUID_EXPORT_HATCH[GTValues.LV], EnumFacing.EAST)
+                .where('H', MetaTileEntities.MUFFLER_HATCH[GTValues.LV], EnumFacing.UP)
+                .where('M', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH :
+                                MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF),
+                        EnumFacing.NORTH);
+        GregTechAPI.HEATING_COILS.entrySet().stream()
+                .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
+                .forEach(entry -> shapeInfo.add(builder.where('C', entry.getKey()).build()));
+        return shapeInfo;
+    }
+
     @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
+        this.height = context.getOrDefault("coilLayer", 1);
         Object type = context.get("CoilType");
         if (type instanceof IHeatingCoilBlockStats) {
             this.blastFurnaceTemperature = ((IHeatingCoilBlockStats) type).getCoilTemperature();
@@ -101,58 +165,39 @@ public class MetaTileEntityAdvancedEBF extends RecipeMapMultiblockController
         return true;
     }
 
+    private int increaseFactor() {
+        return maxParallel == 4 ? 1 : 4;
+    }
+
     @Override
     public int getMaxParallel() {
-        return maxParallel;
+        return height * increaseFactor();
     }
 
     @Override
-    protected BlockPattern createStructurePattern() {
-        return FactoryBlockPattern.start()
-                .aisle("XXX", "CCC", "CCC", "XXX")
-                .aisle("XXX", "C#C", "C#C", "XMX")
-                .aisle("XSX", "CCC", "CCC", "XXX")
-                .where('S', selfPredicate())
-                .where('X',
-                        states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF))
-                                .setMinGlobalLimited(9)
-                                .or(autoAbilities(false, false, true, true, true, true, false))
-                                .or(getEnergyHatchPredicates().setMinGlobalLimited(1).setMaxGlobalLimited(2))
-                                .or(manualMaintenance()))
-                .where('M', abilities(MultiblockAbility.MUFFLER_HATCH))
-                .where('C', heatingCoils())
-                .where('#', air())
-                .build();
+    public NBTTagCompound writeToNBT(NBTTagCompound data) {
+        super.writeToNBT(data);
+        data.setInteger("height", this.height);
+        return data;
     }
-
-    private TraceabilityPredicate getEnergyHatchPredicates() {
-        return maxParallel == 4 ? limit4A() : metaTileEntities(MetaTileEntities.ENERGY_INPUT_HATCH_16A);
+    @Override
+    public void readFromNBT(NBTTagCompound data) {
+        super.readFromNBT(data);
+        this.height = data.getInteger("height");
     }
 
     @Override
-    public List<MultiblockShapeInfo> getMatchingShapes() {
-        ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder()
-                .aisle("EEM", "CCC", "CCC", "XXX")
-                .aisle("FXD", "C#C", "C#C", "XHX")
-                .aisle("ISO", "CCC", "CCC", "XXX")
-                .where('X', MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF))
-                .where('S', GTConsolidateMetaTileEntity.ADVANCED_EBF[maxParallel == 4 ? 0 : 1], EnumFacing.SOUTH)
-                .where('#', Blocks.AIR.getDefaultState())
-                .where('E', MetaTileEntities.ENERGY_INPUT_HATCH_4A[GTValues.LV], EnumFacing.NORTH)
-                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
-                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
-                .where('F', MetaTileEntities.FLUID_IMPORT_HATCH[GTValues.LV], EnumFacing.WEST)
-                .where('D', MetaTileEntities.FLUID_EXPORT_HATCH[GTValues.LV], EnumFacing.EAST)
-                .where('H', MetaTileEntities.MUFFLER_HATCH[GTValues.LV], EnumFacing.UP)
-                .where('M', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH :
-                        MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF),
-                        EnumFacing.NORTH);
-        GregTechAPI.HEATING_COILS.entrySet().stream()
-                .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
-                .forEach(entry -> shapeInfo.add(builder.where('C', entry.getKey()).build()));
-        return shapeInfo;
+    public void writeInitialSyncData(PacketBuffer buf) {
+        super.writeInitialSyncData(buf);
+        buf.writeInt(this.height);
     }
+
+    @Override
+    public void receiveInitialSyncData(PacketBuffer buf) {
+        super.receiveInitialSyncData(buf);
+        this.height = buf.readInt();
+    }
+
 
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
@@ -188,8 +233,9 @@ public class MetaTileEntityAdvancedEBF extends RecipeMapMultiblockController
     public void addInformation(ItemStack stack, @Nullable World world, @NotNull List<String> tooltip,
                                boolean advanced) {
         super.addInformation(stack, world, tooltip, advanced);
-        tooltip.add(I18n.format("gtconsolidate.machine.advanced_ebf.tooltip"));
-        tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", 16));
+        tooltip.add(I18n.format("gtconsolidate.machine.advanced_ebf.tooltip1"));
+        tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", maxParallel));
+        tooltip.add(I18n.format("gtconsolidate.machine.advanced_ebf.tooltip2", increaseFactor()));
         tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
                 maxParallel == 4 ? I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16") :
                         I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16")));
