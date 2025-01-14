@@ -10,8 +10,10 @@
 
 ## Info 
 **This mod Requires [GregTech CE: Unofficial](https://github.com/GregTechCEu/GregTech) !**<br>
-This mod is simple addon to that allows for a little multi-block parallelization.<br>
 You can include this mod in your modpack!
+
+## What is this mod??
+Isn't finding space to meet the demand for Europium a bit of a hassle? And doesn't the Vacuum Freezer feel a bit slow? This mod adds parallel versions of those multiblock machines (_though they’re a bit quirky... :P_).
 
 ## Credits
 I modified some textures from [GTCE unofficial](https://github.com/GregTechCEu/GregTech) under LGPL-3.0 License
