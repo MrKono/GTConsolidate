@@ -2,7 +2,9 @@ package kono.ceu.gtconsolidate.api.util;
 
 import static gregtech.api.metatileentity.multiblock.MultiblockControllerBase.metaTileEntities;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import net.minecraft.util.ResourceLocation;
@@ -34,10 +36,20 @@ public class GTConsolidateValues {
                 new TraceabilityPredicate();
     }
 
-    public static TraceabilityPredicate limit4A() {
-        return metaTileEntities(Stream
-                .concat(Arrays.stream(MetaTileEntities.ENERGY_INPUT_HATCH_4A),
-                        Arrays.stream(MetaTileEntities.ENERGY_INPUT_HATCH_16A))
-                .toArray(MetaTileEntity[]::new));
+    public static TraceabilityPredicate energyHatchLimit(boolean allow1A, boolean allow4A) {
+        return energyHatchLimit(allow1A, allow4A, false);
+    }
+
+    public static TraceabilityPredicate energyHatchLimit(boolean allow1A, boolean allow4A, boolean allow16A) {
+        return energyHatchLimit(allow1A, allow4A, allow16A, false);
+    }
+
+    public static TraceabilityPredicate energyHatchLimit(boolean allow1A, boolean allow4A, boolean allow16A, boolean allow64A) {
+        List<MetaTileEntity> energyHatch = new ArrayList<>();
+        if (allow1A) energyHatch.addAll(Arrays.asList(MetaTileEntities.ENERGY_INPUT_HATCH));
+        if (allow4A) energyHatch.addAll(Arrays.asList(MetaTileEntities.ENERGY_INPUT_HATCH_4A));
+        if (allow16A) energyHatch.addAll(Arrays.asList(MetaTileEntities.ENERGY_INPUT_HATCH_16A));
+        if (allow64A) energyHatch.addAll(Arrays.asList(MetaTileEntities.SUBSTATION_ENERGY_INPUT_HATCH));
+        return metaTileEntities(energyHatch.toArray(new MetaTileEntity[0]));
     }
 }
