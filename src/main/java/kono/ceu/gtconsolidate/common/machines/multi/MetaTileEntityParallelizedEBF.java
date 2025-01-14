@@ -57,14 +57,14 @@ import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 
 import kono.ceu.gtconsolidate.common.machines.GTConsolidateMetaTileEntity;
 
-public class MetaTileEntityAdvancedEBF extends RecipeMapMultiblockController
+public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
                                        implements IHeatingCoil, IParallelMultiblock {
 
     private final int maxParallel;
     private int blastFurnaceTemperature;
     public int height;
 
-    public MetaTileEntityAdvancedEBF(ResourceLocation metaTileEntity, int maxParallel) {
+    public MetaTileEntityParallelizedEBF(ResourceLocation metaTileEntity, int maxParallel) {
         super(metaTileEntity, RecipeMaps.BLAST_RECIPES);
         this.recipeMapWorkable = new AdvancedEBFRecipeLogic(this);
         this.maxParallel = maxParallel;
@@ -72,7 +72,7 @@ public class MetaTileEntityAdvancedEBF extends RecipeMapMultiblockController
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
-        return new MetaTileEntityAdvancedEBF(metaTileEntityId, maxParallel);
+        return new MetaTileEntityParallelizedEBF(metaTileEntityId, maxParallel);
     }
 
 
@@ -117,7 +117,7 @@ public class MetaTileEntityAdvancedEBF extends RecipeMapMultiblockController
                 .aisle("FXD", "C#C", "C#C", "XHX")
                 .aisle("ISO", "CCC", "CCC", "XXX")
                 .where('X', MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF))
-                .where('S', GTConsolidateMetaTileEntity.ADVANCED_EBF[maxParallel == 4 ? 0 : 1], EnumFacing.SOUTH)
+                .where('S', GTConsolidateMetaTileEntity.PARALLELIZED_EBF[maxParallel == 4 ? 0 : 1], EnumFacing.SOUTH)
                 .where('#', Blocks.AIR.getDefaultState())
                 .where('E', MetaTileEntities.ENERGY_INPUT_HATCH_4A[GTValues.LV], EnumFacing.NORTH)
                 .where('I', MetaTileEntities.ITEM_IMPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
@@ -233,9 +233,9 @@ public class MetaTileEntityAdvancedEBF extends RecipeMapMultiblockController
     public void addInformation(ItemStack stack, @Nullable World world, @NotNull List<String> tooltip,
                                boolean advanced) {
         super.addInformation(stack, world, tooltip, advanced);
-        tooltip.add(I18n.format("gtconsolidate.machine.advanced_ebf.tooltip1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_ebf.tooltip1"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", maxParallel));
-        tooltip.add(I18n.format("gtconsolidate.machine.advanced_ebf.tooltip2", increaseFactor()));
+        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_ebf.tooltip2", increaseFactor()));
         tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
                 maxParallel == 4 ? I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16") :
                         I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16")));

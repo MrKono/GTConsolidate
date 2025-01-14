@@ -1,10 +1,10 @@
 ## Machine
 # Single
 # Multi
-gtconsolidate.machine.advanced_fusion_reactor_luv.name=発展型核融合炉 Mark 1
-gtconsolidate.machine.advanced_fusion_reactor_zpm.name=発展型核融合炉 Mark 2
-gtconsolidate.machine.advanced_fusion_reactor_uv.name=発展型核融合炉 Mark 3
-gtconsolidate.machine.advanced_electric_blast_furnace.name=発展型工業用電気炉
+gtconsolidate.machine.parallelized_fusion_reactor_luv.name=発展型核融合炉 Mark 1
+gtconsolidate.machine.parallelized_fusion_reactor_zpm.name=発展型核融合炉 Mark 2
+gtconsolidate.machine.parallelized_fusion_reactor_uv.name=発展型核融合炉 Mark 3
+gtconsolidate.machine.parallelized_electric_blast_furnace.name=発展型工業用電気炉
 gtconsolidate.machine.elite_electric_blast_furnace.name=精鋭型工業用電気炉
 
 ## Tooltips
@@ -16,11 +16,11 @@ gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16=エナジーハッ
 gtconsolidate.multiblock.tooltip.universal.limit.manual_maintenance=自動メンテナンスハッチは§e使えない§7。
 
 # Adv. Fusion Reactor
-gtconsolidate.machine.advanced_fusion_reactor.tooltip1=並列化された核融合炉。ただし制限あり。
-gtconsolidate.machine.advanced_fusion_reactor.tooltip2=§bエナジーハッチ§7の数によって並列処理数が決定される。
-gtconsolidate.machine.advanced_fusion_reactor.capacity=蓄電量 §e%sM EU
-gtconsolidate.machine.advanced_fusion_reactor.limit=エナジーハッチは§e16Aのみ§7。
+gtconsolidate.machine.parallelized_fusion_reactor.tooltip1=並列化された核融合炉。ただし制限あり。
+gtconsolidate.machine.parallelized_fusion_reactor.tooltip2=§bエナジーハッチ§7の数によって並列処理数が決定される。
+gtconsolidate.machine.parallelized_fusion_reactor.capacity=蓄電量 §e%sM EU
+gtconsolidate.machine.parallelized_fusion_reactor.limit=エナジーハッチは§e16Aのみ§7。
 
 # Adv. Electric Blast Furnace
-gtconsolidate.machine.advanced_ebf.tooltip1=並列化された工業用電気炉。ただし制限あり。
-gtconsolidate.machine.advanced_ebf.tooltip2=コイル層が1層増えるごとに並列数が§a%s§7増加する。
+gtconsolidate.machine.parallelized_ebf.tooltip1=並列化された工業用電気炉。ただし制限あり。
+gtconsolidate.machine.parallelized_ebf.tooltip2=コイル層が1層増えるごとに並列数が§a%s§7増加する。
