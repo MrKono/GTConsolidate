@@ -15,7 +15,7 @@ public class GTConsolidateConfig {
 
     public static class IdSetting {
 
-        @Config.Comment({ "Start ID for Multiblock Machine", "Dafault: 26000" })
-        public int startMulti = 24000;
+        @Config.Comment({ "Start ID for Multiblock Machine", "Default: 21500" })
+        public int startMulti = 21500;
     }
 }
