@@ -5,7 +5,7 @@ gtconsolidate.machine.parallelized_fusion_reactor_luv.name=発展型核融合炉
 gtconsolidate.machine.parallelized_fusion_reactor_zpm.name=発展型核融合炉 Mark 2
 gtconsolidate.machine.parallelized_fusion_reactor_uv.name=発展型核融合炉 Mark 3
 
-gtconsolidate.machine.parallelized_electric_blast_furnace.name=発展型工業用電気炉
+gtconsolidate.machine.advanced_electric_blast_furnace.name=発展型工業用電気炉
 gtconsolidate.machine.elite_electric_blast_furnace.name=精鋭型工業用電気炉
 
 gtconsolidate.machine.advanced_vacuum_freezer.name=発展型真空冷却機
@@ -18,7 +18,7 @@ gtconsolidate.machine.parallelized_assembly_line_mk3.name=発展型アセンブ�
 ## Tooltips
 # Multi
 # Universal
-gtconsolidate.multiblock.tooltip.universal.limit=§cLimits: §7%s
+gtconsolidate.multiblock.tooltip.universal.limit=§c制限: §7%s
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16=エナジーハッチは§e4A§7または§e16A§7のみ。
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16=エナジーハッチは§e16Aのみ§7。
 gtconsolidate.multiblock.tooltip.universal.limit.manual_maintenance=自動メンテナンスハッチは§e使えない§7。
