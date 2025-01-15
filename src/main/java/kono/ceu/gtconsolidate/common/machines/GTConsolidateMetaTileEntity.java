@@ -15,7 +15,6 @@ public class GTConsolidateMetaTileEntity {
     public static final MetaTileEntityParallelizedFusionReactor[] PARALLELIZED_FUSION_REACTOR = new MetaTileEntityParallelizedFusionReactor[3];
     public static final MetaTileEntityParallelizedEBF[] PARALLELIZED_EBF = new MetaTileEntityParallelizedEBF[2];
     public static final MetaTileEntityParallelizedVF[] PARALLELIZED_VF = new MetaTileEntityParallelizedVF[2];
-    //public static final MetaTileEntityParallelizedAssemblyLine[] PARALLELIZED_ASSEMBLY_LINE = new MetaTileEntityParallelizedAssemblyLine[3];
 
     public static void init() {
         registerMultiMachine();
@@ -41,14 +40,5 @@ public class GTConsolidateMetaTileEntity {
                 modId("advanced_vacuum_freezer"), 4));
         PARALLELIZED_VF[1] = registerMetaTileEntity(id + 6, new MetaTileEntityParallelizedVF(
                 modId("elite_vacuum_freezer"), 16));
-        // toDo: Parallelized Assembly Line
-        /*
-         * PARALLELIZED_ASSEMBLY_LINE[0] = registerMetaTileEntity(id + 7, new MetaTileEntityParallelizedAssemblyLine(
-         * modId("parallelized_assembly_line_mk1"), 4));
-         * PARALLELIZED_ASSEMBLY_LINE[1] = registerMetaTileEntity(id + 8, new MetaTileEntityParallelizedAssemblyLine(
-         * modId("parallelized_assembly_line_mk2"), 16));
-         * PARALLELIZED_ASSEMBLY_LINE[2] = registerMetaTileEntity(id + 9, new MetaTileEntityParallelizedAssemblyLine(
-         * modId("parallelized_assembly_line_mk3"), 64));
-         */
     }
 }
