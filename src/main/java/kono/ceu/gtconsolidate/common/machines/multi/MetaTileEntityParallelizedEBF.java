@@ -58,7 +58,7 @@ import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import kono.ceu.gtconsolidate.common.machines.GTConsolidateMetaTileEntity;
 
 public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
-                                       implements IHeatingCoil, IParallelMultiblock {
+                                           implements IHeatingCoil, IParallelMultiblock {
 
     private final int maxParallel;
     private int blastFurnaceTemperature;
@@ -74,7 +74,6 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntityParallelizedEBF(metaTileEntityId, maxParallel);
     }
-
 
     @Override
     protected BlockPattern createStructurePattern() {
@@ -126,7 +125,7 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
                 .where('D', MetaTileEntities.FLUID_EXPORT_HATCH[GTValues.LV], EnumFacing.EAST)
                 .where('H', MetaTileEntities.MUFFLER_HATCH[GTValues.LV], EnumFacing.UP)
                 .where('M', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH :
-                                MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF),
+                        MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF),
                         EnumFacing.NORTH);
         GregTechAPI.HEATING_COILS.entrySet().stream()
                 .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
@@ -180,6 +179,7 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
         data.setInteger("height", this.height);
         return data;
     }
+
     @Override
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
@@ -197,7 +197,6 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
         super.receiveInitialSyncData(buf);
         this.height = buf.readInt();
     }
-
 
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {

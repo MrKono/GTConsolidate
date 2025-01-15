@@ -5,7 +5,6 @@ import static gregtech.api.metatileentity.multiblock.MultiblockControllerBase.me
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import net.minecraft.util.ResourceLocation;
 
@@ -44,7 +43,8 @@ public class GTConsolidateValues {
         return energyHatchLimit(allow1A, allow4A, allow16A, false);
     }
 
-    public static TraceabilityPredicate energyHatchLimit(boolean allow1A, boolean allow4A, boolean allow16A, boolean allow64A) {
+    public static TraceabilityPredicate energyHatchLimit(boolean allow1A, boolean allow4A, boolean allow16A,
+                                                         boolean allow64A) {
         List<MetaTileEntity> energyHatch = new ArrayList<>();
         if (allow1A) energyHatch.addAll(Arrays.asList(MetaTileEntities.ENERGY_INPUT_HATCH));
         if (allow4A) energyHatch.addAll(Arrays.asList(MetaTileEntities.ENERGY_INPUT_HATCH_4A));

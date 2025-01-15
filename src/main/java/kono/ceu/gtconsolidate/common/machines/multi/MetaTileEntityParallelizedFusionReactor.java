@@ -81,8 +81,8 @@ import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import kono.ceu.gtconsolidate.common.machines.GTConsolidateMetaTileEntity;
 
 public class MetaTileEntityParallelizedFusionReactor extends RecipeMapMultiblockController
-                                                 implements IFastRenderMetaTileEntity, IBloomEffect,
-                                                 IParallelMultiblock {
+                                                     implements IFastRenderMetaTileEntity, IBloomEffect,
+                                                     IParallelMultiblock {
 
     protected static final int NO_COLOR = 0;
 
