@@ -6,7 +6,6 @@ import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.modId;
 import gregtech.api.GTValues;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
-import kono.ceu.gtconsolidate.common.machines.multi.MetaTileEntityParallelizedAssemblyLine;
 import kono.ceu.gtconsolidate.common.machines.multi.MetaTileEntityParallelizedEBF;
 import kono.ceu.gtconsolidate.common.machines.multi.MetaTileEntityParallelizedFusionReactor;
 import kono.ceu.gtconsolidate.common.machines.multi.MetaTileEntityParallelizedVF;
@@ -16,7 +15,7 @@ public class GTConsolidateMetaTileEntity {
     public static final MetaTileEntityParallelizedFusionReactor[] PARALLELIZED_FUSION_REACTOR = new MetaTileEntityParallelizedFusionReactor[3];
     public static final MetaTileEntityParallelizedEBF[] PARALLELIZED_EBF = new MetaTileEntityParallelizedEBF[2];
     public static final MetaTileEntityParallelizedVF[] PARALLELIZED_VF = new MetaTileEntityParallelizedVF[2];
-    public static final MetaTileEntityParallelizedAssemblyLine[] PARALLELIZED_ASSEMBLY_LINE = new MetaTileEntityParallelizedAssemblyLine[3];
+    //public static final MetaTileEntityParallelizedAssemblyLine[] PARALLELIZED_ASSEMBLY_LINE = new MetaTileEntityParallelizedAssemblyLine[3];
 
     public static void init() {
         registerMultiMachine();
