@@ -58,5 +58,23 @@ public class MultiMachineLoader {
                 .input(GTConsolidateMetaTileEntity.PARALLELIZED_EBF[0], 4)
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_EBF[1])
                 .EUt(VA[ZPM]).duration(1 * min + 30 * sec).buildAndRegister();
+
+        // Adv. VF
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.VACUUM_FREEZER, 4)
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.IV, 8)
+                .input(GCYMMetaTileEntities.PARALLEL_HATCH[0])
+                .output(GTConsolidateMetaTileEntity.PARALLELIZED_VF[0])
+                .EUt(VA[LuV]).duration(1 * min).buildAndRegister();
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.VACUUM_FREEZER, 16)
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.LuV, 32)
+                .input(GCYMMetaTileEntities.PARALLEL_HATCH[1])
+                .output(GTConsolidateMetaTileEntity.PARALLELIZED_VF[1])
+                .EUt(VA[LuV]).duration(2 * min).buildAndRegister();
+        RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder()
+                .input(GTConsolidateMetaTileEntity.PARALLELIZED_VF[0], 4)
+                .output(GTConsolidateMetaTileEntity.PARALLELIZED_VF[1])
+                .EUt(VA[ZPM]).duration(1 * min + 30 * sec).buildAndRegister();
     }
 }

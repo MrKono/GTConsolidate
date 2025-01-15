@@ -4,8 +4,16 @@
 gtconsolidate.machine.parallelized_fusion_reactor_luv.name=発展型核融合炉 Mark 1
 gtconsolidate.machine.parallelized_fusion_reactor_zpm.name=発展型核融合炉 Mark 2
 gtconsolidate.machine.parallelized_fusion_reactor_uv.name=発展型核融合炉 Mark 3
+
 gtconsolidate.machine.parallelized_electric_blast_furnace.name=発展型工業用電気炉
 gtconsolidate.machine.elite_electric_blast_furnace.name=精鋭型工業用電気炉
+
+gtconsolidate.machine.advanced_vacuum_freezer.name=発展型真空冷却機
+gtconsolidate.machine.elite_vacuum_freezer.name=精鋭型真空冷却機
+
+gtconsolidate.machine.parallelized_assembly_line_mk1.name=発展型アセンブリライン Mark 1
+gtconsolidate.machine.parallelized_assembly_line_mk2.name=発展型アセンブリライン Mark 2
+gtconsolidate.machine.parallelized_assembly_line_mk3.name=発展型アセンブリライン Mark 3
 
 ## Tooltips
 # Multi
@@ -24,3 +32,6 @@ gtconsolidate.machine.parallelized_fusion_reactor.limit=エナジーハッチは
 # Adv. Electric Blast Furnace
 gtconsolidate.machine.parallelized_ebf.tooltip1=並列化された工業用電気炉。ただし制限あり。
 gtconsolidate.machine.parallelized_ebf.tooltip2=コイル層が1層増えるごとに並列数が§a%s§7増加する。
+
+# Adv. Vacuum Freezer
+gtconsolidate.machine.parallelized_vf.tooltip=並列化された真空冷却機。ただし制限あり。

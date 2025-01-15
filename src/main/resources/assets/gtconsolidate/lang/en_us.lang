@@ -4,8 +4,16 @@
 gtconsolidate.machine.parallelized_fusion_reactor_luv.name=Advanced Fusion Reactor Computer Mark 1
 gtconsolidate.machine.parallelized_fusion_reactor_zpm.name=Advanced Fusion Reactor Computer Mark 2
 gtconsolidate.machine.parallelized_fusion_reactor_uv.name=Advanced Fusion Reactor Computer Mark 3
+
 gtconsolidate.machine.advanced_electric_blast_furnace.name=Advanced Electric Blast Furnace
 gtconsolidate.machine.elite_electric_blast_furnace.name=Elite Electric Blast Furnace
+
+gtconsolidate.machine.advanced_vacuum_freezer.name=Advanced Vacuum Freezer
+gtconsolidate.machine.elite_vacuum_freezer.name=Elite Vacuum Freezer
+
+gtconsolidate.machine.parallelized_assembly_line_mk1.name=Advanced Assembly Line Mark 1
+gtconsolidate.machine.parallelized_assembly_line_mk2.name=Advanced Assembly Line Mark 2
+gtconsolidate.machine.parallelized_assembly_line_mk3.name=Advanced Assembly Line Mark 3
 
 ## Tooltips
 # Multi
@@ -23,3 +31,6 @@ gtconsolidate.machine.parallelized_fusion_reactor.capacity=Energy Storage: §e%s
 # Adv. Electric Blast Furnace
 gtconsolidate.machine.parallelized_ebf.tooltip1=Parallelized Electric Blast Furnace, but with limitations.
 gtconsolidate.machine.parallelized_ebf.tooltip2=Parallelized by §a%s§7 for additional coil layers.
+
+# Adv. Vacuum Freezer
+gtconsolidate.machine.parallelized_vf.tooltip=Parallelized Vacuum Freezer, but with limitations.
