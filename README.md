@@ -11,9 +11,13 @@
 ## Info 
 **This mod Requires [GregTech CE: Unofficial](https://github.com/GregTechCEu/GregTech) !**<br>
 You can include this mod in your modpack!
-
+---
 ## What is this mod??
 Isn't finding space to meet the demand for Europium a bit of a hassle? And doesn't the Vacuum Freezer feel a bit slow? This mod adds parallel versions of those multiblock machines (_though they’re a bit quirky... :P_).
-
+### Contents
+- Parallelized Fusion Reactor (Since 0.0.1-beta)  
+- Parallelized Electric Blast Furnace (Since 1.0.0-beta)  
+- Parallelized Vacuum Freezer (Since 1.0.0-beta)
+---
 ## Credits
 I modified some textures from [GTCE unofficial](https://github.com/GregTechCEu/GregTech) under LGPL-3.0 License
