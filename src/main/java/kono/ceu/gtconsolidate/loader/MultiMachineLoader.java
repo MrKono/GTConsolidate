@@ -9,7 +9,7 @@ import gregtech.common.metatileentities.MetaTileEntities;
 
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 
-import kono.ceu.gtconsolidate.common.machines.GTConsolidateMetaTileEntity;
+import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 
 public class MultiMachineLoader {
 

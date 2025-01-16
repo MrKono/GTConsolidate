@@ -1,4 +1,4 @@
-package kono.ceu.gtconsolidate.common.machines.multi;
+package kono.ceu.gtconsolidate.common.metatileentities.multi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,7 +78,7 @@ import gregtech.common.metatileentities.MetaTileEntities;
 import gregicality.multiblocks.api.capability.IParallelMultiblock;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 
-import kono.ceu.gtconsolidate.common.machines.GTConsolidateMetaTileEntity;
+import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 
 public class MetaTileEntityParallelizedFusionReactor extends RecipeMapMultiblockController
                                                      implements IFastRenderMetaTileEntity, IBloomEffect,

@@ -1,4 +1,4 @@
-package kono.ceu.gtconsolidate.common.machines;
+package kono.ceu.gtconsolidate.common.metatileentities;
 
 import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.modId;
@@ -6,10 +6,10 @@ import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.modId;
 import gregtech.api.GTValues;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
-import kono.ceu.gtconsolidate.common.machines.multi.MetaTileEntityParallelizedAssemblyLine;
-import kono.ceu.gtconsolidate.common.machines.multi.MetaTileEntityParallelizedEBF;
-import kono.ceu.gtconsolidate.common.machines.multi.MetaTileEntityParallelizedFusionReactor;
-import kono.ceu.gtconsolidate.common.machines.multi.MetaTileEntityParallelizedVF;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.MetaTileEntityParallelizedAssemblyLine;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.MetaTileEntityParallelizedEBF;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.MetaTileEntityParallelizedFusionReactor;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.MetaTileEntityParallelizedVF;
 
 public class GTConsolidateMetaTileEntity {
 

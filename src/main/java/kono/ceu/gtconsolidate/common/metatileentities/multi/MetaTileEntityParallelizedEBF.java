@@ -1,4 +1,4 @@
-package kono.ceu.gtconsolidate.common.machines.multi;
+package kono.ceu.gtconsolidate.common.metatileentities.multi;
 
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
 import static gregtech.api.util.RelativeDirection.*;
@@ -55,7 +55,7 @@ import gregtech.core.sound.GTSoundEvents;
 import gregicality.multiblocks.api.capability.IParallelMultiblock;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 
-import kono.ceu.gtconsolidate.common.machines.GTConsolidateMetaTileEntity;
+import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 
 public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
                                            implements IHeatingCoil, IParallelMultiblock {

@@ -1,4 +1,4 @@
-package kono.ceu.gtconsolidate.common.machines.multi;
+package kono.ceu.gtconsolidate.common.metatileentities.multi;
 
 import static gregtech.api.util.RelativeDirection.*;
 

@@ -18,7 +18,7 @@ import gregtech.loaders.recipe.RecyclingRecipes;
 
 import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
 import kono.ceu.gtconsolidate.api.util.Logs;
-import kono.ceu.gtconsolidate.common.machines.GTConsolidateMetaTileEntity;
+import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 import kono.ceu.gtconsolidate.loader.MultiMachineLoader;
 
 @Mod.EventBusSubscriber(modid = GTConsolidateValues.MODID)
