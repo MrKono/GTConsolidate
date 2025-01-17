@@ -1,6 +1,7 @@
 package kono.ceu.gtconsolidate.loader;
 
 import static gregtech.api.GTValues.*;
+import static gregtech.common.items.MetaItems.*;
 
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
@@ -9,6 +10,8 @@ import gregtech.common.metatileentities.MetaTileEntities;
 
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 
+import kono.ceu.gtconsolidate.common.blocks.BlockParallelizedAssemblyLineCasing;
+import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 
 public class MultiMachineLoader {
@@ -76,5 +79,37 @@ public class MultiMachineLoader {
                 .input(GTConsolidateMetaTileEntity.PARALLELIZED_VF[0], 4)
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_VF[1])
                 .EUt(VA[ZPM]).duration(1 * min + 30 * sec).buildAndRegister();
+
+        // Adv, Assembly Line
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.ASSEMBLY_LINE, 4)
+                .inputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
+                        .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CONTROL,
+                                4))
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.UV, 2)
+                .input(ROBOT_ARM_LuV)
+                .input(GCYMMetaTileEntities.PARALLEL_HATCH[0])
+                .output(GTConsolidateMetaTileEntity.PARALLELIZED_ASSEMBLY_LINE[0])
+                .EUt(VA[UV]).duration(1 * min).buildAndRegister();
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.ASSEMBLY_LINE, 16)
+                .inputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
+                        .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CONTROL,
+                                4))
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.UHV, 2)
+                .input(ROBOT_ARM_ZPM)
+                .input(GCYMMetaTileEntities.PARALLEL_HATCH[1])
+                .output(GTConsolidateMetaTileEntity.PARALLELIZED_ASSEMBLY_LINE[1])
+                .EUt(VA[UHV]).duration(1 * min).buildAndRegister();
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.ASSEMBLY_LINE, 64)
+                .inputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
+                        .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CONTROL,
+                                4))
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.UHV, 8)
+                .input(ROBOT_ARM_UV)
+                .input(GCYMMetaTileEntities.PARALLEL_HATCH[2])
+                .output(GTConsolidateMetaTileEntity.PARALLELIZED_ASSEMBLY_LINE[2])
+                .EUt(VA[UEV]).duration(1 * min).buildAndRegister();
     }
 }

@@ -1,6 +1,7 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi;
 
 import static gregtech.api.util.RelativeDirection.*;
+import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.energyHatchLimit;
 
 import java.util.List;
 import java.util.function.Function;
@@ -44,7 +45,6 @@ import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
-import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
@@ -53,6 +53,9 @@ import gregtech.core.sound.GTSoundEvents;
 
 import gregicality.multiblocks.api.capability.IParallelMultiblock;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
+
+import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
+import kono.ceu.gtconsolidate.common.blocks.*;
 
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
@@ -107,31 +110,41 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
                 .where('O', abilities(MultiblockAbility.EXPORT_ITEMS)
                         .addTooltips("gregtech.multiblock.pattern.location_end"))
                 .where('Y', states(getCasingState())
-                        .or(abilities(MultiblockAbility.INPUT_ENERGY)
+                        .or(energyHatchLimit(false, maxParallel == 4, maxParallel != 64, maxParallel == 64)
                                 .setMinGlobalLimited(1)
                                 .setMaxGlobalLimited(3)))
-                .where('I', metaTileEntities(MetaTileEntities.ITEM_IMPORT_BUS))
+                .where('I', metaTileEntities(MetaTileEntities.ITEM_IMPORT_BUS).addTooltip(
+                        I18n.format("gtconsolidate.multiblock.jei.bus.collapsing")))
                 .where('G', states(getGrateState()))
-                .where('A',
-                        states(MetaBlocks.MULTIBLOCK_CASING
-                                .getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL)))
-                .where('R', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS)))
-                .where('T',
-                        states(MetaBlocks.MULTIBLOCK_CASING
-                                .getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING)))
-                .where('D', dataHatchPredicate())
+                .where('A', states(getControlCasingState()))
+                .where('R', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)))
+                .where('T', states(getBaseCasingState()))
+                .where('D', extraHatchPredicate())
                 .where(' ', any());
         return pattern.build();
     }
 
     @NotNull
     protected static IBlockState getCasingState() {
-        return MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID);
+        return MetaBlocks.MULTIBLOCK_CASING
+                .getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL);
+    }
+
+    @NotNull
+    protected static IBlockState getBaseCasingState() {
+        return GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
+                .getState(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CASING);
     }
 
     @NotNull
     protected static IBlockState getGrateState() {
         return MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.GRATE_CASING);
+    }
+
+    @NotNull
+    protected static IBlockState getControlCasingState() {
+        return GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
+                .getState(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CONTROL);
     }
 
     @NotNull
@@ -147,7 +160,7 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
     }
 
     @NotNull
-    protected static TraceabilityPredicate dataHatchPredicate() {
+    protected static TraceabilityPredicate extraHatchPredicate() {
         // if research is enabled, require the data hatch, otherwise use a grate instead
         if (ConfigHolder.machines.enableResearch) {
             return abilities(MultiblockAbility.DATA_ACCESS_HATCH, MultiblockAbility.OPTICAL_DATA_RECEPTION)
@@ -171,14 +184,14 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
             if (sourcePart instanceof IDataAccessHatch) {
                 return Textures.GRATE_CASING_STEEL_FRONT;
             } else {
-                return Textures.SOLID_STEEL_CASING;
+                return GTConsolidateTextures.PARALLELIZED_ASSEMBLY_LINE_CONTROL;
             }
         } else {
             // controller rendering
             if (isStructureFormed()) {
                 return Textures.GRATE_CASING_STEEL_FRONT;
             } else {
-                return Textures.SOLID_STEEL_CASING;
+                return GTConsolidateTextures.PARALLELIZED_ASSEMBLY_LINE_CONTROL;
             }
         }
     }
@@ -411,8 +424,14 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
         tooltip.add(I18n.format("gtconsolidate.machine.parallelized_vf.tooltip.1"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", maxParallel));
         tooltip.add(I18n.format("gtconsolidate.machine.parallelized_vf.tooltip.2"));
+        tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
+                I18n.format(maxParallel == 4 ? "gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16" :
+                        maxParallel == 16 ? "gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16" :
+                                "gtconsolidate.multiblock.tooltip.universal.limit.energy_in.64")));
         if (ConfigHolder.machines.orderedAssembly && ConfigHolder.machines.orderedFluidAssembly) {
             tooltip.add(I18n.format("gregtech.machine.assembly_line.tooltip_ordered_both"));
+            tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
+                    I18n.format("gtconsolidate.machine.parallelized_vf.limit")));
         } else if (ConfigHolder.machines.orderedAssembly) {
             tooltip.add(I18n.format("gregtech.machine.assembly_line.tooltip_ordered_items"));
             tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",

@@ -15,12 +15,19 @@ gtconsolidate.machine.parallelized_assembly_line_mk1.name=Advanced Assembly Line
 gtconsolidate.machine.parallelized_assembly_line_mk2.name=Advanced Assembly Line Mark 2
 gtconsolidate.machine.parallelized_assembly_line_mk3.name=Advanced Assembly Line Mark 3
 
+## Block
+tile.parallelized_assembly_line_casing.assembly_line_casing.name=Advanced Assembly Line Casing
+tile.parallelized_assembly_line_casing.assembly_control_casing.name=Advanced Assembly Control Casing
+
 ## Tooltips
+gtconsolidate.multiblock.jei.bus.collapsing=§3Recommended to use §nItem collapsing§r§3.
+
 # Multi
 # Universal
 gtconsolidate.multiblock.tooltip.universal.limit=§cLimits: §7%s
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16=Energy hatch is §eonly 4A§7 or §e16A§7.
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16=Energy hatch is §eonly 16A§7.
+gtconsolidate.multiblock.tooltip.universal.limit.energy_in.64=Energy hatch is §eonly 64A§7.
 gtconsolidate.multiblock.tooltip.universal.limit.manual_maintenance=§eCannot use§7 Automatic Maintenance Hatch.
 
 # Adv. Fusion Reactor
@@ -34,3 +41,8 @@ gtconsolidate.machine.parallelized_ebf.tooltip2=Parallelized by §a%s§7 for add
 
 # Adv. Vacuum Freezer
 gtconsolidate.machine.parallelized_vf.tooltip=Parallelized Vacuum Freezer, but with limitations.
+
+# Adv. Assembly Line
+gtconsolidate.machine.parallelized_vf.tooltip.1=Parallelized Assembly Line, but with limitations.
+gtconsolidate.machine.parallelized_vf.tooltip.2=Can use §8ULV§7-§4UHV§7 Input Bus.
+gtconsolidate.machine.parallelized_vf.limit=Must be §cone type§7 of item in each Input Bus.

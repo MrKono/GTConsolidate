@@ -15,12 +15,19 @@ gtconsolidate.machine.parallelized_assembly_line_mk1.name=発展型アセンブ�
 gtconsolidate.machine.parallelized_assembly_line_mk2.name=発展型アセンブリライン Mark 2
 gtconsolidate.machine.parallelized_assembly_line_mk3.name=発展型アセンブリライン Mark 3
 
+## Block
+tile.parallelized_assembly_line_casing.assembly_line_casing.name=発展型組立機マシン外装
+tile.parallelized_assembly_line_casing.assembly_control_casing.name=発展型組立機制御外装
+
 ## Tooltips
+gtconsolidate.multiblock.jei.bus.collapsing=§3§nバス内の整頓§r§3の利用を推奨します。
+
 # Multi
 # Universal
 gtconsolidate.multiblock.tooltip.universal.limit=§c制限: §7%s
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16=エナジーハッチは§e4A§7または§e16A§7のみ。
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16=エナジーハッチは§e16Aのみ§7。
+gtconsolidate.multiblock.tooltip.universal.limit.energy_in.64=エナジーハッチは§e64Aのみ§7。
 gtconsolidate.multiblock.tooltip.universal.limit.manual_maintenance=自動メンテナンスハッチは§e使えない§7。
 
 # Adv. Fusion Reactor
@@ -35,3 +42,8 @@ gtconsolidate.machine.parallelized_ebf.tooltip2=コイル層が1層増えるご�
 
 # Adv. Vacuum Freezer
 gtconsolidate.machine.parallelized_vf.tooltip=並列化された真空冷却機。ただし制限あり。
+
+# Adv. Assembly Line
+gtconsolidate.machine.parallelized_vf.tooltip.1=並列化されたアセンブリライン。ただし制限あり。
+gtconsolidate.machine.parallelized_vf.tooltip.2=§8ULV§7から§4UHV§7の搬入バスを利用できる。
+gtconsolidate.machine.parallelized_vf.limit=各バスのアイテムは§c1種類§7でなければならない。
