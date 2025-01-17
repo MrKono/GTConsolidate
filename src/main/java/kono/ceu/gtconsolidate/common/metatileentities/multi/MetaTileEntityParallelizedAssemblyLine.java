@@ -22,7 +22,6 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.capability.IDataAccessHatch;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -111,7 +110,7 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
                         .or(abilities(MultiblockAbility.INPUT_ENERGY)
                                 .setMinGlobalLimited(1)
                                 .setMaxGlobalLimited(3)))
-                .where('I', metaTileEntities(MetaTileEntities.ITEM_IMPORT_BUS[GTValues.HV]))
+                .where('I', metaTileEntities(MetaTileEntities.ITEM_IMPORT_BUS))
                 .where('G', states(getGrateState()))
                 .where('A',
                         states(MetaBlocks.MULTIBLOCK_CASING
@@ -357,8 +356,16 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
             if (itemInputInventory.size() < inputs.size()) return false;
 
             for (int i = 0; i < inputs.size(); i++) {
-                if (!inputs.get(i).acceptsStack(itemInputInventory.get(i).getStackInSlot(0))) {
+                ItemStack topStack = itemInputInventory.get(i).getStackInSlot(0);
+                if (!inputs.get(i).acceptsStack(topStack)) {
                     return false;
+                }
+                // Check the items in the remaining slots are the same as the item in the top slot
+                for (int j = 1; j < itemInputInventory.get(i).getSlots(); j++) {
+                    ItemStack remainStack = itemInputInventory.get(i).getStackInSlot(j);
+                    if (!remainStack.isEmpty() && !remainStack.isItemEqual(topStack)) {
+                        return false;
+                    }
                 }
             }
 
@@ -401,10 +408,15 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, @NotNull List<String> tooltip,
                                boolean advanced) {
+        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_vf.tooltip.1"));
+        tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", maxParallel));
+        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_vf.tooltip.2"));
         if (ConfigHolder.machines.orderedAssembly && ConfigHolder.machines.orderedFluidAssembly) {
             tooltip.add(I18n.format("gregtech.machine.assembly_line.tooltip_ordered_both"));
         } else if (ConfigHolder.machines.orderedAssembly) {
             tooltip.add(I18n.format("gregtech.machine.assembly_line.tooltip_ordered_items"));
+            tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
+                    I18n.format("gtconsolidate.machine.parallelized_vf.limit")));
         } else if (ConfigHolder.machines.orderedFluidAssembly) {
             tooltip.add(I18n.format("gregtech.machine.assembly_line.tooltip_ordered_fluids"));
         }

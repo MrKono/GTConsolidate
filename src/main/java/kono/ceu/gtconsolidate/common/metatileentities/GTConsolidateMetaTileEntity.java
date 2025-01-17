@@ -13,6 +13,7 @@ import kono.ceu.gtconsolidate.common.metatileentities.multi.MetaTileEntityParall
 
 public class GTConsolidateMetaTileEntity {
 
+    // Multiblock
     public static final MetaTileEntityParallelizedFusionReactor[] PARALLELIZED_FUSION_REACTOR = new MetaTileEntityParallelizedFusionReactor[3];
     public static final MetaTileEntityParallelizedEBF[] PARALLELIZED_EBF = new MetaTileEntityParallelizedEBF[2];
     public static final MetaTileEntityParallelizedVF[] PARALLELIZED_VF = new MetaTileEntityParallelizedVF[2];
