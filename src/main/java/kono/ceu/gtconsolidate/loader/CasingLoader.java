@@ -24,6 +24,8 @@ public class CasingLoader {
                 .input(ROBOT_ARM_ZPM, 4)
                 .input(OrePrefix.frameGt, Materials.Tritanium)
                 .input(OrePrefix.plate, Materials.Trinium, 8)
+                .input(OrePrefix.gearSmall, Materials.Darmstadtium, 2)
+                .input(OrePrefix.gear, Materials.Tritanium, 2)
                 .outputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
                         .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CASING))
                 .EUt(VA[UV]).duration(30 * sec)
