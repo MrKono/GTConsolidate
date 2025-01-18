@@ -1,4 +1,7 @@
 ## Changelog
+### 1.1.0.1-beta  
+- **Fix** _assembly line casing recipe_
+
 ### 1.0.1-beta
 - **Add** _Parallelized Assembly Line_
 ---
