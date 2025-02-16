@@ -1,4 +1,4 @@
-package kono.ceu.gtconsolidate.common.metatileentities.multi;
+package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
 import static gregtech.api.util.RelativeDirection.*;

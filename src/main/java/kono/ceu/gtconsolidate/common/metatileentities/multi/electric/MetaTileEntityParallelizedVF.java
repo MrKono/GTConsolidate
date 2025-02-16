@@ -1,4 +1,4 @@
-package kono.ceu.gtconsolidate.common.metatileentities.multi;
+package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.*;
 

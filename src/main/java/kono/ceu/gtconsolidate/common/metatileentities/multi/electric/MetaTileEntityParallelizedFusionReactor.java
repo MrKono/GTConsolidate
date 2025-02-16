@@ -1,4 +1,4 @@
-package kono.ceu.gtconsolidate.common.metatileentities.multi;
+package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
 import java.util.ArrayList;
 import java.util.Arrays;
