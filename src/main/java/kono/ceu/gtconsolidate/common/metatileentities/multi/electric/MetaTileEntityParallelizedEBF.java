@@ -118,7 +118,8 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
                 .where('X', MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF))
                 .where('S', GTConsolidateMetaTileEntity.PARALLELIZED_EBF[maxParallel == 4 ? 0 : 1], EnumFacing.SOUTH)
                 .where('#', Blocks.AIR.getDefaultState())
-                .where('E', MetaTileEntities.ENERGY_INPUT_HATCH_4A[GTValues.LV], EnumFacing.NORTH)
+                .where('E', maxParallel == 4 ? MetaTileEntities.ENERGY_INPUT_HATCH_4A[GTValues.LV] :
+                        MetaTileEntities.ENERGY_INPUT_HATCH_16A[GTValues.ULV], EnumFacing.NORTH)
                 .where('I', MetaTileEntities.ITEM_IMPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
                 .where('O', MetaTileEntities.ITEM_EXPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
                 .where('F', MetaTileEntities.FLUID_IMPORT_HATCH[GTValues.LV], EnumFacing.WEST)
