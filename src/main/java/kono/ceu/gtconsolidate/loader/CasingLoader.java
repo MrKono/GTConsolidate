@@ -7,6 +7,7 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockMultiblockCasing;
 import gregtech.common.blocks.MetaBlocks;
 
@@ -27,7 +28,8 @@ public class CasingLoader {
                 .input(OrePrefix.gearSmall, Materials.Darmstadtium, 2)
                 .input(OrePrefix.gear, Materials.Tritanium, 2)
                 .outputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
-                        .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CASING))
+                        .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CASING,
+                                ConfigHolder.recipes.casingsPerCraft))
                 .EUt(VA[UV]).duration(30 * sec)
                 .stationResearch(b -> b
                         .researchStack(MetaBlocks.MULTIBLOCK_CASING
@@ -44,7 +46,8 @@ public class CasingLoader {
                 .input(OrePrefix.frameGt, Materials.Tritanium)
                 .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
                 .outputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
-                        .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CONTROL))
+                        .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CONTROL,
+                                ConfigHolder.recipes.casingsPerCraft))
                 .EUt(VA[UV]).duration(30 * sec)
                 .stationResearch(b -> b
                         .researchStack(MetaBlocks.MULTIBLOCK_CASING
