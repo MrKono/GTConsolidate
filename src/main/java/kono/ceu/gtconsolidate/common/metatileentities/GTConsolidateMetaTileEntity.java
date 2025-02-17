@@ -6,10 +6,10 @@ import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.modId;
 import gregtech.api.GTValues;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.MetaTileEntityParallelizedAssemblyLine;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.MetaTileEntityParallelizedEBF;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.MetaTileEntityParallelizedFusionReactor;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.MetaTileEntityParallelizedVF;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileEntityParallelizedAssemblyLine;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileEntityParallelizedEBF;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileEntityParallelizedFusionReactor;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileEntityParallelizedVF;
 
 public class GTConsolidateMetaTileEntity {
 
@@ -21,6 +21,7 @@ public class GTConsolidateMetaTileEntity {
 
     public static void init() {
         registerMultiMachine();
+        registerMultiblockPart();
     }
 
     public static void registerMultiMachine() {
@@ -52,4 +53,6 @@ public class GTConsolidateMetaTileEntity {
         PARALLELIZED_ASSEMBLY_LINE[2] = registerMetaTileEntity(id + 9, new MetaTileEntityParallelizedAssemblyLine(
                 modId("parallelized_assembly_line_mk3"), 64));
     }
+
+    public static void registerMultiblockPart() {}
 }

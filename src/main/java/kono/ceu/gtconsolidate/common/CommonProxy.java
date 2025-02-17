@@ -63,6 +63,9 @@ public class CommonProxy {
         return itemBlock;
     }
 
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void registerRecipesHigh(RegistryEvent.Register<IRecipe> event) {}
+
     @SubscribeEvent
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
         Logs.logger.info("Registering recipes...");
