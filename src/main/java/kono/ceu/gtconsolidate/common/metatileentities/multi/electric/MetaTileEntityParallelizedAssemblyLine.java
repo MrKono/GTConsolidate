@@ -186,7 +186,7 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
             if (sourcePart instanceof IDataAccessHatch) {
                 return Textures.GRATE_CASING_STEEL_FRONT;
             } else {
-                return GTConsolidateTextures.PARALLELIZED_ASSEMBLY_LINE_CONTROL;
+                return GTConsolidateTextures.ASSEMBLY_LINE_CONTROL;
             }
         } else {
             // controller rendering

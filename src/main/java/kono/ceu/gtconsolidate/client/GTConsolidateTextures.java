@@ -12,11 +12,14 @@ public class GTConsolidateTextures {
 
     public static SimpleOverlayRenderer PARALLELIZED_ASSEMBLY_LINE_CASING;
     public static SimpleOverlayRenderer PARALLELIZED_ASSEMBLY_LINE_CONTROL;
+    public static SimpleOverlayRenderer ASSEMBLY_LINE_CONTROL;
 
     public static void preInit() {
         PARALLELIZED_ASSEMBLY_LINE_CASING = new SimpleOverlayRenderer(
                 "casings/parallelized/assembly_line/parallelized_assembly_line_casing");
         PARALLELIZED_ASSEMBLY_LINE_CONTROL = new SimpleOverlayRenderer(
                 "casings/parallelized/assembly_line/parallelized_assembly_line_control_casing");
+        ASSEMBLY_LINE_CONTROL = new SimpleOverlayRenderer(
+                "casings/mechanic/machine_casing_assembly_control");
     }
 }
