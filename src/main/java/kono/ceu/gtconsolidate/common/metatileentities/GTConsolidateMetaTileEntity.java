@@ -6,6 +6,7 @@ import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.modId;
 import gregtech.api.GTValues;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityFilteredItemBus;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileEntityParallelizedAssemblyLine;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileEntityParallelizedEBF;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileEntityParallelizedFusionReactor;
@@ -18,6 +19,9 @@ public class GTConsolidateMetaTileEntity {
     public static final MetaTileEntityParallelizedEBF[] PARALLELIZED_EBF = new MetaTileEntityParallelizedEBF[2];
     public static final MetaTileEntityParallelizedVF[] PARALLELIZED_VF = new MetaTileEntityParallelizedVF[2];
     public static final MetaTileEntityParallelizedAssemblyLine[] PARALLELIZED_ASSEMBLY_LINE = new MetaTileEntityParallelizedAssemblyLine[3];
+
+    public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
+            1];
 
     public static void init() {
         registerMultiMachine();
@@ -54,5 +58,13 @@ public class GTConsolidateMetaTileEntity {
                 modId("parallelized_assembly_line_mk3"), 64));
     }
 
-    public static void registerMultiblockPart() {}
+    public static void registerMultiblockPart() {
+        int id = GTConsolidateConfig.id.startMulti + 100;
+        for (int i = 0; i < FILTERED_ITEM_INPUT.length; i++) {
+            String voltageName = GTValues.VN[i].toLowerCase();
+            FILTERED_ITEM_INPUT[i] = registerMetaTileEntity(id + i, new MetaTileEntityFilteredItemBus(
+                    modId("filter_input." + voltageName), i));
+
+        }
+    }
 }

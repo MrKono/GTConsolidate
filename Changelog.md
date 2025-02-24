@@ -1,9 +1,13 @@
 ## Changelog
-### 1.1.0.2-beta
-- **Fix** _JEI Preview_
-- **Fix** _assembly line casing recipe_
+### 1.0.2-beta
+- **Add** _Filtered Input Bus_
+- **Fix** _Parallelized Assembly Line Mark.3 does not work_ 
+
 ---
-### 1.1.0.1-beta  
+### 1.0.1.2-beta
+- **Fix** _JEI Preview_
+---
+### 1.0.1.1-beta  
 - **Fix** _assembly line casing recipe_
 ---
 ### 1.0.1-beta

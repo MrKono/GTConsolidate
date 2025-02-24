@@ -3,6 +3,7 @@ package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 import static gregtech.api.util.RelativeDirection.*;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.energyHatchLimit;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -25,6 +26,8 @@ import org.jetbrains.annotations.Nullable;
 
 import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.capability.IDataAccessHatch;
+import gregtech.api.capability.IEnergyContainer;
+import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -47,7 +50,6 @@ import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
 import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiFluidHatch;
 import gregtech.core.sound.GTSoundEvents;
 
@@ -113,7 +115,7 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
                         .or(energyHatchLimit(false, maxParallel == 4, maxParallel != 64, maxParallel == 64)
                                 .setMinGlobalLimited(1)
                                 .setMaxGlobalLimited(3)))
-                .where('I', metaTileEntities(MetaTileEntities.ITEM_IMPORT_BUS).addTooltip(
+                .where('I', abilities(MultiblockAbility.IMPORT_ITEMS).addTooltip(
                         I18n.format("gtconsolidate.multiblock.jei.bus.collapsing")))
                 .where('G', states(getGrateState()))
                 .where('A', states(getControlCasingState()))
@@ -184,7 +186,7 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
             if (sourcePart instanceof IDataAccessHatch) {
                 return Textures.GRATE_CASING_STEEL_FRONT;
             } else {
-                return GTConsolidateTextures.PARALLELIZED_ASSEMBLY_LINE_CONTROL;
+                return GTConsolidateTextures.ASSEMBLY_LINE_CONTROL;
             }
         } else {
             // controller rendering
@@ -201,6 +203,16 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
         super.renderMetaTileEntity(renderState, translation, pipeline);
         getFrontOverlay().renderOrientedState(renderState, translation, pipeline, getFrontFacing(),
                 recipeMapWorkable.isActive(), recipeMapWorkable.isWorkingEnabled());
+    }
+
+    @Override
+    protected void initializeAbilities() {
+        super.initializeAbilities();
+        if (maxParallel == 64) {
+            List<IEnergyContainer> inputEnergy = new ArrayList<>(getAbilities(MultiblockAbility.INPUT_ENERGY));
+            inputEnergy.addAll(getAbilities(MultiblockAbility.SUBSTATION_INPUT_ENERGY));
+            this.energyContainer = new EnergyContainerList(inputEnergy);
+        }
     }
 
     @Override

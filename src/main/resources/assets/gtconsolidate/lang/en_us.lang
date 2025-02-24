@@ -15,6 +15,18 @@ gtconsolidate.machine.parallelized_assembly_line_mk1.name=Advanced Assembly Line
 gtconsolidate.machine.parallelized_assembly_line_mk2.name=Advanced Assembly Line Mark 2
 gtconsolidate.machine.parallelized_assembly_line_mk3.name=Advanced Assembly Line Mark 3
 
+# Multiblock Part
+gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
+gtconsolidate.machine.filter_input.lv.name=LV Filtered Input Bus
+gtconsolidate.machine.filter_input.mv.name=MV Filtered Input Bus
+gtconsolidate.machine.filter_input.hv.name=HV Filtered Input Bus
+gtconsolidate.machine.filter_input.ev.name=EV Filtered Input Bus
+gtconsolidate.machine.filter_input.iv.name=IV Filtered Input Bus
+gtconsolidate.machine.filter_input.luv.name=LuV Filtered Input Bus
+gtconsolidate.machine.filter_input.zpm.name=ZPM Filtered Input Bus
+gtconsolidate.machine.filter_input.uv.name=UV Filtered Input Bus
+gtconsolidate.machine.filter_input.uhv.name=UHV Filtered Input Bus
+
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=Advanced Assembly Line Casing
 tile.parallelized_assembly_line_casing.assembly_control_casing.name=Advanced Assembly Control Casing
@@ -44,5 +56,8 @@ gtconsolidate.machine.parallelized_vf.tooltip=Parallelized Vacuum Freezer, but w
 
 # Adv. Assembly Line
 gtconsolidate.machine.parallelized_vf.tooltip.1=Parallelized Assembly Line, but with limitations.
-gtconsolidate.machine.parallelized_vf.tooltip.2=Can use §8ULV§7-§4UHV§7 Input Bus.
+gtconsolidate.machine.parallelized_vf.tooltip.2=Can use §cALL§7 Input Buses.
 gtconsolidate.machine.parallelized_vf.limit=Must be §cone type§7 of item in each Input Bus.
+
+# Filtered Item Bus
+gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
