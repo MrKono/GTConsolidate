@@ -1,6 +1,7 @@
 ## Changelog
 ### 1.0.2-beta
 - **Add** _Filtered Input Bus_
+- **Fix** _Parallelized Assembly Line Mark.3 does not work_ 
 
 ---
 ### 1.0.1.2-beta
