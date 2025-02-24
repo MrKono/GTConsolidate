@@ -47,7 +47,6 @@ import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
 import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiFluidHatch;
 import gregtech.core.sound.GTSoundEvents;
 
@@ -113,7 +112,7 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
                         .or(energyHatchLimit(false, maxParallel == 4, maxParallel != 64, maxParallel == 64)
                                 .setMinGlobalLimited(1)
                                 .setMaxGlobalLimited(3)))
-                .where('I', metaTileEntities(MetaTileEntities.ITEM_IMPORT_BUS).addTooltip(
+                .where('I', abilities(MultiblockAbility.IMPORT_ITEMS).addTooltip(
                         I18n.format("gtconsolidate.multiblock.jei.bus.collapsing")))
                 .where('G', states(getGrateState()))
                 .where('A', states(getControlCasingState()))
