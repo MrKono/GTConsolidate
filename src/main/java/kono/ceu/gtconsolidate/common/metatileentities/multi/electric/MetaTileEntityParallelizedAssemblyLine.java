@@ -3,9 +3,12 @@ package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 import static gregtech.api.util.RelativeDirection.*;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.energyHatchLimit;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+import gregtech.api.capability.IEnergyContainer;
+import gregtech.api.capability.impl.EnergyContainerList;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -200,6 +203,16 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
         super.renderMetaTileEntity(renderState, translation, pipeline);
         getFrontOverlay().renderOrientedState(renderState, translation, pipeline, getFrontFacing(),
                 recipeMapWorkable.isActive(), recipeMapWorkable.isWorkingEnabled());
+    }
+
+    @Override
+    protected void initializeAbilities() {
+        super.initializeAbilities();
+        if (maxParallel == 64) {
+            List<IEnergyContainer> inputEnergy = new ArrayList<>(getAbilities(MultiblockAbility.INPUT_ENERGY));
+            inputEnergy.addAll(getAbilities(MultiblockAbility.SUBSTATION_INPUT_ENERGY));
+            this.energyContainer = new EnergyContainerList(inputEnergy);
+        }
     }
 
     @Override
