@@ -15,6 +15,18 @@ gtconsolidate.machine.parallelized_assembly_line_mk1.name=発展型アセンブ�
 gtconsolidate.machine.parallelized_assembly_line_mk2.name=発展型アセンブリライン Mark 2
 gtconsolidate.machine.parallelized_assembly_line_mk3.name=発展型アセンブリライン Mark 3
 
+# Multiblock Part
+gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
+gtconsolidate.machine.filter_input.lv.name=LVフィルター付き搬入バス
+gtconsolidate.machine.filter_input.mv.name=MVフィルター付き搬入バス
+gtconsolidate.machine.filter_input.hv.name=HVフィルター付き搬入バス
+gtconsolidate.machine.filter_input.ev.name=EVフィルター付き搬入バス
+gtconsolidate.machine.filter_input.iv.name=IVフィルター付き搬入バス
+gtconsolidate.machine.filter_input.luv.name=LuVフィルター付き搬入バス
+gtconsolidate.machine.filter_input.zpm.name=ZPMフィルター付き搬入バス
+gtconsolidate.machine.filter_input.uv.name=UVフィルター付き搬入バス
+gtconsolidate.machine.filter_input.uhv.name=UHVフィルター付き搬入バス
+
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=発展型組立機マシン外装
 tile.parallelized_assembly_line_casing.assembly_control_casing.name=発展型組立機制御外装
@@ -45,5 +57,8 @@ gtconsolidate.machine.parallelized_vf.tooltip=並列化された真空冷却機�
 
 # Adv. Assembly Line
 gtconsolidate.machine.parallelized_vf.tooltip.1=並列化されたアセンブリライン。ただし制限あり。
-gtconsolidate.machine.parallelized_vf.tooltip.2=§8ULV§7から§4UHV§7の搬入バスを利用できる。
+gtconsolidate.machine.parallelized_vf.tooltip.2=§c全て§7の搬入バスを利用できる。
 gtconsolidate.machine.parallelized_vf.limit=各バスのアイテムは§c1種類§7でなければならない。
+
+# Filtered Item Bus
+gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。

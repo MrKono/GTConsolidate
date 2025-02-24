@@ -26,6 +26,7 @@ import kono.ceu.gtconsolidate.api.util.Logs;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 import kono.ceu.gtconsolidate.loader.CasingLoader;
+import kono.ceu.gtconsolidate.loader.MetaTileEntityLoader;
 import kono.ceu.gtconsolidate.loader.MultiMachineLoader;
 
 @Mod.EventBusSubscriber(modid = GTConsolidateValues.MODID)
@@ -71,6 +72,7 @@ public class CommonProxy {
         Logs.logger.info("Registering recipes...");
         MultiMachineLoader.init();
         CasingLoader.init();
+        MetaTileEntityLoader.init();
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
