@@ -99,7 +99,16 @@ public class MetaTileEntityFilteredItemBus extends MetaTileEntityItemBus {
             for (int i = 0; i < getSlots(); i++) {
                 ItemStack existingStack = getStackInSlot(i);
                 if (!existingStack.isEmpty()) {
-                    if (!ItemStack.areItemStacksEqual(existingStack, stack)) {
+                    if (existingStack.getItem() != stack.getItem()) {
+                        return stack;
+                    }
+                    if (existingStack.getMetadata() != stack.getMetadata()) {
+                        return stack;
+                    }
+                    if (existingStack.getTagCompound() != stack.getTagCompound()) {
+                        return stack;
+                    }
+                    if (existingStack.getItemDamage() != stack.getItemDamage()) {
                         return stack;
                     }
                 }
