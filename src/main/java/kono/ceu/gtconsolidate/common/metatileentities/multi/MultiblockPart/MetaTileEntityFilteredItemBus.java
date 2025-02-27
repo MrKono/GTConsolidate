@@ -105,10 +105,10 @@ public class MetaTileEntityFilteredItemBus extends MetaTileEntityItemBus {
                     if (existingStack.getMetadata() != stack.getMetadata()) {
                         return stack;
                     }
-                    if (existingStack.getTagCompound() != stack.getTagCompound()) {
+                    if (existingStack.getItemDamage() != stack.getItemDamage()) {
                         return stack;
                     }
-                    if (existingStack.getItemDamage() != stack.getItemDamage()) {
+                    if (!ItemStack.areItemStackTagsEqual(existingStack, stack)) {
                         return stack;
                     }
                 }
