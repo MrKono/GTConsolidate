@@ -144,33 +144,6 @@ public class MetaTileLargeGreenHouse extends GCYMRecipeMapMultiblockController {
         return states(lamps.toArray(new IBlockState[0]));
     }
 
-    protected TraceabilityPredicate getLampState2() {
-        List<IBlockState> lamps = new ArrayList<>();
-        for (int i = 0; i < Materials.CHEMICAL_DYES.length; i++) {
-            EnumDyeColor color = EnumDyeColor.byMetadata(i);
-            lamps.add(MetaBlocks.LAMPS.get(color).getStateFromMeta(1));
-        }
-        return states(lamps.toArray(new IBlockState[0]));
-    }
-
-    protected TraceabilityPredicate getLampState3() {
-        List<IBlockState> lamps = new ArrayList<>();
-        for (int i = 0; i < Materials.CHEMICAL_DYES.length; i++) {
-            EnumDyeColor color = EnumDyeColor.byMetadata(i);
-            lamps.add(MetaBlocks.BORDERLESS_LAMPS.get(color).getStateFromMeta(0));
-        }
-        return states(lamps.toArray(new IBlockState[0]));
-    }
-
-    protected TraceabilityPredicate getLampState4() {
-        List<IBlockState> lamps = new ArrayList<>();
-        for (int i = 0; i < Materials.CHEMICAL_DYES.length; i++) {
-            EnumDyeColor color = EnumDyeColor.byMetadata(i);
-            lamps.add(MetaBlocks.BORDERLESS_LAMPS.get(color).getStateFromMeta(1));
-        }
-        return states(lamps.toArray(new IBlockState[0]));
-    }
-
     @Override
     public boolean canBeDistinct() {
         return true;
