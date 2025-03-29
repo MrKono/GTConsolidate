@@ -15,6 +15,8 @@ gtconsolidate.machine.parallelized_assembly_line_mk1.name=発展型アセンブ�
 gtconsolidate.machine.parallelized_assembly_line_mk2.name=発展型アセンブリライン Mark 2
 gtconsolidate.machine.parallelized_assembly_line_mk3.name=発展型アセンブリライン Mark 3
 
+gtconsolidate.machine.large_greenhouse.name=大型温室
+
 # Multiblock Part
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
 gtconsolidate.machine.filter_input.lv.name=LVフィルター付き搬入バス
@@ -59,6 +61,9 @@ gtconsolidate.machine.parallelized_vf.tooltip=並列化された真空冷却機�
 gtconsolidate.machine.parallelized_vf.tooltip.1=並列化されたアセンブリライン。ただし制限あり。
 gtconsolidate.machine.parallelized_vf.tooltip.2=§c全て§7の搬入バスを利用できる。
 gtconsolidate.machine.parallelized_vf.limit=各バスのアイテムは§c1種類§7でなければならない。
+
+# Large Greenhouse
+gtconsolidate.machine.large_greenhouse.tooltip.1=ランプのおかげで24時間365日！！
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。

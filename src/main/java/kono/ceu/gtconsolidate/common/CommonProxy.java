@@ -23,8 +23,10 @@ import gregtech.loaders.recipe.RecyclingRecipes;
 
 import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
 import kono.ceu.gtconsolidate.api.util.Logs;
+import kono.ceu.gtconsolidate.api.util.Mods;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileLargeGreenHouse;
 import kono.ceu.gtconsolidate.loader.CasingLoader;
 import kono.ceu.gtconsolidate.loader.MetaTileEntityLoader;
 import kono.ceu.gtconsolidate.loader.MultiMachineLoader;
@@ -46,6 +48,9 @@ public class CommonProxy {
         IForgeRegistry<Block> registry = event.getRegistry();
 
         registry.register(PARALLELIZED_ASSEMBLY_LINE_CASING);
+        if (Mods.GregTechFoodOption.isModLoaded()) {
+            MetaTileLargeGreenHouse.addGrasses();
+        }
     }
 
     @SubscribeEvent

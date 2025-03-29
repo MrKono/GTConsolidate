@@ -18,11 +18,11 @@ Isn't finding space to meet the demand for Europium a bit of a hassle? And doesn
 - Parallelized Fusion Reactor (Since 0.0.1-beta)  
 - Parallelized Electric Blast Furnace (Since 1.0.0-beta)  
 - Parallelized Vacuum Freezer (Since 1.0.0-beta)
-- Parallelized Assembly Line (Since 1.0.1-beta)  
+- Parallelized Assembly Line (Since 1.0.1-beta)
+- Greenhouse (From gtfo, since 1.0.3-beta)  
 
 ### Planning  
 - Alloy Blast Smelter (From gcym)  
-- Greenhouse (From gtfo)  
 ---
 ## Credits
 I modified some textures from [GTCE unofficial](https://github.com/GregTechCEu/GregTech) under LGPL-3.0 License

@@ -1,7 +1,12 @@
 ## Changelog
+### 1.0.3-beta  
+- **Add** Large Greenhouse
+
+---
+
 ### 1.0.2.1-beta
 - **Fix** _Filtered Item Bus issue_ (Thanks to report, @KatatsumuriPan)
-- 
+
 ---
 ### 1.0.2-beta
 - **Add** _Filtered Input Bus_

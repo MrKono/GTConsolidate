@@ -5,11 +5,14 @@ import static gregtech.common.items.MetaItems.*;
 
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.metatileentities.MetaTileEntities;
+import gregtechfoodoption.machines.GTFOTileEntities;
 
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 
+import kono.ceu.gtconsolidate.api.util.Mods;
 import kono.ceu.gtconsolidate.common.blocks.BlockParallelizedAssemblyLineCasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
@@ -21,6 +24,9 @@ public class MultiMachineLoader {
 
     public static void init() {
         CEuMultiBlock();
+        if (Mods.GregTechFoodOption.isModLoaded()) {
+            GTFOMultiblock();
+        }
     }
 
     public static void CEuMultiBlock() {
@@ -111,5 +117,19 @@ public class MultiMachineLoader {
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[2])
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_ASSEMBLY_LINE[2])
                 .EUt(VA[UEV]).duration(1 * min).buildAndRegister();
+    }
+
+    public static void GTFOMultiblock() {
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.HULL[IV])
+                .input(ELECTRIC_PUMP_IV, 2)
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.LuV, 4)
+                .input(OrePrefix.frameGt, Materials.Steel)
+                .input(OrePrefix.plate, Materials.VanadiumGallium, 6)
+                .scannerResearch(b -> b
+                        .researchStack(GTFOTileEntities.GREENHOUSE.getStackForm())
+                        .duration(30 * sec).EUt(VA[IV]))
+                .output(GTConsolidateMetaTileEntity.LARGE_GREENHOUSE)
+                .duration(90 * sec).EUt(VA[IV]).buildAndRegister();
     }
 }
