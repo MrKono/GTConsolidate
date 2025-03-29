@@ -51,5 +51,6 @@ dependencies {
     devOnlyNonPublishable(rfg.deobf("curse.maven:gregicality-multiblocks-564858:5619513")) // GCYM 1.2.10
 
     // Optional
+    compileOnly rfg.deobf("curse.maven:gregtech-food-option-477021:5487400")
     runtimeOnlyNonPublishable rfg.deobf("curse.maven:gregtech-food-option-477021:5487400")
 }
