@@ -9,7 +9,7 @@
 </h1>
 
 ## Info 
-**This mod Requires [GregTech CE: Unofficial](https://github.com/GregTechCEu/GregTech) !**<br>
+**This mod Requires [GregTech CE: Unofficial](https://github.com/GregTechCEu/GregTech) !**  
 You can include this mod in your modpack!
 ---
 ## What is this mod??
@@ -19,7 +19,7 @@ Isn't finding space to meet the demand for Europium a bit of a hassle? And doesn
 - Parallelized Electric Blast Furnace (Since 1.0.0-beta)  
 - Parallelized Vacuum Freezer (Since 1.0.0-beta)
 - Parallelized Assembly Line (Since 1.0.1-beta)
-- Greenhouse (From gtfo, since 1.0.3-beta)  
+- Parallelized Greenhouse (From gtfo, since 1.0.3-beta)  
 
 ### Planning  
 - Alloy Blast Smelter (From gcym)  
