@@ -15,6 +15,8 @@ gtconsolidate.machine.parallelized_assembly_line_mk1.name=Advanced Assembly Line
 gtconsolidate.machine.parallelized_assembly_line_mk2.name=Advanced Assembly Line Mark 2
 gtconsolidate.machine.parallelized_assembly_line_mk3.name=Advanced Assembly Line Mark 3
 
+gtconsolidate.machine.large_greenhouse.name=Large Greenhouse
+
 # Multiblock Part
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
 gtconsolidate.machine.filter_input.lv.name=LV Filtered Input Bus

@@ -15,6 +15,8 @@ gtconsolidate.machine.parallelized_assembly_line_mk1.name=発展型アセンブ�
 gtconsolidate.machine.parallelized_assembly_line_mk2.name=発展型アセンブリライン Mark 2
 gtconsolidate.machine.parallelized_assembly_line_mk3.name=発展型アセンブリライン Mark 3
 
+gtconsolidate.machine.large_greenhouse.name=大型温室
+
 # Multiblock Part
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
 gtconsolidate.machine.filter_input.lv.name=LVフィルター付き搬入バス

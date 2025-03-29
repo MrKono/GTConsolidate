@@ -6,11 +6,9 @@ import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.modId;
 import gregtech.api.GTValues;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
+import kono.ceu.gtconsolidate.api.util.Mods;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityFilteredItemBus;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileEntityParallelizedAssemblyLine;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileEntityParallelizedEBF;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileEntityParallelizedFusionReactor;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileEntityParallelizedVF;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.*;
 
 public class GTConsolidateMetaTileEntity {
 
@@ -19,6 +17,7 @@ public class GTConsolidateMetaTileEntity {
     public static final MetaTileEntityParallelizedEBF[] PARALLELIZED_EBF = new MetaTileEntityParallelizedEBF[2];
     public static final MetaTileEntityParallelizedVF[] PARALLELIZED_VF = new MetaTileEntityParallelizedVF[2];
     public static final MetaTileEntityParallelizedAssemblyLine[] PARALLELIZED_ASSEMBLY_LINE = new MetaTileEntityParallelizedAssemblyLine[3];
+    public static MetaTileLargeGreenHouse LARGE_GREENHOUSE;
 
     public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
             1];
@@ -56,6 +55,11 @@ public class GTConsolidateMetaTileEntity {
                 modId("parallelized_assembly_line_mk2"), 16));
         PARALLELIZED_ASSEMBLY_LINE[2] = registerMetaTileEntity(id + 9, new MetaTileEntityParallelizedAssemblyLine(
                 modId("parallelized_assembly_line_mk3"), 64));
+
+        if (Mods.GregTechFoodOption.isModLoaded()) {
+            LARGE_GREENHOUSE = registerMetaTileEntity(id + 10, new MetaTileLargeGreenHouse(
+                    modId("large_greenhouse")));
+        }
     }
 
     public static void registerMultiblockPart() {
