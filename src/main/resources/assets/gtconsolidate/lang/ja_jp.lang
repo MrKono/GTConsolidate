@@ -62,5 +62,8 @@ gtconsolidate.machine.parallelized_vf.tooltip.1=並列化されたアセンブ�
 gtconsolidate.machine.parallelized_vf.tooltip.2=§c全て§7の搬入バスを利用できる。
 gtconsolidate.machine.parallelized_vf.limit=各バスのアイテムは§c1種類§7でなければならない。
 
+# Large Greenhouse
+gtconsolidate.machine.large_greenhouse.tooltip.1=ランプのおかげで24時間365日！！
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。

@@ -61,5 +61,8 @@ gtconsolidate.machine.parallelized_vf.tooltip.1=Parallelized Assembly Line, but 
 gtconsolidate.machine.parallelized_vf.tooltip.2=Can use §cALL§7 Input Buses.
 gtconsolidate.machine.parallelized_vf.limit=Must be §cone type§7 of item in each Input Bus.
 
+# Large Greenhouse
+gtconsolidate.machine.large_greenhouse.tooltip.1=Thanks to the lamps 24/7!
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
