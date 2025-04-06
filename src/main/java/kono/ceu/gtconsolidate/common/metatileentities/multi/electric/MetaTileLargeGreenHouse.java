@@ -117,7 +117,7 @@ public class MetaTileLargeGreenHouse extends GCYMRecipeMapMultiblockController {
                 .where('C',
                         states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID))
                                 .setMinGlobalLimited(20)
-                                .or(autoAbilities(true, true, true, true, true, false, false)))
+                                .or(autoAbilities(true, true, true, true, true, true, false)))
                 .where('D', states(Blocks.DIRT.getDefaultState(), Blocks.GRASS.getDefaultState()).or(states(GRASSES)))
                 .where('F', frames(Materials.Steel))
                 .where('G',
