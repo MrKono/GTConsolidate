@@ -1,4 +1,8 @@
 ## Changelog
+### 1.0.3.1-beta
+- **Fix** Large Greenhouse does not accept Fluid Export Hatch
+
+---
 ### 1.0.3-beta  
 - **Add** Large Greenhouse
 
