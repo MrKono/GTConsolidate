@@ -15,15 +15,19 @@ public class GTConsolidateMetaBlocks {
     private GTConsolidateMetaBlocks() {}
 
     public static BlockParallelizedAssemblyLineCasing PARALLELIZED_ASSEMBLY_LINE_CASING;
+    public static BlockCoolantCasing COOLANT_CASING;
 
     public static void init() {
         PARALLELIZED_ASSEMBLY_LINE_CASING = new BlockParallelizedAssemblyLineCasing();
         PARALLELIZED_ASSEMBLY_LINE_CASING.setRegistryName("parallelized_assembly_line_casing");
+        COOLANT_CASING = new BlockCoolantCasing();
+        COOLANT_CASING.setRegistryName("coolant_casing");
     }
 
     @SideOnly(Side.CLIENT)
     public static void registerItemModels() {
         registerItemModel(PARALLELIZED_ASSEMBLY_LINE_CASING);
+        registerItemModel(COOLANT_CASING);
     }
 
     @SideOnly(Side.CLIENT)

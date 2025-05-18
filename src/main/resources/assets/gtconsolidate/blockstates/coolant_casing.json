@@ -1,0 +1,61 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "active=false,variant=coolant_empty": {
+      "model": "minecraft:cube_all",
+      "ambientocclusion": false,
+      "textures": {
+        "all": "gregtech:blocks/casings/coolant/coolant_empty"
+      }
+    },
+    "active=true,variant=coolant_empty": {
+      "model": "minecraft:cube_all",
+      "ambientocclusion": false,
+      "textures": {
+        "all": "gregtech:blocks/casings/coolant/coolant_empty"
+      }
+    },
+    "active=false,variant=helium_basic": {
+      "model": "minecraft:cube_all",
+      "ambientocclusion": false,
+      "textures": {
+        "all": "gregtech:blocks/casings/coolant/helium_coolant_basic"
+      }
+    },
+    "active=true,variant=helium_basic": {
+      "model": "minecraft:cube_all",
+      "ambientocclusion": false,
+      "textures": {
+        "all": "gregtech:blocks/casings/coolant/helium_coolant_basic"
+      }
+    },
+    "active=false,variant=helium_advanced": {
+      "model": "minecraft:cube_all",
+      "ambientocclusion": false,
+      "textures": {
+        "all": "gregtech:blocks/casings/coolant/helium_coolant_advanced"
+      }
+    },
+    "active=true,variant=helium_advanced": {
+      "model": "minecraft:cube_all",
+      "ambientocclusion": false,
+      "textures": {
+        "all": "gregtech:blocks/casings/coolant/helium_coolant_advanced"
+      }
+    },
+    "active=false,variant=helium_elite": {
+      "model": "minecraft:cube_all",
+      "ambientocclusion": false,
+      "textures": {
+        "all": "gregtech:blocks/casings/coolant/helium_coolant_elite"
+      }
+    },
+    "active=true,variant=helium_elite": {
+      "model": "minecraft:cube_all",
+      "ambientocclusion": false,
+      "textures": {
+        "all": "gregtech:blocks/casings/coolant/helium_coolant_elite"
+      }
+    }
+  }
+}

@@ -33,6 +33,11 @@ gtconsolidate.machine.filter_input.uhv.name=UHVフィルター付き搬入バス
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=発展型組立機マシン外装
 tile.parallelized_assembly_line_casing.assembly_control_casing.name=発展型組立機制御外装
 
+tile.coolant_casing.coolant_empty.name=クーラント外装 (空)
+tile.coolant_casing.helium_basic.name=基本型ヘリウムクーラント外装
+tile.coolant_casing.helium_advanced.name=発展型ヘリウムクーラント外装
+tile.coolant_casing.helium_elite.name=精鋭型ヘリウムクーラント外装
+
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.collapsing=§3§nバス内の整頓§r§3の利用を推奨します。
 

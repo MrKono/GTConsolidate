@@ -22,6 +22,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
@@ -31,6 +32,9 @@ import gregtech.core.sound.GTSoundEvents;
 
 import gregicality.multiblocks.api.capability.IParallelMultiblock;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
+
+import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
+import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 
 public class MetaTileEntityParallelizedVF extends RecipeMapMultiblockController implements IParallelMultiblock {
 
@@ -58,7 +62,7 @@ public class MetaTileEntityParallelizedVF extends RecipeMapMultiblockController 
     }
 
     @Override
-    protected BlockPattern createStructurePattern() {
+    protected @NotNull BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start()
                 .aisle("XXX", "XXX", "XXX")
                 .aisle("XXX", "X#X", "XXX")
@@ -69,7 +73,7 @@ public class MetaTileEntityParallelizedVF extends RecipeMapMultiblockController 
                         .or(manualMaintenance())
                         .or(energyHatchLimit(false, maxParallel == 4, true).setMinGlobalLimited(1)
                                 .setMaxGlobalLimited(2)))
-                .where('#', air())
+                .where('#', modePredicate())
                 .build();
     }
 
@@ -81,6 +85,22 @@ public class MetaTileEntityParallelizedVF extends RecipeMapMultiblockController 
 
     protected IBlockState getCasingState() {
         return MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.ALUMINIUM_FROSTPROOF);
+    }
+
+    public TraceabilityPredicate modePredicate() {
+        TraceabilityPredicate predicate;
+        IBlockState heliumBasic = GTConsolidateMetaBlocks.COOLANT_CASING
+                .getState(BlockCoolantCasing.CasingType.HELIUM_BASIC);
+        IBlockState heliumAdvanced = GTConsolidateMetaBlocks.COOLANT_CASING
+                .getState(BlockCoolantCasing.CasingType.HELIUM_ADVANCED);
+        IBlockState heliumElite = GTConsolidateMetaBlocks.COOLANT_CASING
+                .getState(BlockCoolantCasing.CasingType.HELIUM_ELITE);
+        predicate = switch (mode()) {
+            case "NORMAL" -> maxParallel == 4 ? states(heliumBasic) : states(heliumAdvanced);
+            case "HARD" -> maxParallel == 4 ? states(heliumAdvanced) : states(heliumElite);
+            default -> maxParallel == 4 ? air() : states(heliumBasic);
+        };
+        return predicate;
     }
 
     @Override
