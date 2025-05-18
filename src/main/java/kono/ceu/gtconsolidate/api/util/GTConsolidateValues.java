@@ -15,6 +15,7 @@ import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.common.ConfigHolder;
 import gregtech.common.metatileentities.MetaTileEntities;
 
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.Tags;
 
 public class GTConsolidateValues {
@@ -51,5 +52,13 @@ public class GTConsolidateValues {
         if (allow16A) energyHatch.addAll(Arrays.asList(MetaTileEntities.ENERGY_INPUT_HATCH_16A));
         if (allow64A) energyHatch.addAll(Arrays.asList(MetaTileEntities.SUBSTATION_ENERGY_INPUT_HATCH));
         return metaTileEntities(energyHatch.toArray(new MetaTileEntity[0]));
+    }
+
+    public static @NotNull String mode() {
+        return switch (GTConsolidateConfig.mode.mode) {
+            case "NORMAL" -> "NORMAL";
+            case "HARD" -> "HARD";
+            default -> "EASY";
+        };
     }
 }

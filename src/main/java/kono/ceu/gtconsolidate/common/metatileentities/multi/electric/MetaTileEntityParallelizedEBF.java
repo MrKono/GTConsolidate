@@ -6,6 +6,7 @@ import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.*;
 
 import java.util.*;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -45,16 +46,16 @@ import gregtech.api.util.TextComponentUtil;
 import gregtech.api.util.TextFormattingUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
+import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import gregtech.common.ConfigHolder;
-import gregtech.common.blocks.BlockMetalCasing;
-import gregtech.common.blocks.BlockWireCoil;
-import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.blocks.*;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.core.sound.GTSoundEvents;
 
 import gregicality.multiblocks.api.capability.IParallelMultiblock;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 
+import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 
 public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
@@ -76,36 +77,65 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
     }
 
     @Override
-    protected BlockPattern createStructurePattern() {
+    protected @NotNull BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start(RIGHT, FRONT, UP)
                 .aisle("XSX", "XXX", "XXX")
                 .aisle("CCC", "C#C", "CCC")
                 .aisle("CCC", "CIC", "CCC").setRepeatable(1, 4)
                 .aisle("XXX", "XMX", "XXX")
                 .where('S', selfPredicate())
-                .where('X',
-                        states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF))
-                                .setMinGlobalLimited(9)
-                                .or(autoAbilities(false, false, true, true, true, true, false))
-                                .or(energyHatchLimit(false, maxParallel == 4, true)
-                                        .setMinGlobalLimited(1).setMaxGlobalLimited(2))
-                                .or(manualMaintenance()))
+                .where('X', states(modeCasingState()).setMinGlobalLimited(9)
+                        .or(autoAbilities(false, false, true, true, true, true, false))
+                        .or(energyHatchLimit(false, maxParallel == 4, true)
+                                .setMinGlobalLimited(1).setMaxGlobalLimited(2))
+                        .or(manualMaintenance()))
                 .where('M', abilities(MultiblockAbility.MUFFLER_HATCH))
                 .where('C', heatingCoils())
                 .where('I', indicatorPredicate())
-                .where('#', air())
+                .where('#', states(modeBlockState()))
                 .build();
     }
 
     // This function is highly useful for detecting the length of this multiblock.
-    public static TraceabilityPredicate indicatorPredicate() {
+    public TraceabilityPredicate indicatorPredicate() {
         return new TraceabilityPredicate((blockWorldState) -> {
-            if (air().test(blockWorldState)) {
+            if (states(modeBlockState()).test(blockWorldState)) {
                 blockWorldState.getMatchContext().increment("coilLayer", 1);
                 return true;
             } else
                 return false;
         });
+    }
+
+    public IBlockState modeCasingState() {
+        IBlockState state;
+        state = switch (mode()) {
+            case "NORMAL" -> maxParallel == 4 ?
+                    MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_CASING) :
+                    MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_CASING_MK2);
+            case "HARD" -> maxParallel == 4 ?
+                    MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_CASING_MK2) :
+                    MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_CASING_MK3);
+            default -> maxParallel == 4 ?
+                    MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF) :
+                    MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_CASING);
+        };
+        return state;
+    }
+
+    public IBlockState modeBlockState() {
+        IBlockState state;
+        state = switch (mode()) {
+            case "NORMAL" -> maxParallel == 4 ?
+                    MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE) :
+                    MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL);
+            case "HARD" -> maxParallel == 4 ?
+                    MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL) :
+                    MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_COIL);
+            default -> maxParallel == 4 ? Blocks.AIR.getDefaultState() :
+                    MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE);
+        };
+        return state;
     }
 
     @Override
@@ -115,9 +145,9 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
                 .aisle("EEM", "CCC", "CCC", "XXX")
                 .aisle("FXD", "C#C", "C#C", "XHX")
                 .aisle("ISO", "CCC", "CCC", "XXX")
-                .where('X', MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF))
+                .where('X', modeCasingState())
                 .where('S', GTConsolidateMetaTileEntity.PARALLELIZED_EBF[maxParallel == 4 ? 0 : 1], EnumFacing.SOUTH)
-                .where('#', Blocks.AIR.getDefaultState())
+                .where('#', modeBlockState())
                 .where('E', maxParallel == 4 ? MetaTileEntities.ENERGY_INPUT_HATCH_4A[GTValues.LV] :
                         MetaTileEntities.ENERGY_INPUT_HATCH_16A[GTValues.ULV], EnumFacing.NORTH)
                 .where('I', MetaTileEntities.ITEM_IMPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
@@ -126,8 +156,7 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
                 .where('D', MetaTileEntities.FLUID_EXPORT_HATCH[GTValues.LV], EnumFacing.EAST)
                 .where('H', MetaTileEntities.MUFFLER_HATCH[GTValues.LV], EnumFacing.UP)
                 .where('M', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH :
-                        MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF),
-                        EnumFacing.NORTH);
+                        modeCasingState(), EnumFacing.NORTH);
         GregTechAPI.HEATING_COILS.entrySet().stream()
                 .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
                 .forEach(entry -> shapeInfo.add(builder.where('C', entry.getKey()).build()));
@@ -226,7 +255,15 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
     @SideOnly(Side.CLIENT)
     @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart) {
-        return Textures.HEAT_PROOF_CASING;
+        SimpleOverlayRenderer renderer;
+        renderer = switch (mode()) {
+            case "NORMAL" -> maxParallel == 4 ? GTConsolidateTextures.FUSION_CASING :
+                    GTConsolidateTextures.FUSION_CASING_MK2;
+            case "HARD" -> maxParallel == 4 ? GTConsolidateTextures.FUSION_CASING_MK2 :
+                    GTConsolidateTextures.FUSION_CASING_MK3;
+            default -> maxParallel == 4 ? Textures.HEAT_PROOF_CASING : GTConsolidateTextures.FUSION_CASING;
+        };
+        return renderer;
     }
 
     @Override

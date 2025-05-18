@@ -13,9 +13,19 @@ public class GTConsolidateConfig {
     @Config.RequiresMcRestart
     public static IdSetting id = new IdSetting();
 
+    @Config.Name("Mode Setting")
+    @Config.RequiresMcRestart
+    public static ModeSetting mode = new ModeSetting();
+
     public static class IdSetting {
 
         @Config.Comment({ "Start ID for Multiblock Machine", "Default: 21500" })
         public int startMulti = 21500;
+    }
+
+    public static class ModeSetting {
+
+        @Config.Comment({ "Mode of this mod", "Valid: EASY, NORMAL, HARD", "Default: EASY" })
+        public String mode = "EASY";
     }
 }
