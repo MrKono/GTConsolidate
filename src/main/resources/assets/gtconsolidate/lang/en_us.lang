@@ -33,6 +33,11 @@ gtconsolidate.machine.filter_input.uhv.name=UHV Filtered Input Bus
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=Advanced Assembly Line Casing
 tile.parallelized_assembly_line_casing.assembly_control_casing.name=Advanced Assembly Control Casing
 
+tile.coolant_casing.coolant_empty.name=Coolant Casing (Empty)
+tile.coolant_casing.helium_basic.name=Basic Helium Coolant Casing
+tile.coolant_casing.helium_advanced.name=Advanced Helium Coolant Casing
+tile.coolant_casing.helium_elite.name=Elite Helium Coolant Casing
+
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.collapsing=§3Recommended to use §nItem collapsing§r§3.
 
