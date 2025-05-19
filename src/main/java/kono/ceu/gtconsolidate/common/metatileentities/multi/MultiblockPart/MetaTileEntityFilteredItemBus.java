@@ -2,7 +2,6 @@ package kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -70,8 +69,6 @@ public class MetaTileEntityFilteredItemBus extends MetaTileEntityItemBus {
     }
 
     public static class FilteredImportHandler extends NotifiableItemStackHandler {
-
-        private Predicate<ItemStack> fillPredicate;
 
         public FilteredImportHandler(MetaTileEntity metaTileEntity, int slots, MetaTileEntity entityToNotify) {
             super(metaTileEntity, slots, entityToNotify, false);
