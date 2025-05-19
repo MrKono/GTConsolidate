@@ -88,46 +88,35 @@ public class MetaTileEntityFilteredItemBus extends MetaTileEntityItemBus {
                 return ItemStack.EMPTY;
             }
 
-            // If the stacks do not match, nothing can be inserted
-            for (int i = 0; i < getSlots(); i++) {
-                if (!ItemStackHashStrategy.comparingAllButCount().equals(stack, this.getStackInSlot(i)) &&
-                        !this.getStackInSlot(slot).isEmpty()) {
-                    return stack;
-                }
-            }
-
-            for (int i = 0; i < getSlots(); i++) {
-                ItemStack existingStack = getStackInSlot(i);
-                if (!existingStack.isEmpty()) {
-                    if (existingStack.getItem() != stack.getItem()) {
-                        return stack;
-                    }
-                    if (existingStack.getMetadata() != stack.getMetadata()) {
-                        return stack;
-                    }
-                    if (existingStack.getItemDamage() != stack.getItemDamage()) {
-                        return stack;
-                    }
-                    if (!ItemStack.areItemStackTagsEqual(existingStack, stack)) {
-                        return stack;
-                    }
-                }
-            }
-
             int amountInSlot = this.getStackInSlot(slot).getCount();
-            int slotLimit = getSlotLimit(slot);
-
-            // If the current stack size in the slot is greater than the limit of the Multiblock, nothing can be
-            // inserted
-            if (amountInSlot >= slotLimit) {
-                return stack;
-            }
-
-            // This will always be positive and greater than zero if reached
+            int slotLimit = Math.min(getSlotLimit(slot), stack.getMaxStackSize());
             int spaceAvailable = slotLimit - amountInSlot;
 
             // Insert the minimum amount between the amount of space available and the amount being inserted
             int amountToInsert = Math.min(spaceAvailable, stack.getCount());
+
+            // If the current stack size in the slot is greater than the limit of the Multiblock, nothing can be
+            // inserted
+            if (amountToInsert <= 0) {
+                return stack;
+            }
+
+            ItemStack existingStack = this.getStackInSlot(slot);
+            // Slot is not empty; only allow insertion if same item
+            if (!existingStack.isEmpty()) {
+                if (!ItemStackHashStrategy.comparingAllButCount().equals(stack, existingStack)) {
+                    return stack;
+                }
+            } else {
+                // Slot is empty; check that no other slot contains mismatched item
+                for (int i = 0; i < getSlots(); i++) {
+                    ItemStack otherStack = this.getStackInSlot(i);
+                    if (!otherStack.isEmpty() &&
+                            !ItemStackHashStrategy.comparingAllButCount().equals(stack, otherStack)) {
+                        return stack;
+                    }
+                }
+            }
 
             // The remainder that was not inserted
             int remainderAmount = stack.getCount() - amountToInsert;
