@@ -1,4 +1,10 @@
 ## Changelog
+### 1.0.4-beta
+- **Add** _mode setting_ (configurable) (#5). 
+- - Parallelized EBF and VF are too OP, added mode setting for balance adjustment.
+- **Fix** _Filtered Item Bus Glitch_ (#6).
+
+---
 ### 1.0.3.1-beta
 - **Fix** _Large Greenhouse does not accept Fluid Export Hatch_
 
