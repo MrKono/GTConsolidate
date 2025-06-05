@@ -18,7 +18,7 @@ public class BlockCoACasing extends
 
     public BlockCoACasing() {
         super(Material.IRON);
-        setTranslationKey("component_assembly_line");
+        setTranslationKey("component_assembly_line_casing");
         setHardness(5.0f);
         setResistance(10.0f);
         setSoundType(SoundType.METAL);
