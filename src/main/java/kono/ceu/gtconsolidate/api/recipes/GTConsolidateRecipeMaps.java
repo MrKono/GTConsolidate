@@ -3,8 +3,10 @@ package kono.ceu.gtconsolidate.api.recipes;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.recipes.RecipeMap;
-import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.core.sound.GTSoundEvents;
+
+import kono.ceu.gtconsolidate.api.recipes.builder.CoARecipeBuilder;
+import kono.ceu.gtconsolidate.api.recipes.machine.RecipeMapCoA;
 
 import crafttweaker.annotations.ZenRegister;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -15,9 +17,9 @@ import stanhebben.zenscript.annotations.ZenProperty;
 public class GTConsolidateRecipeMaps {
 
     @ZenProperty
-    public static final RecipeMap<SimpleRecipeBuilder> COA_RECIPES = new RecipeMap<>("component_assemly_line", 15, 2, 4,
-            0,
-            new SimpleRecipeBuilder(), false)
-                    .setProgressBar(GuiTextures.PROGRESS_BAR_ASSEMBLY_LINE_ARROW, ProgressWidget.MoveType.HORIZONTAL)
+    public static final RecipeMap<CoARecipeBuilder> COA_RECIPES = new RecipeMapCoA<>(
+            "component_assembly_line", 16, false, 1, false, 4, false, 1, false,
+            new CoARecipeBuilder(), false)
+                    .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL)
                     .setSound(GTSoundEvents.ASSEMBLER);
 }
