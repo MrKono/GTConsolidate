@@ -52,6 +52,7 @@ public class CoALoaders {
             }
             builder.input(wireGtDouble, scMaterial(i), 48)
                     .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
+                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
                     .output(motor(i), 64)
                     .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
                     .buildAndRegister();
@@ -82,7 +83,7 @@ public class CoALoaders {
             builder.input(ring, Materials.SiliconeRubber, 48)
                     .input(wireGtSingle, scMaterial(i), 48)
                     .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(36 * i))
+                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
                     .output(pump(i), 64)
                     .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
                     .buildAndRegister();
@@ -105,7 +106,7 @@ public class CoALoaders {
             builder.input(wireGtSingle, scMaterial(i), 48)
                     .fluidInputs(Materials.StyreneButadieneRubber.getFluid(144 * 6 * 48))
                     .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(36 * i))
+                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
                     .output(conveyor(i), 64)
                     .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
                     .buildAndRegister();
@@ -129,7 +130,7 @@ public class CoALoaders {
             }
             builder.input(wireGtSingle, scMaterial(i), 48)
                     .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(36 * i))
+                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
                     .output(piston(i), 64)
                     .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
                     .buildAndRegister();
@@ -147,7 +148,7 @@ public class CoALoaders {
                         .input(bestCircuit(i), 48);
             } else {
                 builder.input(stickLong, partMaterial1(i), 4 * 48)
-                        .input(gear, partMaterial2(i))
+                        .input(gear, partMaterial2(i), 48)
                         .input(gearSmall, partMaterial2(i), 3 * 48)
                         .input(bestCircuit(i), 48)
                         .input(bestCircuit(i - 1), 2 * 48)
@@ -156,7 +157,7 @@ public class CoALoaders {
             }
             builder.input(wireGtSingle, scMaterial(i), 48)
                     .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(36 * i))
+                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
                     .output(robotArm(i), 64)
                     .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
                     .buildAndRegister();
@@ -180,7 +181,7 @@ public class CoALoaders {
                         .input(cableGtQuadruple, cableMaterial(i), 48);
             }
             builder.fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(36 * i))
+                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
                     .output(fieldGenerator(i), 64)
                     .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
                     .buildAndRegister();
@@ -209,7 +210,7 @@ public class CoALoaders {
             }
             builder.input(wireGtSingle, scMaterial(i), 48)
                     .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(36 * i))
+                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
                     .output(emitter(i), 64)
                     .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
                     .buildAndRegister();
@@ -238,7 +239,7 @@ public class CoALoaders {
             }
             builder.input(wireGtSingle, scMaterial(i), 48)
                     .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(36 * i))
+                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
                     .output(sensor(i), 64)
                     .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
                     .buildAndRegister();
