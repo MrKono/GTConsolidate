@@ -60,7 +60,7 @@ tile.component_assembly_line_casing.max.name=MAX Component Assembly Line Casing
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.collapsing=§3Recommended to use §nItem collapsing§r§3.
 
-# Multi
+## Multi
 # Universal
 gtconsolidate.multiblock.tooltip.universal.limit=§cLimits: §7%s
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16=Energy hatch is §eonly 4A§7 or §e16A§7.
@@ -91,8 +91,16 @@ gtconsolidate.machine.large_greenhouse.tooltip.1=Thanks to the lamps 24/7!
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
 
+# Component Assembly Line
+gtconsolidate.machine.component_assembly_line.tooltip.1=Establishment of mass production method
+
 # Display
-gtconsolidate.multiblock.coa.recipe_tier=Recipe Tier: %s
+gtconsolidate.multiblock.coa.recipe_tier=Casing Tier: %s
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r
+
+## RecipeMaps
+recipemap.component_assembly_line.name=Component Assembly Line
+
+gtconsolidate.recipe.coa=Minimum Casing Tier: %s
