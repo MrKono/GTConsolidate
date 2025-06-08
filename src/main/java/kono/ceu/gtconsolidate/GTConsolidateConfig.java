@@ -27,5 +27,13 @@ public class GTConsolidateConfig {
 
         @Config.Comment({ "Mode of this mod", "Valid: EASY, NORMAL, HARD", "Default: EASY" })
         public String mode = "EASY";
+
+        @Config.Comment({ "If true, MufflerHatch can be used in the Cleanroom.", "Default: false" })
+        public boolean modifyCR = false;
+
+        @Config.Comment({ "Minimum tier of MufflerHatch available within Cleanroom.",
+                "This does nothing if B:modifyCR is false.", "Default: 8 (UHV)" })
+        @Config.RangeInt(min = 1, max = 8)
+        public int tierMuffler = 8;
     }
 }

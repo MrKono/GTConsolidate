@@ -1,4 +1,9 @@
 ## Changelog
+### 1.0.5-beta
+- **Add** _Component Assembly Line_.
+- **MufflerHatch now available in Cleanroom!!** (configurable
+
+---
 ### 1.0.4-beta
 - **Add** _mode setting_ (configurable) (#5). 
 - - Parallelized EBF and VF are too OP, added mode setting for balance adjustment.

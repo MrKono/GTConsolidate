@@ -21,7 +21,7 @@ import kono.ceu.gtconsolidate.common.CommonProxy;
      version = GTConsolidateValues.VERSION,
      acceptedMinecraftVersions = "[1.12, 1.12.2]",
      dependencies = GTInternalTags.DEP_VERSION_STRING + "required-after:" + Mods.Names.GREGICALITY_MULTIBLOCKS + ";" +
-             "after:" + Mods.Names.GREGTECH_FOOD_OPTION + ";")
+             "required-after:" + Mods.Names.MIXINBOOTER + ";" + "after:" + Mods.Names.GREGTECH_FOOD_OPTION + ";")
 
 public class GTConsolidate {
 

@@ -84,11 +84,13 @@ jobs:
           modrinth-dependencies: |
             tULldUx4(required)
             tZiutdLG(required)
+            G1ckZuWK(required)
           curseforge-id: ${{ env.CURSEFORGE_PROJECT_ID }}
           curseforge-token: "${{ secrets.CURSEFORGE_API_KEY }}"
           curseforge-dependencies: |
             gregtech-ce-unofficial(required)
             gregicality-multiblocks(required)
+            mixin-booter(required)
             gregtech-food-option(recommended)
           files: |
             build/libs/!(*-@(dev|sources|javadoc)).jar
