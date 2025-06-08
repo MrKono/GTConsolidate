@@ -1,0 +1,103 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "textures": {
+      "all": "gregtech:blocks/rendering_error"
+    }
+  },
+  "variants": {
+    "variant": {
+      "ulv": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_ulv"
+        }
+      },
+      "lv": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_lv"
+        }
+      },
+      "mv": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_mv"
+        }
+      },
+      "hv": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_hv"
+        }
+      },
+      "ev": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_ev"
+        }
+      },
+      "iv": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_iv"
+        }
+      },
+      "luv": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_luv"
+        }
+      },
+      "zpm": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_zpm"
+        }
+      },
+      "uv": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_uv"
+        }
+      },
+      "uhv": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_uhv"
+        }
+      },
+      "uev": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_uev"
+        }
+      },
+      "uiv": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_uiv"
+        }
+      },
+      "uxv": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_uxv"
+        }
+      },
+      "opv": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_opv"
+        }
+      },
+      "max": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/component_assembly_line/coa_max"
+        }
+      }
+    }
+  }
+}

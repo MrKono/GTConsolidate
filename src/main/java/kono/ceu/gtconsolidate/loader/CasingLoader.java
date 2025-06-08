@@ -2,7 +2,9 @@ package kono.ceu.gtconsolidate.loader;
 
 import static gregtech.api.GTValues.*;
 import static gregtech.common.items.MetaItems.*;
+import static kono.ceu.gtconsolidate.loader.Components.*;
 
+import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
@@ -13,6 +15,10 @@ import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
 import gregtech.common.blocks.MetaBlocks;
 
+import gregicality.multiblocks.common.block.GCYMMetaBlocks;
+import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
+
+import kono.ceu.gtconsolidate.common.blocks.BlockCoACasing;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
 import kono.ceu.gtconsolidate.common.blocks.BlockParallelizedAssemblyLineCasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
@@ -87,5 +93,53 @@ public class CasingLoader {
                 .outputs(GTConsolidateMetaBlocks.COOLANT_CASING
                         .getItemVariant(BlockCoolantCasing.CasingType.HELIUM_ELITE))
                 .EUt(VA[UV]).duration(10 * sec).buildAndRegister();
+        // CoA Casing
+        // LV
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ELECTRIC_MOTOR_LV)
+                .input(ELECTRIC_PISTON_LV)
+                .input(ELECTRIC_PUMP_LV)
+                .input(CONVEYOR_MODULE_LV)
+                .input(ROBOT_ARM_LV)
+                .input(FIELD_GENERATOR_LV)
+                .input(EMITTER_LV)
+                .input(bestCircuit(LV), 2)
+                .inputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING
+                        .getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING))
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144))
+                .outputs(GTConsolidateMetaBlocks.COA_CASING.getItemVariant(BlockCoACasing.CoACasingType.LV))
+                .stationResearch(b -> b
+                        .researchStack(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING
+                                .getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING))
+                        .CWUt(16, 3200)
+                        .EUt(VA[LV]))
+                .EUt(VA[UV]).duration(2 * min)
+                .buildAndRegister();
+        // MV-UV
+        for (int i = 2; i < MAX; i++) {
+            if (!GregTechAPI.isHighTier() && i >= UHV) break;
+            int j = i;
+            RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                    .input(motor(i))
+                    .input(piston(i))
+                    .input(pump(i))
+                    .input(conveyor(i))
+                    .input(robotArm(i))
+                    .input(fieldGenerator(i))
+                    .input(emitter(i))
+                    .input(bestCircuit(i), 2)
+                    .inputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING
+                            .getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING))
+                    .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
+                    .outputs(GTConsolidateMetaBlocks.COA_CASING
+                            .getItemVariant(BlockCoACasing.CoACasingType.valueOf(VN[i])))
+                    .stationResearch(b -> b
+                            .researchStack(GTConsolidateMetaBlocks.COA_CASING
+                                    .getItemVariant(BlockCoACasing.CoACasingType.valueOf(VN[j - 1])))
+                            .CWUt(16 * j, VH[j] * 200)
+                            .EUt(VA[j]))
+                    .EUt(VA[UV]).duration(2 * min)
+                    .buildAndRegister();
+        }
     }
 }

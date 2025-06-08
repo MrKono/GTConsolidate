@@ -30,6 +30,7 @@ import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileLar
 import kono.ceu.gtconsolidate.loader.CasingLoader;
 import kono.ceu.gtconsolidate.loader.MetaTileEntityLoader;
 import kono.ceu.gtconsolidate.loader.MultiMachineLoader;
+import kono.ceu.gtconsolidate.loader.handlers.HandlersLoader;
 
 @Mod.EventBusSubscriber(modid = GTConsolidateValues.MODID)
 public class CommonProxy {
@@ -49,6 +50,7 @@ public class CommonProxy {
 
         registry.register(PARALLELIZED_ASSEMBLY_LINE_CASING);
         registry.register(COOLANT_CASING);
+        registry.register(COA_CASING);
         if (Mods.GregTechFoodOption.isModLoaded()) {
             MetaTileLargeGreenHouse.addGrasses();
         }
@@ -60,6 +62,7 @@ public class CommonProxy {
 
         registry.register(createItemBlock(PARALLELIZED_ASSEMBLY_LINE_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(COOLANT_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(COA_CASING, VariantItemBlock::new));
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {
@@ -80,6 +83,7 @@ public class CommonProxy {
         MultiMachineLoader.init();
         CasingLoader.init();
         MetaTileEntityLoader.init();
+        HandlersLoader.init();
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)

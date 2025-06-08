@@ -2,6 +2,7 @@ package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
 import static gregtech.api.util.RelativeDirection.*;
+import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.*;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.*;
 
 import java.util.*;

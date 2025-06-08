@@ -1,7 +1,7 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
 import static gregtech.api.util.RelativeDirection.*;
-import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.energyHatchLimit;
+import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.energyHatchLimit;
 
 import java.util.ArrayList;
 import java.util.List;

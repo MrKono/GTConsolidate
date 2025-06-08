@@ -18,6 +18,7 @@ public class GTConsolidateMetaTileEntity {
     public static final MetaTileEntityParallelizedVF[] PARALLELIZED_VF = new MetaTileEntityParallelizedVF[2];
     public static final MetaTileEntityParallelizedAssemblyLine[] PARALLELIZED_ASSEMBLY_LINE = new MetaTileEntityParallelizedAssemblyLine[3];
     public static MetaTileLargeGreenHouse LARGE_GREENHOUSE;
+    public static MetaTileEntityComponentAssemblyLine COMPONENT_ASSEMBLY_LINE;
 
     public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
             1];
@@ -47,7 +48,6 @@ public class GTConsolidateMetaTileEntity {
                 modId("advanced_vacuum_freezer"), 4));
         PARALLELIZED_VF[1] = registerMetaTileEntity(id + 6, new MetaTileEntityParallelizedVF(
                 modId("elite_vacuum_freezer"), 16));
-
         // Parallelized Assembly Line
         PARALLELIZED_ASSEMBLY_LINE[0] = registerMetaTileEntity(id + 7, new MetaTileEntityParallelizedAssemblyLine(
                 modId("parallelized_assembly_line_mk1"), 4));
@@ -55,11 +55,14 @@ public class GTConsolidateMetaTileEntity {
                 modId("parallelized_assembly_line_mk2"), 16));
         PARALLELIZED_ASSEMBLY_LINE[2] = registerMetaTileEntity(id + 9, new MetaTileEntityParallelizedAssemblyLine(
                 modId("parallelized_assembly_line_mk3"), 64));
-
+        // GTFO
         if (Mods.GregTechFoodOption.isModLoaded()) {
             LARGE_GREENHOUSE = registerMetaTileEntity(id + 10, new MetaTileLargeGreenHouse(
                     modId("large_greenhouse")));
         }
+        // CoA
+        COMPONENT_ASSEMBLY_LINE = registerMetaTileEntity(id + 11, new MetaTileEntityComponentAssemblyLine(
+                modId("component_assembly_line")));
     }
 
     public static void registerMultiblockPart() {
