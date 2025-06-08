@@ -117,6 +117,23 @@ public class MultiMachineLoader {
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[2])
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_ASSEMBLY_LINE[2])
                 .EUt(VA[UEV]).duration(1 * min).buildAndRegister();
+
+        // CoA
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.ASSEMBLY_LINE)
+                .input(TOOL_DATA_MODULE, 4)
+                .input(ROBOT_ARM_LV, 4)
+                .input(ROBOT_ARM_MV, 4)
+                .input(ROBOT_ARM_HV, 4)
+                .input(ROBOT_ARM_EV, 4)
+                .input(ROBOT_ARM_IV, 4)
+                .input(ROBOT_ARM_LuV, 4)
+                .input(ROBOT_ARM_ZPM, 4)
+                .input(ROBOT_ARM_UV, 4)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 64))
+                .fluidInputs(Materials.Lubricant.getFluid(10000))
+                .output(GTConsolidateMetaTileEntity.COMPONENT_ASSEMBLY_LINE)
+                .EUt(VA[LuV]).duration(2 * min).buildAndRegister();
     }
 
     public static void GTFOMultiblock() {

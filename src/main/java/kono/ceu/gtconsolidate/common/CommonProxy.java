@@ -30,6 +30,7 @@ import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileLar
 import kono.ceu.gtconsolidate.loader.CasingLoader;
 import kono.ceu.gtconsolidate.loader.MetaTileEntityLoader;
 import kono.ceu.gtconsolidate.loader.MultiMachineLoader;
+import kono.ceu.gtconsolidate.loader.handlers.HandlersLoader;
 
 @Mod.EventBusSubscriber(modid = GTConsolidateValues.MODID)
 public class CommonProxy {
@@ -82,6 +83,7 @@ public class CommonProxy {
         MultiMachineLoader.init();
         CasingLoader.init();
         MetaTileEntityLoader.init();
+        HandlersLoader.init();
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
