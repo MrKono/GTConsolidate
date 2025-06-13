@@ -56,6 +56,18 @@
       "textures": {
         "all": "gregtech:blocks/casings/coolant/helium_coolant_elite"
       }
+    },
+    "active=false,variant=borosilicate_casing": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/coolant/borosilicate_casing"
+      }
+    },
+    "active=true,variant=borosilicate_casing": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/coolant/borosilicate_casing"
+      }
     }
   }
 }
