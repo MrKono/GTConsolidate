@@ -1,7 +1,8 @@
 ## Changelog
 ### 1.0.5-beta
 - **Add** _Component Assembly Line_.
-- **MufflerHatch now available in Cleanroom!!** (configurable
+- **MufflerHatch now available in Cleanroom!!** (Configurable)
+- **Add** _Advanced Multi Smelter_.
 
 ---
 ### 1.0.4-beta

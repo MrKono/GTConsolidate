@@ -20,6 +20,8 @@ Isn't finding space to meet the demand for Europium a bit of a hassle? And doesn
 - Parallelized Vacuum Freezer (Since 1.0.0-beta)
 - Parallelized Assembly Line (Since 1.0.1-beta)
 - Parallelized Greenhouse (From gtfo, since 1.0.3-beta)  
+- Component Assembly Line (Since 1.0.4-beta)
+- Advanced Multi Smelter (Since 1.0.4-beta)
 
 ### Planning  
 - Alloy Blast Smelter (From gcym)  
