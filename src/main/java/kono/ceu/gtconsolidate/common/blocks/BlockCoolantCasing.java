@@ -44,8 +44,9 @@ public class BlockCoolantCasing extends VariantActiveBlock<BlockCoolantCasing.Ca
 
     @Override
     public boolean canRenderInLayer(@NotNull IBlockState state, @NotNull BlockRenderLayer layer) {
-        return getState(state) == CasingType.BOROSILICATE ? layer == BlockRenderLayer.TRANSLUCENT :
-                super.canRenderInLayer(state, layer);
+        /*return getState(state) == CasingType.BOROSILICATE ? layer == BlockRenderLayer.TRANSLUCENT :
+                super.canRenderInLayer(state, layer);*/
+        return  layer == BlockRenderLayer.TRANSLUCENT ;
     }
 
     @Override
