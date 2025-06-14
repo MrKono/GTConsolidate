@@ -19,6 +19,8 @@ gtconsolidate.machine.large_greenhouse.name=大型温室
 
 gtconsolidate.machine.component_assembly_line.name=部品アセンブリライン
 
+gtconsolidate.machine.multi_smelter_advanced.name=発展型マルチスメルター
+
 # Multiblock Part
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
 gtconsolidate.machine.filter_input.lv.name=LVフィルター付き搬入バス
@@ -39,6 +41,7 @@ tile.coolant_casing.coolant_empty.name=クーラント外装 (空)
 tile.coolant_casing.helium_basic.name=基本型ヘリウムクーラント外装
 tile.coolant_casing.helium_advanced.name=発展型ヘリウムクーラント外装
 tile.coolant_casing.helium_elite.name=精鋭型ヘリウムクーラント外装
+tile.coolant_casing.crystal_quartz_glass.name=水晶ガラス
 
 tile.component_assembly_line_casing.ulv.name=ULV 部品組立ライン外装
 tile.component_assembly_line_casing.lv.name=LV 部品組立ライン外装
@@ -88,11 +91,15 @@ gtconsolidate.machine.parallelized_vf.limit=各バスのアイテムは§c1種�
 # Large Greenhouse
 gtconsolidate.machine.large_greenhouse.tooltip.1=ランプのおかげで24時間365日！！
 
-# Filtered Item Bus
-gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
-
 # Component Assembly Line
 gtconsolidate.machine.component_assembly_line.tooltip.1=大量生産方法の確立
+
+# Advanced Multi Smelter
+gtconsolidate.machine.mega_furnace.tooltip.1=十分すぎるほどの並列化
+gtconsolidate.machine.mega_furnace.tooltip.2=§b並列制御ユニット§7によって並列処理数がさらに増加する
+
+# Filtered Item Bus
+gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
 
 # Display
 gtconsolidate.multiblock.coa.recipe_tier=外装Tier: %s

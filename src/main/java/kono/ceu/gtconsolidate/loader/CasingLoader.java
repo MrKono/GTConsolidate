@@ -1,6 +1,7 @@
 package kono.ceu.gtconsolidate.loader;
 
 import static gregtech.api.GTValues.*;
+import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static kono.ceu.gtconsolidate.loader.Components.*;
 
@@ -9,7 +10,6 @@ import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
@@ -32,10 +32,10 @@ public class CasingLoader {
         // Advanced Assembly Line Casing
         RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(ROBOT_ARM_ZPM, 4)
-                .input(OrePrefix.frameGt, Materials.Tritanium)
-                .input(OrePrefix.plate, Materials.Trinium, 8)
-                .input(OrePrefix.gearSmall, Materials.Darmstadtium, 2)
-                .input(OrePrefix.gear, Materials.Tritanium, 2)
+                .input(frameGt, Materials.Tritanium)
+                .input(plate, Materials.Trinium, 8)
+                .input(gearSmall, Materials.Darmstadtium, 2)
+                .input(gear, Materials.Tritanium, 2)
                 .outputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
                         .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CASING,
                                 ConfigHolder.recipes.casingsPerCraft))
@@ -48,11 +48,11 @@ public class CasingLoader {
                 .buildAndRegister();
         // Advanced Assembly Control Casing
         RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.UV, 4)
+                .input(circuit, MarkerMaterials.Tier.UV, 4)
                 .input(SENSOR_ZPM)
                 .input(ELECTRIC_MOTOR_ZPM)
                 .input(EMITTER_ZPM)
-                .input(OrePrefix.frameGt, Materials.Tritanium)
+                .input(frameGt, Materials.Tritanium)
                 .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
                 .outputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
                         .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CONTROL,
@@ -66,8 +66,8 @@ public class CasingLoader {
         // Coolant Casing (Empty)
         RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
                 .inputs(MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.FUSION_GLASS))
-                .input(OrePrefix.frameGt, Materials.Aluminium)
-                .input(OrePrefix.screw, Materials.Aluminium, 4)
+                .input(frameGt, Materials.Aluminium)
+                .input(screw, Materials.Aluminium, 4)
                 .outputs(GTConsolidateMetaBlocks.COOLANT_CASING.getItemVariant(BlockCoolantCasing.CasingType.EMPTY))
                 .EUt(VA[EV]).duration(30 * sec).buildAndRegister();
         // Basic Helium Coolant Casing
@@ -141,5 +141,16 @@ public class CasingLoader {
                     .EUt(VA[UV]).duration(2 * min)
                     .buildAndRegister();
         }
+
+        // Crystal Quartz Glass
+        RecipeMaps.BLAST_RECIPES.recipeBuilder()
+                .input(gemExquisite, Materials.CertusQuartz, 8)
+                .input(gemExquisite, Materials.NetherQuartz, 8)
+                .input(dust, Materials.BorosilicateGlass)
+                .fluidInputs(Materials.Krypton.getFluid(100))
+                .outputs(GTConsolidateMetaBlocks.COOLANT_CASING
+                        .getItemVariant(BlockCoolantCasing.CasingType.CRYSTAL_QUARTZ_GLASS))
+                .blastFurnaceTemp(2800)
+                .EUt(VA[IV]).duration(30 * sec).buildAndRegister();
     }
 }

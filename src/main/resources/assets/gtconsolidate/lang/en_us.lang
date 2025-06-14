@@ -19,6 +19,8 @@ gtconsolidate.machine.large_greenhouse.name=Large Greenhouse
 
 gtconsolidate.machine.component_assembly_line.name=Component Assembly Line
 
+gtconsolidate.machine.multi_smelter_advanced.name=Advanced Multi Smelter
+
 # Multiblock Part
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
 gtconsolidate.machine.filter_input.lv.name=LV Filtered Input Bus
@@ -39,6 +41,7 @@ tile.coolant_casing.coolant_empty.name=Coolant Casing (Empty)
 tile.coolant_casing.helium_basic.name=Basic Helium Coolant Casing
 tile.coolant_casing.helium_advanced.name=Advanced Helium Coolant Casing
 tile.coolant_casing.helium_elite.name=Elite Helium Coolant Casing
+tile.coolant_casing.crystal_quartz_glass.name=Crystal Quartz Glass
 
 tile.component_assembly_line_casing.ulv.name=ULV Component Assembly Line Casing
 tile.component_assembly_line_casing.lv.name=LV Component Assembly Line Casing
@@ -88,11 +91,15 @@ gtconsolidate.machine.parallelized_vf.limit=Must be §cone type§7 of item in ea
 # Large Greenhouse
 gtconsolidate.machine.large_greenhouse.tooltip.1=Thanks to the lamps 24/7!
 
-# Filtered Item Bus
-gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
-
 # Component Assembly Line
 gtconsolidate.machine.component_assembly_line.tooltip.1=Establishment of mass production method
+
+# Advanced Multi Smelter
+gtconsolidate.machine.mega_furnace.tooltip.1=More than enough parallelized
+gtconsolidate.machine.mega_furnace.tooltip.2=Can more parallelize with §bParallel Control Hatches
+
+# Filtered Item Bus
+gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
 
 # Display
 gtconsolidate.multiblock.coa.recipe_tier=Casing Tier: %s
