@@ -144,10 +144,10 @@ public class MultiMachineLoader {
 
         // Adv. Multi Smelter
         RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(MetaTileEntities.MULTI_FURNACE)
-                .input(MetaTileEntities.ELECTRIC_FURNACE[IV])
-                .input(circuit, MarkerMaterials.Tier.LuV, 4)
+                .input(MetaTileEntities.ELECTRIC_FURNACE[IV], 3)
+                .input(circuit, MarkerMaterials.Tier.LuV, 6)
                 .inputs(MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF))
+                .input(cableGtSingle, Materials.Platinum, 4)
                 .scannerResearch(b -> b
                         .researchStack(MetaTileEntities.MULTI_FURNACE.getStackForm())
                         .EUt(VA[IV]).duration(1 * min))
