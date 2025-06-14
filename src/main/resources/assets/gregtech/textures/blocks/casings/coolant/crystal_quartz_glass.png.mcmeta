@@ -4,7 +4,7 @@
         "type": "CTM",
         "layer": "TRANSLUCENT",
         "textures": [
-            "gregtech:blocks/casings/coolant/borosilicate_casing_ctm"
+            "gregtech:blocks/casings/coolant/crystal_quartz_glass_ctm"
         ],
         "extra": {
             "connect_inside": true

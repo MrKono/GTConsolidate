@@ -49,16 +49,16 @@
         "all": "gregtech:blocks/casings/coolant/helium_coolant_elite"
       }
     },
-    "active=false,variant=borosilicate_casing": {
+    "active=false,variant=crystal_quartz_glass": {
       "model": "minecraft:cube_all",
       "textures": {
-        "all": "gregtech:blocks/casings/coolant/borosilicate_casing"
+        "all": "gregtech:blocks/casings/coolant/crystal_quartz_glass"
       }
     },
-    "active=true,variant=borosilicate_casing": {
+    "active=true,variant=crystal_quartz_glass": {
       "model": "minecraft:cube_all",
       "textures": {
-        "all": "gregtech:blocks/casings/coolant/borosilicate_casing"
+        "all": "gregtech:blocks/casings/coolant/crystal_quartz_glass"
       }
     }
   }
