@@ -92,6 +92,7 @@ jobs:
             gregicality-multiblocks(required)
             mixin-booter(required)
             gregtech-food-option(recommended)
+            gtwoodprocessing(recommended)
           files: |
             build/libs/!(*-@(dev|sources|javadoc)).jar
             build/libs/*-@(sources).jar
