@@ -1,12 +1,14 @@
 package kono.ceu.gtconsolidate.loader;
 
 import static gregtech.api.GTValues.*;
+import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
+
+import com.github.gtexpert.gtwp.common.metatileentities.GTWPMetaTileEntities;
 
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
@@ -29,25 +31,28 @@ public class MultiMachineLoader {
         if (Mods.GregTechFoodOption.isModLoaded()) {
             GTFOMultiblock();
         }
+        if (Mods.GTWoodProcessing.isModLoaded()) {
+            GTWPMultiblock();
+        }
     }
 
     public static void CEuMultiBlock() {
         // Adv. Fusion Reactors
         RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
                 .input(MetaTileEntities.FUSION_REACTOR[0], 16)
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.LuV, 32)
+                .input(circuit, MarkerMaterials.Tier.LuV, 32)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[1])
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_FUSION_REACTOR[0])
                 .EUt(VA[UV]).duration(30 * sec).buildAndRegister();
         RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
                 .input(MetaTileEntities.FUSION_REACTOR[1], 16)
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.ZPM, 32)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 32)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[1])
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_FUSION_REACTOR[1])
                 .EUt(VA[UV]).duration(1 * min).buildAndRegister();
         RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
                 .input(MetaTileEntities.FUSION_REACTOR[2], 16)
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.UV, 32)
+                .input(circuit, MarkerMaterials.Tier.UV, 32)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[1])
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_FUSION_REACTOR[2])
                 .EUt(VA[UV]).duration(2 * min).buildAndRegister();
@@ -55,13 +60,13 @@ public class MultiMachineLoader {
         // Adv. EBF
         RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
                 .input(MetaTileEntities.ELECTRIC_BLAST_FURNACE, 4)
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.IV, 8)
+                .input(circuit, MarkerMaterials.Tier.IV, 8)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[0])
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_EBF[0])
                 .EUt(VA[LuV]).duration(1 * min).buildAndRegister();
         RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
                 .input(MetaTileEntities.ELECTRIC_BLAST_FURNACE, 16)
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.LuV, 32)
+                .input(circuit, MarkerMaterials.Tier.LuV, 32)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[1])
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_EBF[1])
                 .EUt(VA[LuV]).duration(2 * min).buildAndRegister();
@@ -73,13 +78,13 @@ public class MultiMachineLoader {
         // Adv. VF
         RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
                 .input(MetaTileEntities.VACUUM_FREEZER, 4)
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.IV, 8)
+                .input(circuit, MarkerMaterials.Tier.IV, 8)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[0])
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_VF[0])
                 .EUt(VA[LuV]).duration(1 * min).buildAndRegister();
         RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
                 .input(MetaTileEntities.VACUUM_FREEZER, 16)
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.LuV, 32)
+                .input(circuit, MarkerMaterials.Tier.LuV, 32)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[1])
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_VF[1])
                 .EUt(VA[LuV]).duration(2 * min).buildAndRegister();
@@ -94,7 +99,7 @@ public class MultiMachineLoader {
                 .inputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
                         .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CONTROL,
                                 4))
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.UV, 2)
+                .input(circuit, MarkerMaterials.Tier.UV, 2)
                 .input(ROBOT_ARM_LuV)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[0])
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_ASSEMBLY_LINE[0])
@@ -104,7 +109,7 @@ public class MultiMachineLoader {
                 .inputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
                         .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CONTROL,
                                 4))
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.UHV, 2)
+                .input(circuit, MarkerMaterials.Tier.UHV, 2)
                 .input(ROBOT_ARM_ZPM)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[1])
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_ASSEMBLY_LINE[1])
@@ -114,7 +119,7 @@ public class MultiMachineLoader {
                 .inputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
                         .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CONTROL,
                                 4))
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.UHV, 8)
+                .input(circuit, MarkerMaterials.Tier.UHV, 8)
                 .input(ROBOT_ARM_UV)
                 .input(GCYMMetaTileEntities.PARALLEL_HATCH[2])
                 .output(GTConsolidateMetaTileEntity.PARALLELIZED_ASSEMBLY_LINE[2])
@@ -139,10 +144,10 @@ public class MultiMachineLoader {
 
         // Adv. Multi Smelter
         RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(MetaTileEntities.MULTI_FURNACE)
-                .input(MetaTileEntities.ELECTRIC_FURNACE[IV])
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.LuV, 4)
+                .input(MetaTileEntities.ELECTRIC_FURNACE[IV], 3)
+                .input(circuit, MarkerMaterials.Tier.LuV, 6)
                 .inputs(MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF))
+                .input(cableGtSingle, Materials.Platinum, 4)
                 .scannerResearch(b -> b
                         .researchStack(MetaTileEntities.MULTI_FURNACE.getStackForm())
                         .EUt(VA[IV]).duration(1 * min))
@@ -154,13 +159,28 @@ public class MultiMachineLoader {
         RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(MetaTileEntities.HULL[IV])
                 .input(ELECTRIC_PUMP_IV, 2)
-                .input(OrePrefix.circuit, MarkerMaterials.Tier.LuV, 4)
-                .input(OrePrefix.frameGt, Materials.Steel)
-                .input(OrePrefix.plate, Materials.VanadiumGallium, 6)
+                .input(circuit, MarkerMaterials.Tier.LuV, 4)
+                .input(frameGt, Materials.Steel)
+                .input(plate, Materials.VanadiumGallium, 6)
                 .scannerResearch(b -> b
                         .researchStack(GTFOTileEntities.GREENHOUSE.getStackForm())
                         .duration(30 * sec).EUt(VA[IV]))
                 .output(GTConsolidateMetaTileEntity.LARGE_GREENHOUSE)
                 .duration(90 * sec).EUt(VA[IV]).buildAndRegister();
+    }
+
+    public static void GTWPMultiblock() {
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(screw, Materials.TungstenCarbide, 4)
+                .input(toolHeadBuzzSaw, Materials.TungstenCarbide)
+                .input(ELECTRIC_MOTOR_IV, 4)
+                .input(MetaTileEntities.HULL[IV])
+                .input(circuit, MarkerMaterials.Tier.IV, 4)
+                .input(CONVEYOR_MODULE_IV, 2)
+                .scannerResearch(b -> b
+                        .researchStack(GTWPMetaTileEntities.SAWMILL.getStackForm())
+                        .EUt(VA[IV]).duration(30 * sec))
+                .output(GTConsolidateMetaTileEntity.PARALLELIZED_SAWMILL)
+                .EUt(VA[IV]).duration(90 * sec).buildAndRegister();
     }
 }

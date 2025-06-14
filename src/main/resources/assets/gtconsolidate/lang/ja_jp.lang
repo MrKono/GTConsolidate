@@ -21,6 +21,8 @@ gtconsolidate.machine.component_assembly_line.name=部品アセンブリライ�
 
 gtconsolidate.machine.multi_smelter_advanced.name=発展型マルチスメルター
 
+gtconsolidate.machine.parallelized_sawmill.name=工業用製材機
+
 # Multiblock Part
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
 gtconsolidate.machine.filter_input.lv.name=LVフィルター付き搬入バス

@@ -19,9 +19,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.cleanroommc.groovyscript.Tags;
-
 import gregtech.api.util.ModIncompatibilityException;
+
+import kono.ceu.gtconsolidate.Tags;
 
 public enum Mods {
 
@@ -29,6 +29,7 @@ public enum Mods {
     GregTech(Names.GREGTECH),
     GregTechFoodOption(Names.GREGTECH_FOOD_OPTION),
     GTConsolidate(Names.GTCONSOLIDATE),
+    GTWoodProcessing(Names.GREGTECH_WOOD_PROCESSING),
     MixinBooter(Names.MIXINBOOTER),
     Vanilla(Names.VANILLA),
 
@@ -57,6 +58,7 @@ public enum Mods {
         public static final String GREGTECH = "gregtech";
         public static final String GREGTECH_FOOD_OPTION = "gregtechfoodoption";
         public static final String GTCONSOLIDATE = Tags.MODID;
+        public static final String GREGTECH_WOOD_PROCESSING = "gtwp";
         public static final String MIXINBOOTER = "mixinbooter";
         public static final String VANILLA = "minecraft";
     }

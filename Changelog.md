@@ -3,6 +3,7 @@
 - **Add** _Component Assembly Line_.
 - **MufflerHatch now available in Cleanroom!!** (Configurable)
 - **Add** _Advanced Multi Smelter_.
+- **Add** _Industrial Sawmill_. 
 
 ---
 ### 1.0.4-beta

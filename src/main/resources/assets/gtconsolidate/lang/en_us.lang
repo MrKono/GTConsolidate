@@ -21,6 +21,8 @@ gtconsolidate.machine.component_assembly_line.name=Component Assembly Line
 
 gtconsolidate.machine.multi_smelter_advanced.name=Advanced Multi Smelter
 
+gtconsolidate.machine.parallelized_sawmill.name=Industrial Sawmill
+
 # Multiblock Part
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
 gtconsolidate.machine.filter_input.lv.name=LV Filtered Input Bus
