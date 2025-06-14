@@ -19,9 +19,10 @@ Isn't finding space to meet the demand for Europium a bit of a hassle? And doesn
 - Parallelized Electric Blast Furnace (Since 1.0.0-beta)  
 - Parallelized Vacuum Freezer (Since 1.0.0-beta)
 - Parallelized Assembly Line (Since 1.0.1-beta)
-- Parallelized Greenhouse (From gtfo, since 1.0.3-beta)  
-- Component Assembly Line (Since 1.0.4-beta)
-- Advanced Multi Smelter (Since 1.0.4-beta)
+- Parallelized Greenhouse (From [GregTechFoodOption](https://github.com/bruberu/GregTechFoodOption), since 1.0.3-beta)  
+- Component Assembly Line (Since 1.0.5-beta)
+- Advanced Multi Smelter (Since 1.0.5-beta)
+- Parallelized Sawmill (From [GregTech Wood Processing](https://github.com/GTModpackTeam/GTWoodProcessing/tree/master), since 1.0.5-beta)
 
 ### Planning  
 - Alloy Blast Smelter (From gcym)  
