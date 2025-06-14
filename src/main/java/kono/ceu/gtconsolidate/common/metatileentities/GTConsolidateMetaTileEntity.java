@@ -19,6 +19,7 @@ public class GTConsolidateMetaTileEntity {
     public static final MetaTileEntityParallelizedAssemblyLine[] PARALLELIZED_ASSEMBLY_LINE = new MetaTileEntityParallelizedAssemblyLine[3];
     public static MetaTileLargeGreenHouse LARGE_GREENHOUSE;
     public static MetaTileEntityComponentAssemblyLine COMPONENT_ASSEMBLY_LINE;
+    public static MetaTileEntityMegaFurnace MEGA_FURNACE;
 
     public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
             1];
@@ -63,6 +64,8 @@ public class GTConsolidateMetaTileEntity {
         // CoA
         COMPONENT_ASSEMBLY_LINE = registerMetaTileEntity(id + 11, new MetaTileEntityComponentAssemblyLine(
                 modId("component_assembly_line")));
+        MEGA_FURNACE = registerMetaTileEntity(id + 12, new MetaTileEntityMegaFurnace(
+                modId("multi_smelter_advanced")));
     }
 
     public static void registerMultiblockPart() {

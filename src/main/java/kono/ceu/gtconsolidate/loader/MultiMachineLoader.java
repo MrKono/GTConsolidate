@@ -7,6 +7,8 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.blocks.BlockMetalCasing;
+import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtechfoodoption.machines.GTFOTileEntities;
 
@@ -134,6 +136,18 @@ public class MultiMachineLoader {
                 .fluidInputs(Materials.Lubricant.getFluid(10000))
                 .output(GTConsolidateMetaTileEntity.COMPONENT_ASSEMBLY_LINE)
                 .EUt(VA[LuV]).duration(2 * min).buildAndRegister();
+
+        // Adv. Multi Smelter
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.MULTI_FURNACE)
+                .input(MetaTileEntities.ELECTRIC_FURNACE[IV])
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.LuV, 4)
+                .inputs(MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF))
+                .scannerResearch(b -> b
+                        .researchStack(MetaTileEntities.MULTI_FURNACE.getStackForm())
+                        .EUt(VA[IV]).duration(1 * min))
+                .output(GTConsolidateMetaTileEntity.MEGA_FURNACE)
+                .EUt(VA[LuV]).duration((90 * sec)).buildAndRegister();
     }
 
     public static void GTFOMultiblock() {

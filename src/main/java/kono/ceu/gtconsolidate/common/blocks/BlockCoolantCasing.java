@@ -44,7 +44,11 @@ public class BlockCoolantCasing extends VariantActiveBlock<BlockCoolantCasing.Ca
 
     @Override
     public boolean canRenderInLayer(@NotNull IBlockState state, @NotNull BlockRenderLayer layer) {
-        return super.canRenderInLayer(state, layer);
+        /*
+         * return getState(state) == CasingType.BOROSILICATE ? layer == BlockRenderLayer.TRANSLUCENT :
+         * super.canRenderInLayer(state, layer);
+         */
+        return layer == BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override
@@ -76,7 +80,8 @@ public class BlockCoolantCasing extends VariantActiveBlock<BlockCoolantCasing.Ca
         EMPTY("coolant_empty"),
         HELIUM_BASIC("helium_basic"),
         HELIUM_ADVANCED("helium_advanced"),
-        HELIUM_ELITE("helium_elite");
+        HELIUM_ELITE("helium_elite"),
+        CRYSTAL_QUARTZ_GLASS("crystal_quartz_glass");
 
         private final String name;
 
