@@ -60,6 +60,18 @@
       "textures": {
         "all": "gregtech:blocks/casings/coolant/crystal_quartz_glass"
       }
+    },
+    "active=false,variant=helium_3": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/coolant/helium3_coolant"
+      }
+    },
+    "active=true,variant=helium_3": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/coolant/helium3_coolant"
+      }
     }
   }
 }

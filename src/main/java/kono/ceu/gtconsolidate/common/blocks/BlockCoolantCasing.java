@@ -81,7 +81,8 @@ public class BlockCoolantCasing extends VariantActiveBlock<BlockCoolantCasing.Ca
         HELIUM_BASIC("helium_basic"),
         HELIUM_ADVANCED("helium_advanced"),
         HELIUM_ELITE("helium_elite"),
-        CRYSTAL_QUARTZ_GLASS("crystal_quartz_glass");
+        CRYSTAL_QUARTZ_GLASS("crystal_quartz_glass"),
+        HELIUM_3("helium_3");
 
         private final String name;
 
