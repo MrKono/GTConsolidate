@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import gregtech.api.block.VariantItemBlock;
+import gregtech.api.recipes.RecipeMaps;
 import gregtech.loaders.recipe.RecyclingRecipes;
 
 import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
@@ -38,6 +39,9 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent e) {
         GTConsolidateMetaTileEntity.init();
         GTConsolidateMetaBlocks.init();
+        if (RecipeMaps.COMPRESSOR_RECIPES.getMaxFluidInputs() < 1) {
+            RecipeMaps.COMPRESSOR_RECIPES.setMaxFluidInputs(1);
+        }
     }
 
     public void init(FMLInitializationEvent e) {}
