@@ -106,7 +106,7 @@ gtconsolidate.machine.mega_furnace.tooltip.2=Can more parallelize with §bParall
 # Turbo Rotary Hearth Blast Smelter
 gtconsolidate.machine.turbo_blast_furnace.tooltip.1=Integrated EBF and ABS
 gtconsolidate.machine.turbo_blast_furnace.tooltip.2=If active, §bTemperature§7 increases in §cCoil's Temperature * 0.01§fK/s§7.
-gtconsolidate.machine.turbo_blast_furnace.tooltip.3=If idell, §bTemperature§7 decreases in §cCoil's Temperature * 0.1§fK/s§7.
+gtconsolidate.machine.turbo_blast_furnace.tooltip.3=If idle, §bTemperature§7 decreases in §cCoil's Temperature * 0.1§fK/s§7.
 gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eStrongly recommended to enable Distinct Buses.
 
 # Filtered Item Bus
