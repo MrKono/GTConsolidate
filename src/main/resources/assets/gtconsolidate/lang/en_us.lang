@@ -101,13 +101,13 @@ gtconsolidate.machine.component_assembly_line.tooltip.1=Establishment of mass pr
 
 # Advanced Multi Smelter
 gtconsolidate.machine.mega_furnace.tooltip.1=More than enough parallelized
-gtconsolidate.machine.mega_furnace.tooltip.2=Can more parallelize with §bParallel Control Hatches
+gtconsolidate.machine.mega_furnace.tooltip.2=Can more parallelize with §bParallel Control Hatches§7.
 
 # Turbo Rotary Hearth Blast Smelter
 gtconsolidate.machine.turbo_blast_furnace.tooltip.1=Integrated EBF and ABS
 gtconsolidate.machine.turbo_blast_furnace.tooltip.2=If active, §bTemperature§7 increases in §cCoil's Temperature * 0.01§fK/s§7.
 gtconsolidate.machine.turbo_blast_furnace.tooltip.3=If idell, §bTemperature§7 decreases in §cCoil's Temperature * 0.1§fK/s§7.
-gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eStrongly recommended to enable Distinct Buses
+gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eStrongly recommended to enable Distinct Buses.
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.

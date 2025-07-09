@@ -101,13 +101,13 @@ gtconsolidate.machine.component_assembly_line.tooltip.1=大量生産方法の確
 
 # Advanced Multi Smelter
 gtconsolidate.machine.mega_furnace.tooltip.1=十分すぎるほどの並列化
-gtconsolidate.machine.mega_furnace.tooltip.2=§b並列制御ユニット§7によって並列処理数がさらに増加する
+gtconsolidate.machine.mega_furnace.tooltip.2=§b並列制御ユニット§7によって並列処理数がさらに増加する。
 
 # Turbo Rotary Hearth Blast Smelter
 gtconsolidate.machine.turbo_blast_furnace.tooltip.1=工業用電気炉と合金高炉の統合版
 gtconsolidate.machine.turbo_blast_furnace.tooltip.2=稼働中の場合、§b最大温度§7が§c基本最大温度 * 0.01§fK/s§7で上昇する。
 gtconsolidate.machine.turbo_blast_furnace.tooltip.3=停止中の場合、§b最大温度§7が§c基本最大温度 * 0.1§fK/s§7で減少する。
-gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eバスの区別を有効にすることを強く推奨
+gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eバスの区別を有効にすることを強く推奨。
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
