@@ -23,6 +23,8 @@ gtconsolidate.machine.multi_smelter_advanced.name=Advanced Multi Smelter
 
 gtconsolidate.machine.parallelized_sawmill.name=Industrial Sawmill
 
+gtconsolidate.machine.turbo_blast_furnace.name=Turbo Rotary Hearth Blast Smelter
+
 # Multiblock Part
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
 gtconsolidate.machine.filter_input.lv.name=LV Filtered Input Bus
@@ -44,6 +46,7 @@ tile.coolant_casing.helium_basic.name=Basic Helium Coolant Casing
 tile.coolant_casing.helium_advanced.name=Advanced Helium Coolant Casing
 tile.coolant_casing.helium_elite.name=Elite Helium Coolant Casing
 tile.coolant_casing.crystal_quartz_glass.name=Crystal Quartz Glass
+tile.coolant_casing.helium_3.name=Helium-3 Coolant Casing
 
 tile.component_assembly_line_casing.ulv.name=ULV Component Assembly Line Casing
 tile.component_assembly_line_casing.lv.name=LV Component Assembly Line Casing
@@ -100,6 +103,12 @@ gtconsolidate.machine.component_assembly_line.tooltip.1=Establishment of mass pr
 gtconsolidate.machine.mega_furnace.tooltip.1=More than enough parallelized
 gtconsolidate.machine.mega_furnace.tooltip.2=Can more parallelize with §bParallel Control Hatches
 
+# Turbo Rotary Hearth Blast Smelter
+gtconsolidate.machine.turbo_blast_furnace.tooltip.1=Integrated EBF and ABS
+gtconsolidate.machine.turbo_blast_furnace.tooltip.2=If active, §bTemperature§7 increases in §cCoil's Temperature * 0.01§fK/s§7.
+gtconsolidate.machine.turbo_blast_furnace.tooltip.3=If idell, §bTemperature§7 decreases in §cCoil's Temperature * 0.1§fK/s§7.
+gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eStrongly recommended to enable Distinct Buses
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
 
@@ -111,5 +120,6 @@ gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be th
 
 ## RecipeMaps
 recipemap.component_assembly_line.name=Component Assembly Line
+recipemap.turbo_blast_recipe.name=Rotary Hearth Blast Smelter
 
 gtconsolidate.recipe.coa=Minimum Casing Tier: %s
