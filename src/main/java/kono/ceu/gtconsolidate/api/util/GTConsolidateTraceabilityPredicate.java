@@ -50,7 +50,8 @@ public class GTConsolidateTraceabilityPredicate {
         if (allow4A) energyHatch.addAll(Arrays.asList(MetaTileEntities.ENERGY_INPUT_HATCH_4A));
         if (allow16A) energyHatch.addAll(Arrays.asList(MetaTileEntities.ENERGY_INPUT_HATCH_16A));
         if (allow64A) energyHatch.addAll(Arrays.asList(MetaTileEntities.SUBSTATION_ENERGY_INPUT_HATCH));
-        return metaTileEntities(energyHatch.toArray(new MetaTileEntity[0]));
+        return metaTileEntities(energyHatch.toArray(new MetaTileEntity[0])).setMinGlobalLimited(1)
+                .setMaxGlobalLimited(3).setPreviewCount(2);
     }
 
     @NotNull
