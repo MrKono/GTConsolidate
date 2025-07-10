@@ -1,9 +1,12 @@
 package kono.ceu.gtconsolidate.api.recipes;
 
+import static gregtech.api.GTValues.*;
+
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.builders.BlastRecipeBuilder;
+import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.core.sound.GTSoundEvents;
 
 import kono.ceu.gtconsolidate.api.recipes.builder.CoARecipeBuilder;
@@ -34,4 +37,10 @@ public class GTConsolidateRecipeMaps {
                     .setSlotOverlay(true, true, false, GuiTextures.FURNACE_OVERLAY_2)
                     .setSlotOverlay(true, true, true, GuiTextures.FURNACE_OVERLAY_2)
                     .setSound(GTSoundEvents.FURNACE);
+
+    @ZenProperty
+    public static final RecipeMap<SimpleRecipeBuilder> ABSOLUTE_VACUUM_RECIPE = new RecipeMap<>(
+            "absolute_vacuum_recipe",
+            3, 3, 3, 3, new SimpleRecipeBuilder().duration(1).EUt(VA[UEV]), false)
+                    .setSound(GTSoundEvents.COOLING);
 }

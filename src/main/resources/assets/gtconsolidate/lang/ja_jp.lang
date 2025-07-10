@@ -25,6 +25,8 @@ gtconsolidate.machine.parallelized_sawmill.name=工業用製材機
 
 gtconsolidate.machine.turbo_blast_furnace.name=回転式炉床製錬炉
 
+gtconsolidate.machine.absolute_freezer.name=絶対冷凍機
+
 # Multiblock Part
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
 gtconsolidate.machine.filter_input.lv.name=LVフィルター付き搬入バス
@@ -74,6 +76,7 @@ gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16=エナジー�
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16=エナジーハッチは§e16Aのみ§7。
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.64=エナジーハッチは§e64Aのみ§7。
 gtconsolidate.multiblock.tooltip.universal.limit.manual_maintenance=自動メンテナンスハッチは§e使えない§7。
+gtconsolidate.multiblock.accept_64a=64A エナジーハッチも受け付ける。
 
 # Adv. Fusion Reactor
 gtconsolidate.machine.parallelized_fusion_reactor.tooltip1=並列化された核融合炉。ただし制限あり。
@@ -109,6 +112,9 @@ gtconsolidate.machine.turbo_blast_furnace.tooltip.2=稼働中の場合、§b最�
 gtconsolidate.machine.turbo_blast_furnace.tooltip.3=停止中の場合、§b最大温度§7が§c基本最大温度 * 0.1§fK/s§7で減少する。
 gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eバスの区別を有効にすることを強く推奨。
 
+# Absolute Freezer
+gtconsolidate.machine.absolute_freezer.tooltip1=冷媒不要の冷却機
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
 
@@ -121,5 +127,6 @@ gtconsolidate.multiblock.pattern.error.coa_casings=§c部品組立外装は全�
 ## RecipeMaps
 recipemap.component_assembly_line.name=部品アセンブリライン
 recipemap.turbo_blast_recipe.name=回転式炉床製錬炉
+recipemap.absolute_vacuum_recipe.name=絶対冷凍機
 
 gtconsolidate.recipe.coa=外装の最小Tier: %s
