@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 import gregtech.api.capability.IEnergyContainer;
@@ -33,6 +36,7 @@ import gregicality.multiblocks.common.block.blocks.BlockUniqueCasing;
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
+import org.jetbrains.annotations.Nullable;
 
 public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
 
@@ -123,5 +127,12 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
     @Override
     public boolean isTiered() {
         return false;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
+        super.addInformation(stack, player, tooltip, advanced);
+        tooltip.add(I18n.format("gtconsolidate.machine.absolute_freezer.tooltip1"));
+        tooltip.add(I18n.format("gtconsolidate.multiblock.accept_64a"));
     }
 }

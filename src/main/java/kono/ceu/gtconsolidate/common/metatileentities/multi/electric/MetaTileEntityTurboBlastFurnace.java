@@ -280,6 +280,7 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.2"));
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.3"));
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.4"));
+        tooltip.add(I18n.format("gtconsolidate.multiblock.accept_64a"));
     }
 
     @Override

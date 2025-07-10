@@ -38,8 +38,6 @@ public class AbsoluteFreezerLoader {
     }
 
     public static void coolingABS() {
-        BlastRecipeBuilder abs = GCYMRecipeMaps.ALLOY_BLAST_RECIPES.recipeBuilder();
-        List<FluidStack> fluidStacks = abs.getFluidOutputs();
         Map<Fluid, Material> liquidStack = new HashMap<>();
         for (Material mat : GregTechAPI.materialManager.getRegisteredMaterials()) {
             if (!mat.hasFlag(IS_MAGNETIC) && mat.hasProperty(PropertyKey.INGOT) && mat.hasFluid()) {
@@ -49,19 +47,6 @@ public class AbsoluteFreezerLoader {
                     liquidStack.put(mat.getFluid(FluidStorageKeys.LIQUID), mat);
             }
         }
-        /*
-         * for (FluidStack fluidStack : fluidStacks) {
-         * Fluid fluid = fluidStack.getFluid();
-         * if (liquidStack.containsKey(fluid)) {
-         * GTConsolidateRecipeMaps.ABSOLUTE_VACUUM_RECIPE.recipeBuilder()
-         * .fluidInputs(liquidStack.get(fluid).getFluid(
-         * liquidStack.get(fluid).getFluid(GCYMFluidStorageKeys.MOLTEN) == null ? FluidStorageKeys.LIQUID, 144))
-         * .output(ingot, liquidStack.get(fluid))
-         * .buildAndRegister();
-         * }
-         * 
-         * }
-         */
         GCYMRecipeMaps.ALLOY_BLAST_RECIPES.onRecipeBuild(blastRecipeBuilder -> {
             for (FluidStack stack : blastRecipeBuilder.getFluidOutputs()) {
                 Fluid fluid = stack.getFluid();
