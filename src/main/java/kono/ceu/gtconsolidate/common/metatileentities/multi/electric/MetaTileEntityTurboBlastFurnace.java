@@ -1,7 +1,9 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
+import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.energyHatchLimit;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
@@ -17,8 +19,10 @@ import org.jetbrains.annotations.Nullable;
 
 import gregtech.api.GTValues;
 import gregtech.api.block.IHeatingCoilBlockStats;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.IHeatingCoil;
 import gregtech.api.capability.IMufflerHatch;
+import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -119,6 +123,14 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
     }
 
     @Override
+    protected void initializeAbilities() {
+        super.initializeAbilities();
+        List<IEnergyContainer> inputEnergy = new ArrayList<>(getAbilities(MultiblockAbility.INPUT_ENERGY));
+        inputEnergy.addAll(getAbilities(MultiblockAbility.SUBSTATION_INPUT_ENERGY));
+        this.energyContainer = new EnergyContainerList(inputEnergy);
+    }
+
+    @Override
     protected @NotNull BlockPattern createStructurePattern() {
         TraceabilityPredicate casing = states(getCasingState()).setMinGlobalLimited(300);
         return FactoryBlockPattern.start()
@@ -129,70 +141,70 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
                         "#############", "#############", "#############", "#############", "#############",
                         "##TTTTTTTTT##")
                 .aisle("#XXXXXXXXXXX#", "#XXXXXXXXXXX#", "###FJJJJJF###", "###FJJJJJF###", "###FFVVVFF###",
-                        "###F#####F###", "###F#####F###", "###F#####F###", "###F#####F###", "###F#####F###",
-                        "###FFVVVFF###", "###F#####F###", "###F#####F###", "###F#####F###", "###F#####F###",
-                        "###F#####F###", "###FFVVVFF###", "###F#####F###", "###F#####F###", "###F#####F###",
-                        "###F#####F###", "###F#####F###", "###FFVVVFF###", "###FJJJJJF###", "###FJJJJJF###",
+                        "###FGGGGGF###", "###FGGGGGF###", "###FGGGGGF###", "###FGGGGGF###", "###FGGGGGF###",
+                        "###FFVVVFF###", "###FGGGGGF###", "###FGGGGGF###", "###FGGGGGF###", "###FGGGGGF###",
+                        "###FGGGGGF###", "###FFVVVFF###", "###FGGGGGF###", "###FGGGGGF###", "###FGGGGGF###",
+                        "###FGGGGGF###", "###FGGGGGF###", "###FFVVVFF###", "###FJJJJJF###", "###FJJJJJF###",
                         "#TTTTTTTTTTT#")
                 .aisle("XXXXXXXXXXXXX", "XXXXVVVVVXXXX", "##F#######F##", "##F#######F##", "##FFFHPHFFF##",
-                        "##FGGGGGGGF##", "##FGGGGGGGF##", "##FGGGGGGGF##", "##FGGGGGGGF##", "##FGGGGGGGF##",
-                        "##FFFHPHFFF##", "##FGGGGGGGF##", "##FGGGGGGGF##", "##FGGGGGGGF##", "##FGGGGGGGF##",
-                        "##FGGGGGGGF##", "##FFFHPHFFF##", "##FGGGGGGGF##", "##FGGGGGGGF##", "##FGGGGGGGF##",
-                        "##FGGGGGGGF##", "##FGGGGGGGF##", "##FFFHPHFFF##", "##F#######F##", "##F#######F##",
+                        "##F#######F##", "##F#######F##", "##F#######F##", "##F#######F##", "##F#######F##",
+                        "##FFFHPHFFF##", "##F#######F##", "##F#######F##", "##F#######F##", "##F#######F##",
+                        "##F#######F##", "##FFFHPHFFF##", "##F#######F##", "##F#######F##", "##F#######F##",
+                        "##F#######F##", "##F#######F##", "##FFFHPHFFF##", "##F#######F##", "##F#######F##",
                         "TTTTTTTTTTTTT")
                 .aisle("XXXXXXXXXXXXX", "XXXXXXDXXXXXX", "#F####P####F#", "#F####P####F#", "#FFHHHPHHHFF#",
-                        "#FG###P###GF#", "#FG###P###GF#", "#FG###P###GF#", "#FG###P###GF#", "#FG###P###GF#",
-                        "#FFHHHPHHHFF#", "#FG###P###GF#", "#FG###P###GF#", "#FG###P###GF#", "#FG###P###GF#",
-                        "#FG###P###GF#", "#FFHHHPHHHFF#", "#FG###P###GF#", "#FG###P###GF#", "#FG###P###GF#",
-                        "#FG###P###GF#", "#FG###P###GF#", "#FFHHHPHHHFF#", "#F####P####F#", "#F####P####F#",
+                        "#F####P####F#", "#F####P####F#", "#F####P####F#", "#F####P####F#", "#F####P####F#",
+                        "#FFHHHPHHHFF#", "#F####P####F#", "#F####P####F#", "#F####P####F#", "#F####P####F#",
+                        "#F####P####F#", "#FFHHHPHHHFF#", "#F####P####F#", "#F####P####F#", "#F####P####F#",
+                        "#F####P####F#", "#F####P####F#", "#FFHHHPHHHFF#", "#F####P####F#", "#F####P####F#",
                         "TTTTTTPTTTTTT")
                 .aisle("XXXXXXXXXXXXX", "XXVXXXDXXXVXX", "#J##BBPBB##J#", "#J##TITIT##J#", "#FFHJJJJJHFF#",
-                        "##G#BITIB#G##", "##G#CCCCC#G##", "##G#CCCCC#G##", "##G#CCCCC#G##", "##G#BITIB#G##",
-                        "#FFHHHHHHHFF#", "##G#BITIB#G##", "##G#CCCCC#G##", "##G#CCCCC#G##", "##G#CCCCC#G##",
-                        "##G#BITIB#G##", "#FFHHHHHHHFF#", "##G#BITIB#G##", "##G#CCCCC#G##", "##G#CCCCC#G##",
-                        "##G#CCCCC#G##", "##G#BITIB#G##", "#FFHJJJJJHFF#", "#J##TITIT##J#", "#J##BBPBB##J#",
+                        "#G##BITIB##G#", "#G##CCCCC##G#", "#G##CCCCC##G#", "#G##CCCCC##G#", "#G##BITIB##G#",
+                        "#FFHHHHHHHFF#", "#G##BITIB##G#", "#G##CCCCC##G#", "#G##CCCCC##G#", "#G##CCCCC##G#",
+                        "#G##BITIB##G#", "#FFHHHHHHHFF#", "#G##BITIB##G#", "#G##CCCCC##G#", "#G##CCCCC##G#",
+                        "#G##CCCCC##G#", "#G##BITIB##G#", "#FFHJJJJJHFF#", "#J##TITIT##J#", "#J##BBPBB##J#",
                         "TTTTTTPTTTTTT")
                 .aisle("XXXXXXXXXXXXX", "XXVXXXDXXXVXX", "#J##BAAAB##J#", "#J##IAAAI##J#", "#VHHJAAAJHHV#",
-                        "##G#IAAAI#G##", "##G#CAAAC#G##", "##G#CAAAC#G##", "##G#CAAAC#G##", "##G#IAAAI#G##",
-                        "#VHHHAAAHHHV#", "##G#IAAAI#G##", "##G#CAAAC#G##", "##G#CAAAC#G##", "##G#CAAAC#G##",
-                        "##G#IAAAI#G##", "#VHHHAAAHHHV#", "##G#IAAAI#G##", "##G#CAAAC#G##", "##G#CAAAC#G##",
-                        "##G#CAAAC#G##", "##G#IAAAI#G##", "#VHHJAAAJHHV#", "#J##IAAAI##J#", "#J##BAAAB##J#",
+                        "#G##IAAAI##G#", "#G##CAAAC##G#", "#G##CAAAC##G#", "#G##CAAAC##G#", "#G##IAAAI##G#",
+                        "#VHHHAAAHHHV#", "#G##IAAAI##G#", "#G##CAAAC##G#", "#G##CAAAC##G#", "#G##CAAAC##G#",
+                        "#G##IAAAI##G#", "#VHHHAAAHHHV#", "#G##IAAAI##G#", "#G##CAAAC##G#", "#G##CAAAC##G#",
+                        "#G##CAAAC##G#", "#G##IAAAI##G#", "#VHHJAAAJHHV#", "#J##IAAAI##J#", "#J##BAAAB##J#",
                         "TTTTTMPMTTTTT")
                 .aisle("XXXXXXXXXXXXX", "XXVDDDDDDDVXX", "#J#PPADAPP#J#", "#J#PTADATP#J#", "#VPPJADAJPPV#",
-                        "##GPTADATPG##", "##GPCADACPG##", "##GPCADACPG##", "##GPCADACPG##", "##GPTADATPG##",
-                        "#VPPHADAHPPV#", "##GPTADATPG##", "##GPCADACPG##", "##GPCADACPG##", "##GPCADACPG##",
-                        "##GPTADATPG##", "#VPPHADAHPPV#", "##GPTADATPG##", "##GPCADACPG##", "##GPCADACPG##",
-                        "##GPCADACPG##", "##GPTADATPG##", "#VPPJADAJPPV#", "#J#PTADATP#J#", "#J#PPADAPP#J#",
+                        "#G#PTADATP#G#", "#G#PCADACP#G#", "#G#PCADACP#G#", "#G#PCADACP#G#", "#G#PTADATP#G#",
+                        "#VPPHADAHPPV#", "#G#PTADATP#G#", "#G#PCADACP#G#", "#G#PCADACP#G#", "#G#PCADACP#G#",
+                        "#G#PTADATP#G#", "#VPPHADAHPPV#", "#G#PTADATP#G#", "#G#PCADACP#G#", "#G#PCADACP#G#",
+                        "#G#PCADACP#G#", "#G#PTADATP#G#", "#VPPJADAJPPV#", "#J#PTADATP#J#", "#J#PPADAPP#J#",
                         "TTTPPPMPPPTTT")
                 .aisle("XXXXXXXXXXXXX", "XXVXXXDXXXVXX", "#J##BAAAB##J#", "#J##IAAAI##J#", "#VHHJAAAJHHV#",
-                        "##G#IAAAI#G##", "##G#CAAAC#G##", "##G#CAAAC#G##", "##G#CAAAC#G##", "##G#IAAAI#G##",
-                        "#VHHHAAAHHHV#", "##G#IAAAI#G##", "##G#CAAAC#G##", "##G#CAAAC#G##", "##G#CAAAC#G##",
-                        "##G#IAAAI#G##", "#VHHHAAAHHHV#", "##G#IAAAI#G##", "##G#CAAAC#G##", "##G#CAAAC#G##",
-                        "##G#CAAAC#G##", "##G#IAAAI#G##", "#VHHJAAAJHHV#", "#J##IAAAI##J#", "#J##BAAAB##J#",
+                        "#G##IAAAI##G#", "#G##CAAAC##G#", "#G##CAAAC##G#", "#G##CAAAC##G#", "#G##IAAAI##G#",
+                        "#VHHHAAAHHHV#", "#G##IAAAI##G#", "#G##CAAAC##G#", "#G##CAAAC##G#", "#G##CAAAC##G#",
+                        "#G##IAAAI##G#", "#VHHHAAAHHHV#", "#G##IAAAI##G#", "#G##CAAAC##G#", "#G##CAAAC##G#",
+                        "#G##CAAAC##G#", "#G##IAAAI##G#", "#VHHJAAAJHHV#", "#J##IAAAI##J#", "#J##BAAAB##J#",
                         "TTTTTMPMTTTTT")
                 .aisle("XXXXXXXXXXXXX", "XXVXXXDXXXVXX", "#J##BBPBB##J#", "#J##TITIT##J#", "#FFHJJJJJHFF#",
-                        "##G#BITIB#G##", "##G#CCCCC#G##", "##G#CCCCC#G##", "##G#CCCCC#G##", "##G#BITIB#G##",
-                        "#FFHHHHHHHFF#", "##G#BITIB#G##", "##G#CCCCC#G##", "##G#CCCCC#G##", "##G#CCCCC#G##",
-                        "##G#BITIB#G##", "#FFHHHHHHHFF#", "##G#BITIB#G##", "##G#CCCCC#G##", "##G#CCCCC#G##",
-                        "##G#CCCCC#G##", "##G#BITIB#G##", "#FFHJJJJJHFF#", "#J##TITIT##J#", "#J##BBPBB##J#",
+                        "#G##BITIB##G#", "#G##CCCCC##G#", "#G##CCCCC##G#", "#G##CCCCC##G#", "#G##BITIB##G#",
+                        "#FFHHHHHHHFF#", "#G##BITIB##G#", "#G##CCCCC##G#", "#G##CCCCC##G#", "#G##CCCCC##G#",
+                        "#G##BITIB##G#", "#FFHHHHHHHFF#", "#G##BITIB##G#", "#G##CCCCC##G#", "#G##CCCCC##G#",
+                        "#G##CCCCC##G#", "#G##BITIB##G#", "#FFHJJJJJHFF#", "#J##TITIT##J#", "#J##BBPBB##J#",
                         "TTTTTTPTTTTTT")
                 .aisle("XXXXXXXXXXXXX", "XXXXXXDXXXXXX", "#F####P####F#", "#F####P####F#", "#FFHHHPHHHFF#",
-                        "#FG###P###GF#", "#FG###P###GF#", "#FG###P###GF#", "#FG###P###GF#", "#FG###P###GF#",
-                        "#FFHHHPHHHFF#", "#FG###P###GF#", "#FG###P###GF#", "#FG###P###GF#", "#FG###P###GF#",
-                        "#FG###P###GF#", "#FFHHHPHHHFF#", "#FG###P###GF#", "#FG###P###GF#", "#FG###P###GF#",
-                        "#FG###P###GF#", "#FG###P###GF#", "#FFHHHPHHHFF#", "#F####P####F#", "#F####P####F#",
+                        "#F####P####F#", "#F####P####F#", "#F####P####F#", "#F####P####F#", "#F####P####F#",
+                        "#FFHHHPHHHFF#", "#F####P####F#", "#F####P####F#", "#F####P####F#", "#F####P####F#",
+                        "#F####P####F#", "#FFHHHPHHHFF#", "#F####P####F#", "#F####P####F#", "#F####P####F#",
+                        "#F####P####F#", "#F####P####F#", "#FFHHHPHHHFF#", "#F####P####F#", "#F####P####F#",
                         "TTTTTTPTTTTTT")
                 .aisle("XXXXXXXXXXXXX", "XXXXVVVVVXXXX", "##F#######F##", "##F#######F##", "##FFFHPHFFF##",
-                        "##FGGGGGGGF##", "##FGGGGGGGF##", "##FGGGGGGGF##", "##FGGGGGGGF##", "##FGGGGGGGF##",
-                        "##FFFHPHFFF##", "##FGGGGGGGF##", "##FGGGGGGGF##", "##FGGGGGGGF##", "##FGGGGGGGF##",
-                        "##FGGGGGGGF##", "##FFFHPHFFF##", "##FGGGGGGGF##", "##FGGGGGGGF##", "##FGGGGGGGF##",
-                        "##FGGGGGGGF##", "##FGGGGGGGF##", "##FFFHPHFFF##", "##F#######F##", "##F#######F##",
+                        "##F#######F##", "##F#######F##", "##F#######F##", "##F#######F##", "##F#######F##",
+                        "##FFFHPHFFF##", "##F#######F##", "##F#######F##", "##F#######F##", "##F#######F##",
+                        "##F#######F##", "##FFFHPHFFF##", "##F#######F##", "##F#######F##", "##F#######F##",
+                        "##F#######F##", "##F#######F##", "##FFFHPHFFF##", "##F#######F##", "##F#######F##",
                         "TTTTTTTTTTTTT")
                 .aisle("#XXXXXXXXXXX#", "#XXXXXXXXXXX#", "###FJJJJJF###", "###FJJJJJF###", "###FFVVVFF###",
-                        "###F#####F###", "###F#####F###", "###F#####F###", "###F#####F###", "###F#####F###",
-                        "###FFVVVFF###", "###F#####F###", "###F#####F###", "###F#####F###", "###F#####F###",
-                        "###F#####F###", "###FFVVVFF###", "###F#####F###", "###F#####F###", "###F#####F###",
-                        "###F#####F###", "###F#####F###", "###FFVVVFF###", "###FJJJJJF###", "###FJJJJJF###",
+                        "###FGGGGGF###", "###FGGGGGF###", "###FGGGGGF###", "###FGGGGGF###", "###FGGGGGF###",
+                        "###FFVVVFF###", "###FGGGGGF###", "###FGGGGGF###", "###FGGGGGF###", "###FGGGGGF###",
+                        "###FGGGGGF###", "###FFVVVFF###", "###FGGGGGF###", "###FGGGGGF###", "###FGGGGGF###",
+                        "###FGGGGGF###", "###FGGGGGF###", "###FFVVVFF###", "###FJJJJJF###", "###FJJJJJF###",
                         "#TTTTTTTTTTT#")
                 .aisle("##XXXXXXXXX##", "##XXXXSXXXX##", "#############", "#############", "#############",
                         "#############", "#############", "#############", "#############", "#############",
@@ -201,7 +213,8 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
                         "#############", "#############", "#############", "#############", "#############",
                         "##TTTTTTTTT##")
                 .where('S', selfPredicate())
-                .where('X', casing.or(autoAbilities(true, true, true, true, true, true, false)))
+                .where('X', casing.or(autoAbilities(false, true, true, true, true, true, false))
+                        .or(energyHatchLimit(true, true, true, true)))
                 .where('F', frames(Materials.NaquadahAlloy))
                 .where('H', casing)
                 .where('P', states(getPipeState()))
