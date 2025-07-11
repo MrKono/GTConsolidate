@@ -6,9 +6,11 @@ import static gregtech.common.items.MetaItems.*;
 
 import com.github.gtexpert.gtwp.common.metatileentities.GTWPMetaTileEntities;
 
+import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Materials;
+import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
@@ -153,6 +155,33 @@ public class MultiMachineLoader {
                         .EUt(VA[IV]).duration(1 * min))
                 .output(GTConsolidateMetaTileEntity.MEGA_FURNACE)
                 .EUt(VA[LuV]).duration((90 * sec)).buildAndRegister();
+
+        // Rotary Hearth Blast Smelter
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(GCYMMetaTileEntities.ALLOY_BLAST_SMELTER)
+                .input(GCYMMetaTileEntities.MEGA_BLAST_FURNACE)
+                .input(wireGtOctal, Materials.RutheniumTriniumAmericiumNeutronate, 16)
+                .inputs(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_COIL, 4))
+                .input(circuit, MarkerMaterials.Tier.UHV, 8)
+                .input(FIELD_GENERATOR_UV, 4)
+                .input(plateDense, Materials.Neutronium, 4)
+                .input(spring, Materials.Neutronium, 4)
+                .output(GTConsolidateMetaTileEntity.TURBO_BLAST_FURNACE)
+                .EUt(VA[UHV]).duration(2 * min).buildAndRegister();
+
+        // Absolute Freezer
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(GCYMMetaTileEntities.MEGA_VACUUM_FREEZER)
+                .input(pipeHugeFluid, Materials.Neutronium, 4)
+                .input(ELECTRIC_PUMP_UV, 4)
+                .input(wireGtOctal, Materials.RutheniumTriniumAmericiumNeutronate, 16)
+                .input(circuit, MarkerMaterials.Tier.UHV, 8)
+                .input(FIELD_GENERATOR_UV, 4)
+                .input(plateDense, Materials.Neutronium, 4)
+                .fluidInputs(Materials.Helium.getFluid(FluidStorageKeys.LIQUID, 64000))
+                .fluidInputs(Materials.Helium3.getFluid(FluidStorageKeys.LIQUID, 64000))
+                .output(GTConsolidateMetaTileEntity.ABSOLUTE_FREEZER)
+                .EUt(VA[UHV]).duration(2 * min).buildAndRegister();
     }
 
     public static void GTFOMultiblock() {
