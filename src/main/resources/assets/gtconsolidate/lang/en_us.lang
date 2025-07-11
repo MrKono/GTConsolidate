@@ -1,3 +1,6 @@
+## Material
+gregtech.material.liquid_helium_3=Liquid Helium-3
+
 ## Machine
 # Single
 # Multi
@@ -23,6 +26,10 @@ gtconsolidate.machine.multi_smelter_advanced.name=Advanced Multi Smelter
 
 gtconsolidate.machine.parallelized_sawmill.name=Industrial Sawmill
 
+gtconsolidate.machine.turbo_blast_furnace.name=Turbo Rotary Hearth Blast Smelter
+
+gtconsolidate.machine.absolute_freezer.name=Absolute Freezer
+
 # Multiblock Part
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
 gtconsolidate.machine.filter_input.lv.name=LV Filtered Input Bus
@@ -44,6 +51,7 @@ tile.coolant_casing.helium_basic.name=Basic Helium Coolant Casing
 tile.coolant_casing.helium_advanced.name=Advanced Helium Coolant Casing
 tile.coolant_casing.helium_elite.name=Elite Helium Coolant Casing
 tile.coolant_casing.crystal_quartz_glass.name=Crystal Quartz Glass
+tile.coolant_casing.helium_3.name=Helium-3 Coolant Casing
 
 tile.component_assembly_line_casing.ulv.name=ULV Component Assembly Line Casing
 tile.component_assembly_line_casing.lv.name=LV Component Assembly Line Casing
@@ -72,6 +80,7 @@ gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16=Energy hatch i
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16=Energy hatch is §eonly 16A§7.
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.64=Energy hatch is §eonly 64A§7.
 gtconsolidate.multiblock.tooltip.universal.limit.manual_maintenance=§eCannot use§7 Automatic Maintenance Hatch.
+gtconsolidate.multiblock.accept_64a=Accept 64A Energy Hatch.
 
 # Adv. Fusion Reactor
 gtconsolidate.machine.parallelized_fusion_reactor.tooltip1=Parallelized Fusion Reactor, but with limitations.
@@ -98,7 +107,16 @@ gtconsolidate.machine.component_assembly_line.tooltip.1=Establishment of mass pr
 
 # Advanced Multi Smelter
 gtconsolidate.machine.mega_furnace.tooltip.1=More than enough parallelized
-gtconsolidate.machine.mega_furnace.tooltip.2=Can more parallelize with §bParallel Control Hatches
+gtconsolidate.machine.mega_furnace.tooltip.2=Can more parallelize with §bParallel Control Hatches§7.
+
+# Turbo Rotary Hearth Blast Smelter
+gtconsolidate.machine.turbo_blast_furnace.tooltip.1=Integrated EBF and ABS
+gtconsolidate.machine.turbo_blast_furnace.tooltip.2=If active, §bTemperature§7 increases in §cCoil's Temperature * 0.01§fK/s§7.
+gtconsolidate.machine.turbo_blast_furnace.tooltip.3=If idle, §bTemperature§7 decreases in §cCoil's Temperature * 0.1§fK/s§7.
+gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eStrongly recommended to enable Distinct Buses.
+
+# Absolute Freezer
+gtconsolidate.machine.absolute_freezer.tooltip1=Refrigerant-free freezer.
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
@@ -111,5 +129,7 @@ gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be th
 
 ## RecipeMaps
 recipemap.component_assembly_line.name=Component Assembly Line
+recipemap.turbo_blast_recipe.name=Rotary Hearth Blast Smelter
+recipemap.absolute_vacuum_recipe.name=Absolute Freezer
 
 gtconsolidate.recipe.coa=Minimum Casing Tier: %s

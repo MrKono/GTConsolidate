@@ -23,9 +23,12 @@ Isn't finding space to meet the demand for Europium a bit of a hassle? And doesn
 - Component Assembly Line (Since 1.0.5-beta)
 - Advanced Multi Smelter (Since 1.0.5-beta)
 - Parallelized Sawmill (From [GregTech Wood Processing](https://github.com/GTModpackTeam/GTWoodProcessing/tree/master), since 1.0.5-beta)
+- Turbo Rotary Hearth Blast Smelter (EBF + ABS, Since 1.0.6-beta)
+- Absolute Freezer (Since 1.0.6-beta)
 
-### Planning  
-- Alloy Blast Smelter (From gcym)  
+### Planning
+_None so far. We are looking for suggestions._ 
+
 ---
 ## Credits
 I modified some textures from [GTCE unofficial](https://github.com/GregTechCEu/GregTech) under LGPL-3.0 License

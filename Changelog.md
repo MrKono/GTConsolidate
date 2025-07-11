@@ -1,4 +1,10 @@
 ## Changelog
+### 1.0.6-beta
+- **Fix** _invalided input_.
+- **Add** _Turbo Rotary Hearth Blast Smelter_.
+- **Add** _Absolute Freezer_.
+
+---
 ### 1.0.5-beta
 - **Add** _Component Assembly Line_.
 - **MufflerHatch now available in Cleanroom!!** (Configurable)
@@ -8,7 +14,7 @@
 ---
 ### 1.0.4-beta
 - **Add** _mode setting_ (configurable) (#5). 
-- - Parallelized EBF and VF are too OP, added mode setting for balance adjustment.
+  - Parallelized EBF and VF are too OP, added mode setting for balance adjustment.
 - **Fix** _Filtered Item Bus Glitch_ (#6).
 
 ---

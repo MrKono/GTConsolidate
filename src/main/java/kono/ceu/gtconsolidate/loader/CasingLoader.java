@@ -93,6 +93,13 @@ public class CasingLoader {
                 .outputs(GTConsolidateMetaBlocks.COOLANT_CASING
                         .getItemVariant(BlockCoolantCasing.CasingType.HELIUM_ELITE))
                 .EUt(VA[UV]).duration(10 * sec).buildAndRegister();
+        // Helium-3 Coolant Casing
+        RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder()
+                .inputs(GTConsolidateMetaBlocks.COOLANT_CASING.getItemVariant(BlockCoolantCasing.CasingType.EMPTY))
+                .fluidInputs(Materials.Helium3.getFluid(FluidStorageKeys.LIQUID, 4000))
+                .outputs(GTConsolidateMetaBlocks.COOLANT_CASING
+                        .getItemVariant(BlockCoolantCasing.CasingType.HELIUM_3))
+                .EUt(VA[ZPM]).duration(10 * sec).buildAndRegister();
         // CoA Casing
         // LV
         RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()

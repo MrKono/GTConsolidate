@@ -21,6 +21,8 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityComponentAssemblyLine COMPONENT_ASSEMBLY_LINE;
     public static MetaTileEntityMegaFurnace MEGA_FURNACE;
     public static MetaTileEntityParallelizedSawmill PARALLELIZED_SAWMILL;
+    public static MetaTileEntityTurboBlastFurnace TURBO_BLAST_FURNACE;
+    public static MetaTileEntityGigaVF ABSOLUTE_FREEZER;
 
     public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
             1];
@@ -73,6 +75,11 @@ public class GTConsolidateMetaTileEntity {
             PARALLELIZED_SAWMILL = registerMetaTileEntity(id + 13, new MetaTileEntityParallelizedSawmill(
                     modId("parallelized_sawmill")));
         }
+        // Rotary Hearth Blast Smelter
+        TURBO_BLAST_FURNACE = registerMetaTileEntity(id + 14, new MetaTileEntityTurboBlastFurnace(
+                modId("turbo_blast_furnace")));
+        // Absolute Freezer
+        ABSOLUTE_FREEZER = registerMetaTileEntity(id + 15, new MetaTileEntityGigaVF(modId("absolute_freezer")));
     }
 
     public static void registerMultiblockPart() {

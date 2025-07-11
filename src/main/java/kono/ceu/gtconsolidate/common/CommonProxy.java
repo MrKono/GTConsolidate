@@ -19,7 +19,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import gregtech.api.block.VariantItemBlock;
-import gregtech.api.recipes.RecipeMaps;
 import gregtech.loaders.recipe.RecyclingRecipes;
 
 import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
@@ -29,6 +28,7 @@ import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileLargeGreenHouse;
 import kono.ceu.gtconsolidate.loader.CasingLoader;
+import kono.ceu.gtconsolidate.loader.GTConsolidateMiscLoader;
 import kono.ceu.gtconsolidate.loader.MetaTileEntityLoader;
 import kono.ceu.gtconsolidate.loader.MultiMachineLoader;
 import kono.ceu.gtconsolidate.loader.handlers.HandlersLoader;
@@ -39,9 +39,8 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent e) {
         GTConsolidateMetaTileEntity.init();
         GTConsolidateMetaBlocks.init();
-        if (RecipeMaps.COMPRESSOR_RECIPES.getMaxFluidInputs() < 1) {
-            RecipeMaps.COMPRESSOR_RECIPES.setMaxFluidInputs(1);
-        }
+        RecipeMapModify.modifyRecipeMap();
+        RecipeMapModify.modifyRecipeBuild();
     }
 
     public void init(FMLInitializationEvent e) {}
@@ -88,6 +87,7 @@ public class CommonProxy {
         CasingLoader.init();
         MetaTileEntityLoader.init();
         HandlersLoader.init();
+        GTConsolidateMiscLoader.init();
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
