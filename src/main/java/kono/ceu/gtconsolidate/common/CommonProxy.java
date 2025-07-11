@@ -28,6 +28,7 @@ import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileLargeGreenHouse;
 import kono.ceu.gtconsolidate.loader.CasingLoader;
+import kono.ceu.gtconsolidate.loader.GTConsolidateMiscLoader;
 import kono.ceu.gtconsolidate.loader.MetaTileEntityLoader;
 import kono.ceu.gtconsolidate.loader.MultiMachineLoader;
 import kono.ceu.gtconsolidate.loader.handlers.HandlersLoader;
@@ -86,6 +87,7 @@ public class CommonProxy {
         CasingLoader.init();
         MetaTileEntityLoader.init();
         HandlersLoader.init();
+        GTConsolidateMiscLoader.init();
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
