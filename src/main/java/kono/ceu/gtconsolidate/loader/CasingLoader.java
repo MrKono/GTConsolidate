@@ -148,7 +148,6 @@ public class CasingLoader {
                             .EUt(VA[j]))
                     .EUt(VA[UV]).duration(2 * min)
                     .buildAndRegister();
-            Logs.logger.info("Resister CoA Casing tier {}", VN[i]);
         }
 
         // Crystal Quartz Glass
