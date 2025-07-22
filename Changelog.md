@@ -1,4 +1,8 @@
 ## Changelog
+### 1.0.6.1-beta
+- **Fix** _crash when `highTierContent` is true_. (#14)
+
+---
 ### 1.0.6-beta
 - **Fix** _invalided input_.
 - **Add** _Turbo Rotary Hearth Blast Smelter_.

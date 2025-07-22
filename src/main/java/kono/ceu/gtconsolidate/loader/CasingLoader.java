@@ -18,6 +18,7 @@ import gregtech.common.blocks.MetaBlocks;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
 
+import kono.ceu.gtconsolidate.api.util.Logs;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoACasing;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
 import kono.ceu.gtconsolidate.common.blocks.BlockParallelizedAssemblyLineCasing;
@@ -123,7 +124,7 @@ public class CasingLoader {
                 .EUt(VA[UV]).duration(2 * min)
                 .buildAndRegister();
         // MV-UV
-        for (int i = 2; i < MAX; i++) {
+        for (int i = 2; i < 14; i++) {
             if (!GregTechAPI.isHighTier() && i >= UHV) break;
             int j = i;
             RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -134,7 +135,7 @@ public class CasingLoader {
                     .input(robotArm(i))
                     .input(fieldGenerator(i))
                     .input(emitter(i))
-                    .input(bestCircuit(i), 2)
+                    .input(bestCircuit(i), i > UHV ? (i - UHV) * 4 : 2)
                     .inputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING
                             .getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING))
                     .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
@@ -143,10 +144,11 @@ public class CasingLoader {
                     .stationResearch(b -> b
                             .researchStack(GTConsolidateMetaBlocks.COA_CASING
                                     .getItemVariant(BlockCoACasing.CoACasingType.valueOf(VN[j - 1])))
-                            .CWUt(16 * j, VH[j] * 200)
+                            .CWUt(16 * j, (int) Math.min(VH[j] * 200L, V[MAX]))
                             .EUt(VA[j]))
                     .EUt(VA[UV]).duration(2 * min)
                     .buildAndRegister();
+            Logs.logger.info("Resister CoA Casing tier {}", VN[i]);
         }
 
         // Crystal Quartz Glass

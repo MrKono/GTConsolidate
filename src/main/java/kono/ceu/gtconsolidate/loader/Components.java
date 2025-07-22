@@ -16,6 +16,7 @@ public class Components {
     // Materials
     public static Material cableMaterial(int voltage) {
         return switch (voltage) {
+            case 0 -> Materials.RedAlloy;
             case 1 -> Materials.Tin;
             case 2 -> Materials.Copper;
             case 3 -> Materials.Gold;
@@ -24,12 +25,13 @@ public class Components {
             case 6 -> Materials.NiobiumTitanium;
             case 7 -> Materials.VanadiumGallium;
             case 8 -> Materials.YttriumBariumCuprate;
-            default -> Materials.RedAlloy;
+            default -> Materials.Neutronium;
         };
     }
 
     public static Material wireMaterial(int voltage) {
         return switch (voltage) {
+            case 0 -> Materials.Lead;
             case 1 -> Materials.Copper;
             case 2 -> Materials.Cupronickel;
             case 3 -> Materials.Electrum;
@@ -38,13 +40,14 @@ public class Components {
             case 6 -> Materials.Ruridit;
             case 7 -> Materials.Europium;
             case 8 -> Materials.Americium;
-            default -> Materials.Lead;
+            default -> Materials.Neutronium;
         };
     }
 
     // stick, round, ring etc...
     public static Material partMaterial1(int voltage) {
         return switch (voltage) {
+            case 0 -> Materials.Iron;
             case 1 -> Materials.Steel;
             case 2 -> Materials.Aluminium;
             case 3 -> Materials.StainlessSteel;
@@ -53,12 +56,13 @@ public class Components {
             case 6 -> Materials.HSSS;
             case 7 -> Materials.Osmiridium;
             case 8 -> Materials.Tritanium;
-            default -> Materials.Iron;
+            default -> Materials.Neutronium;
         };
     }
 
     public static Material partMaterial2(int voltage) {
         return switch (voltage) {
+            case 0 -> Materials.WroughtIron;
             case 1 -> Materials.Steel;
             case 2 -> Materials.Aluminium;
             case 3 -> Materials.StainlessSteel;
@@ -67,12 +71,13 @@ public class Components {
             case 6 -> Materials.HSSS;
             case 7 -> Materials.Osmiridium;
             case 8 -> Materials.NaquadahAlloy;
-            default -> Materials.WroughtIron;
+            default -> Materials.Neutronium;
         };
     }
 
     public static Material partMaterial3(int voltage) {
         return switch (voltage) {
+            case 0 -> Materials.WroughtIron;
             case 1 -> Materials.Tin;
             case 2 -> Materials.Bronze;
             case 3 -> Materials.Steel;
@@ -81,12 +86,13 @@ public class Components {
             case 6 -> Materials.HSSS;
             case 7 -> Materials.Osmiridium;
             case 8 -> Materials.NaquadahAlloy;
-            default -> Materials.WroughtIron;
+            default -> Materials.Neutronium;
         };
     }
 
     public static Material partMaterial4(int voltage) {
         return switch (voltage) {
+            case 0 -> Materials.WroughtIron;
             case 1 -> Materials.Steel;
             case 2 -> Materials.Aluminium;
             case 3 -> Materials.StainlessSteel;
@@ -95,21 +101,22 @@ public class Components {
             case 6 -> Materials.HSSS;
             case 7 -> Materials.NaquadahAlloy;
             case 8 -> Materials.Tritanium;
-            default -> Materials.WroughtIron;
+            default -> Materials.Neutronium;
         };
     }
 
     public static Material magneticMaterial(int voltage) {
         return switch (voltage) {
+            case 0 -> Materials.IronMagnetic;
             case 1, 3, 2 -> Materials.SteelMagnetic;
             case 4, 5 -> Materials.NeodymiumMagnetic;
-            case 6, 8, 7 -> Materials.SamariumMagnetic;
-            default -> Materials.IronMagnetic;
+            default -> Materials.SamariumMagnetic;
         };
     }
 
     public static Material scMaterial(int voltage) {
         return switch (voltage) {
+            case 0 -> Materials.RedAlloy;
             case 1 -> Materials.ManganesePhosphide;
             case 2 -> Materials.MagnesiumDiboride;
             case 3 -> Materials.MercuryBariumCalciumCuprate;
@@ -119,7 +126,7 @@ public class Components {
             case 7 -> Materials.UraniumRhodiumDinaquadide;
             case 8 -> Materials.EnrichedNaquadahTriniumEuropiumDuranide;
             case 9 -> Materials.RutheniumTriniumAmericiumNeutronate;
-            default -> Materials.RedAlloy;
+            default -> Materials.Neutronium;
         };
     }
 
@@ -137,7 +144,7 @@ public class Components {
             case 10 -> MetaItems.ELECTRIC_MOTOR_UEV;
             case 11 -> MetaItems.ELECTRIC_MOTOR_UIV;
             case 12 -> MetaItems.ELECTRIC_MOTOR_UXV;
-            case 13 -> MetaItems.ELECTRIC_MOTOR_OpV;
+            case 13, 14 -> MetaItems.ELECTRIC_MOTOR_OpV;
             default -> throw new IllegalStateException("Out of Voltage: " + GTValues.VN[voltage]);
         };
     }
@@ -156,7 +163,7 @@ public class Components {
             case 10 -> MetaItems.ELECTRIC_PUMP_UEV;
             case 11 -> MetaItems.ELECTRIC_PUMP_UIV;
             case 12 -> MetaItems.ELECTRIC_PUMP_UXV;
-            case 13 -> MetaItems.ELECTRIC_PUMP_OpV;
+            case 13, 14 -> MetaItems.ELECTRIC_PUMP_OpV;
             default -> throw new IllegalStateException("Out of Voltage: " + GTValues.VN[voltage]);
         };
     }
@@ -189,7 +196,7 @@ public class Components {
             case 10 -> MetaItems.ELECTRIC_PISTON_UEV;
             case 11 -> MetaItems.ELECTRIC_PISTON_UIV;
             case 12 -> MetaItems.ELECTRIC_PISTON_UXV;
-            case 13 -> MetaItems.ELECTRIC_PISTON_OpV;
+            case 13, 14 -> MetaItems.ELECTRIC_PISTON_OpV;
             default -> throw new IllegalStateException("Out of Voltage: " + GTValues.VN[voltage]);
         };
     }
@@ -208,7 +215,7 @@ public class Components {
             case 10 -> MetaItems.ROBOT_ARM_UEV;
             case 11 -> MetaItems.ROBOT_ARM_UIV;
             case 12 -> MetaItems.ROBOT_ARM_UXV;
-            case 13 -> MetaItems.ROBOT_ARM_OpV;
+            case 13, 14 -> MetaItems.ROBOT_ARM_OpV;
             default -> throw new IllegalStateException("Out of Voltage: " + GTValues.VN[voltage]);
         };
     }
@@ -227,7 +234,7 @@ public class Components {
             case 10 -> MetaItems.FIELD_GENERATOR_UEV;
             case 11 -> MetaItems.FIELD_GENERATOR_UIV;
             case 12 -> MetaItems.FIELD_GENERATOR_UXV;
-            case 13 -> MetaItems.FIELD_GENERATOR_OpV;
+            case 13, 14 -> MetaItems.FIELD_GENERATOR_OpV;
             default -> throw new IllegalStateException("Out of Voltage: " + GTValues.VN[voltage]);
         };
     }
@@ -246,7 +253,7 @@ public class Components {
             case 10 -> MetaItems.CONVEYOR_MODULE_UEV;
             case 11 -> MetaItems.CONVEYOR_MODULE_UIV;
             case 12 -> MetaItems.CONVEYOR_MODULE_UXV;
-            case 13 -> MetaItems.CONVEYOR_MODULE_OpV;
+            case 13, 14 -> MetaItems.CONVEYOR_MODULE_OpV;
             default -> throw new IllegalStateException("Out of Voltage: " + GTValues.VN[voltage]);
         };
     }
@@ -265,7 +272,7 @@ public class Components {
             case 10 -> MetaItems.EMITTER_UEV;
             case 11 -> MetaItems.EMITTER_UIV;
             case 12 -> MetaItems.EMITTER_UXV;
-            case 13 -> MetaItems.EMITTER_OpV;
+            case 13, 14 -> MetaItems.EMITTER_OpV;
             default -> throw new IllegalStateException("Out of Voltage: " + GTValues.VN[voltage]);
         };
     }
@@ -284,13 +291,14 @@ public class Components {
             case 10 -> MetaItems.SENSOR_UEV;
             case 11 -> MetaItems.SENSOR_UIV;
             case 12 -> MetaItems.SENSOR_UXV;
-            case 13 -> MetaItems.SENSOR_OpV;
+            case 13, 14 -> MetaItems.SENSOR_OpV;
             default -> throw new IllegalStateException("Out of Voltage: " + GTValues.VN[voltage]);
         };
     }
 
     public static MetaItem<?>.MetaValueItem bestCircuit(int voltage) {
         return switch (voltage) {
+            case 0 -> MetaItems.NAND_CHIP_ULV;
             case 1 -> MetaItems.MICROPROCESSOR_LV;
             case 2 -> MetaItems.PROCESSOR_MV;
             case 3 -> MetaItems.NANO_PROCESSOR_HV;
@@ -299,8 +307,7 @@ public class Components {
             case 6 -> MetaItems.WETWARE_PROCESSOR_LUV;
             case 7 -> MetaItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM;
             case 8 -> MetaItems.WETWARE_SUPER_COMPUTER_UV;
-            case 9 -> MetaItems.WETWARE_MAINFRAME_UHV;
-            default -> MetaItems.NAND_CHIP_ULV;
+            default -> MetaItems.WETWARE_MAINFRAME_UHV;
         };
     }
 
