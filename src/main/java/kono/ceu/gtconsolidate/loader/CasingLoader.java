@@ -18,7 +18,6 @@ import gregtech.common.blocks.MetaBlocks;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
 
-import kono.ceu.gtconsolidate.api.util.Logs;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoACasing;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
 import kono.ceu.gtconsolidate.common.blocks.BlockParallelizedAssemblyLineCasing;
