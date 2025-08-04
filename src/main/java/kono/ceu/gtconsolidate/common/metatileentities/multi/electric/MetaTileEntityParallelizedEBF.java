@@ -2,6 +2,8 @@ package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
 import static gregtech.api.util.RelativeDirection.*;
+import static gregtech.client.utils.TooltipHelper.isCtrlDown;
+import static gregtech.client.utils.TooltipHelper.isShiftDown;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.*;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.*;
 
@@ -282,6 +284,16 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"));
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"));
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"));
+        if (isShiftDown() && isCtrlDown()) {
+            tooltip.add(I18n.format("gtconsolidate.machine.parallelized_ebf.tooltip3"));
+            for (int i = 1; i < 5; i++) {
+                int j = i + 3;
+                tooltip.add(I18n.format(("gtconsolidate.machine.parallelized_ebf.tooltip" + j), i + 1,
+                        i * increaseFactor()));
+            }
+        } else {
+            tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.shift_ctrl"));
+        }
     }
 
     @Override

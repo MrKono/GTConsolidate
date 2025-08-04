@@ -1,4 +1,8 @@
 ## Changelog
+### 1.0.6.2-beta
+- **Refactor** _Adv.EBF_ and _Adv. AL_ tooltip.
+
+----
 ### 1.0.6.1-beta
 - **Fix** _crash when `highTierContent` is true_. (#14)
 
