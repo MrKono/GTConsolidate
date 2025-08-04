@@ -86,10 +86,16 @@ gtconsolidate.machine.parallelized_fusion_reactor.tooltip1=並列化された核
 gtconsolidate.machine.parallelized_fusion_reactor.tooltip2=§bエナジーハッチ§7の数によって並列処理数が決定される。
 gtconsolidate.machine.parallelized_fusion_reactor.capacity=蓄電量 §e%sM EU
 gtconsolidate.machine.parallelized_fusion_reactor.limit=エナジーハッチは§e16Aのみ§7。
+gtconsolidate.multiblock.tooltip.universal.shift_ctrl=SHIFTとCTRLでさらに情報を表示。
 
 # Adv. Electric Blast Furnace
 gtconsolidate.machine.parallelized_ebf.tooltip1=並列化された工業用電気炉。ただし制限あり。
 gtconsolidate.machine.parallelized_ebf.tooltip2=コイル層が1層増えるごとに並列数が§a%s§7増加する。
+gtconsolidate.machine.parallelized_ebf.tooltip3=コイル層と最大並列数の関係
+gtconsolidate.machine.parallelized_ebf.tooltip4=%s層 -> §a%s§7並列
+gtconsolidate.machine.parallelized_ebf.tooltip5=%s層 -> §a%s§7並列
+gtconsolidate.machine.parallelized_ebf.tooltip6=%s層 -> §a%s§7並列
+gtconsolidate.machine.parallelized_ebf.tooltip7=%s層 -> §a%s§7並列
 
 # Adv. Vacuum Freezer
 gtconsolidate.machine.parallelized_vf.tooltip=並列化された真空冷却機。ただし制限あり。
