@@ -70,7 +70,7 @@ tile.component_assembly_line_casing.opv.name=OpV 部品組立ライン外装
 tile.component_assembly_line_casing.max.name=MAX 部品組立ライン外装
 
 ## Tooltips
-gtconsolidate.multiblock.jei.bus.collapsing=§3§nバス内の整頓§r§3の利用を推奨します。
+gtconsolidate.multiblock.jei.bus.filtered=§3§nフィルター付き搬入バス§r§3を利用すると便利かもしれません。
 
 ## Multi
 # Universal
@@ -101,9 +101,9 @@ gtconsolidate.machine.parallelized_ebf.tooltip7=%s層 -> §a%s§7並列
 gtconsolidate.machine.parallelized_vf.tooltip=並列化された真空冷却機。ただし制限あり。
 
 # Adv. Assembly Line
-gtconsolidate.machine.parallelized_vf.tooltip.1=並列化されたアセンブリライン。ただし制限あり。
-gtconsolidate.machine.parallelized_vf.tooltip.2=§c全て§7の搬入バスを利用できる。
-gtconsolidate.machine.parallelized_vf.limit=各バスのアイテムは§c1種類§7でなければならない。
+gtconsolidate.machine.parallelized_al.tooltip.1=並列化されたアセンブリライン。ただし制限あり。
+gtconsolidate.machine.parallelized_al.tooltip.2=§c全て§7の搬入バスを利用できる。
+gtconsolidate.machine.parallelized_al.limit=各バスのアイテムは§c1種類§7でなければならない。
 
 # Large Greenhouse
 gtconsolidate.machine.large_greenhouse.tooltip.1=ランプのおかげで24時間365日！！

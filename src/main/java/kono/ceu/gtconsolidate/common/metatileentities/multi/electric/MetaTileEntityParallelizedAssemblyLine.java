@@ -113,7 +113,8 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
                         .addTooltips("gregtech.multiblock.pattern.location_end"))
                 .where('Y', states(getCasingState())
                         .or(energyHatchLimit(false, maxParallel == 4, maxParallel != 64, maxParallel == 64)))
-                .where('I', abilities(MultiblockAbility.IMPORT_ITEMS))
+                .where('I', abilities(MultiblockAbility.IMPORT_ITEMS)
+                        .addTooltips("gtconsolidate.multiblock.jei.bus.filtered"))
                 .where('G', states(getGrateState()))
                 .where('A', states(getControlCasingState()))
                 .where('R', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)))
@@ -430,9 +431,9 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, @NotNull List<String> tooltip,
                                boolean advanced) {
-        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_vf.tooltip.1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_al.tooltip.1"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", maxParallel));
-        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_vf.tooltip.2"));
+        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_al.tooltip.2"));
         tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
                 I18n.format(maxParallel == 4 ? "gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16" :
                         maxParallel == 16 ? "gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16" :
@@ -440,11 +441,11 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
         if (ConfigHolder.machines.orderedAssembly && ConfigHolder.machines.orderedFluidAssembly) {
             tooltip.add(I18n.format("gregtech.machine.assembly_line.tooltip_ordered_both"));
             tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
-                    I18n.format("gtconsolidate.machine.parallelized_vf.limit")));
+                    I18n.format("gtconsolidate.machine.parallelized_al.limit")));
         } else if (ConfigHolder.machines.orderedAssembly) {
             tooltip.add(I18n.format("gregtech.machine.assembly_line.tooltip_ordered_items"));
             tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
-                    I18n.format("gtconsolidate.machine.parallelized_vf.limit")));
+                    I18n.format("gtconsolidate.machine.parallelized_al.limit")));
         } else if (ConfigHolder.machines.orderedFluidAssembly) {
             tooltip.add(I18n.format("gregtech.machine.assembly_line.tooltip_ordered_fluids"));
         }

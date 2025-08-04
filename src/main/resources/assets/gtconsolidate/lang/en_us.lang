@@ -71,7 +71,7 @@ tile.component_assembly_line_casing.max.name=MAX Component Assembly Line Casing
 
 
 ## Tooltips
-gtconsolidate.multiblock.jei.bus.collapsing=§3Recommended to use §nItem collapsing§r§3.
+gtconsolidate.multiblock.jei.bus.filtered=§3Using §nFiltered Input Bus§r§3 may be convenient.
 
 ## Multi
 # Universal
@@ -101,9 +101,9 @@ gtconsolidate.machine.parallelized_ebf.tooltip7=%s layers -> §a%s§7 parallel
 gtconsolidate.machine.parallelized_vf.tooltip=Parallelized Vacuum Freezer, but with limitations.
 
 # Adv. Assembly Line
-gtconsolidate.machine.parallelized_vf.tooltip.1=Parallelized Assembly Line, but with limitations.
-gtconsolidate.machine.parallelized_vf.tooltip.2=Can use §cALL§7 Input Buses.
-gtconsolidate.machine.parallelized_vf.limit=Must be §cone type§7 of item in each Input Bus.
+gtconsolidate.machine.parallelized_al.tooltip.1=Parallelized Assembly Line, but with limitations.
+gtconsolidate.machine.parallelized_al.tooltip.2=Can use §cALL§7 Input Buses.
+gtconsolidate.machine.parallelized_al.limit=Must be §cone type§7 of item in each Input Bus.
 
 # Large Greenhouse
 gtconsolidate.machine.large_greenhouse.tooltip.1=Thanks to the lamps 24/7!
