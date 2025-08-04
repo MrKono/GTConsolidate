@@ -1,6 +1,6 @@
 ## Changelog
 ### 1.0.6.2-beta
-- **Refactor** _Adv.EBF tooltip_.
+- **Refactor** _Adv.EBF_ and _Adv. AL_ tooltip.
 
 ----
 ### 1.0.6.1-beta
