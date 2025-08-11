@@ -35,8 +35,8 @@ public class MetaTileEntityLoader {
                     .input(MetaItems.EMITTER_LV, 64)
                     .input(OrePrefix.circuit, MarkerMaterials.Tier.UHV, 64)
                     .input(MetaTileEntities.HULL[UHV])
-                    .input(OrePrefix.wireGtHex, Materials.ManganesePhosphide, 64)
-                    .input(OrePrefix.wireGtHex, Materials.ManganesePhosphide, 64)
+                    .input(OrePrefix.wireGtHex, Materials.MagnesiumDiboride, 64)
+                    .input(OrePrefix.wireGtHex, Materials.MagnesiumDiboride, 64)
                     .fluidInputs(Materials.SolderingAlloy.getFluid(9 * L))
                     .stationResearch(b -> b
                             .researchStack(GCYMMetaTileEntities.PARALLEL_HATCH[UV - IV].getStackForm())
@@ -51,8 +51,8 @@ public class MetaTileEntityLoader {
                         .input(emitter(i + 1), 64)
                         .input(OrePrefix.circuit, MarkerMaterials.Tier.UHV, 64)
                         .input(MetaTileEntities.HULL[UHV])
-                        .input(OrePrefix.wireGtHex, scMaterial(i + 1), 64)
-                        .input(OrePrefix.wireGtHex, scMaterial(i + 1), 64)
+                        .input(OrePrefix.wireGtHex, scMaterial(i + 2), 64)
+                        .input(OrePrefix.wireGtHex, scMaterial(i + 2), 64)
                         .fluidInputs(Materials.SolderingAlloy.getFluid((i + 1) * 9 * L))
                         .stationResearch(b -> b
                                 .researchStack(MORE_PARALLEL_HATCHES[j - 1].getStackForm())
