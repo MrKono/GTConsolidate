@@ -44,7 +44,7 @@ public class GTConsolidateConfig {
     public static class FeatureSetting {
 
         @Config.Comment({ "Whether to add more Parallel Hatch.",
-                "1024, 4096, 16384, and 65536 Parallel Hatch were added", "Default: false" })
+                "1024+ Parallel Hatches were added", "Default: false" })
         public boolean addMoreParallel = false;
     }
 }
