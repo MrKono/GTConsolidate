@@ -31,6 +31,7 @@ gtconsolidate.machine.turbo_blast_furnace.name=Turbo Rotary Hearth Blast Smelter
 gtconsolidate.machine.absolute_freezer.name=Absolute Freezer
 
 # Multiblock Part
+# Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
 gtconsolidate.machine.filter_input.lv.name=LV Filtered Input Bus
 gtconsolidate.machine.filter_input.mv.name=MV Filtered Input Bus
@@ -41,6 +42,16 @@ gtconsolidate.machine.filter_input.luv.name=LuV Filtered Input Bus
 gtconsolidate.machine.filter_input.zpm.name=ZPM Filtered Input Bus
 gtconsolidate.machine.filter_input.uv.name=UV Filtered Input Bus
 gtconsolidate.machine.filter_input.uhv.name=UHV Filtered Input Bus
+
+# More Parallel Hatch
+gtconsolidate.machine.more_parallel_hatch.lv.name=Hyper Parallel Control Hatch
+gtconsolidate.machine.more_parallel_hatch.mv.name=Hyper Parallel Control Hatch II
+gtconsolidate.machine.more_parallel_hatch.hv.name=Epic Parallel Control Hatch
+gtconsolidate.machine.more_parallel_hatch.ev.name=Epic Parallel Control Hatch II
+gtconsolidate.machine.more_parallel_hatch.iv.name=Legendary Parallel Control Hatch
+gtconsolidate.machine.more_parallel_hatch.luv.name=Legendary Parallel Control Hatch II
+gtconsolidate.machine.more_parallel_hatch.zpm.name=Mythic Parallel Control Hatch
+gtconsolidate.machine.more_parallel_hatch.uv.name=Transcendent Parallel Control Hatch
 
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=Advanced Assembly Line Casing
