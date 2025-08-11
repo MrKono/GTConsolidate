@@ -31,6 +31,7 @@ gtconsolidate.machine.turbo_blast_furnace.name=回転式炉床製錬炉
 gtconsolidate.machine.absolute_freezer.name=絶対冷凍機
 
 # Multiblock Part
+# Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
 gtconsolidate.machine.filter_input.lv.name=LVフィルター付き搬入バス
 gtconsolidate.machine.filter_input.mv.name=MVフィルター付き搬入バス
@@ -41,6 +42,16 @@ gtconsolidate.machine.filter_input.luv.name=LuVフィルター付き搬入バス
 gtconsolidate.machine.filter_input.zpm.name=ZPMフィルター付き搬入バス
 gtconsolidate.machine.filter_input.uv.name=UVフィルター付き搬入バス
 gtconsolidate.machine.filter_input.uhv.name=UHVフィルター付き搬入バス
+
+# More Parallel Hatch
+gtconsolidate.machine.more_parallel_hatch.lv.name=ハイパー並列制御ユニット
+gtconsolidate.machine.more_parallel_hatch.mv.name=ハイパー並列制御ユニット II
+gtconsolidate.machine.more_parallel_hatch.hv.name=史上最高の並列制御ユニット
+gtconsolidate.machine.more_parallel_hatch.ev.name=史上最高の並列制御ユニット II
+gtconsolidate.machine.more_parallel_hatch.iv.name=伝説的な並列制御ユニット
+gtconsolidate.machine.more_parallel_hatch.luv.name=伝説的な並列制御ユニット II
+gtconsolidate.machine.more_parallel_hatch.zpm.name=神話級の並列制御ユニット
+gtconsolidate.machine.more_parallel_hatch.uv.name=超越した並列制御ユニット
 
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=発展型組立機マシン外装

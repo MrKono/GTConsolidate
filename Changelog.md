@@ -1,4 +1,8 @@
 ## Changelog
+### 1.0.7-beta
+- **Add** _more Parallel Hatches !!_ (Configurable, default: **false**).
+
+---
 ### 1.0.6.2-beta
 - **Refactor** _Adv.EBF_ and _Adv. AL_ tooltip.
 

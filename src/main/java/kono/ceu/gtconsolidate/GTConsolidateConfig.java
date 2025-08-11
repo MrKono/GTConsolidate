@@ -17,6 +17,10 @@ public class GTConsolidateConfig {
     @Config.RequiresMcRestart
     public static ModeSetting mode = new ModeSetting();
 
+    @Config.Name("Feature Setting")
+    @Config.RequiresMcRestart
+    public static FeatureSetting feature = new FeatureSetting();
+
     public static class IdSetting {
 
         @Config.Comment({ "Start ID for Multiblock Machine", "Default: 21500" })
@@ -35,5 +39,12 @@ public class GTConsolidateConfig {
                 "This does nothing if B:modifyCR is false.", "Default: 8 (UHV)" })
         @Config.RangeInt(min = 1, max = 8)
         public int tierMuffler = 8;
+    }
+
+    public static class FeatureSetting {
+
+        @Config.Comment({ "Whether to add more Parallel Hatch.",
+                "1024+ Parallel Hatches were added", "Default: false" })
+        public boolean addMoreParallel = false;
     }
 }
