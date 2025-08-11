@@ -8,6 +8,7 @@ import gregtech.api.GTValues;
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.util.Mods;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityFilteredItemBus;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityMoreParallelHatch;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.*;
 
 public class GTConsolidateMetaTileEntity {
@@ -26,6 +27,7 @@ public class GTConsolidateMetaTileEntity {
 
     public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
             1];
+    public static final MetaTileEntityMoreParallelHatch[] MORE_PARALLEL_HATCHES = new MetaTileEntityMoreParallelHatch[8];
 
     public static void init() {
         registerMultiMachine();
@@ -88,6 +90,15 @@ public class GTConsolidateMetaTileEntity {
             String voltageName = GTValues.VN[i].toLowerCase();
             FILTERED_ITEM_INPUT[i] = registerMetaTileEntity(id + i, new MetaTileEntityFilteredItemBus(
                     modId("filter_input." + voltageName), i));
+
+        }
+        id = id + 10;
+        if (GTConsolidateConfig.feature.addMoreParallel) {
+            for (int i = 0; i < MORE_PARALLEL_HATCHES.length; i++) {
+                String name = GTValues.VN[i + 1].toLowerCase();
+                MORE_PARALLEL_HATCHES[i] = registerMetaTileEntity(id + i, new MetaTileEntityMoreParallelHatch(
+                        modId("more_parallel_hatch." + name), i + 1));
+            }
 
         }
     }
