@@ -344,8 +344,8 @@ public class MetaTileEntityParallelizedFusionReactor extends RecipeMapMultiblock
     public void addInformation(ItemStack stack, @Nullable World player, @NotNull List<String> tooltip,
                                boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
-        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_fusion_reactor.tooltip1"));
-        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_fusion_reactor.tooltip2"));
+        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_fusion_reactor.tooltip.1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_fusion_reactor.tooltip.2"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", 16));
         tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
                 I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16")));
