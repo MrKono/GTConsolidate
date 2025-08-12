@@ -4,6 +4,7 @@ import static gregtech.api.GTValues.*;
 
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.builders.BlastRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
@@ -49,7 +50,7 @@ public class GTConsolidateRecipeMaps {
     @ZenProperty
     public static final RecipeMap<CircuitFactoryRecipeBuilder> CIRCUIT_FACTORY_RECIPES = new RecipeMapCircuitFactory<>(
             "circuit_factory", 16, false, 1, false, 4, false, 1, false,
-            new CircuitFactoryRecipeBuilder(), false)
+            new CircuitFactoryRecipeBuilder().cleanroom(CleanroomType.CLEANROOM), false)
                     .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL)
                     .setSound(GTSoundEvents.ASSEMBLER);
 }
