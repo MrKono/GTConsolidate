@@ -30,10 +30,7 @@ import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.IMultiblockPart;
-import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
+import gregtech.api.metatileentity.multiblock.*;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.MultiblockShapeInfo;
@@ -44,6 +41,7 @@ import gregtech.api.util.GTUtility;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.api.util.TextFormattingUtil;
 import gregtech.client.renderer.ICubeRenderer;
+import gregtech.client.renderer.texture.Textures;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.*;
 import gregtech.common.metatileentities.MetaTileEntities;
@@ -77,22 +75,22 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
         return FactoryBlockPattern.start()
                 .aisle("IIIIIIIII", "A##F#F##A", "A##OOO##A", "A##OOO##A", "A#######A", "A#######A", "AA#MMM#AA",
                         "$AAMMMAA$", "$$$MMM$$$", "$$$$$$$$$")
-                .aisle("IIIIIIIII", "G#######G", "G#######G", "G##AAA##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
+                .aisle("IIIIIIIII", "G#######G", "G#######G", "G##DDD##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABEBA$$")
                 .setRepeatable(2)
-                .aisle("IIIIIIIII", "GP#F#F#PG", "GP#AAA#PG", "GP#AAA#PG", "GP#####PG", "GP#####PG", "AA#TTT#AA",
+                .aisle("IIIIIIIII", "GP#F#F#PG", "GP#DDD#PG", "GP#DDD#PG", "GP#####PG", "GP#####PG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABEBA$$")
-                .aisle("IIIIIIIII", "G#######G", "G#######G", "G##AAA##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
-                        "CAAATAAAC", "$CATTTAC$", "$$ABEBA$$")
-                .setRepeatable(2)
-                .aisle("IIIIIIIII", "AP#F#F#PA", "AP#AAA#PA", "AP#AAA#PA", "AP#####PA", "AP#####PA", "AA#TTT#AA",
-                        "CAAATAAAC", "$CATTTAC$", "$$ABEBA$$")
-                .aisle("IIIIIIIII", "G#######G", "G#######G", "G##AAA##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
+                .aisle("IIIIIIIII", "G#######G", "G#######G", "G##DDD##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABEBA$$")
                 .setRepeatable(2)
-                .aisle("IIIIIIIII", "GP#F#F#PG", "GP#AAA#PG", "GP#AAA#PG", "GP#####PG", "GP#####PG", "AA#TTT#AA",
+                .aisle("IIIIIIIII", "AP#F#F#PA", "AP#DDD#PA", "AP#DDD#PA", "AP#####PA", "AP#####PA", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABEBA$$")
-                .aisle("IIIIIIIII", "G#######G", "G#######G", "G##AAA##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
+                .aisle("IIIIIIIII", "G#######G", "G#######G", "G##DDD##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
+                        "CAAATAAAC", "$CATTTAC$", "$$ABEBA$$")
+                .setRepeatable(2)
+                .aisle("IIIIIIIII", "GP#F#F#PG", "GP#DDD#PG", "GP#DDD#PG", "GP#####PG", "GP#####PG", "AA#TTT#AA",
+                        "CAAATAAAC", "$CATTTAC$", "$$ABEBA$$")
+                .aisle("IIIIIIIII", "G#######G", "G#######G", "G##DDD##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABEBA$$")
                 .setRepeatable(2)
                 .aisle("IIIIIIIII", "A##F#F##A", "A##OOO##A", "A##OOO##A", "A#######A", "A#######A", "AA#MMM#AA",
@@ -102,6 +100,7 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
                         states(MetaBlocks.MULTIBLOCK_CASING
                                 .getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING)))
                 .where('C', states(MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING)))
+                .where('D', states(getCasingState2()))
                 .where('E',
                         abilities(MultiblockAbility.INPUT_LASER).setMinGlobalLimited(1).setMaxGlobalLimited(3)
                                 .or(states(getCasingState1())))
@@ -112,7 +111,7 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
                         .or(states(getCasingState1())))
                 .where('M', nonCleanMaintenance().or(states(getCasingState1())))
                 .where('O',
-                        abilities(MultiblockAbility.EXPORT_ITEMS).setMaxGlobalLimited(1).or(states(getCasingState1())))
+                        abilities(MultiblockAbility.EXPORT_ITEMS).setMaxGlobalLimited(1).or(states(getCasingState2())))
                 .where('P',
                         states(MetaBlocks.BOILER_CASING
                                 .getState(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE)))
@@ -127,41 +126,46 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
         return GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getState(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING);
     }
 
+    public IBlockState getCasingState2() {
+        return MetaBlocks.COMPUTER_CASING.getState(BlockComputerCasing.CasingType.ADVANCED_COMPUTER_CASING);
+    }
+
     @Override
     public List<MultiblockShapeInfo> getMatchingShapes() {
         ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
         MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder()
-                .aisle("AAAAAAAAA", "A##F#F##A", "A##AAA##A", "A##AOA##A", "A#######A", "A#######A", "AA#AAA#AA",
+                .aisle("AAAAAAAAA", "A##F#F##A", "A##DDD##A", "A##DOD##A", "A#######A", "A#######A", "AA#AAA#AA",
                         "$AAAMAAA$", "$$$AAA$$$", "$$$$$$$$$")
-                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##AAA##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
+                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##DDD##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABEBA$$")
-                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##AAA##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
+                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##DDD##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABABA$$")
-                .aisle("AAAAAAAAA", "GP#F#F#PG", "GP#AAA#PG", "GP#AAA#PG", "GP#####PG", "GP#####PG", "AA#TTT#AA",
+                .aisle("AAAAAAAAA", "GP#F#F#PG", "GP#DDD#PG", "GP#DDD#PG", "GP#####PG", "GP#####PG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABABA$$")
-                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##AAA##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
+                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##DDD##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABABA$$")
-                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##AAA##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
+                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##DDD##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABABA$$")
-                .aisle("AAAAAAAAA", "AP#F#F#PA", "AP#AAA#PA", "AP#AAA#PA", "AP#####PA", "AP#####PA", "AA#TTT#AA",
+                .aisle("AAAAAAAAA", "AP#F#F#PA", "AP#DDD#PA", "AP#DDD#PA", "AP#####PA", "AP#####PA", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABABA$$")
-                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##AAA##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
+                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##DDD##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABABA$$")
-                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##AAA##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
+                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##DDD##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABABA$$")
-                .aisle("AAAAAAAAA", "GP#F#F#PG", "GP#AAA#PG", "GP#AAA#PG", "GP#####PG", "GP#####PG", "AA#TTT#AA",
+                .aisle("AAAAAAAAA", "GP#F#F#PG", "GP#DDD#PG", "GP#DDD#PG", "GP#####PG", "GP#####PG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABABA$$")
-                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##AAA##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
+                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##DDD##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABABA$$")
-                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##AAA##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
+                .aisle("AAAAAAAAA", "G#######G", "G#######G", "G##DDD##G", "GB#####BG", "GB#####BG", "AA#TTT#AA",
                         "CAAATAAAC", "$CATTTAC$", "$$ABABA$$")
-                .aisle("IIIIAiiii", "A##F#F##A", "A##AAA##A", "A##AAA##A", "A#######A", "A#######A", "AA#AAA#AA",
+                .aisle("IIIIAiiii", "A##F#F##A", "A##DDD##A", "A##DDD##A", "A#######A", "A#######A", "AA#AAA#AA",
                         "$AAASAAA$", "$$$AAA$$$", "$$$$$$$$$")
                 .where('A', getCasingState1())
                 .where('B',
                         MetaBlocks.MULTIBLOCK_CASING
                                 .getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING))
                 .where('C', MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING))
+                .where('D', getCasingState2())
                 .where('E', MetaTileEntities.LASER_INPUT_HATCH_256[1], EnumFacing.UP)
                 .where('F', MetaBlocks.FRAMES.get(Materials.TungstenSteel).getBlock(Materials.TungstenSteel))
                 .where('G', MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS))
@@ -210,6 +214,12 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
     @SideOnly(Side.CLIENT)
     @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart) {
+        if (sourcePart instanceof IMultiblockAbilityPart) {
+            MultiblockAbility<?> ability = ((IMultiblockAbilityPart<?>) sourcePart).getAbility();
+            if (ability == MultiblockAbility.EXPORT_ITEMS) {
+                return Textures.ADVANCED_COMPUTER_CASING;
+            }
+        }
         return GCYMTextures.ASSEMBLING_CASING;
     }
 
