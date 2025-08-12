@@ -195,7 +195,7 @@ public class MultiMachineLoader {
                 .input(QUANTUM_PROCESSOR_EV, 64)
                 .input(CRYSTAL_PROCESSOR_IV, 64)
                 .input(WETWARE_PROCESSOR_LUV, 64)
-                .input(WETWARE_PROCESSOR_ASSEMBLY_ZPM,  32)
+                .input(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 32)
                 .input(WETWARE_SUPER_COMPUTER_UV, 16)
                 .input(WETWARE_MAINFRAME_UHV, 4)
                 .fluidInputs(Materials.DistilledWater.getFluid(64000))
