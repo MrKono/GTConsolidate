@@ -182,6 +182,27 @@ public class MultiMachineLoader {
                 .fluidInputs(Materials.Helium3.getFluid(FluidStorageKeys.LIQUID, 64000))
                 .output(GTConsolidateMetaTileEntity.ABSOLUTE_FREEZER)
                 .EUt(VA[UHV]).duration(2 * min).buildAndRegister();
+
+        // Circuit Factory
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(GCYMMetaTileEntities.LARGE_CIRCUIT_ASSEMBLER)
+                .input(ROBOT_ARM_LuV, 16)
+                .input(ROBOT_ARM_ZPM, 16)
+                .input(ROBOT_ARM_UV, 16)
+                .input(MICROPROCESSOR_LV, 64)
+                .input(PROCESSOR_MV, 64)
+                .input(NANO_PROCESSOR_HV, 64)
+                .input(QUANTUM_PROCESSOR_EV, 64)
+                .input(CRYSTAL_PROCESSOR_IV, 64)
+                .input(WETWARE_PROCESSOR_LUV, 64)
+                .input(WETWARE_PROCESSOR_ASSEMBLY_ZPM,  32)
+                .input(WETWARE_SUPER_COMPUTER_UV, 16)
+                .input(WETWARE_MAINFRAME_UHV, 4)
+                .fluidInputs(Materials.DistilledWater.getFluid(64000))
+                .fluidInputs(Materials.Lubricant.getFluid(32000))
+                .fluidInputs(Materials.PCBCoolant.getFluid(16000))
+                .output(GTConsolidateMetaTileEntity.CIRCUIT_FACTORY)
+                .EUt(VA[UHV]).duration(2 * min + 30 * sec).buildAndRegister();
     }
 
     public static void GTFOMultiblock() {
