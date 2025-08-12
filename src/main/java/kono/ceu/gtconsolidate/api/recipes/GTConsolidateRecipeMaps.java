@@ -4,12 +4,15 @@ import static gregtech.api.GTValues.*;
 
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.builders.BlastRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.core.sound.GTSoundEvents;
 
+import kono.ceu.gtconsolidate.api.recipes.builder.CircuitFactoryRecipeBuilder;
 import kono.ceu.gtconsolidate.api.recipes.builder.CoARecipeBuilder;
+import kono.ceu.gtconsolidate.api.recipes.machine.RecipeMapCircuitFactory;
 import kono.ceu.gtconsolidate.api.recipes.machine.RecipeMapCoA;
 
 import crafttweaker.annotations.ZenRegister;
@@ -43,4 +46,11 @@ public class GTConsolidateRecipeMaps {
             "absolute_vacuum_recipe",
             3, 3, 3, 3, new SimpleRecipeBuilder().duration(1).EUt(VA[UEV]), false)
                     .setSound(GTSoundEvents.COOLING);
+
+    @ZenProperty
+    public static final RecipeMap<CircuitFactoryRecipeBuilder> CIRCUIT_FACTORY_RECIPES = new RecipeMapCircuitFactory<>(
+            "circuit_factory", 16, false, 1, false, 4, false, 1, false,
+            new CircuitFactoryRecipeBuilder().cleanroom(CleanroomType.CLEANROOM), false)
+                    .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL)
+                    .setSound(GTSoundEvents.ASSEMBLER);
 }

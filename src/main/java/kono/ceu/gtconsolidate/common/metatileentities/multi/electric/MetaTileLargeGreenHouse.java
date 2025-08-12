@@ -106,13 +106,13 @@ public class MetaTileLargeGreenHouse extends GCYMRecipeMapMultiblockController {
     @Override
     protected BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start()
-                .aisle("CCCCCCCCC", "FGGGGGGGF", "FGGGGGGGF", "AFGGGGGFA", "AFGGGGGFA", "AAFFPFFAA", "AAAAFAAAA")
-                .aisle("CDDDDDDDC", "G#######G", "GAAAAAAAG", "AGAAAAAGA", "AGAALAAGA", "AAGGPGGAA", "AAAAFAAAA")
+                .aisle("CCCCCCCCC", "FGGGGGGGF", "FGGGGGGGF", "#FGGGGGF#", "#FGGGGGF#", "##FFPFF##", "####F####")
+                .aisle("CDDDDDDDC", "G#######G", "GAAAAAAAG", "#GAAAAAG#", "#GAALAAG#", "##GGPGG##", "####F####")
                 .setRepeatable(6)
-                .aisle("CDDDDDDDC", "F#######F", "FAAAAAAAF", "AFAAAAAFA", "AFAALAAFA", "AAFFTFFAA", "AAAAFAAAA")
-                .aisle("CDDDDDDDC", "G#######G", "GAAAAAAAG", "AGAAAAAGA", "AGAALAAGA", "AAGGPGGAA", "AAAAFAAAA")
+                .aisle("CDDDDDDDC", "F#######F", "FAAAAAAAF", "#FAAAAAF#", "#FAALAAF#", "##FFTFF##", "####F####")
+                .aisle("CDDDDDDDC", "G#######G", "GAAAAAAAG", "#GAAAAAG#", "#GAALAAG#", "##GGPGG##", "####F####")
                 .setRepeatable(6)
-                .aisle("CCCCSCCCC", "FGGGGGGGF", "FGGGGGGGF", "AFGGGGGFA", "AFGGGGGFA", "AAFFPFFAA", "AAAAFAAAA")
+                .aisle("CCCCSCCCC", "FGGGGGGGF", "FGGGGGGGF", "#FGGGGGF#", "#FGGGGGF#", "##FFPFF##", "####F####")
                 .where('A', air())
                 .where('C',
                         states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID))

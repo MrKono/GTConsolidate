@@ -15,6 +15,7 @@ You can include this mod in your modpack!
 ## What is this mod??
 Isn't finding space to meet the demand for Europium a bit of a hassle? And doesn't the Vacuum Freezer feel a bit slow? This mod adds parallel versions of those multiblock machines (_though they’re a bit quirky... :P_).
 ### Contents
+_New Machines_
 - Parallelized Fusion Reactor (Since 0.0.1-beta)  
 - Parallelized Electric Blast Furnace (Since 1.0.0-beta)  
 - Parallelized Vacuum Freezer (Since 1.0.0-beta)
@@ -25,6 +26,11 @@ Isn't finding space to meet the demand for Europium a bit of a hassle? And doesn
 - Parallelized Sawmill (From [GregTech Wood Processing](https://github.com/GTModpackTeam/GTWoodProcessing/tree/master), since 1.0.5-beta)
 - Turbo Rotary Hearth Blast Smelter (EBF + ABS, Since 1.0.6-beta)
 - Absolute Freezer (Since 1.0.6-beta)
+- Circuit Factory (Since 1.0.7-beta)
+
+_New Multiblock Part_
+- Filtered Input Bus (Only one type of item can input, since 1.0.2-beta)
+- More Parallel Hatch (Configurable, `default: false`, since 1.0.7-beta)
 
 ### Planning
 _None so far. We are looking for suggestions._ 

@@ -24,6 +24,7 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityParallelizedSawmill PARALLELIZED_SAWMILL;
     public static MetaTileEntityTurboBlastFurnace TURBO_BLAST_FURNACE;
     public static MetaTileEntityGigaVF ABSOLUTE_FREEZER;
+    public static MetaTileEntityCircuitFactory CIRCUIT_FACTORY;
 
     public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
             1];
@@ -82,6 +83,8 @@ public class GTConsolidateMetaTileEntity {
                 modId("turbo_blast_furnace")));
         // Absolute Freezer
         ABSOLUTE_FREEZER = registerMetaTileEntity(id + 15, new MetaTileEntityGigaVF(modId("absolute_freezer")));
+        // Circuit Factory
+        CIRCUIT_FACTORY = registerMetaTileEntity(id + 16, new MetaTileEntityCircuitFactory(modId("circuit_factory")));
     }
 
     public static void registerMultiblockPart() {

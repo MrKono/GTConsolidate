@@ -132,7 +132,7 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
-        tooltip.add(I18n.format("gtconsolidate.machine.absolute_freezer.tooltip1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.absolute_freezer.tooltip.1"));
         tooltip.add(I18n.format("gtconsolidate.multiblock.accept_64a"));
     }
 }
