@@ -266,6 +266,11 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
                                boolean advanced) {
         super.addInformation(stack, world, tooltip, advanced);
         tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.2"));
+        tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
+                I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.energy_in.laser")));
+        tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
+                I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.maintenance_no_clean")));
     }
 
     private class CircuitFactoryRecipeLogic extends MultiblockRecipeLogic {

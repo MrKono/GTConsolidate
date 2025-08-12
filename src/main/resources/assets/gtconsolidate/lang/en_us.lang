@@ -30,6 +30,8 @@ gtconsolidate.machine.turbo_blast_furnace.name=Turbo Rotary Hearth Blast Smelter
 
 gtconsolidate.machine.absolute_freezer.name=Absolute Freezer
 
+gtconsolidate.machine.circuit_factory.name=Circuit Factory
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
@@ -91,22 +93,24 @@ gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16=Energy hatch i
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16=Energy hatch is §eonly 16A§7.
 gtconsolidate.multiblock.tooltip.universal.limit.energy_in.64=Energy hatch is §eonly 64A§7.
 gtconsolidate.multiblock.tooltip.universal.limit.manual_maintenance=§eCannot use§7 Automatic Maintenance Hatch.
+gtconsolidate.multiblock.tooltip.universal.limit.energy_in.laser=Only accept §eLaser Target Hatch§7.
+gtconsolidate.multiblock.tooltip.universal.limit.maintenance_no_clean=§eCannot use§7 Filtered Maintenance Hatch.
 gtconsolidate.multiblock.accept_64a=Accept 64A Energy Hatch.
 gtconsolidate.multiblock.tooltip.universal.shift_ctrl=Hold SHIFT & CTRL to show more Info.
 
 # Adv. Fusion Reactor
-gtconsolidate.machine.parallelized_fusion_reactor.tooltip1=Parallelized Fusion Reactor, but with limitations.
-gtconsolidate.machine.parallelized_fusion_reactor.tooltip2=Can parallelize with the number of §bEnergy Hatches.
+gtconsolidate.machine.parallelized_fusion_reactor.tooltip.1=Parallelized Fusion Reactor, but with limitations.
+gtconsolidate.machine.parallelized_fusion_reactor.tooltip.2=Can parallelize with the number of §bEnergy Hatches.
 gtconsolidate.machine.parallelized_fusion_reactor.capacity=Energy Storage: §e%sM EU
 
 # Adv. Electric Blast Furnace
-gtconsolidate.machine.parallelized_ebf.tooltip1=Parallelized Electric Blast Furnace, but with limitations.
-gtconsolidate.machine.parallelized_ebf.tooltip2=Parallelized by §a%s§7 for additional coil layers.
-gtconsolidate.machine.parallelized_ebf.tooltip3=Relationship between coil layer and maximum parallel
-gtconsolidate.machine.parallelized_ebf.tooltip4=%s layers -> §a%s§7 parallel
-gtconsolidate.machine.parallelized_ebf.tooltip5=%s layers -> §a%s§7 parallel
-gtconsolidate.machine.parallelized_ebf.tooltip6=%s layers -> §a%s§7 parallel
-gtconsolidate.machine.parallelized_ebf.tooltip7=%s layers -> §a%s§7 parallel
+gtconsolidate.machine.parallelized_ebf.tooltip.1=Parallelized Electric Blast Furnace, but with limitations.
+gtconsolidate.machine.parallelized_ebf.tooltip.2=Parallelized by §a%s§7 for additional coil layers.
+gtconsolidate.machine.parallelized_ebf.tooltip.3=Relationship between coil layer and maximum parallel
+gtconsolidate.machine.parallelized_ebf.tooltip.4=%s layers -> §a%s§7 parallel
+gtconsolidate.machine.parallelized_ebf.tooltip.5=%s layers -> §a%s§7 parallel
+gtconsolidate.machine.parallelized_ebf.tooltip.6=%s layers -> §a%s§7 parallel
+gtconsolidate.machine.parallelized_ebf.tooltip.7=%s layers -> §a%s§7 parallel
 
 # Adv. Vacuum Freezer
 gtconsolidate.machine.parallelized_vf.tooltip=Parallelized Vacuum Freezer, but with limitations.
@@ -133,7 +137,11 @@ gtconsolidate.machine.turbo_blast_furnace.tooltip.3=If idle, §bTemperature§7 d
 gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eStrongly recommended to enable Distinct Buses.
 
 # Absolute Freezer
-gtconsolidate.machine.absolute_freezer.tooltip1=Refrigerant-free freezer.
+gtconsolidate.machine.absolute_freezer.tooltip.1=Refrigerant-free freezer.
+
+# Circuit Factory
+gtconsolidate.machine.circuit_factory.tooltip.1=Ultra-precision machine
+gtconsolidate.machine.circuit_factory.tooltip.2=Recommended to enable Distinct Buses.
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
