@@ -1,6 +1,8 @@
 ## Changelog
 ### 1.0.7-beta
 - **Add** _more Parallel Hatches !!_ (Configurable, default: **false**).
+- **Add** _Circuit Factory_.
+- **Refactor** _Large Greenhouse Structure_.
 
 ---
 ### 1.0.6.2-beta
