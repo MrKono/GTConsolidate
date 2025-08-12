@@ -33,6 +33,14 @@ public class GTConsolidateTraceabilityPredicate {
     }
 
     @NotNull
+    public static TraceabilityPredicate nonCleanMaintenance() {
+        return ConfigHolder.machines.enableMaintenance ?
+                metaTileEntities(MetaTileEntities.MAINTENANCE_HATCH, MetaTileEntities.CONFIGURABLE_MAINTENANCE_HATCH,
+                        MetaTileEntities.AUTO_MAINTENANCE_HATCH).setExactLimit(1) :
+                new TraceabilityPredicate();
+    }
+
+    @NotNull
     public static TraceabilityPredicate energyHatchLimit(boolean allow1A, boolean allow4A) {
         return energyHatchLimit(allow1A, allow4A, false);
     }

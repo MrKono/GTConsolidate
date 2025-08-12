@@ -1,20 +1,22 @@
 package kono.ceu.gtconsolidate.api.recipes.machine;
 
+import net.minecraftforge.items.IItemHandlerModifiable;
+
+import org.jetbrains.annotations.NotNull;
+
 import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import org.jetbrains.annotations.NotNull;
 
 public class RecipeMapCircuitFactory<R extends RecipeBuilder<R>> extends RecipeMap<R> {
 
     public RecipeMapCircuitFactory(String unlocalizedName, int maxInputs, boolean modifyItemInputs, int maxOutputs,
-                        boolean modifyItemOutputs,
-                        int maxFluidInputs, boolean modifyFluidInputs, int maxFluidOutputs,
-                        boolean modifyFluidOutputs, R defaultRecipe, boolean isHidden) {
+                                   boolean modifyItemOutputs,
+                                   int maxFluidInputs, boolean modifyFluidInputs, int maxFluidOutputs,
+                                   boolean modifyFluidOutputs, R defaultRecipe, boolean isHidden) {
         super(unlocalizedName, maxInputs, modifyItemInputs, maxOutputs, modifyItemOutputs, maxFluidInputs,
                 modifyFluidInputs, maxFluidOutputs, modifyFluidOutputs, defaultRecipe, isHidden);
     }

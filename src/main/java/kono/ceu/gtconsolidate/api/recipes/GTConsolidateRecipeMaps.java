@@ -50,6 +50,6 @@ public class GTConsolidateRecipeMaps {
     public static final RecipeMap<CircuitFactoryRecipeBuilder> CIRCUIT_FACTORY_RECIPES = new RecipeMapCircuitFactory<>(
             "circuit_factory", 16, false, 1, false, 4, false, 1, false,
             new CircuitFactoryRecipeBuilder(), false)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL)
-            .setSound(GTSoundEvents.ASSEMBLER);
+                    .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL)
+                    .setSound(GTSoundEvents.ASSEMBLER);
 }
