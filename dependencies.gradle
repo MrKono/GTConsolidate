@@ -45,6 +45,7 @@ dependencies {
     api("com.cleanroommc:groovyscript:1.1.1") { transitive = false } // GrS 1.1.1
     api("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.700") // CrT 4.1.20.700
     api rfg.deobf("curse.maven:ctm-267602:2915363") // CTM 1.0.2.31
+    api("appeng:ae2-uel:v0.56.4") { transitive = false }
 
     // Hard Dependencies
     devOnlyNonPublishable(rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:5519022")) // CEu 2.8.10
