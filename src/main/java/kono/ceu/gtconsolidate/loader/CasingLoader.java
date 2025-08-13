@@ -3,13 +3,19 @@ package kono.ceu.gtconsolidate.loader;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
+import static kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing.CasingType.*;
+import static kono.ceu.gtconsolidate.common.blocks.BlockMultiblockCasing.MultiblockCasingType.*;
+import static kono.ceu.gtconsolidate.common.blocks.BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.*;
+import static kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks.*;
 import static kono.ceu.gtconsolidate.loader.Components.*;
 
 import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.store.FluidStorageKeys;
+import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
@@ -19,14 +25,12 @@ import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
 
 import kono.ceu.gtconsolidate.common.blocks.BlockCoACasing;
-import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
-import kono.ceu.gtconsolidate.common.blocks.BlockParallelizedAssemblyLineCasing;
-import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 
 public class CasingLoader {
 
     private static final int sec = 20;
     private static final int min = 60 * sec;
+    private static final int amount = ConfigHolder.recipes.casingsPerCraft;
 
     public static void init() {
         // Advanced Assembly Line Casing
@@ -36,9 +40,7 @@ public class CasingLoader {
                 .input(plate, Materials.Trinium, 8)
                 .input(gearSmall, Materials.Darmstadtium, 2)
                 .input(gear, Materials.Tritanium, 2)
-                .outputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
-                        .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CASING,
-                                ConfigHolder.recipes.casingsPerCraft))
+                .outputs(PARALLELIZED_ASSEMBLY_LINE_CASING.getItemVariant(CASING, amount))
                 .EUt(VA[UV]).duration(30 * sec)
                 .stationResearch(b -> b
                         .researchStack(MetaBlocks.MULTIBLOCK_CASING
@@ -54,9 +56,7 @@ public class CasingLoader {
                 .input(EMITTER_ZPM)
                 .input(frameGt, Materials.Tritanium)
                 .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
-                .outputs(GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
-                        .getItemVariant(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CONTROL,
-                                ConfigHolder.recipes.casingsPerCraft))
+                .outputs(PARALLELIZED_ASSEMBLY_LINE_CASING.getItemVariant(CONTROL, amount))
                 .EUt(VA[UV]).duration(30 * sec)
                 .stationResearch(b -> b
                         .researchStack(MetaBlocks.MULTIBLOCK_CASING
@@ -68,37 +68,31 @@ public class CasingLoader {
                 .inputs(MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.FUSION_GLASS))
                 .input(frameGt, Materials.Aluminium)
                 .input(screw, Materials.Aluminium, 4)
-                .outputs(GTConsolidateMetaBlocks.COOLANT_CASING.getItemVariant(BlockCoolantCasing.CasingType.EMPTY))
+                .outputs(COOLANT_CASING.getItemVariant(EMPTY))
                 .EUt(VA[EV]).duration(30 * sec).buildAndRegister();
         // Basic Helium Coolant Casing
         RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder()
-                .inputs(GTConsolidateMetaBlocks.COOLANT_CASING.getItemVariant(BlockCoolantCasing.CasingType.EMPTY))
+                .inputs(COOLANT_CASING.getItemVariant(EMPTY))
                 .fluidInputs(Materials.Helium.getFluid(FluidStorageKeys.LIQUID, 4000))
-                .outputs(GTConsolidateMetaBlocks.COOLANT_CASING
-                        .getItemVariant(BlockCoolantCasing.CasingType.HELIUM_BASIC))
+                .outputs(COOLANT_CASING.getItemVariant(HELIUM_BASIC))
                 .EUt(VA[LuV]).duration(10 * sec).buildAndRegister();
         // Advanced Helium Coolant Casing
         RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder()
-                .inputs(GTConsolidateMetaBlocks.COOLANT_CASING
-                        .getItemVariant(BlockCoolantCasing.CasingType.HELIUM_BASIC))
+                .inputs(COOLANT_CASING.getItemVariant(HELIUM_BASIC))
                 .fluidInputs(Materials.Helium.getFluid(FluidStorageKeys.LIQUID, 4000))
-                .outputs(GTConsolidateMetaBlocks.COOLANT_CASING
-                        .getItemVariant(BlockCoolantCasing.CasingType.HELIUM_ADVANCED))
+                .outputs(COOLANT_CASING.getItemVariant(HELIUM_ADVANCED))
                 .EUt(VA[ZPM]).duration(10 * sec).buildAndRegister();
         // Elite Helium Coolant Casing
         RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder()
-                .inputs(GTConsolidateMetaBlocks.COOLANT_CASING
-                        .getItemVariant(BlockCoolantCasing.CasingType.HELIUM_ADVANCED))
+                .inputs(COOLANT_CASING.getItemVariant(HELIUM_ADVANCED))
                 .fluidInputs(Materials.Helium.getFluid(FluidStorageKeys.LIQUID, 8000))
-                .outputs(GTConsolidateMetaBlocks.COOLANT_CASING
-                        .getItemVariant(BlockCoolantCasing.CasingType.HELIUM_ELITE))
+                .outputs(COOLANT_CASING.getItemVariant(HELIUM_ELITE))
                 .EUt(VA[UV]).duration(10 * sec).buildAndRegister();
         // Helium-3 Coolant Casing
         RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder()
-                .inputs(GTConsolidateMetaBlocks.COOLANT_CASING.getItemVariant(BlockCoolantCasing.CasingType.EMPTY))
+                .inputs(COOLANT_CASING.getItemVariant(EMPTY))
                 .fluidInputs(Materials.Helium3.getFluid(FluidStorageKeys.LIQUID, 4000))
-                .outputs(GTConsolidateMetaBlocks.COOLANT_CASING
-                        .getItemVariant(BlockCoolantCasing.CasingType.HELIUM_3))
+                .outputs(COOLANT_CASING.getItemVariant(HELIUM_3))
                 .EUt(VA[ZPM]).duration(10 * sec).buildAndRegister();
         // CoA Casing
         // LV
@@ -114,7 +108,7 @@ public class CasingLoader {
                 .inputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING
                         .getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING))
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144))
-                .outputs(GTConsolidateMetaBlocks.COA_CASING.getItemVariant(BlockCoACasing.CoACasingType.LV))
+                .outputs(COA_CASING.getItemVariant(BlockCoACasing.CoACasingType.LV))
                 .stationResearch(b -> b
                         .researchStack(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING
                                 .getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING))
@@ -138,10 +132,10 @@ public class CasingLoader {
                     .inputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING
                             .getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING))
                     .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .outputs(GTConsolidateMetaBlocks.COA_CASING
+                    .outputs(COA_CASING
                             .getItemVariant(BlockCoACasing.CoACasingType.valueOf(VN[i])))
                     .stationResearch(b -> b
-                            .researchStack(GTConsolidateMetaBlocks.COA_CASING
+                            .researchStack(COA_CASING
                                     .getItemVariant(BlockCoACasing.CoACasingType.valueOf(VN[j - 1])))
                             .CWUt(16 * j, (int) Math.min(VH[j] * 200L, V[MAX]))
                             .EUt(VA[j]))
@@ -155,9 +149,44 @@ public class CasingLoader {
                 .input(gemExquisite, Materials.NetherQuartz, 8)
                 .input(dust, Materials.BorosilicateGlass)
                 .fluidInputs(Materials.Krypton.getFluid(100))
-                .outputs(GTConsolidateMetaBlocks.COOLANT_CASING
-                        .getItemVariant(BlockCoolantCasing.CasingType.CRYSTAL_QUARTZ_GLASS))
+                .outputs(COOLANT_CASING.getItemVariant(CRYSTAL_QUARTZ_GLASS))
                 .blastFurnaceTemp(2800)
                 .EUt(VA[IV]).duration(30 * sec).buildAndRegister();
+
+        // Osmiridium Sturdy Casing
+        ModHandler.addShapedRecipe(true, "osmiridium_sturdy",
+                MULTIBLOCK_CASING.getItemVariant(OSMIRIDIUM_STURDY, amount), "PhP", "PFP", "PwP",
+                'P', new UnificationEntry(plate, Materials.Osmiridium),
+                'F', new UnificationEntry(frameGt, Materials.Trinium));
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, Materials.Osmiridium, 6)
+                .input(frameGt, Materials.Trinium)
+                .circuitMeta(6)
+                .outputs(MULTIBLOCK_CASING.getItemVariant(OSMIRIDIUM_STURDY, amount))
+                .duration(50).EUt(16).buildAndRegister();
+
+        // Darmstadtium Sturdy Casing
+        ModHandler.addShapedRecipe(true, "darmstadtium_sturdy",
+                MULTIBLOCK_CASING.getItemVariant(DARMSTADTIUM_STURDY, amount), "PhP", "PFP", "PwP",
+                'P', new UnificationEntry(plate, Materials.Darmstadtium),
+                'F', new UnificationEntry(frameGt, Materials.Duranium));
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, Materials.Darmstadtium, 6)
+                .input(frameGt, Materials.Duranium)
+                .circuitMeta(6)
+                .outputs(MULTIBLOCK_CASING.getItemVariant(DARMSTADTIUM_STURDY, amount))
+                .duration(50).EUt(16).buildAndRegister();
+
+        // Tritanium Sturdy Casing
+        ModHandler.addShapedRecipe(true, "tritanium_sturdy",
+                MULTIBLOCK_CASING.getItemVariant(TRITANIUM_STURDY, amount), "PhP", "PFP", "PwP",
+                'P', new UnificationEntry(plate, Materials.Tritanium),
+                'F', new UnificationEntry(frameGt, Materials.Neutronium));
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, Materials.Tritanium, 6)
+                .input(frameGt, Materials.Neutronium)
+                .circuitMeta(6)
+                .outputs(MULTIBLOCK_CASING.getItemVariant(OSMIRIDIUM_STURDY, amount))
+                .duration(50).EUt(16).buildAndRegister();
     }
 }

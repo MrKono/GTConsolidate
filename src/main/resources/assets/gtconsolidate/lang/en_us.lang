@@ -32,6 +32,10 @@ gtconsolidate.machine.absolute_freezer.name=Absolute Freezer
 
 gtconsolidate.machine.circuit_factory.name=Circuit Factory
 
+gtconsolidate.machine.elite_processing_array.name=Elite Processing Array
+gtconsolidate.machine.master_processing_array.name=Master Processing Array
+gtconsolidate.machine.ultimate_processing_array.name=Ultimate Processing Array
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
@@ -82,6 +86,9 @@ tile.component_assembly_line_casing.uxv.name=UXV Component Assembly Line Casing
 tile.component_assembly_line_casing.opv.name=OpV Component Assembly Line Casing
 tile.component_assembly_line_casing.max.name=MAX Component Assembly Line Casing
 
+tile.multiblock_casing.osmiridium_sturdy.name=Osmiridium Sturdy Casing
+tile.multiblock_casing.darmstadtium_sturdy.name=Darmstadtium Sturdy Casing
+tile.multiblock_casing.tritanium_sturdy.name=Tritanium Sturdy Casing
 
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.filtered=§3Using §nFiltered Input Bus§r§3 may be convenient.
@@ -142,6 +149,12 @@ gtconsolidate.machine.absolute_freezer.tooltip.1=Refrigerant-free freezer.
 # Circuit Factory
 gtconsolidate.machine.circuit_factory.tooltip.1=Ultra-precision machine
 gtconsolidate.machine.circuit_factory.tooltip.2=Recommended to enable Distinct Buses.
+
+# Extended Processing Array
+gtconsolidate.machine.extended_processing_array.tooltip.factor.4=Might be just right.
+gtconsolidate.machine.extended_processing_array.tooltip.factor.16=Do you really need this much?
+gtconsolidate.machine.extended_processing_array.tooltip.factor.64=There must be a better way...
+gtconsolidate.machine.extended_processing_array.tooltip.1=Counts as §e%sx§7 the set machines when operating.
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.

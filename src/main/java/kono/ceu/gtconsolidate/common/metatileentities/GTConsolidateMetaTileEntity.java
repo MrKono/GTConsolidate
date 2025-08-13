@@ -25,6 +25,7 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityTurboBlastFurnace TURBO_BLAST_FURNACE;
     public static MetaTileEntityGigaVF ABSOLUTE_FREEZER;
     public static MetaTileEntityCircuitFactory CIRCUIT_FACTORY;
+    public static MetaTileEntityExtendedProcessingArray[] EXTENDED_PROCESSING_ARRAY = new MetaTileEntityExtendedProcessingArray[3];
 
     public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
             1];
@@ -85,6 +86,13 @@ public class GTConsolidateMetaTileEntity {
         ABSOLUTE_FREEZER = registerMetaTileEntity(id + 15, new MetaTileEntityGigaVF(modId("absolute_freezer")));
         // Circuit Factory
         CIRCUIT_FACTORY = registerMetaTileEntity(id + 16, new MetaTileEntityCircuitFactory(modId("circuit_factory")));
+        // Extended Processing Array
+        EXTENDED_PROCESSING_ARRAY[0] = registerMetaTileEntity(id + 17, new MetaTileEntityExtendedProcessingArray(
+                modId("elite_processing_array"), 0));
+        EXTENDED_PROCESSING_ARRAY[1] = registerMetaTileEntity(id + 18, new MetaTileEntityExtendedProcessingArray(
+                modId("master_processing_array"), 1));
+        EXTENDED_PROCESSING_ARRAY[2] = registerMetaTileEntity(id + 19, new MetaTileEntityExtendedProcessingArray(
+                modId("ultimate_processing_array"), 2));
     }
 
     public static void registerMultiblockPart() {
@@ -102,7 +110,6 @@ public class GTConsolidateMetaTileEntity {
                 MORE_PARALLEL_HATCHES[i] = registerMetaTileEntity(id + i, new MetaTileEntityMoreParallelHatch(
                         modId("more_parallel_hatch." + name), i + 1));
             }
-
         }
     }
 }

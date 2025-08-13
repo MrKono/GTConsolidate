@@ -2,7 +2,9 @@
 ### 1.0.7-beta
 - **Add** _more Parallel Hatches !!_ (Configurable, default: **false**).
 - **Add** _Circuit Factory_.
+- **Add** _Extended Processing Array_.
 - **Refactor** _Large Greenhouse Structure_.
+- _CoA now accepts 64A Hatch_.
 
 ---
 ### 1.0.6.2-beta
