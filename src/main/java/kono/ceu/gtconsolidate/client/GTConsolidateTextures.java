@@ -35,10 +35,10 @@ public class GTConsolidateTextures {
         FUSION_CASING_MK3 = new SimpleOverlayRenderer(
                 "casings/fusion/machine_casing_fusion_3");
         OSMIRIDIUM_STURDY = new SimpleOverlayRenderer(
-                "casings/multiblock_casing/osmiridium_sturdy");
+                "casings/multiblock/osmiridium_sturdy");
         DARMSTADTIUM_STURDY = new SimpleOverlayRenderer(
-                "casings/multiblock_casing/darmstadtium_sturdy");
+                "casings/multiblock/darmstadtium_sturdy");
         TRITANIUM_STURDY = new SimpleOverlayRenderer(
-                "casings/multiblock_casing/tritanium_sturdy");
+                "casings/multiblock/tritanium_sturdy");
     }
 }
