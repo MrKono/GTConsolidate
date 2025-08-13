@@ -54,6 +54,7 @@ public class CommonProxy {
         registry.register(PARALLELIZED_ASSEMBLY_LINE_CASING);
         registry.register(COOLANT_CASING);
         registry.register(COA_CASING);
+        registry.register(MULTIBLOCK_CASING);
         if (Mods.GregTechFoodOption.isModLoaded()) {
             MetaTileLargeGreenHouse.addGrasses();
         }
@@ -66,6 +67,7 @@ public class CommonProxy {
         registry.register(createItemBlock(PARALLELIZED_ASSEMBLY_LINE_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(COOLANT_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(COA_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(MULTIBLOCK_CASING, VariantItemBlock::new));
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {

@@ -17,6 +17,9 @@ public class GTConsolidateTextures {
     public static SimpleOverlayRenderer FUSION_CASING;
     public static SimpleOverlayRenderer FUSION_CASING_MK2;
     public static SimpleOverlayRenderer FUSION_CASING_MK3;
+    public static SimpleOverlayRenderer OSMIRIDIUM_STURDY;
+    public static SimpleOverlayRenderer DARMSTADTIUM_STURDY;
+    public static SimpleOverlayRenderer TRITANIUM_STURDY;
 
     public static void preInit() {
         PARALLELIZED_ASSEMBLY_LINE_CASING = new SimpleOverlayRenderer(
@@ -31,5 +34,11 @@ public class GTConsolidateTextures {
                 "casings/fusion/machine_casing_fusion_2");
         FUSION_CASING_MK3 = new SimpleOverlayRenderer(
                 "casings/fusion/machine_casing_fusion_3");
+        OSMIRIDIUM_STURDY = new SimpleOverlayRenderer(
+                "casings/multiblock_casing/osmiridium_sturdy");
+        DARMSTADTIUM_STURDY = new SimpleOverlayRenderer(
+                "casings/multiblock_casing/darmstadtium_sturdy");
+        TRITANIUM_STURDY = new SimpleOverlayRenderer(
+                "casings/multiblock_casing/tritanium_sturdy");
     }
 }
