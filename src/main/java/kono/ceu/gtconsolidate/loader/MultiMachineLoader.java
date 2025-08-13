@@ -7,9 +7,11 @@ import static gregtech.common.items.MetaItems.*;
 import com.github.gtexpert.gtwp.common.metatileentities.GTWPMetaTileEntities;
 
 import gregtech.api.fluids.store.FluidStorageKeys;
+import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
@@ -186,23 +188,65 @@ public class MultiMachineLoader {
         // Circuit Factory
         RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(GCYMMetaTileEntities.LARGE_CIRCUIT_ASSEMBLER)
-                .input(ROBOT_ARM_LuV, 16)
-                .input(ROBOT_ARM_ZPM, 16)
-                .input(ROBOT_ARM_UV, 16)
-                .input(MICROPROCESSOR_LV, 64)
-                .input(PROCESSOR_MV, 64)
-                .input(NANO_PROCESSOR_HV, 64)
-                .input(QUANTUM_PROCESSOR_EV, 64)
-                .input(CRYSTAL_PROCESSOR_IV, 64)
-                .input(WETWARE_PROCESSOR_LUV, 64)
-                .input(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 32)
-                .input(WETWARE_SUPER_COMPUTER_UV, 16)
-                .input(WETWARE_MAINFRAME_UHV, 4)
+                .input(ROBOT_ARM_LuV, 4)
+                .input(ROBOT_ARM_ZPM, 4)
+                .input(ROBOT_ARM_UV, 4)
+                .input(MICROPROCESSOR_LV, 16)
+                .input(PROCESSOR_MV, 16)
+                .input(NANO_PROCESSOR_HV, 16)
+                .input(QUANTUM_PROCESSOR_EV, 16)
+                .input(CRYSTAL_PROCESSOR_IV, 16)
+                .input(WETWARE_PROCESSOR_LUV, 16)
+                .input(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 8)
+                .input(WETWARE_SUPER_COMPUTER_UV, 4)
+                .input(WETWARE_MAINFRAME_UHV, 1)
                 .fluidInputs(Materials.DistilledWater.getFluid(64000))
                 .fluidInputs(Materials.Lubricant.getFluid(32000))
                 .fluidInputs(Materials.PCBCoolant.getFluid(16000))
                 .output(GTConsolidateMetaTileEntity.CIRCUIT_FACTORY)
                 .EUt(VA[UHV]).duration(2 * min + 30 * sec).buildAndRegister();
+
+        // Elite Processing Array
+        ModHandler.addShapedRecipe(true, "elite_processing_array",
+                GTConsolidateMetaTileEntity.EXTENDED_PROCESSING_ARRAY[0].getStackForm(),
+                "RCR", "SAE", "PFP",
+                'R', ROBOT_ARM_ZPM,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.UV),
+                'S', SENSOR_ZPM,
+                'A', MetaTileEntities.ADVANCED_PROCESSING_ARRAY.getStackForm(),
+                'E', EMITTER_ZPM,
+                'P', new UnificationEntry(plate, Materials.Osmiridium),
+                'F', new UnificationEntry(pipeLargeFluid, Materials.Europium));
+
+        // Master Processing Array
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ROBOT_ARM_UV, 2)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(SENSOR_UV)
+                .input(EMITTER_UV)
+                .input(plate, Materials.Darmstadtium, 2)
+                .input(pipeLargeFluid, Materials.Duranium)
+                .stationResearch(b -> b
+                        .researchStack(GTConsolidateMetaTileEntity.EXTENDED_PROCESSING_ARRAY[0].getStackForm())
+                        .CWUt(64, 12800)
+                        .EUt(VA[LuV]))
+                .output(GTConsolidateMetaTileEntity.EXTENDED_PROCESSING_ARRAY[1])
+                .duration(90 * sec).EUt(VA[UHV]).buildAndRegister();
+
+        // Ultimate Processing Array
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ROBOT_ARM_UV, 8)
+                .input(circuit, MarkerMaterials.Tier.UHV, 4)
+                .input(SENSOR_UV, 4)
+                .input(EMITTER_UV, 4)
+                .input(plate, Materials.Tritanium, 2)
+                .input(pipeLargeFluid, Materials.Neutronium)
+                .stationResearch(b -> b
+                        .researchStack(GTConsolidateMetaTileEntity.EXTENDED_PROCESSING_ARRAY[1].getStackForm())
+                        .CWUt(128, 102400)
+                        .EUt(VA[UV]))
+                .output(GTConsolidateMetaTileEntity.EXTENDED_PROCESSING_ARRAY[2])
+                .duration(3 * min).EUt(VA[UHV]).buildAndRegister();
     }
 
     public static void GTFOMultiblock() {

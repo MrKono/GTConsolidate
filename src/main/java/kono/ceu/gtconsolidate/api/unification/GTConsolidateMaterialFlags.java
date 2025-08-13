@@ -1,5 +1,7 @@
 package kono.ceu.gtconsolidate.api.unification;
 
+import static gregtech.api.unification.material.info.MaterialFlags.*;
+
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.unification.material.Materials;
@@ -18,5 +20,9 @@ public class GTConsolidateMaterialFlags {
                             .translation("gregtech.fluid.liquid_generic"));
             Materials.Helium3.getProperty(PropertyKey.FLUID).setPrimaryKey(FluidStorageKeys.GAS);
         }
+        // Duranium
+        Materials.Duranium.addFlags(GENERATE_FRAME);
+        // Trinium
+        Materials.Trinium.addFlags(GENERATE_FRAME);
     }
 }

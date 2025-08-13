@@ -11,9 +11,11 @@ import static kono.ceu.gtconsolidate.loader.Components.*;
 
 import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.store.FluidStorageKeys;
+import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
@@ -150,5 +152,41 @@ public class CasingLoader {
                 .outputs(COOLANT_CASING.getItemVariant(CRYSTAL_QUARTZ_GLASS))
                 .blastFurnaceTemp(2800)
                 .EUt(VA[IV]).duration(30 * sec).buildAndRegister();
+
+        // Osmiridium Sturdy Casing
+        ModHandler.addShapedRecipe(true, "osmiridium_sturdy",
+                MULTIBLOCK_CASING.getItemVariant(OSMIRIDIUM_STURDY, amount), "PhP", "PFP", "PwP",
+                'P', new UnificationEntry(plate, Materials.Osmiridium),
+                'F', new UnificationEntry(frameGt, Materials.Trinium));
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, Materials.Osmiridium, 6)
+                .input(frameGt, Materials.Trinium)
+                .circuitMeta(6)
+                .outputs(MULTIBLOCK_CASING.getItemVariant(OSMIRIDIUM_STURDY, amount))
+                .duration(50).EUt(16).buildAndRegister();
+
+        // Darmstadtium Sturdy Casing
+        ModHandler.addShapedRecipe(true, "darmstadtium_sturdy",
+                MULTIBLOCK_CASING.getItemVariant(DARMSTADTIUM_STURDY, amount), "PhP", "PFP", "PwP",
+                'P', new UnificationEntry(plate, Materials.Darmstadtium),
+                'F', new UnificationEntry(frameGt, Materials.Duranium));
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, Materials.Darmstadtium, 6)
+                .input(frameGt, Materials.Duranium)
+                .circuitMeta(6)
+                .outputs(MULTIBLOCK_CASING.getItemVariant(DARMSTADTIUM_STURDY, amount))
+                .duration(50).EUt(16).buildAndRegister();
+
+        // Tritanium Sturdy Casing
+        ModHandler.addShapedRecipe(true, "tritanium_sturdy",
+                MULTIBLOCK_CASING.getItemVariant(TRITANIUM_STURDY, amount), "PhP", "PFP", "PwP",
+                'P', new UnificationEntry(plate, Materials.Tritanium),
+                'F', new UnificationEntry(frameGt, Materials.Neutronium));
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, Materials.Tritanium, 6)
+                .input(frameGt, Materials.Neutronium)
+                .circuitMeta(6)
+                .outputs(MULTIBLOCK_CASING.getItemVariant(OSMIRIDIUM_STURDY, amount))
+                .duration(50).EUt(16).buildAndRegister();
     }
 }
