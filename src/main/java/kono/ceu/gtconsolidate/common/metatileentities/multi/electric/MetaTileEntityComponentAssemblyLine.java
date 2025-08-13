@@ -24,6 +24,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import gregtech.api.GTValues;
+import gregtech.api.capability.IEnergyContainer;
+import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
@@ -95,9 +97,7 @@ public class MetaTileEntityComponentAssemblyLine extends RecipeMapMultiblockCont
                         states(MetaBlocks.MULTIBLOCK_CASING
                                 .getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING)))
                 .where('C', states(MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING)))
-                .where('E',
-                        abilities(MultiblockAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3)
-                                .or(states(getCasingState1())))
+                .where('E', energyHatchLimit(true, true, true, true).or(states(getCasingState1())))
                 .where('F', frames(Materials.TungstenSteel))
                 .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)))
                 .where('I', abilities(MultiblockAbility.IMPORT_ITEMS).setMinGlobalLimited(1).setMaxGlobalLimited(30, 5)
@@ -183,6 +183,14 @@ public class MetaTileEntityComponentAssemblyLine extends RecipeMapMultiblockCont
     }
 
     @Override
+    protected void initializeAbilities() {
+        super.initializeAbilities();
+        List<IEnergyContainer> inputEnergy = new ArrayList<>(getAbilities(MultiblockAbility.INPUT_ENERGY));
+        inputEnergy.addAll(getAbilities(MultiblockAbility.SUBSTATION_INPUT_ENERGY));
+        this.energyContainer = new EnergyContainerList(inputEnergy);
+    }
+
+    @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
         Object type = context.get("CasingTier");
@@ -242,6 +250,7 @@ public class MetaTileEntityComponentAssemblyLine extends RecipeMapMultiblockCont
                                boolean advanced) {
         super.addInformation(stack, world, tooltip, advanced);
         tooltip.add(I18n.format("gtconsolidate.machine.component_assembly_line.tooltip.1"));
+        tooltip.add(I18n.format("gtconsolidate.multiblock.accept_64a"));
     }
 
     private class CoALRecipeLogic extends MultiblockRecipeLogic {
