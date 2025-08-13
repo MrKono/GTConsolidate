@@ -232,8 +232,10 @@ public class MetaTileEntityExtendedProcessingArray extends RecipeMapMultiblockCo
     public void addInformation(ItemStack stack, @Nullable World player, @NotNull List<String> tooltip,
                                boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
+        tooltip.add(
+                I18n.format("gtconsolidate.machine.extended_processing_array.tooltip.factor." + getParallelFactor()));
         tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", getMachineLimit() * getParallelFactor()));
-        tooltip.add(I18n.format("gtconsolidate.machine.extended_processing_array.tooltip.1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.extended_processing_array.tooltip.1", getParallelFactor()));
     }
 
     private int getParallelFactor() {

@@ -30,6 +30,10 @@ gtconsolidate.machine.turbo_blast_furnace.name=回転式炉床製錬炉
 
 gtconsolidate.machine.absolute_freezer.name=絶対冷凍機
 
+gtconsolidate.machine.elite_processing_array.name=精鋭型プロセッシングアレイ
+gtconsolidate.machine.master_processing_array.name=マスタープロセッシングアレイ
+gtconsolidate.machine.ultimate_processing_array.name=究極型プロセッシングアレイ
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
@@ -79,6 +83,8 @@ tile.component_assembly_line_casing.uiv.name=UIV 部品組立ライン外装
 tile.component_assembly_line_casing.uxv.name=UXV 部品組立ライン外装
 tile.component_assembly_line_casing.opv.name=OpV 部品組立ライン外装
 tile.component_assembly_line_casing.max.name=MAX 部品組立ライン外装
+
+
 
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.filtered=§3§nフィルター付き搬入バス§r§3を利用すると便利かもしれません。
@@ -140,6 +146,12 @@ gtconsolidate.machine.absolute_freezer.tooltip1=冷媒不要の冷却機
 # Circuit Factory
 gtconsolidate.machine.circuit_factory.tooltip.1=超精密機械
 gtconsolidate.machine.circuit_factory.tooltip.2=バスの区別を有効にすることを推奨。
+
+# Extended Processing Array
+gtconsolidate.machine.extended_processing_array.tooltip.factor.4=これくらいは欲しいかも。
+gtconsolidate.machine.extended_processing_array.tooltip.factor.16=こんなに…必要?
+gtconsolidate.machine.extended_processing_array.tooltip.factor.64=もっといい手段があるんじゃない?
+gtconsolidate.machine.extended_processing_array.tooltip.1=設定した機械を§e%s倍§7して動作する。
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
