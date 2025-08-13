@@ -27,6 +27,7 @@ _New Machines_
 - Turbo Rotary Hearth Blast Smelter (EBF + ABS, Since 1.0.6-beta)
 - Absolute Freezer (Since 1.0.6-beta)
 - Circuit Factory (Since 1.0.7-beta)
+- Extended Processing Array (since 1.0.7-beta)
 
 _New Multiblock Part_
 - Filtered Input Bus (Only one type of item can input, since 1.0.2-beta)
