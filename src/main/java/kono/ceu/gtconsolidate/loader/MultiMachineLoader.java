@@ -226,6 +226,7 @@ public class MultiMachineLoader {
                 .input(EMITTER_UV)
                 .input(plate, Materials.Darmstadtium, 2)
                 .input(pipeLargeFluid, Materials.Duranium)
+                .input(GTConsolidateMetaTileEntity.EXTENDED_PROCESSING_ARRAY[0])
                 .stationResearch(b -> b
                         .researchStack(GTConsolidateMetaTileEntity.EXTENDED_PROCESSING_ARRAY[0].getStackForm())
                         .CWUt(64, 12800)
@@ -241,6 +242,7 @@ public class MultiMachineLoader {
                 .input(EMITTER_UV, 4)
                 .input(plate, Materials.Tritanium, 2)
                 .input(pipeLargeFluid, Materials.Neutronium)
+                .input(GTConsolidateMetaTileEntity.EXTENDED_PROCESSING_ARRAY[1])
                 .stationResearch(b -> b
                         .researchStack(GTConsolidateMetaTileEntity.EXTENDED_PROCESSING_ARRAY[1].getStackForm())
                         .CWUt(128, 102400)
