@@ -169,5 +169,6 @@ gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be th
 recipemap.component_assembly_line.name=Component Assembly Line
 recipemap.turbo_blast_recipe.name=Rotary Hearth Blast Smelter
 recipemap.absolute_vacuum_recipe.name=Absolute Freezer
+recipemap.circuit_factory.name=Circuit Factory
 
 gtconsolidate.recipe.coa=Minimum Casing Tier: %s
