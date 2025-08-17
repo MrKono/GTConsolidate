@@ -12,7 +12,7 @@
 
 ----
 ### 1.0.6.1-beta
-- **Fix** _crash when `highTierContent` is true_. (#14)
+- **Fix** _crash when `highTierContent` is true_. (GTConsolidate#14)
 
 ---
 ### 1.0.6-beta
@@ -29,9 +29,9 @@
 
 ---
 ### 1.0.4-beta
-- **Add** _mode setting_ (configurable) (#5). 
+- **Add** _mode setting_ (configurable) (GTConsolidate#5). 
   - Parallelized EBF and VF are too OP, added mode setting for balance adjustment.
-- **Fix** _Filtered Item Bus Glitch_ (#6).
+- **Fix** _Filtered Item Bus Glitch_ (GTConsolidate#6).
 
 ---
 ### 1.0.3.1-beta
