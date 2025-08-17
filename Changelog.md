@@ -1,4 +1,10 @@
 ## Changelog
+### 1.0.7.1-beta
+- **Fix** _some lang key was missed_ ( #19 ).
+- **Fix** _ja_jp.lang_.
+- **Fix** _Tritanium Study Casing recipe_.
+
+---
 ### 1.0.7-beta
 - **Add** _more Parallel Hatches !!_ (Configurable, default: **false**).
 - **Add** _Circuit Factory_.
@@ -29,9 +35,9 @@
 
 ---
 ### 1.0.4-beta
-- **Add** _mode setting_ (configurable) (GTConsolidate#5). 
+- **Add** _mode setting_ (configurable) ( #5 ). 
   - Parallelized EBF and VF are too OP, added mode setting for balance adjustment.
-- **Fix** _Filtered Item Bus Glitch_ (GTConsolidate#6).
+- **Fix** _Filtered Item Bus Glitch_ ( #6 ).
 
 ---
 ### 1.0.3.1-beta
