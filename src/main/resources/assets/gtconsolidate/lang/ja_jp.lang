@@ -145,7 +145,7 @@ gtconsolidate.machine.turbo_blast_furnace.tooltip.3=停止中の場合、§b最�
 gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eバスの区別を有効にすることを強く推奨。
 
 # Absolute Freezer
-gtconsolidate.machine.absolute_freezer.tooltip1=冷媒不要の冷却機
+gtconsolidate.machine.absolute_freezer.tooltip.1=冷媒不要の冷却機
 
 # Circuit Factory
 gtconsolidate.machine.circuit_factory.tooltip.1=超精密機械
