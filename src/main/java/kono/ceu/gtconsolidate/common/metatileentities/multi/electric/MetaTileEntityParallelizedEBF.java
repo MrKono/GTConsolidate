@@ -285,7 +285,7 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"));
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"));
         if (isShiftDown() && isCtrlDown()) {
-            tooltip.add(I18n.format("gtconsolidate.machine.parallelized_ebf.tooltip3"));
+            tooltip.add(I18n.format("gtconsolidate.machine.parallelized_ebf.tooltip.3"));
             for (int i = 1; i < 5; i++) {
                 int j = i + 3;
                 tooltip.add(I18n.format(("gtconsolidate.machine.parallelized_ebf.tooltip." + j), i + 1,
