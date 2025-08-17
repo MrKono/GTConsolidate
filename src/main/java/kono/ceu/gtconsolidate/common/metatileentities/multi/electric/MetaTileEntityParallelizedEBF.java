@@ -273,9 +273,9 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
     public void addInformation(ItemStack stack, @Nullable World world, @NotNull List<String> tooltip,
                                boolean advanced) {
         super.addInformation(stack, world, tooltip, advanced);
-        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_ebf.tooltip1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_ebf.tooltip.1"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", maxParallel));
-        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_ebf.tooltip2", increaseFactor()));
+        tooltip.add(I18n.format("gtconsolidate.machine.parallelized_ebf.tooltip.2", increaseFactor()));
         tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
                 maxParallel == 4 ? I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.energy_in.4and16") :
                         I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.energy_in.16")));
@@ -285,7 +285,7 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"));
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"));
         if (isShiftDown() && isCtrlDown()) {
-            tooltip.add(I18n.format("gtconsolidate.machine.parallelized_ebf.tooltip3"));
+            tooltip.add(I18n.format("gtconsolidate.machine.parallelized_ebf.tooltip.3"));
             for (int i = 1; i < 5; i++) {
                 int j = i + 3;
                 tooltip.add(I18n.format(("gtconsolidate.machine.parallelized_ebf.tooltip." + j), i + 1,

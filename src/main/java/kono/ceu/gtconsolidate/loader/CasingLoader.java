@@ -186,7 +186,7 @@ public class CasingLoader {
                 .input(plate, Materials.Tritanium, 6)
                 .input(frameGt, Materials.Neutronium)
                 .circuitMeta(6)
-                .outputs(MULTIBLOCK_CASING.getItemVariant(OSMIRIDIUM_STURDY, amount))
+                .outputs(MULTIBLOCK_CASING.getItemVariant(TRITANIUM_STURDY, amount))
                 .duration(50).EUt(16).buildAndRegister();
     }
 }
