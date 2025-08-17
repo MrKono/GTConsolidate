@@ -34,6 +34,8 @@ gtconsolidate.machine.elite_processing_array.name=精鋭型プロセッシング
 gtconsolidate.machine.master_processing_array.name=マスタープロセッシングアレイ
 gtconsolidate.machine.ultimate_processing_array.name=究極型プロセッシングアレイ
 
+gtconsolidate.machine.circuit_factory.name=回路工房
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
@@ -84,7 +86,9 @@ tile.component_assembly_line_casing.uxv.name=UXV 部品組立ライン外装
 tile.component_assembly_line_casing.opv.name=OpV 部品組立ライン外装
 tile.component_assembly_line_casing.max.name=MAX 部品組立ライン外装
 
-
+tile.multiblock_casing.osmiridium_sturdy.name=頑丈なオスミリジウム製マシン外装
+tile.multiblock_casing.darmstadtium_sturdy.name=頑丈なダームスタチウム製マシン外装
+tile.multiblock_casing.tritanium_sturdy.name=頑丈なトリタニウム製マシン外装
 
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.filtered=§3§nフィルター付き搬入バス§r§3を利用すると便利かもしれません。
@@ -166,5 +170,6 @@ gtconsolidate.multiblock.pattern.error.coa_casings=§c部品組立外装は全�
 recipemap.component_assembly_line.name=部品アセンブリライン
 recipemap.turbo_blast_recipe.name=回転式炉床製錬炉
 recipemap.absolute_vacuum_recipe.name=絶対冷凍機
+recipemap.circuit_factory.name=回路工房
 
 gtconsolidate.recipe.coa=外装の最小Tier: %s
