@@ -104,6 +104,9 @@ gtconsolidate.multiblock.tooltip.universal.limit.energy_in.laser=Only accept §e
 gtconsolidate.multiblock.tooltip.universal.limit.maintenance_no_clean=§eCannot use§7 Filtered Maintenance Hatch.
 gtconsolidate.multiblock.accept_64a=Accept 64A Energy Hatch.
 gtconsolidate.multiblock.tooltip.universal.shift_ctrl=Hold SHIFT & CTRL to show more Info.
+gtconsolidate.multiblock.tooltip.universal.tab.build=Hold Tab to show additional Structure Information.
+gtconsolidate.multiblock.tooltip.pattern_info.not_shown=§eBlocks that are necessary but not displayed in §bMultiblock Pattern
+gtconsolidate.multiblock.tooltip.pattern_info.not_shown.detail=     §e%s§7 x §e%s
 
 # Adv. Fusion Reactor
 gtconsolidate.machine.parallelized_fusion_reactor.tooltip.1=Parallelized Fusion Reactor, but with limitations.

@@ -110,6 +110,9 @@ gtconsolidate.machine.parallelized_fusion_reactor.tooltip.2=§bエナジーハ�
 gtconsolidate.machine.parallelized_fusion_reactor.capacity=蓄電量 §e%sM EU
 gtconsolidate.machine.parallelized_fusion_reactor.limit=エナジーハッチは§e16Aのみ§7。
 gtconsolidate.multiblock.tooltip.universal.shift_ctrl=SHIFTとCTRLでさらに情報を表示。
+gtconsolidate.multiblock.tooltip.universal.tab.build=Tabで構造の追加情報を表示。
+gtconsolidate.multiblock.tooltip.pattern_info.not_shown=§bマルチブロックの構造§eに表示されないが、構築に必要なブロック
+gtconsolidate.multiblock.tooltip.pattern_info.not_shown.detail=     §e%s§7 x §e%s
 
 # Adv. Electric Blast Furnace
 gtconsolidate.machine.parallelized_ebf.tooltip.1=並列化された工業用電気炉。ただし制限あり。

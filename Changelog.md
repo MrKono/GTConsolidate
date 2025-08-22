@@ -1,4 +1,8 @@
 ## Changelog
+### 1.0.7.2-beta
+- **Add** _extra tooltip_. (`Blocks that are necessary but not displayed in Multiblock Pattern`)
+- **Refactor** _Absolute Freezer recipe_. (Processing only)
+---
 ### 1.0.7.1-beta
 - **Fix** _some lang key was missed_ ( #19 ).
 - **Fix** _ja_jp.lang_.
