@@ -1,4 +1,9 @@
 ## Changelog
+### 1.0.7.3-beta
+- **Fix** _Turbo Rotary Hearth Blast Smelter does not use_ `blastFurnaceTemp()`.
+- **Fix** _recipe confit_ (Turbo Rotary Hearth Blast Smelter).
+
+---
 ### 1.0.7.2-beta
 - **Add** _extra tooltip_. (`Blocks that are necessary but not displayed in Multiblock Pattern`)
 - **Refactor** _Absolute Freezer recipe_. (Processing only)
