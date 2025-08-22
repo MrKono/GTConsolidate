@@ -2,6 +2,7 @@ package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.energyHatchLimit;
+import static kono.ceu.gtconsolidate.api.util.GTConsolidateUtil.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -281,6 +282,15 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.3"));
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.4"));
         tooltip.add(I18n.format("gtconsolidate.multiblock.accept_64a"));
+        if (isTABDown()) {
+            tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.pattern_info.not_shown"));
+            tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.pattern_info.not_shown.detail",
+                    I18n.format("tile.boiler_casing.tungstensteel_firebox.name"), 48));
+            tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.pattern_info.not_shown.detail",
+                    I18n.format("tile.boiler_casing.tungstensteel_pipe.name"), 128));
+        } else {
+            tooltip.add((I18n.format("gtconsolidate.multiblock.tooltip.universal.tab.build")));
+        }
     }
 
     @Override
