@@ -35,6 +35,7 @@ public class RecipeMapModify {
                             .outputs(recipeBuilder.getOutputs())
                             .fluidOutputs(recipeBuilder.getFluidOutputs())
                             .chancedOutputs(recipeBuilder.getChancedOutputs())
+                            .blastFurnaceTemp(recipeBuilder.getBlastFurnaceTemp())
                             .duration(recipeBuilder.getDuration())
                             .EUt(recipeBuilder.getEUt())
                             .buildAndRegister();
@@ -48,6 +49,7 @@ public class RecipeMapModify {
                             .outputs(recipeBuilder.getOutputs())
                             .fluidOutputs(recipeBuilder.getFluidOutputs())
                             .chancedOutputs(recipeBuilder.getChancedOutputs())
+                            .blastFurnaceTemp(recipeBuilder.getBlastFurnaceTemp())
                             .duration(recipeBuilder.getDuration())
                             .EUt(recipeBuilder.getEUt())
                             .buildAndRegister();
