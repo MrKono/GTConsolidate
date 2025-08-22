@@ -146,6 +146,7 @@ gtconsolidate.machine.turbo_blast_furnace.tooltip.1=工業用電気炉と合金�
 gtconsolidate.machine.turbo_blast_furnace.tooltip.2=稼働中の場合、§b最大温度§7が§c基本最大温度 * 0.01§fK/s§7で上昇する。
 gtconsolidate.machine.turbo_blast_furnace.tooltip.3=停止中の場合、§b最大温度§7が§c基本最大温度 * 0.1§fK/s§7で減少する。
 gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eバスの区別を有効にすることを強く推奨。
+gregtech.multiblock.turbo_blast_furnace.description=注意：レシピの競合のため、一部のレシピが変更されています。\n\nスチールインゴット: 一部のレシピでは、追加でプログラム回路が必要となっています。
 
 # Absolute Freezer
 gtconsolidate.machine.absolute_freezer.tooltip.1=冷媒不要の冷却機

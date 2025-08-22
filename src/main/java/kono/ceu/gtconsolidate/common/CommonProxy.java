@@ -32,6 +32,7 @@ import kono.ceu.gtconsolidate.loader.GTConsolidateMiscLoader;
 import kono.ceu.gtconsolidate.loader.MetaTileEntityLoader;
 import kono.ceu.gtconsolidate.loader.MultiMachineLoader;
 import kono.ceu.gtconsolidate.loader.handlers.HandlersLoader;
+import kono.ceu.gtconsolidate.loader.handlers.TurboBlastFurnaceLoader;
 
 @Mod.EventBusSubscriber(modid = GTConsolidateValues.MODID)
 public class CommonProxy {
@@ -95,11 +96,13 @@ public class CommonProxy {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipesRemoval(RegistryEvent.Register<IRecipe> event) {
         Logs.logger.info("Removing recipes...");
+        TurboBlastFurnaceLoader.removeSteel();
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerRecipesLow(RegistryEvent.Register<IRecipe> event) {
         Logs.logger.info("Registering recipes...");
         RecyclingRecipes.init();
+        TurboBlastFurnaceLoader.addSteel();
     }
 }
