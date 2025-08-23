@@ -1,4 +1,8 @@
 ## Changelog
+### 1.0.7.4-beta
+- **Fix** _Turbo Rotary Hearth Blast Smelter cannot process ABS recipe_.
+
+---
 ### 1.0.7.3-beta
 - **Fix** _Turbo Rotary Hearth Blast Smelter does not use_ `blastFurnaceTemp()`.
 - **Fix** _recipe confit_ (Turbo Rotary Hearth Blast Smelter).
