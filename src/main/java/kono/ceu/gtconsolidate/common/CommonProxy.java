@@ -96,14 +96,14 @@ public class CommonProxy {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipesRemoval(RegistryEvent.Register<IRecipe> event) {
         Logs.logger.info("Removing recipes...");
-        TurboBlastFurnaceLoader.removeSteel();
+        TurboBlastFurnaceLoader.removeConfitRecipe();
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerRecipesLow(RegistryEvent.Register<IRecipe> event) {
         Logs.logger.info("Registering recipes...");
         RecyclingRecipes.init();
-        TurboBlastFurnaceLoader.addSteel();
+        TurboBlastFurnaceLoader.reAddRecipe();
         RecipeMapModify.modifyRecipeBuildLow();
     }
 }

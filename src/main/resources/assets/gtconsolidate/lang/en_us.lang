@@ -145,7 +145,7 @@ gtconsolidate.machine.turbo_blast_furnace.tooltip.1=Integrated EBF and ABS
 gtconsolidate.machine.turbo_blast_furnace.tooltip.2=If active, §bTemperature§7 increases in §cCoil's Temperature * 0.01§fK/s§7.
 gtconsolidate.machine.turbo_blast_furnace.tooltip.3=If idle, §bTemperature§7 decreases in §cCoil's Temperature * 0.1§fK/s§7.
 gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eStrongly recommended to enable Distinct Buses.
-gregtech.multiblock.turbo_blast_furnace.description=Note: Due to recipe conflicts, some recipes have been changed.\n\nSteel Ingot: Some recipes have been required Programmed Circuit in addition.
+gregtech.multiblock.turbo_blast_furnace.description=Note: Due to recipe conflicts, some recipes have been changed.\n\nSteel Ingot: Some recipes have been required Programmed Circuit in addition.\nYttrium Ingot: Has been required Programmed Circuit in addition.
 
 # Absolute Freezer
 gtconsolidate.machine.absolute_freezer.tooltip.1=Refrigerant-free freezer.

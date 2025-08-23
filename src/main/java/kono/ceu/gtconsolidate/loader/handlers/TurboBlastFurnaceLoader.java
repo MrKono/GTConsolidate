@@ -11,8 +11,8 @@ import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
 
 public class TurboBlastFurnaceLoader {
 
-    // fix steel recipe confit -remove-
-    public static void removeSteel() {
+    // fix recipe confit: -remove-
+    public static void removeConfitRecipe() {
         // Steel dust -> Steel Ingot
         GTRecipeHandler.removeRecipesByInputs(GTConsolidateRecipeMaps.TURBO_BLAST_RECIPE,
                 OreDictUnifier.get(dust, Materials.Steel));
@@ -22,10 +22,13 @@ public class TurboBlastFurnaceLoader {
         // WroughtIron & Carbone dust -> Steel ingot
         GTRecipeHandler.removeRecipesByInputs(GTConsolidateRecipeMaps.TURBO_BLAST_RECIPE,
                 OreDictUnifier.get(dust, Materials.WroughtIron, 4), OreDictUnifier.get(dust, Materials.Carbon));
+        // Yttrium dust -> Yttrium ingot
+        GTRecipeHandler.removeRecipesByInputs(GTConsolidateRecipeMaps.TURBO_BLAST_RECIPE,
+                OreDictUnifier.get(dust, Materials.Yttrium));
     }
 
-    // fix steel recipe confit -add-
-    public static void addSteel() {
+    // fix recipe confit: re-add
+    public static void reAddRecipe() {
         GTConsolidateRecipeMaps.TURBO_BLAST_RECIPE.recipeBuilder()
                 .input(dust, Materials.Steel)
                 .output(ingot, Materials.Steel)
@@ -50,5 +53,12 @@ public class TurboBlastFurnaceLoader {
                 .circuitMeta(1)
                 .blastFurnaceTemp(2000)
                 .duration(50).EUt(VA[EV]).buildAndRegister();
+
+        GTConsolidateRecipeMaps.TURBO_BLAST_RECIPE.recipeBuilder()
+                .input(dust, Materials.Yttrium)
+                .output(ingot, Materials.Yttrium)
+                .circuitMeta(1)
+                .blastFurnaceTemp(1799)
+                .duration(3202).EUt(VA[MV]).buildAndRegister();
     }
 }
