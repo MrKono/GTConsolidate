@@ -104,5 +104,6 @@ public class CommonProxy {
         Logs.logger.info("Registering recipes...");
         RecyclingRecipes.init();
         TurboBlastFurnaceLoader.addSteel();
+        RecipeMapModify.modifyRecipeBuildLow();
     }
 }

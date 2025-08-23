@@ -10,8 +10,6 @@ import gregtech.api.recipes.builders.BlastRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.core.sound.GTSoundEvents;
 
-import gregicality.multiblocks.api.recipes.GCYMRecipeMaps;
-
 import kono.ceu.gtconsolidate.api.recipes.builder.CircuitFactoryRecipeBuilder;
 import kono.ceu.gtconsolidate.api.recipes.builder.CoARecipeBuilder;
 import kono.ceu.gtconsolidate.api.recipes.machine.RecipeMapCircuitFactory;
@@ -41,8 +39,7 @@ public class GTConsolidateRecipeMaps {
                     .setSlotOverlay(false, true, true, GuiTextures.FURNACE_OVERLAY_2)
                     .setSlotOverlay(true, true, false, GuiTextures.FURNACE_OVERLAY_2)
                     .setSlotOverlay(true, true, true, GuiTextures.FURNACE_OVERLAY_2)
-                    .setSound(GTSoundEvents.FURNACE)
-                    .setSmallRecipeMap(GCYMRecipeMaps.ALLOY_BLAST_RECIPES);
+                    .setSound(GTSoundEvents.FURNACE);
 
     @ZenProperty
     public static final RecipeMap<SimpleRecipeBuilder> ABSOLUTE_VACUUM_RECIPE = new RecipeMap<>(

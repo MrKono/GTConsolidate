@@ -11,7 +11,10 @@ import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.api.recipes.ingredients.GTRecipeInput;
+import gregtech.api.recipes.recipeproperties.TemperatureProperty;
 import gregtech.api.unification.material.Materials;
+
+import gregicality.multiblocks.api.recipes.GCYMRecipeMaps;
 
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
 
@@ -70,6 +73,23 @@ public class RecipeMapModify {
                 }
             }
             vfBuilder.buildAndRegister();
+        });
+    }
+
+    public static void modifyRecipeBuildLow() {
+        GCYMRecipeMaps.ALLOY_BLAST_RECIPES.getRecipeList().forEach(recipe -> {
+            GTConsolidateRecipeMaps.TURBO_BLAST_RECIPE.recipeBuilder()
+                    .inputs(recipe.getInputs().toArray(new GTRecipeInput[0]))
+                    .fluidInputs(recipe.getFluidInputs())
+                    .outputs(recipe.getOutputs())
+                    .fluidOutputs(recipe.getFluidOutputs())
+                    .chancedOutputs(recipe.getChancedOutputs().getChancedEntries())
+                    .blastFurnaceTemp(recipe.getProperty(TemperatureProperty.getInstance(),
+                            recipe.getRecipePropertyStorage().getRecipePropertyValue(TemperatureProperty.getInstance(),
+                                    0)))
+                    .duration(recipe.getDuration())
+                    .EUt(recipe.getEUt())
+                    .buildAndRegister();
         });
     }
 }
