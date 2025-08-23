@@ -1,21 +1,24 @@
 package kono.ceu.gtconsolidate.loader.handlers;
 
-import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
-import gregicality.multiblocks.api.recipes.GCYMRecipeMaps;
+import static gregtech.api.unification.material.info.MaterialFlags.IS_MAGNETIC;
+import static gregtech.api.unification.ore.OrePrefix.ingot;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
 import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.common.items.MetaItems;
+
+import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
+import gregicality.multiblocks.api.recipes.GCYMRecipeMaps;
+
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static gregtech.api.unification.material.info.MaterialFlags.IS_MAGNETIC;
-import static gregtech.api.unification.ore.OrePrefix.ingot;
 
 public class AbsoluteFreezerLoader {
 
