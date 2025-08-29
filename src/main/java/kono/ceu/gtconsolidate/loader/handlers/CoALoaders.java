@@ -198,12 +198,12 @@ public class CoALoaders {
                 builder.input(stickLong, exMat[i - 1], 2 * 48)
                         .input(cableGtDouble, cableMaterial(i), 48)
                         .input(bestCircuit(i), 2 * 48)
-                        .inputs(GTUtility.copy(2, partsStack2(i)));
+                        .inputs(GTUtility.copy(2 * 48, partsStack2(i)));
             } else {
                 builder.input(frameGt, partMaterial4(i), 48)
                         .input(motor(i), 48)
                         .input(stickLong, i == GTValues.LuV ? Materials.Ruridit : partMaterial4(i), 4 * 48)
-                        .inputs(GTUtility.copy(i == GTValues.ZPM ? 2 : 1, partsStack2(i)))
+                        .inputs(GTUtility.copy(i == GTValues.ZPM ? 2 * 48 : 48, partsStack2(i)))
                         .input(bestCircuit(i), 2 * 48)
                         .input(foil, exMat[i - 1], (64 + 32) * 48)
                         .input(cableGtQuadruple, cableMaterial(i), 48);
@@ -232,7 +232,7 @@ public class CoALoaders {
                 builder.input(frameGt, partMaterial4(i), 48)
                         .input(motor(i), 48)
                         .input(plate, i == GTValues.LuV ? Materials.Ruridit : partMaterial4(i), 4 * 48)
-                        .inputs(GTUtility.copy(i == GTValues.ZPM ? 2 : 1, partsStack2(i)))
+                        .inputs(GTUtility.copy(i == GTValues.ZPM ? 2 * 48 : 48, partsStack2(i)))
                         .input(bestCircuit(i), 2 * 48)
                         .input(foil, exMat[i - 1], (64 + 32) * 48)
                         .input(cableGtQuadruple, cableMaterial(i), 48);
