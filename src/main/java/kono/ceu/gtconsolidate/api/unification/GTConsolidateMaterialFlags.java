@@ -10,6 +10,8 @@ import gregtech.api.unification.material.properties.PropertyKey;
 public class GTConsolidateMaterialFlags {
 
     public static void add() {
+        // Chrome
+        if (!Materials.Chrome.hasFlag(GENERATE_LONG_ROD)) Materials.Chrome.addFlags(GENERATE_LONG_ROD);
         // Helium-3
         if (Materials.Helium3.getFluid(FluidStorageKeys.LIQUID) == null) {
             Materials.Helium3.getProperty(PropertyKey.FLUID).enqueueRegistration(FluidStorageKeys.LIQUID,
@@ -21,8 +23,8 @@ public class GTConsolidateMaterialFlags {
             Materials.Helium3.getProperty(PropertyKey.FLUID).setPrimaryKey(FluidStorageKeys.GAS);
         }
         // Duranium
-        Materials.Duranium.addFlags(GENERATE_FRAME);
+        if (!Materials.Duranium.hasFlag(GENERATE_FRAME)) Materials.Duranium.addFlags(GENERATE_FRAME);
         // Trinium
-        Materials.Trinium.addFlags(GENERATE_FRAME);
+        if (!Materials.Trinium.hasFlag(GENERATE_FRAME)) Materials.Trinium.addFlags(GENERATE_FRAME);
     }
 }
