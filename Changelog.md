@@ -1,4 +1,8 @@
 ## Changelog
+### 1.0.7.6-beta
+- **Fix** _Absolute Freezer cannot chill_ `liquid metal` again.
+
+---
 #### 1.0.7.5-beta
 - **Fix** _CoA recipe input_.
 

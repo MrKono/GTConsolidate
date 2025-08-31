@@ -1,6 +1,5 @@
 package kono.ceu.gtconsolidate.loader.handlers;
 
-import static gregtech.api.unification.material.info.MaterialFlags.IS_MAGNETIC;
 import static gregtech.api.unification.ore.OrePrefix.ingot;
 
 import java.util.HashMap;
@@ -24,14 +23,14 @@ public class AbsoluteFreezerLoader {
 
     public static void coolingABS() {
         Map<Fluid, Material> liquidStack = new HashMap<>();
-        for (Material mat : GregTechAPI.materialManager.getRegisteredMaterials()) {
-            if (!mat.hasFlag(IS_MAGNETIC) && mat.hasProperty(PropertyKey.INGOT) && mat.hasFluid()) {
-                if (mat.getFluid(FluidStorageKeys.LIQUID) != null && mat.getFluid(GCYMFluidStorageKeys.MOLTEN) == null)
-                    liquidStack.put(mat.getFluid(FluidStorageKeys.LIQUID), mat);
+        for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
+            if (material.hasFluid() && material.getFluid(FluidStorageKeys.LIQUID) != null &&
+                    material.hasProperty(PropertyKey.INGOT) && material.getFluid(GCYMFluidStorageKeys.MOLTEN) == null) {
+                liquidStack.put(material.getFluid(FluidStorageKeys.LIQUID), material);
             }
         }
-        GCYMRecipeMaps.ALLOY_BLAST_RECIPES.onRecipeBuild(blastRecipeBuilder -> {
-            for (FluidStack stack : blastRecipeBuilder.getFluidOutputs()) {
+        GCYMRecipeMaps.ALLOY_BLAST_RECIPES.getRecipeList().forEach(recipe -> {
+            for (FluidStack stack : recipe.getFluidOutputs()) {
                 Fluid fluid = stack.getFluid();
                 if (liquidStack.containsKey(fluid)) {
                     GTConsolidateRecipeMaps.ABSOLUTE_VACUUM_RECIPE.recipeBuilder()
