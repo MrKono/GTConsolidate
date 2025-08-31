@@ -105,5 +105,6 @@ public class CommonProxy {
         RecyclingRecipes.init();
         TurboBlastFurnaceLoader.reAddRecipe();
         RecipeMapModify.modifyRecipeBuildLow();
+        HandlersLoader.low();
     }
 }
