@@ -4,6 +4,7 @@ import static gregtech.api.GTValues.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 
+import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
@@ -15,6 +16,8 @@ import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
 public class CircuitFactoryLoader {
 
     private static final int outputAmount = ConfigHolder.recipes.harderCircuitRecipes ? 1 : 2;
+    private static final int voltage = GregTechAPI.isHighTier() ? (int) V[UEV] : (int) V[UHV];
+    private static final int factor = GregTechAPI.isHighTier() ? 1 : 20;
 
     public static void register() {
         processor();
@@ -56,7 +59,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(ELECTRONIC_CIRCUIT_LV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt((int) V[UEV]).duration(200 * 640).buildAndRegister();
+                .EUt(voltage).duration(200 * 640 * factor).buildAndRegister();
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(BASIC_CIRCUIT_BOARD, 48)
                 .input(ADVANCED_SMD_RESISTOR, 48)
@@ -66,7 +69,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(ELECTRONIC_CIRCUIT_LV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt((int) V[UEV]).duration(200 * 640).buildAndRegister();
+                .EUt(voltage).duration(200 * 640 * factor).buildAndRegister();
 
         // Good Electronic Circuit
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
@@ -78,7 +81,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(ELECTRONIC_CIRCUIT_MV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt((int) V[UEV]).duration(300 * 64).buildAndRegister();
+                .EUt(voltage).duration(300 * 64 * factor).buildAndRegister();
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(GOOD_CIRCUIT_BOARD, 48)
                 .input(circuit, MarkerMaterials.Tier.LV, 2 * 48)
@@ -88,7 +91,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(ELECTRONIC_CIRCUIT_MV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt((int) V[UEV]).duration(300 * 64).buildAndRegister();
+                .EUt(voltage).duration(300 * 64 * factor).buildAndRegister();
 
         // Integrated Logic Circuit
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
@@ -102,7 +105,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(INTEGRATED_CIRCUIT_LV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt((int) V[UEV]).duration(200 * 64).buildAndRegister();
+                .EUt(voltage).duration(200 * 64 * factor).buildAndRegister();
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(BASIC_CIRCUIT_BOARD, 48)
                 .input(INTEGRATED_LOGIC_CIRCUIT, 48)
@@ -114,7 +117,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(INTEGRATED_CIRCUIT_LV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt((int) V[UEV]).duration(200 * 64).buildAndRegister();
+                .EUt(voltage).duration(200 * 64 * factor).buildAndRegister();
 
         // Good Integrated Circuit
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
@@ -128,7 +131,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(INTEGRATED_CIRCUIT_MV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt((int) V[UEV]).duration(400 * 64).buildAndRegister();
+                .EUt(voltage).duration(400 * 64 * factor).buildAndRegister();
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(GOOD_CIRCUIT_BOARD, 48)
                 .input(INTEGRATED_LOGIC_CIRCUIT, 48)
@@ -140,7 +143,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(INTEGRATED_CIRCUIT_MV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt((int) V[UEV]).duration(400 * 64).buildAndRegister();
+                .EUt(voltage).duration(400 * 64 * factor).buildAndRegister();
 
         // Advanced Integrated Circuit
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
@@ -154,7 +157,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(INTEGRATED_CIRCUIT_HV, 64)
                 .casingTier(LV)
-                .EUt((int) V[UEV]).duration(800 * 64)
+                .EUt(voltage).duration(800 * 64 * factor)
                 .buildAndRegister();
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(INTEGRATED_CIRCUIT_MV, outputAmount * 48)
@@ -167,7 +170,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(INTEGRATED_CIRCUIT_HV, 64)
                 .casingTier(LV)
-                .EUt((int) V[UEV]).duration(800 * 64)
+                .EUt(voltage).duration(800 * 64 * factor)
                 .buildAndRegister();
     }
 
@@ -184,6 +187,6 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000 * tier))
                 .output(output, outputAmount * 64)
                 .casingTier(tier)
-                .duration(duration * 64).EUt((int) V[UEV]).buildAndRegister();
+                .duration(duration * 64 * factor).EUt(voltage).buildAndRegister();
     }
 }

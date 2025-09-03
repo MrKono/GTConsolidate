@@ -63,4 +63,7 @@ dependencies {
     if (project.debug_gtwp.toBoolean()) {
         runtimeOnlyNonPublishable rfg.deobf("curse.maven:gtwoodprocessing-1093753:6334967")
     }
+
+    // GTExpertCore 2.4.11-beta
+    compileOnly rfg.deobf("curse.maven:gte2-coremod-851103:6895062")
 }
