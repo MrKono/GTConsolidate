@@ -2,6 +2,7 @@
 ### 1.7.0.7-beta
 - **Fix** _Absolute Freezer cannot chill_ `liquid metal` again and again.
 - **Fix** _Circuit Factory cannot process any recipe_.
+- **Fix** _some ABS recipes were not added to Turbo Rotary Hearth Blast Smelter when `GTExpertCore` is loaded_.
 
 ---
 ### 1.0.7.6-beta
