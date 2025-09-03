@@ -28,6 +28,7 @@ public enum Mods {
     GregicalityMultiblocks(Names.GREGICALITY_MULTIBLOCKS),
     GregTech(Names.GREGTECH),
     GregTechFoodOption(Names.GREGTECH_FOOD_OPTION),
+    GregTechExpertCore(Names.GREGTECH_EXPERT_CORE),
     GTConsolidate(Names.GTCONSOLIDATE),
     GTWoodProcessing(Names.GREGTECH_WOOD_PROCESSING),
     MixinBooter(Names.MIXINBOOTER),
@@ -57,6 +58,7 @@ public enum Mods {
         public static final String GREGICALITY_MULTIBLOCKS = "gcym";
         public static final String GREGTECH = "gregtech";
         public static final String GREGTECH_FOOD_OPTION = "gregtechfoodoption";
+        public static final String GREGTECH_EXPERT_CORE = "gtexpert";
         public static final String GTCONSOLIDATE = Tags.MODID;
         public static final String GREGTECH_WOOD_PROCESSING = "gtwp";
         public static final String MIXINBOOTER = "mixinbooter";
