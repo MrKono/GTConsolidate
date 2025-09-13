@@ -45,6 +45,8 @@ import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.core.sound.GTSoundEvents;
 
+import kono.ceu.gtconsolidate.api.util.mixinhelper.AbstractRecipeLogicMixinHelper;
+import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.blocks.BlockMultiblockCasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
@@ -103,8 +105,8 @@ public class MetaTileEntityExtendedProcessingArray extends RecipeMapMultiblockCo
     protected void addDisplayText(List<ITextComponent> textList) {
         ExtendedProcessingArrayWorkable logic = (ExtendedProcessingArrayWorkable) recipeMapWorkable;
 
-        MultiblockDisplayText.builder(textList, isStructureFormed())
-                .setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
+        MultiblockDisplayText.Builder builder = MultiblockDisplayText.builder(textList, isStructureFormed());
+        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
                 .addEnergyUsageLine(recipeMapWorkable.getEnergyContainer())
                 .addEnergyTierLine(logic.currentMachineStack == ItemStack.EMPTY ? -1 : logic.machineTier)
                 .addCustom(tl -> {
@@ -155,8 +157,11 @@ public class MetaTileEntityExtendedProcessingArray extends RecipeMapMultiblockCo
                         }
                     }
                 })
-                .addWorkingStatusLine()
-                .addProgressLine(recipeMapWorkable.getProgressPercent());
+                .addWorkingStatusLine();
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(logic.getProgress(),
+                logic.getMaxProgress(), logic.getProgressPercent());
+        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(logic.getPreviousRecipe(),
+                ((AbstractRecipeLogicMixinHelper) recipeMapWorkable).getCurrentParallel());
     }
 
     public IBlockState getCasingState() {

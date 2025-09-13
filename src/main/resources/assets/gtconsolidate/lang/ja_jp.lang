@@ -166,6 +166,8 @@ gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムの
 
 # Display
 gtconsolidate.multiblock.coa.recipe_tier=外装Tier: %s
+gtconsolidate.multiblock.progress=進捗: %s 秒 / %s 秒 (%s%%)
+gtconsolidate.multiblock.recipe_outputs=作成中: %s
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§c部品組立外装は全て同じでなければならない§r

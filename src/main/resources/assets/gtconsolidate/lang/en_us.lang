@@ -165,6 +165,8 @@ gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can
 
 # Display
 gtconsolidate.multiblock.coa.recipe_tier=Casing Tier: %s
+gtconsolidate.multiblock.progress=Progress: %s sec / %s sec (%s%%)
+gtconsolidate.multiblock.recipe_outputs=Processing: %s
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r

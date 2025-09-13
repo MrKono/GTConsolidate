@@ -9,6 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
 import org.jetbrains.annotations.NotNull;
@@ -20,8 +21,10 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
@@ -35,6 +38,8 @@ import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockUniqueCasing;
 
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
+import kono.ceu.gtconsolidate.api.util.mixinhelper.AbstractRecipeLogicMixinHelper;
+import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 
@@ -127,6 +132,20 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
     @Override
     public boolean isTiered() {
         return false;
+    }
+
+    @Override
+    protected void addDisplayText(List<ITextComponent> textList) {
+        MultiblockDisplayText.Builder builder = MultiblockDisplayText.builder(textList, isStructureFormed());
+        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
+                .addEnergyUsageLine(getEnergyContainer())
+                .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
+                .addParallelsLine(recipeMapWorkable.getParallelLimit())
+                .addWorkingStatusLine();
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable.getProgress(),
+                recipeMapWorkable.getMaxProgress(), recipeMapWorkable.getProgressPercent());
+        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable.getPreviousRecipe(),
+                ((AbstractRecipeLogicMixinHelper) recipeMapWorkable).getCurrentParallel());
     }
 
     @Override

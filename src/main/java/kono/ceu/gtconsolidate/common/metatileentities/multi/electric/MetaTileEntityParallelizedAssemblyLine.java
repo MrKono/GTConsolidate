@@ -15,6 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fml.relauncher.Side;
@@ -32,6 +33,7 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
@@ -56,6 +58,8 @@ import gregtech.core.sound.GTSoundEvents;
 import gregicality.multiblocks.api.capability.IParallelMultiblock;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 
+import kono.ceu.gtconsolidate.api.util.mixinhelper.AbstractRecipeLogicMixinHelper;
+import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.blocks.*;
 
@@ -145,6 +149,20 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
     protected static IBlockState getControlCasingState() {
         return GTConsolidateMetaBlocks.PARALLELIZED_ASSEMBLY_LINE_CASING
                 .getState(BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.CONTROL);
+    }
+
+    @Override
+    protected void addDisplayText(List<ITextComponent> textList) {
+        MultiblockDisplayText.Builder builder = MultiblockDisplayText.builder(textList, isStructureFormed());
+        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
+                .addEnergyUsageLine(getEnergyContainer())
+                .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
+                .addParallelsLine(recipeMapWorkable.getParallelLimit())
+                .addWorkingStatusLine();
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable.getProgress(),
+                recipeMapWorkable.getMaxProgress(), recipeMapWorkable.getProgressPercent());
+        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable.getPreviousRecipe(),
+                ((AbstractRecipeLogicMixinHelper) recipeMapWorkable).getCurrentParallel());
     }
 
     @NotNull
