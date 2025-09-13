@@ -1,5 +1,9 @@
 ## Changelog
-### 1.7.0.7-beta
+### 1.0.8-beta
+- **Add** _Display Text for Multiblock_.
+
+---
+### 1.0.7.7-beta
 - **Fix** _Absolute Freezer cannot chill_ `liquid metal` again and again.
 - **Fix** _Circuit Factory cannot process any recipe_.
 - **Fix** _some ABS recipes were not added to Turbo Rotary Hearth Blast Smelter when `GTExpertCore` is loaded_.
