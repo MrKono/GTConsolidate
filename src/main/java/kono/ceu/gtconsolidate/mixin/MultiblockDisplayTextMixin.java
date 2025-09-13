@@ -35,6 +35,7 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
         return (MultiblockDisplayText.Builder) (Object) this;
     }
 
+    // Extended Progress Line
     @Unique
     @Override
     public MultiblockDisplayText.Builder addExtendedProgressLine(int currentInt, int totalInt, double percent) {
@@ -51,6 +52,7 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
         return self();
     }
 
+    // Original: GregTechCEu#2673
     @Unique
     @Override
     public MultiblockDisplayText.Builder addOutputLine(Recipe recipe) {

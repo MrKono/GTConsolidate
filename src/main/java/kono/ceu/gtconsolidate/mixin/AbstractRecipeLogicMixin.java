@@ -14,6 +14,7 @@ public class AbstractRecipeLogicMixin implements AbstractRecipeLogicMixinHelper 
     @Shadow
     protected int parallelRecipesPerformed;
 
+    // return current number of parallel
     @Unique
     @Override
     public int getCurrentParallel() {
