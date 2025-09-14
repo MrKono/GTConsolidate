@@ -45,7 +45,6 @@ import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.core.sound.GTSoundEvents;
 
-import kono.ceu.gtconsolidate.api.util.mixinhelper.AbstractRecipeLogicMixinHelper;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.blocks.BlockMultiblockCasing;
@@ -156,12 +155,12 @@ public class MetaTileEntityExtendedProcessingArray extends RecipeMapMultiblockCo
                                     "gregtech.machine.machine_hatch.locked"));
                         }
                     }
-                })
-                .addWorkingStatusLine();
+                });
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
+        builder.addWorkingStatusLine();
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(logic.getProgress(),
                 logic.getMaxProgress(), logic.getProgressPercent());
-        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(logic.getPreviousRecipe(),
-                ((AbstractRecipeLogicMixinHelper) recipeMapWorkable).getCurrentParallel());
+        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(logic);
     }
 
     public IBlockState getCasingState() {

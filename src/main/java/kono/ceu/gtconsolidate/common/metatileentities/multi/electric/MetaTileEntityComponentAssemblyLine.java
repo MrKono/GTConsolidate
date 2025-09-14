@@ -225,12 +225,12 @@ public class MetaTileEntityComponentAssemblyLine extends RecipeMapMultiblockCont
                                 "gtconsolidate.multiblock.coa.recipe_tier",
                                 GTValues.VNF[getWorkTier()]));
                     }
-                })
-                .addParallelsLine(recipeMapWorkable.getParallelLimit())
-                .addWorkingStatusLine();
+                });
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
+        builder.addWorkingStatusLine();
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable.getProgress(),
                 recipeMapWorkable.getMaxProgress(), recipeMapWorkable.getProgressPercent());
-        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable.getPreviousRecipe());
+        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
     }
 
     @Override

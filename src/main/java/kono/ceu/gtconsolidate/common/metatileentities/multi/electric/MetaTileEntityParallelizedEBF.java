@@ -58,7 +58,6 @@ import gregtech.core.sound.GTSoundEvents;
 import gregicality.multiblocks.api.capability.IParallelMultiblock;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 
-import kono.ceu.gtconsolidate.api.util.mixinhelper.AbstractRecipeLogicMixinHelper;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
@@ -251,13 +250,12 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
                                 "gregtech.multiblock.blast_furnace.max_temperature",
                                 heatString));
                     }
-                })
-                .addParallelsLine(getMaxParallel())
-                .addWorkingStatusLine();
+                });
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
+        builder.addWorkingStatusLine();
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable.getProgress(),
                 recipeMapWorkable.getMaxProgress(), recipeMapWorkable.getProgressPercent());
-        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable.getPreviousRecipe(),
-                ((AbstractRecipeLogicMixinHelper) recipeMapWorkable).getCurrentParallel());
+        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
     }
 
     @SideOnly(Side.CLIENT)

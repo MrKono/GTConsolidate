@@ -44,7 +44,6 @@ import gregtechfoodoption.utils.GTFOLog;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 
 import kono.ceu.gtconsolidate.api.util.Logs;
-import kono.ceu.gtconsolidate.api.util.mixinhelper.AbstractRecipeLogicMixinHelper;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 
 public class MetaTileLargeGreenHouse extends GCYMRecipeMapMultiblockController {
@@ -159,13 +158,12 @@ public class MetaTileLargeGreenHouse extends GCYMRecipeMapMultiblockController {
         MultiblockDisplayText.Builder builder = MultiblockDisplayText.builder(textList, isStructureFormed());
         builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
                 .addEnergyUsageLine(getEnergyContainer())
-                .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
-                .addParallelsLine(recipeMapWorkable.getParallelLimit())
-                .addWorkingStatusLine();
+                .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()));
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
+        builder.addWorkingStatusLine();
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable.getProgress(),
                 recipeMapWorkable.getMaxProgress(), recipeMapWorkable.getProgressPercent());
-        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable.getPreviousRecipe(),
-                ((AbstractRecipeLogicMixinHelper) recipeMapWorkable).getCurrentParallel());
+        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
     }
 
     @Override

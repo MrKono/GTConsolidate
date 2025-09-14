@@ -1,13 +1,13 @@
 package kono.ceu.gtconsolidate.api.util.mixinhelper;
 
+import gregtech.api.capability.impl.AbstractRecipeLogic;
 import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
-import gregtech.api.recipes.Recipe;
 
 public interface MultiblockDisplayTextMixinHelper {
 
+    MultiblockDisplayText.Builder addExtendedParallelLine(AbstractRecipeLogic logic);
+
     MultiblockDisplayText.Builder addExtendedProgressLine(int current, int total, double percent);
 
-    MultiblockDisplayText.Builder addOutputLine(Recipe recipe);
-
-    MultiblockDisplayText.Builder addOutputLine(Recipe recipe, int parallel);
+    MultiblockDisplayText.Builder addOutputLine(AbstractRecipeLogic logic);
 }
