@@ -7,7 +7,7 @@ public interface MultiblockDisplayTextMixinHelper {
 
     MultiblockDisplayText.Builder addExtendedParallelLine(AbstractRecipeLogic logic);
 
-    MultiblockDisplayText.Builder addExtendedProgressLine(int current, int total, double percent);
+    MultiblockDisplayText.Builder addExtendedProgressLine(AbstractRecipeLogic logic);
 
     MultiblockDisplayText.Builder addOutputLine(AbstractRecipeLogic logic);
 }

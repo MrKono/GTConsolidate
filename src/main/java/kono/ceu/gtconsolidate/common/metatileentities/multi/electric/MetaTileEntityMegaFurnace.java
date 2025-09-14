@@ -130,8 +130,7 @@ public class MetaTileEntityMegaFurnace extends RecipeMapMultiblockController {
                     }
                 })
                 .addWorkingStatusLine();
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable.getProgress(),
-                recipeMapWorkable.getMaxProgress(), recipeMapWorkable.getProgressPercent());
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
         ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
     }
 

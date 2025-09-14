@@ -165,7 +165,10 @@ gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can
 
 # Display
 gtconsolidate.multiblock.coa.recipe_tier=Casing Tier: %s
-gtconsolidate.multiblock.progress=Progress: %s sec / %s sec (%s%%)
+gtconsolidate.multiblock.progress=Progress: %s / %s (%s%%)
+gtconsolidate.multiblock.progress_sec=%s s
+gtconsolidate.multiblock.progress_min=%s min %s s
+gtconsolidate.multiblock.progress_hr=%s hr %s min %s s
 gtconsolidate.multiblock.parallel_extended=Parallels: %s / %s
 gtconsolidate.multiblock.parallel_extended_hover=Number of parallels this machine can process. Current parallels / Max. Parallels
 gtconsolidate.multiblock.recipe_outputs=Outputs: %s

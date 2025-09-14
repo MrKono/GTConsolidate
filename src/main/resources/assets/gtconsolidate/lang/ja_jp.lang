@@ -166,7 +166,10 @@ gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムの
 
 # Display
 gtconsolidate.multiblock.coa.recipe_tier=外装Tier: %s
-gtconsolidate.multiblock.progress=進捗: %s 秒 / %s 秒 (%s%%)
+gtconsolidate.multiblock.progress=進捗: %s / %s (%s%%)
+gtconsolidate.multiblock.progress_sec=%s 秒
+gtconsolidate.multiblock.progress_min=%s 分 %s 秒
+gtconsolidate.multiblock.progress_hr=%s 時間 %s 分 %s 秒
 gtconsolidate.multiblock.current_parallel=並列処理数: %s / %s
 gtconsolidate.multiblock.parallel_extended_hover=この機械の並列処理数。現在の並列処理数 / 最大並列処理数
 gtconsolidate.multiblock.recipe_outputs=作成中: %s

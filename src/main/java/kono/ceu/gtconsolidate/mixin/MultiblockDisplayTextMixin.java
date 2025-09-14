@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -75,17 +74,16 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
     // Extended Progress Line
     @Unique
     @Override
-    public MultiblockDisplayText.Builder addExtendedProgressLine(int currentInt, int totalInt, double percent) {
+    public MultiblockDisplayText.Builder addExtendedProgressLine(AbstractRecipeLogic logic) {
         if (!isStructureFormed || !isActive) {
             return self();
         }
-        double current = (double) currentInt / 20;
-        double total = (double) totalInt / 20;
-        int currentProgress = (int) (percent * (double) 100.0F);
-        String c = String.format("%.2f", current);
-        String t = String.format("%.2f", total);
-        this.textList.add(new TextComponentTranslation("gtconsolidate.multiblock.progress", c, t,
-                currentProgress));
+        double current = (double) logic.getProgress() / 20;
+        double total = (double) logic.getMaxProgress() / 20;
+        int currentProgress = (int) (logic.getProgressPercent() * (double) 100.0F);
+
+        this.textList.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                "gtconsolidate.multiblock.progress", formatTime(current), formatTime(total), currentProgress));
         return self();
     }
 
@@ -178,6 +176,25 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
         this.textList.add(TextComponentUtil.setHover(body, hover));
 
         return self();
+    }
+
+    @Unique
+    private static ITextComponent formatTime(double time) {
+        if (time >= 3600) {
+            int hr = (int) (time / 3600);
+            int min = (int) ((time % 3600) / 60);
+            double sec = time % 60;
+            return TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                    "gtconsolidate.multiblock.progress_hr", hr, min, String.format("%.2f", sec));
+        } else if (time >= 300) {
+            int min = (int) (time / 60);
+            double sec = time % 60;
+            return TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                    "gtconsolidate.multiblock.progress_min", min, String.format("%.2f", sec));
+        } else {
+            return TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                    "gtconsolidate.multiblock.progress_sec", String.format("%.2f", time));
+        }
     }
 
     @Unique

@@ -158,8 +158,7 @@ public class MetaTileEntityExtendedProcessingArray extends RecipeMapMultiblockCo
                 });
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
         builder.addWorkingStatusLine();
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(logic.getProgress(),
-                logic.getMaxProgress(), logic.getProgressPercent());
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(logic);
         ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(logic);
     }
 

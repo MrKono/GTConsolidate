@@ -95,8 +95,7 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
                 });
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
         builder.addWorkingStatusLine();
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable.getProgress(),
-                recipeMapWorkable.getMaxProgress(), recipeMapWorkable.getProgressPercent());
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
         ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
     }
 
