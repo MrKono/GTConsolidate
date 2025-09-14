@@ -54,6 +54,7 @@ import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
 import gregicality.multiblocks.common.block.blocks.BlockUniqueCasing;
 
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
+import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 
@@ -75,7 +76,7 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
 
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
-        MultiblockDisplayText.builder(textList, isStructureFormed())
+        MultiblockDisplayText.Builder builder = MultiblockDisplayText.builder(textList, isStructureFormed())
                 .setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
                 .addEnergyUsageLine(getEnergyContainer())
                 .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
@@ -91,10 +92,11 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
                                 "gregtech.multiblock.blast_furnace.max_temperature",
                                 heatString));
                     }
-                })
-                .addParallelsLine(recipeMapWorkable.getParallelLimit())
-                .addWorkingStatusLine()
-                .addProgressLine(recipeMapWorkable.getProgressPercent());
+                });
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
+        builder.addWorkingStatusLine();
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
+        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
     }
 
     @Override

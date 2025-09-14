@@ -13,6 +13,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
@@ -23,10 +24,12 @@ import org.jetbrains.annotations.Nullable;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
+import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockBoilerCasing;
@@ -41,6 +44,7 @@ import gregtechfoodoption.utils.GTFOLog;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 
 import kono.ceu.gtconsolidate.api.util.Logs;
+import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 
 public class MetaTileLargeGreenHouse extends GCYMRecipeMapMultiblockController {
 
@@ -147,6 +151,18 @@ public class MetaTileLargeGreenHouse extends GCYMRecipeMapMultiblockController {
     @Override
     public boolean canBeDistinct() {
         return true;
+    }
+
+    @Override
+    protected void addDisplayText(List<ITextComponent> textList) {
+        MultiblockDisplayText.Builder builder = MultiblockDisplayText.builder(textList, isStructureFormed());
+        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
+                .addEnergyUsageLine(getEnergyContainer())
+                .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()));
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
+        builder.addWorkingStatusLine();
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
+        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
     }
 
     @Override

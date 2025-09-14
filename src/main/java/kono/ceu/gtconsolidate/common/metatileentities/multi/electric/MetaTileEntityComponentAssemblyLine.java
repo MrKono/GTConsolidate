@@ -50,6 +50,7 @@ import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
 
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
 import kono.ceu.gtconsolidate.api.recipes.properties.CoAProperty;
+import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoACasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
@@ -213,8 +214,8 @@ public class MetaTileEntityComponentAssemblyLine extends RecipeMapMultiblockCont
 
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
-        MultiblockDisplayText.builder(textList, isStructureFormed())
-                .setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
+        MultiblockDisplayText.Builder builder = MultiblockDisplayText.builder(textList, isStructureFormed());
+        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
                 .addEnergyUsageLine(getEnergyContainer())
                 .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
                 .addCustom(tl -> {
@@ -224,10 +225,11 @@ public class MetaTileEntityComponentAssemblyLine extends RecipeMapMultiblockCont
                                 "gtconsolidate.multiblock.coa.recipe_tier",
                                 GTValues.VNF[getWorkTier()]));
                     }
-                })
-                .addParallelsLine(recipeMapWorkable.getParallelLimit())
-                .addWorkingStatusLine()
-                .addProgressLine(recipeMapWorkable.getProgressPercent());
+                });
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
+        builder.addWorkingStatusLine();
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
+        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
     }
 
     @Override

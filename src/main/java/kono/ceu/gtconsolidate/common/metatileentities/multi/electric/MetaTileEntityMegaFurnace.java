@@ -39,6 +39,7 @@ import gregtech.core.sound.GTSoundEvents;
 
 import gregicality.multiblocks.api.metatileentity.GCYMMultiblockAbility;
 
+import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 
@@ -87,8 +88,8 @@ public class MetaTileEntityMegaFurnace extends RecipeMapMultiblockController {
 
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
-        MultiblockDisplayText.builder(textList, isStructureFormed())
-                .setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
+        MultiblockDisplayText.Builder builder = MultiblockDisplayText.builder(textList, isStructureFormed());
+        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
                 .addEnergyUsageLine(recipeMapWorkable.getEnergyContainer())
                 .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
                 .addCustom(tl -> {
@@ -128,8 +129,9 @@ public class MetaTileEntityMegaFurnace extends RecipeMapMultiblockController {
                         }
                     }
                 })
-                .addWorkingStatusLine()
-                .addProgressLine(recipeMapWorkable.getProgressPercent());
+                .addWorkingStatusLine();
+        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
+        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
     }
 
     @Override

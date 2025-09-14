@@ -6,7 +6,9 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [],
   "client": [
-    "MetaTileEntityCleanroomMixin"
+    "MetaTileEntityCleanroomMixin",
+    "MultiblockDisplayTextMixin",
+    "AbstractRecipeLogicMixin"
   ],
   "server": []
 }
