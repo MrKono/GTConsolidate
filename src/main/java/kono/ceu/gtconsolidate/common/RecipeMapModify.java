@@ -1,18 +1,23 @@
 package kono.ceu.gtconsolidate.common;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.builders.PrimitiveRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.api.recipes.ingredients.GTRecipeInput;
 import gregtech.api.recipes.recipeproperties.TemperatureProperty;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.util.GTUtility;
 
 import gregicality.multiblocks.api.recipes.GCYMRecipeMaps;
 
@@ -73,6 +78,26 @@ public class RecipeMapModify {
                 }
             }
             vfBuilder.buildAndRegister();
+        });
+        List<Integer> parallel = new ArrayList<>();
+        parallel.add(4);
+        parallel.add(16);
+        parallel.add(64);
+        parallel.add(256);
+        RecipeMaps.PRIMITIVE_BLAST_FURNACE_RECIPES.onRecipeBuild(builder -> {
+            PrimitiveRecipeBuilder pb = GTConsolidateRecipeMaps.MEGA_PRIMITIVE_BLAST_FURNACE_RECIPE.recipeBuilder();
+            for (int i : parallel) {
+                for (GTRecipeInput input : builder.getInputs()) {
+                    for (ItemStack stack : input.getInputStacks()) {
+                        pb.inputs(GTUtility.copy(stack.getCount() * i, stack));
+                    }
+                }
+                for (ItemStack output : builder.getAllItemOutputs()) {
+                    pb.outputs(GTUtility.copy(output.getCount() * i, output));
+                }
+                pb.duration(builder.getDuration() * i);
+            }
+            pb.buildAndRegister();
         });
     }
 

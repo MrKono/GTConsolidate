@@ -7,6 +7,7 @@ import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.builders.BlastRecipeBuilder;
+import gregtech.api.recipes.builders.PrimitiveRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.core.sound.GTSoundEvents;
 
@@ -53,4 +54,9 @@ public class GTConsolidateRecipeMaps {
             new CircuitFactoryRecipeBuilder().cleanroom(CleanroomType.CLEANROOM), false)
                     .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL)
                     .setSound(GTSoundEvents.ASSEMBLER);
+
+    @ZenProperty
+    public static final RecipeMap<PrimitiveRecipeBuilder> MEGA_PRIMITIVE_BLAST_FURNACE_RECIPE = new RecipeMap<>(
+            "mega_pbf", 18, 18, 0, 0, new PrimitiveRecipeBuilder(), false)
+                    .setSound(GTSoundEvents.FIRE);
 }

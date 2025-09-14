@@ -10,6 +10,7 @@ import kono.ceu.gtconsolidate.api.util.Mods;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityFilteredItemBus;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityMoreParallelHatch;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.*;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityMegaPrimitiveBlastFurnace;
 
 public class GTConsolidateMetaTileEntity {
 
@@ -26,6 +27,7 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityGigaVF ABSOLUTE_FREEZER;
     public static MetaTileEntityCircuitFactory CIRCUIT_FACTORY;
     public static MetaTileEntityExtendedProcessingArray[] EXTENDED_PROCESSING_ARRAY = new MetaTileEntityExtendedProcessingArray[3];
+    public static MetaTileEntityMegaPrimitiveBlastFurnace MEGA_PRIMITIVE_BLAST_FURNACE;
 
     public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
             1];
@@ -93,6 +95,9 @@ public class GTConsolidateMetaTileEntity {
                 modId("master_processing_array"), 1));
         EXTENDED_PROCESSING_ARRAY[2] = registerMetaTileEntity(id + 19, new MetaTileEntityExtendedProcessingArray(
                 modId("ultimate_processing_array"), 2));
+        // Mega Primitive Blast Furnace
+        MEGA_PRIMITIVE_BLAST_FURNACE = registerMetaTileEntity(id + 20, new MetaTileEntityMegaPrimitiveBlastFurnace(
+                modId("mega_primitive_blast_furnace")));
     }
 
     public static void registerMultiblockPart() {
