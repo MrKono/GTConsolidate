@@ -3,7 +3,6 @@ package kono.ceu.gtconsolidate.mixin;
 import java.util.ArrayList;
 import java.util.List;
 
-import gregtech.api.util.TextFormattingUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -24,6 +23,7 @@ import gregtech.api.recipes.chance.output.impl.ChancedFluidOutput;
 import gregtech.api.recipes.chance.output.impl.ChancedItemOutput;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.TextComponentUtil;
+import gregtech.api.util.TextFormattingUtil;
 
 import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.AbstractRecipeLogicMixinHelper;
@@ -57,10 +57,13 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
         int maxParallel = logic.getParallelLimit();
         int currentParallel = ((AbstractRecipeLogicMixinHelper) logic).getCurrentParallel();
         if (currentParallel == 0) currentParallel = 1;
-        ITextComponent current = TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, TextFormattingUtil.formatNumbers(currentParallel));
-        ITextComponent max = TextComponentUtil.translationWithColor(TextFormatting.DARK_PURPLE, TextFormattingUtil.formatNumbers(maxParallel));
+        ITextComponent current = TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE,
+                TextFormattingUtil.formatNumbers(currentParallel));
+        ITextComponent max = TextComponentUtil.translationWithColor(TextFormatting.DARK_PURPLE,
+                TextFormattingUtil.formatNumbers(maxParallel));
 
-        ITextComponent body = TextComponentUtil.translationWithColor(TextFormatting.GRAY, "gtconsolidate.multiblock.parallel_extended",
+        ITextComponent body = TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                "gtconsolidate.multiblock.parallel_extended",
                 current, max);
         ITextComponent hover = TextComponentUtil.translationWithColor(TextFormatting.GRAY,
                 "gtconsolidate.multiblock.parallel_extended_hover");
@@ -168,7 +171,8 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
             text = text.substring(0, text.length() - 2);
         }
 
-        ITextComponent body = TextComponentUtil.translationWithColor(TextFormatting.GRAY, "gtconsolidate.multiblock.recipe_outputs", text);
+        ITextComponent body = TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                "gtconsolidate.multiblock.recipe_outputs", text);
         ITextComponent hover = TextComponentUtil.translationWithColor(TextFormatting.GRAY,
                 "gtconsolidate.multiblock.recipe_outputs_hover");
         this.textList.add(TextComponentUtil.setHover(body, hover));
