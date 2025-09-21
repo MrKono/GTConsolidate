@@ -46,5 +46,22 @@ public class GTConsolidateConfig {
         @Config.Comment({ "Whether to add more Parallel Hatch.",
                 "1024+ Parallel Hatches were added", "Default: false" })
         public boolean addMoreParallel = false;
+
+        @Config.Comment({ "Whether to display the time in the \"Progress\" line of the Multiblock Controller.",
+                "This change applies only to Multiblock in GTConsolidate.", "Default: false" })
+        public boolean modifyProgressLine = false;
+
+        @Config.Comment({ "Display settings for \"Progress\".", "Only effective when modifyProgressLine is true.",
+                "Valid: sec, min, hr", "Default: sec" })
+        public String progressUnit = "sec";
+
+        @Config.Comment({
+                "Whether to display the current parallel in the \"Max Parallel\" line of the Multiblock Controller.",
+                "This change applies only to Multiblock in GTConsolidate.", "Default: false" })
+        public boolean modifyParallelLine = false;
+
+        @Config.Comment({ "Whether to add the \"Output\" line of the Multiblock Controller.",
+                "This change applies only to Multiblock in GTConsolidate.", "Default: false" })
+        public boolean addOutputLine = false;
     }
 }

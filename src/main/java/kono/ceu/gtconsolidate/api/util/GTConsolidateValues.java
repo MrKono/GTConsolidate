@@ -24,4 +24,12 @@ public class GTConsolidateValues {
             default -> "EASY";
         };
     }
+
+    public static @NotNull String timeUnit() {
+        return switch (GTConsolidateConfig.feature.progressUnit) {
+            case "min" -> "min";
+            case "hr" -> "hr";
+            default -> "sec";
+        };
+    }
 }

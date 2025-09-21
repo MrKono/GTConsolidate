@@ -158,7 +158,8 @@ public class MetaTileLargeGreenHouse extends GCYMRecipeMapMultiblockController {
         MultiblockDisplayText.Builder builder = MultiblockDisplayText.builder(textList, isStructureFormed());
         builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
                 .addEnergyUsageLine(getEnergyContainer())
-                .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()));
+                .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
+                .addEnergyUsageExactLine(recipeMapWorkable.getInfoProviderEUt());
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
         builder.addWorkingStatusLine();
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
