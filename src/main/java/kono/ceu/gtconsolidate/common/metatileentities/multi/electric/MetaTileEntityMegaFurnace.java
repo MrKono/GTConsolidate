@@ -92,6 +92,7 @@ public class MetaTileEntityMegaFurnace extends RecipeMapMultiblockController {
         builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
                 .addEnergyUsageLine(recipeMapWorkable.getEnergyContainer())
                 .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
+                .addEnergyUsageExactLine(recipeMapWorkable.getInfoProviderEUt())
                 .addCustom(tl -> {
                     if (isStructureFormed()) {
                         // Heating coil discount

@@ -108,6 +108,7 @@ public class MetaTileEntityExtendedProcessingArray extends RecipeMapMultiblockCo
         builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
                 .addEnergyUsageLine(recipeMapWorkable.getEnergyContainer())
                 .addEnergyTierLine(logic.currentMachineStack == ItemStack.EMPTY ? -1 : logic.machineTier)
+                .addEnergyUsageExactLine(recipeMapWorkable.getInfoProviderEUt())
                 .addCustom(tl -> {
                     if (isStructureFormed()) {
 
