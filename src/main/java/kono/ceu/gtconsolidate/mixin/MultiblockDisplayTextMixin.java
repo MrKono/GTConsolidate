@@ -1,10 +1,13 @@
 package kono.ceu.gtconsolidate.mixin;
 
+import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.timeUnit;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -24,6 +27,7 @@ import gregtech.api.util.GTUtility;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.api.util.TextFormattingUtil;
 
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.AbstractRecipeLogicMixinHelper;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
@@ -50,10 +54,23 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
     @Unique
     @Override
     public MultiblockDisplayText.Builder addExtendedParallelLine(AbstractRecipeLogic logic) {
-        if (!isStructureFormed || !isActive) {
+        if (!isStructureFormed) {
             return self();
         }
         int maxParallel = logic.getParallelLimit();
+        if (!isActive || !GTConsolidateConfig.feature.modifyParallelLine) {
+            if (maxParallel > 1) {
+                ITextComponent parallels = TextComponentUtil.stringWithColor(
+                        TextFormatting.DARK_PURPLE,
+                        TextFormattingUtil.formatNumbers(maxParallel));
+
+                this.textList.add(TextComponentUtil.translationWithColor(
+                        TextFormatting.GRAY,
+                        "gregtech.multiblock.parallel",
+                        parallels));
+                return self();
+            }
+        }
         int currentParallel = ((AbstractRecipeLogicMixinHelper) logic).getCurrentParallel();
         if (currentParallel == 0) currentParallel = 1;
         ITextComponent current = TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE,
@@ -78,9 +95,13 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
         if (!isStructureFormed || !isActive) {
             return self();
         }
+        int currentProgress = (int) (logic.getProgressPercent() * (double) 100.0F);
+        if (!GTConsolidateConfig.feature.modifyProgressLine) {
+            this.textList.add(new TextComponentTranslation("gregtech.multiblock.progress", currentProgress));
+            return self();
+        }
         double current = (double) logic.getProgress() / 20;
         double total = (double) logic.getMaxProgress() / 20;
-        int currentProgress = (int) (logic.getProgressPercent() * (double) 100.0F);
 
         this.textList.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY,
                 "gtconsolidate.multiblock.progress", formatTime(current), formatTime(total), currentProgress));
@@ -92,7 +113,7 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
     @Override
     public MultiblockDisplayText.Builder addOutputLine(AbstractRecipeLogic logic) {
         Recipe recipe = logic.getPreviousRecipe();
-        if (!isStructureFormed || !isActive) {
+        if (!isStructureFormed || !isActive || !GTConsolidateConfig.feature.addOutputLine) {
             return self();
         }
         if (recipe == null) {
@@ -180,13 +201,13 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
 
     @Unique
     private static ITextComponent formatTime(double time) {
-        if (time >= 3600) {
+        if (timeUnit().equals("hr") && time >= 3600) {
             int hr = (int) (time / 3600);
             int min = (int) ((time % 3600) / 60);
             double sec = time % 60;
             return TextComponentUtil.translationWithColor(TextFormatting.GRAY,
                     "gtconsolidate.multiblock.progress_hr", hr, min, String.format("%.2f", sec));
-        } else if (time >= 300) {
+        } else if ((timeUnit().equals("min") || timeUnit().equals("hr")) && time >= 60) {
             int min = (int) (time / 60);
             double sec = time % 60;
             return TextComponentUtil.translationWithColor(TextFormatting.GRAY,
