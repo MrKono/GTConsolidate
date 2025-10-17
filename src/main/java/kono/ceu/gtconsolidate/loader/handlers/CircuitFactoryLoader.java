@@ -17,7 +17,7 @@ import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
 public class CircuitFactoryLoader {
 
     private static final int outputAmount = ConfigHolder.recipes.harderCircuitRecipes ? 1 : 2;
-    private static final int voltage = GregTechAPI.isHighTier() ? (int) V[UEV] : (int) V[UHV];
+    private static final int voltage = GregTechAPI.isHighTier() ? UEV : UHV;
     private static final int factor = GregTechAPI.isHighTier() ? 1 : 4;
 
     public static void register() {
@@ -181,8 +181,8 @@ public class CircuitFactoryLoader {
                                           Material wireFineMaterial, int wireFineAmount, Material boltMaterial,
                                           int boltAmount, MetaItem<?>.MetaValueItem output, int outputAmount,
                                           int tier, int duration) {
-        int v = Math.min((int) V[tier < IV ? tier + 3 : tier + 2], voltage);
-
+        int voltageTier = Math.min(tier < IV ? tier + 3 : tier + 2, voltage);
+        // x48 inputs, x64 outputs (3/4)
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(board, 48)
                 .input(SoCStack, 48)
@@ -192,6 +192,38 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000 * tier))
                 .output(output, outputAmount * 64)
                 .casingTier(tier)
-                .duration(duration * 10 * factor).EUt(v).buildAndRegister();
+                .duration(duration * 10 * factor).EUt((int) V[voltageTier]).buildAndRegister();
+
+        // x80 inputs, x128 outputs (5/8)
+        // 80x wireFine -> 5x wireGtQuadruple
+        // 80x bolts -> 10x ingots
+        GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
+                .input(board, 80)
+                .input(SoCStack, 80)
+                .input(wireGtQuadruple, wireFineMaterial, wireFineAmount)
+                .input(ingot, boltMaterial, boltAmount)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(72 * 80))
+                .fluidInputs(Materials.DistilledWater.getFluid(5000 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(tier))
+                .output(output, outputAmount * 128)
+                .casingTier(tier)
+                .duration(duration * 30 * factor).EUt((int) V[voltageTier + 1]).buildAndRegister();
+
+        // x144 inputs, x256 outputs (9/16)
+        // 144x bolts -> 2x blocks
+        // 144x wireFine -> 2x wireGtHex + 1x wireGtDouble
+        GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
+                .input(board, 256)
+                .input(SoCStack, 256)
+                .input(wireGtHex, wireFineMaterial, wireFineAmount)
+                .input(wireGtDouble, wireFineMaterial, wireFineAmount)
+                .input(block, boltMaterial, boltAmount)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 72))
+                .fluidInputs(Materials.DistilledWater.getFluid(10000 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(500 * tier))
+                .fluidInputs(Materials.Mutagen.getFluid(1000))
+                .output(output, outputAmount * 256)
+                .casingTier(tier)
+                .duration(duration * 45 * factor).EUt((int) V[voltageTier + 2]).buildAndRegister();
     }
 }
