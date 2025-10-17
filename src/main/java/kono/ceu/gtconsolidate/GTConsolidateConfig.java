@@ -40,7 +40,7 @@ public class GTConsolidateConfig {
         @Config.RangeInt(min = 1, max = 8)
         public int tierMuffler = 8;
 
-        @Config.Comment({ "Whether to generate T1 (Electronic) and T2 (Integrated) circuit recipe", "Default: false"})
+        @Config.Comment({ "Whether to generate T1 (Electronic) and T2 (Integrated) circuit recipe", "Default: false" })
         public boolean generateLowTierCircuitRecipe = false;
     }
 
