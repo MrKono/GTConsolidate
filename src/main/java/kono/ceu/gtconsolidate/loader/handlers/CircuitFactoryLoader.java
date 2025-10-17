@@ -11,6 +11,7 @@ import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.common.ConfigHolder;
 
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
 
 public class CircuitFactoryLoader {
@@ -21,7 +22,9 @@ public class CircuitFactoryLoader {
 
     public static void register() {
         processor();
-        other();
+        if (GTConsolidateConfig.mode.generateLowTierCircuitRecipe) {
+            lowTier();
+        }
     }
 
     public static void processor() {
@@ -48,7 +51,7 @@ public class CircuitFactoryLoader {
                 8, WETWARE_PROCESSOR_LUV, outputAmount * 2, UV, 100);
     }
 
-    public static void other() {
+    public static void lowTier() {
         // Electronic Circuit
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(BASIC_CIRCUIT_BOARD, 48)
