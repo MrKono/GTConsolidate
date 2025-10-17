@@ -29,11 +29,11 @@ public class CircuitFactoryLoader {
 
     public static void processor() {
         // NAND Chip
-        addProcessorRecipe(GOOD_CIRCUIT_BOARD, SIMPLE_SYSTEM_ON_CHIP, Materials.RedAlloy, 2, Materials.Tin, 2,
+        addProcessorRecipe(GOOD_CIRCUIT_BOARD, SIMPLE_SYSTEM_ON_CHIP, Materials.Tin, 2, Materials.RedAlloy, 2,
                 NAND_CHIP_ULV, outputAmount * 2, MV, 300);
         // Microprocessor
         addProcessorRecipe(PLASTIC_CIRCUIT_BOARD, SYSTEM_ON_CHIP, Materials.Copper, 2, Materials.Tin, 2,
-                MICROPROCESSOR_LV, ConfigHolder.recipes.harderCircuitRecipes ? 3 : 6, EV, 50);
+                MICROPROCESSOR_LV, outputAmount * 3, EV, 50);
         // Integrated Processor
         addProcessorRecipe(PLASTIC_CIRCUIT_BOARD, SYSTEM_ON_CHIP, Materials.RedAlloy, 4, Materials.AnnealedCopper, 4,
                 PROCESSOR_MV, outputAmount * 2, IV, 50);
