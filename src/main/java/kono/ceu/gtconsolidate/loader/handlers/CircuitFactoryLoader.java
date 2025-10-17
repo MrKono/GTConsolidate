@@ -17,7 +17,7 @@ public class CircuitFactoryLoader {
 
     private static final int outputAmount = ConfigHolder.recipes.harderCircuitRecipes ? 1 : 2;
     private static final int voltage = GregTechAPI.isHighTier() ? (int) V[UEV] : (int) V[UHV];
-    private static final int factor = GregTechAPI.isHighTier() ? 1 : 20;
+    private static final int factor = GregTechAPI.isHighTier() ? 1 : 4;
 
     public static void register() {
         processor();
@@ -59,7 +59,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(ELECTRONIC_CIRCUIT_LV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt(voltage).duration(200 * 640 * factor).buildAndRegister();
+                .EUt((int) V[EV]).duration(200 * 640 * factor).buildAndRegister();
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(BASIC_CIRCUIT_BOARD, 48)
                 .input(ADVANCED_SMD_RESISTOR, 48)
@@ -69,7 +69,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(ELECTRONIC_CIRCUIT_LV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt(voltage).duration(200 * 640 * factor).buildAndRegister();
+                .EUt((int) V[EV]).duration(200 * 640 * factor).buildAndRegister();
 
         // Good Electronic Circuit
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
@@ -81,7 +81,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(ELECTRONIC_CIRCUIT_MV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt(voltage).duration(300 * 64 * factor).buildAndRegister();
+                .EUt((int) V[EV]).duration(300 * 64 * factor).buildAndRegister();
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(GOOD_CIRCUIT_BOARD, 48)
                 .input(circuit, MarkerMaterials.Tier.LV, 2 * 48)
@@ -91,7 +91,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(ELECTRONIC_CIRCUIT_MV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt(voltage).duration(300 * 64 * factor).buildAndRegister();
+                .EUt((int) V[EV]).duration(300 * 64 * factor).buildAndRegister();
 
         // Integrated Logic Circuit
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
@@ -105,7 +105,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(INTEGRATED_CIRCUIT_LV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt(voltage).duration(200 * 64 * factor).buildAndRegister();
+                .EUt((int) V[EV]).duration(200 * 64 * factor).buildAndRegister();
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(BASIC_CIRCUIT_BOARD, 48)
                 .input(INTEGRATED_LOGIC_CIRCUIT, 48)
@@ -117,7 +117,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(INTEGRATED_CIRCUIT_LV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt(voltage).duration(200 * 64 * factor).buildAndRegister();
+                .EUt((int) V[EV]).duration(200 * 64 * factor).buildAndRegister();
 
         // Good Integrated Circuit
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
@@ -131,7 +131,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(INTEGRATED_CIRCUIT_MV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt(voltage).duration(400 * 64 * factor).buildAndRegister();
+                .EUt((int) V[EV]).duration(400 * 64 * factor).buildAndRegister();
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(GOOD_CIRCUIT_BOARD, 48)
                 .input(INTEGRATED_LOGIC_CIRCUIT, 48)
@@ -143,7 +143,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(INTEGRATED_CIRCUIT_MV, outputAmount * 64)
                 .casingTier(LV)
-                .EUt(voltage).duration(400 * 64 * factor).buildAndRegister();
+                .EUt((int) V[EV]).duration(400 * 64 * factor).buildAndRegister();
 
         // Advanced Integrated Circuit
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
@@ -157,7 +157,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(INTEGRATED_CIRCUIT_HV, 64)
                 .casingTier(LV)
-                .EUt(voltage).duration(800 * 64 * factor)
+                .EUt((int) V[EV]).duration(800 * 64 * factor)
                 .buildAndRegister();
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(INTEGRATED_CIRCUIT_MV, outputAmount * 48)
@@ -170,7 +170,7 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000))
                 .output(INTEGRATED_CIRCUIT_HV, 64)
                 .casingTier(LV)
-                .EUt(voltage).duration(800 * 64 * factor)
+                .EUt((int) V[EV]).duration(800 * 64 * factor)
                 .buildAndRegister();
     }
 
@@ -178,6 +178,8 @@ public class CircuitFactoryLoader {
                                           Material wireFineMaterial, int wireFineAmount, Material boltMaterial,
                                           int boltAmount, MetaItem<?>.MetaValueItem output, int outputAmount,
                                           int tier, int duration) {
+        int v = Math.min((int) V[tier < IV ? tier + 3 : tier + 2], voltage);
+
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
                 .input(board, 48)
                 .input(SoCStack, 48)
@@ -187,6 +189,6 @@ public class CircuitFactoryLoader {
                 .fluidInputs(Materials.DistilledWater.getFluid(1000 * tier))
                 .output(output, outputAmount * 64)
                 .casingTier(tier)
-                .duration(duration * 64 * factor).EUt(voltage).buildAndRegister();
+                .duration(duration * 10 * factor).EUt(v).buildAndRegister();
     }
 }
