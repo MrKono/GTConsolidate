@@ -103,7 +103,7 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
                 .where('C', states(MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING)))
                 .where('D', states(getCasingState2()))
                 .where('E',
-                        abilities(MultiblockAbility.INPUT_LASER).setMinGlobalLimited(1).setMaxGlobalLimited(3)
+                        abilities(MultiblockAbility.INPUT_LASER).setMinGlobalLimited(1).setMaxGlobalLimited(4)
                                 .or(states(getCasingState1())))
                 .where('F', frames(Materials.TungstenSteel))
                 .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)))
@@ -281,6 +281,18 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
 
         public CircuitFactoryRecipeLogic(MetaTileEntityCircuitFactory mte) {
             super(mte);
+        }
+
+        @Override
+        public long getMaxVoltage() {
+            IEnergyContainer energyContainer = getEnergyContainer();
+            if (energyContainer instanceof EnergyContainerList energyList) {
+                long highestVoltage = energyList.getHighestInputVoltage();
+                int tier = GTUtility.getTierByVoltage(highestVoltage);
+                return GTValues.V[Math.min(tier + (energyList.getNumHighestInputContainers() - 1), GTValues.MAX)];
+            } else {
+                return energyContainer.getInputVoltage();
+            }
         }
 
         @Override
