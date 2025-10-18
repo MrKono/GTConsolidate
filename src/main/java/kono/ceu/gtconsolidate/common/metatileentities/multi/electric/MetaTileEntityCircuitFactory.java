@@ -2,6 +2,7 @@ package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.CoATieredCasing;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.nonCleanMaintenance;
+import static kono.ceu.gtconsolidate.api.util.GTConsolidateUtil.isTABDown;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -103,7 +104,7 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
                 .where('C', states(MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING)))
                 .where('D', states(getCasingState2()))
                 .where('E',
-                        abilities(MultiblockAbility.INPUT_LASER).setMinGlobalLimited(1).setMaxGlobalLimited(3)
+                        abilities(MultiblockAbility.INPUT_LASER).setMinGlobalLimited(1).setMaxGlobalLimited(4)
                                 .or(states(getCasingState1())))
                 .where('F', frames(Materials.TungstenSteel))
                 .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)))
@@ -275,12 +276,31 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
                 I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.energy_in.laser")));
         tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
                 I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.maintenance_no_clean")));
+        if (isTABDown()) {
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.3"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.4"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.5"));
+        } else {
+            tooltip.add((I18n.format("gtconsolidate.multiblock.tooltip.universal.tab.build")));
+        }
     }
 
     private class CircuitFactoryRecipeLogic extends MultiblockRecipeLogic {
 
         public CircuitFactoryRecipeLogic(MetaTileEntityCircuitFactory mte) {
             super(mte);
+        }
+
+        @Override
+        public long getMaxVoltage() {
+            IEnergyContainer energyContainer = getEnergyContainer();
+            if (energyContainer instanceof EnergyContainerList energyList) {
+                long highestVoltage = energyList.getHighestInputVoltage();
+                int tier = GTUtility.getTierByVoltage(highestVoltage);
+                return GTValues.V[Math.min(tier + (energyList.getNumHighestInputContainers() - 1), GTValues.MAX)];
+            } else {
+                return energyContainer.getInputVoltage();
+            }
         }
 
         @Override

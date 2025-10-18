@@ -39,6 +39,9 @@ public class GTConsolidateConfig {
                 "This does nothing if B:modifyCR is false.", "Default: 8 (UHV)" })
         @Config.RangeInt(min = 1, max = 8)
         public int tierMuffler = 8;
+
+        @Config.Comment({ "Whether to generate T1 (Electronic) and T2 (Integrated) circuit recipe", "Default: false" })
+        public boolean generateLowTierCircuitRecipe = false;
     }
 
     public static class FeatureSetting {

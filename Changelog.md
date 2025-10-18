@@ -1,6 +1,12 @@
 ## Changelog
 ### 1.0.8-beta
 - **Add** _Display Text for Multiblock_.
+- **Rework** _Circuit Factory_.
+  - Fix missed intelligent.
+  - Reduce duration and EU/t.
+  - Remove T1 and T2 circuit recipe. (if you want to generate recipe, please modify cfg)
+  - Add x128 and x256 recipe.
+  - Relaxed the step-up conditions for the "Max Recipe Tier".
 
 ---
 ### 1.0.7.7-beta
