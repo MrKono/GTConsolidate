@@ -2,6 +2,7 @@ package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.CoATieredCasing;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.nonCleanMaintenance;
+import static kono.ceu.gtconsolidate.api.util.GTConsolidateUtil.isTABDown;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -275,6 +276,13 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
                 I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.energy_in.laser")));
         tooltip.add(I18n.format("gtconsolidate.multiblock.tooltip.universal.limit",
                 I18n.format("gtconsolidate.multiblock.tooltip.universal.limit.maintenance_no_clean")));
+        if (isTABDown()) {
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.3"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.4"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.5"));
+        } else {
+            tooltip.add((I18n.format("gtconsolidate.multiblock.tooltip.universal.tab.build")));
+        }
     }
 
     private class CircuitFactoryRecipeLogic extends MultiblockRecipeLogic {
