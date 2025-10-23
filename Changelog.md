@@ -1,4 +1,8 @@
 ## Changelog
+### 1.0.8.1-beta
+- **Fix** crash or cannot open GUI when CircuitFactory was broken
+---
+
 ### 1.0.8-beta
 - **Add** _Display Text for Multiblock_.
 - **Rework** _Circuit Factory_.
