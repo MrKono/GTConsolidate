@@ -294,12 +294,27 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
         @Override
         public long getMaxVoltage() {
             IEnergyContainer energyContainer = getEnergyContainer();
-            if (energyContainer instanceof EnergyContainerList energyList) {
-                long highestVoltage = energyList.getHighestInputVoltage();
-                int tier = GTUtility.getTierByVoltage(highestVoltage);
-                return GTValues.V[Math.min(tier + (energyList.getNumHighestInputContainers() - 1), GTValues.MAX)];
+            if (!consumesEnergy()) {
+                // Generators Is it needed??
+                long voltage = energyContainer.getOutputVoltage();
+                long amperage = energyContainer.getOutputAmperage();
+                if (energyContainer instanceof EnergyContainerList && amperage == 1) {
+                    return GTValues.V[GTUtility.getFloorTierByVoltage(voltage)];
+                }
+                return voltage;
             } else {
-                return energyContainer.getInputVoltage();
+                if (energyContainer instanceof EnergyContainerList energyList) {
+                    long highestVoltage = energyList.getHighestInputVoltage();
+                    if (energyList.getNumHighestInputContainers() > 1) {
+                        int tier = GTUtility.getTierByVoltage(highestVoltage);
+                        return GTValues.V[Math.min(tier + (energyList.getNumHighestInputContainers() - 1),
+                                GTValues.MAX)];
+                    } else {
+                        return highestVoltage;
+                    }
+                } else {
+                    return energyContainer.getInputVoltage();
+                }
             }
         }
 
