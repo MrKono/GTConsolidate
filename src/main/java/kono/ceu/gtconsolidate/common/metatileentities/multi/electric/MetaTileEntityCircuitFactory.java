@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import gregtech.client.utils.TooltipHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
@@ -44,6 +43,7 @@ import gregtech.api.util.TextComponentUtil;
 import gregtech.api.util.TextFormattingUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
+import gregtech.client.utils.TooltipHelper;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.*;
 import gregtech.common.metatileentities.MetaTileEntities;
