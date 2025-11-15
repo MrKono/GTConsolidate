@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import gregtech.client.utils.TooltipHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
@@ -283,6 +284,7 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
         } else {
             tooltip.add((I18n.format("gtconsolidate.multiblock.tooltip.universal.tab.build")));
         }
+        tooltip.add(TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"));
     }
 
     private class CircuitFactoryRecipeLogic extends MultiblockRecipeLogic {
