@@ -43,6 +43,7 @@ import gregtech.api.util.TextComponentUtil;
 import gregtech.api.util.TextFormattingUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
+import gregtech.client.utils.TooltipHelper;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.*;
 import gregtech.common.metatileentities.MetaTileEntities;
@@ -104,7 +105,7 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
                 .where('C', states(MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING)))
                 .where('D', states(getCasingState2()))
                 .where('E',
-                        abilities(MultiblockAbility.INPUT_LASER).setMinGlobalLimited(1).setMaxGlobalLimited(4)
+                        abilities(MultiblockAbility.INPUT_LASER).setMinGlobalLimited(1).setMaxGlobalLimited(8)
                                 .or(states(getCasingState1())))
                 .where('F', frames(Materials.TungstenSteel))
                 .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)))
@@ -283,12 +284,13 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
         } else {
             tooltip.add((I18n.format("gtconsolidate.multiblock.tooltip.universal.tab.build")));
         }
+        tooltip.add(TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"));
     }
 
     private class CircuitFactoryRecipeLogic extends MultiblockRecipeLogic {
 
         public CircuitFactoryRecipeLogic(MetaTileEntityCircuitFactory mte) {
-            super(mte);
+            super(mte, true);
         }
 
         @Override

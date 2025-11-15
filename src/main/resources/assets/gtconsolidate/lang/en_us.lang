@@ -154,7 +154,7 @@ gtconsolidate.machine.absolute_freezer.tooltip.1=Refrigerant-free freezer.
 gtconsolidate.machine.circuit_factory.tooltip.1=Ultra-precision machine
 gtconsolidate.machine.circuit_factory.tooltip.2=Recommended to enable Distinct Buses.
 gtconsolidate.machine.circuit_factory.tooltip.3=§cNothing except AIR§7 may be placed within the structural space.
-gtconsolidate.machine.circuit_factory.tooltip.4=Accepts up to 4 of Laser Target Hatch.
+gtconsolidate.machine.circuit_factory.tooltip.4=Accepts up to 8 of Laser Target Hatch.
 gtconsolidate.machine.circuit_factory.tooltip.5=    The step-up conditions for the "Max Recipe Tier" have been relaxed.
 
 # Extended Processing Array

@@ -155,7 +155,7 @@ gtconsolidate.machine.absolute_freezer.tooltip.1=冷媒不要の冷却機
 gtconsolidate.machine.circuit_factory.tooltip.1=超精密機械
 gtconsolidate.machine.circuit_factory.tooltip.2=バスの区別を有効にすることを推奨。
 gtconsolidate.machine.circuit_factory.tooltip.3=構造内部の空間には§c空気以外§7のブロックを設置してはならない。
-gtconsolidate.machine.circuit_factory.tooltip.4=レーザー照準ハッチは4つまで設置できる。
+gtconsolidate.machine.circuit_factory.tooltip.4=レーザー照準ハッチは8つまで設置できる。
 gtconsolidate.machine.circuit_factory.tooltip.5=    実行可能電圧の昇圧条件が緩和されています。
 
 # Extended Processing Array
