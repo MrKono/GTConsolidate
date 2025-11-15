@@ -31,6 +31,8 @@ public class CircuitFactoryLoader {
         // NAND Chip
         addProcessorRecipe(GOOD_CIRCUIT_BOARD, SIMPLE_SYSTEM_ON_CHIP, Materials.Tin, 2, Materials.RedAlloy, 2,
                 NAND_CHIP_ULV, outputAmount * 2, MV, 300);
+        addProcessorRecipe(PLASTIC_CIRCUIT_BOARD, SIMPLE_SYSTEM_ON_CHIP, Materials.Tin, 2, Materials.RedAlloy, 2,
+                NAND_CHIP_ULV, outputAmount * 2, MV, 300);
         // Microprocessor
         addProcessorRecipe(PLASTIC_CIRCUIT_BOARD, SYSTEM_ON_CHIP, Materials.Copper, 2, Materials.Tin, 2,
                 MICROPROCESSOR_LV, outputAmount * 3, EV, 50);
