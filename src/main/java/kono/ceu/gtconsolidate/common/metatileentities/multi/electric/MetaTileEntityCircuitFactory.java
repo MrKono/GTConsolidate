@@ -104,7 +104,7 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
                 .where('C', states(MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING)))
                 .where('D', states(getCasingState2()))
                 .where('E',
-                        abilities(MultiblockAbility.INPUT_LASER).setMinGlobalLimited(1).setMaxGlobalLimited(4)
+                        abilities(MultiblockAbility.INPUT_LASER).setMinGlobalLimited(1).setMaxGlobalLimited(8)
                                 .or(states(getCasingState1())))
                 .where('F', frames(Materials.TungstenSteel))
                 .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)))
@@ -288,7 +288,7 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
     private class CircuitFactoryRecipeLogic extends MultiblockRecipeLogic {
 
         public CircuitFactoryRecipeLogic(MetaTileEntityCircuitFactory mte) {
-            super(mte);
+            super(mte, true);
         }
 
         @Override
