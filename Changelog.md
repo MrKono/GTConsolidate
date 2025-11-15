@@ -1,4 +1,12 @@
 ## Changelog
+
+### 1.0.8.1-beta
+- _Circuit Factory_
+  - **Add** NAND Chip recipe using `PLASTIC_CIRCUIT_BOARD`.
+  - Refactor Energy Hatch Limit. (4 -> 8)
+  - Change OC Logic to _perfectOC_.
+---
+
 ### 1.0.8.1-beta
 - **Fix** crash or cannot open GUI when CircuitFactory was broken
 ---
