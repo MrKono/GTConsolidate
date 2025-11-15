@@ -66,4 +66,10 @@ dependencies {
 
     // GTExpertCore 2.4.11-beta
     compileOnly rfg.deobf("curse.maven:gte2-coremod-851103:6895062")
+
+    // Gregified Energistics 0.1.4
+    compileOnly rfg.deobf("curse.maven:gregified-energistics-1333309:6935586")
+    if (project.debug_gregifiedenergistics.toBoolean()) {
+        runtimeOnlyNonPublishable rfg.deobf("curse.maven:gregified-energistics-1333309:6935586")
+    }
 }
