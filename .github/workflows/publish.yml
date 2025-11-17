@@ -93,6 +93,7 @@ jobs:
             mixin-booter(required)
             gregtech-food-option(recommended)
             gtwoodprocessing(recommended)
+            gregified-energistics(recommended)
           files: |
             build/libs/!(*-@(dev|sources|javadoc)).jar
             build/libs/*-@(sources).jar

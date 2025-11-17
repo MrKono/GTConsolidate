@@ -1,4 +1,14 @@
 ## Changelog
+### 1.1.0.1-alpha
+- **Fix** NPE when without Gregified Energistics
+---
+
+### 1.1.0-alpha
+- Bump version to MixinBooter v10
+  - Updated MixinBooter from v9.1 to v10.6
+- **New integration**: Gregified Energistics
+  - `ME Assembly Line Bus` and `ME Assembly Line Optical Bus` are now available in Parallelized Assembly Line.
+---
 
 ### 1.0.8.1-beta
 - _Circuit Factory_

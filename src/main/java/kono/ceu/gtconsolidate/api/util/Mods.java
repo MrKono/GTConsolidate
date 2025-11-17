@@ -25,7 +25,9 @@ import kono.ceu.gtconsolidate.Tags;
 
 public enum Mods {
 
+    AppliedEnergistics2(Names.APPLIED_ENERGISTICS2),
     GregicalityMultiblocks(Names.GREGICALITY_MULTIBLOCKS),
+    GregifiedEnergistics(Names.GREGIFIED_ENERGISTICS),
     GregTech(Names.GREGTECH),
     GregTechFoodOption(Names.GREGTECH_FOOD_OPTION),
     GregTechExpertCore(Names.GREGTECH_EXPERT_CORE),
@@ -55,7 +57,9 @@ public enum Mods {
 
     public static class Names {
 
+        public static final String APPLIED_ENERGISTICS2 = "appliedenergistics2";
         public static final String GREGICALITY_MULTIBLOCKS = "gcym";
+        public static final String GREGIFIED_ENERGISTICS = "gregifiedenergistics";
         public static final String GREGTECH = "gregtech";
         public static final String GREGTECH_FOOD_OPTION = "gregtechfoodoption";
         public static final String GREGTECH_EXPERT_CORE = "gtexpert";
