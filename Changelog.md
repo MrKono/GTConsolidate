@@ -1,4 +1,8 @@
 ## Changelog
+### 1.1.0.1-alpha
+- **Fix** NPE when without Gregified Energistics
+---
+
 ### 1.1.0-alpha
 - Bump version to MixinBooter v10
   - Updated MixinBooter from v9.1 to v10.6
