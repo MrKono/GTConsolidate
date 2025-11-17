@@ -105,10 +105,11 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
     }
 
     private TraceabilityPredicate inputBusPredicate() {
-        return Mods.GregifiedEnergistics.isModLoaded() ? abilities(MultiblockAbility.IMPORT_ITEMS) :
+        return Mods.GregifiedEnergistics.isModLoaded() ?
                 abilities(MultiblockAbility.IMPORT_ITEMS)
                         .or(metaTileEntities(GregifiedEnergisticsMetaTileEntities.ME_ASSEMBLY_LINE_BUS,
-                                GregifiedEnergisticsMetaTileEntities.ME_ASSEMBLY_LINE_OPTICAL_BUS));
+                                GregifiedEnergisticsMetaTileEntities.ME_ASSEMBLY_LINE_OPTICAL_BUS)) :
+                abilities(MultiblockAbility.IMPORT_ITEMS);
     }
 
     @NotNull
