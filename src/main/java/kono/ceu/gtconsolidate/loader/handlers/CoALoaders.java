@@ -15,21 +15,21 @@ public class CoALoaders {
 
     public static void register() {
         // motors
-        registerMotors(Materials.Tin, false, Materials.Iron, Materials.IronMagnetic, Materials.Copper, false, LV);
-        registerMotors(Materials.Tin, false, Materials.Steel, Materials.SteelMagnetic, Materials.Copper, false, LV);
-        registerMotors(Materials.Copper, false, Materials.Aluminium, Materials.SteelMagnetic, Materials.Cupronickel,
+        registerMotor(Materials.Tin, false, Materials.Iron, Materials.IronMagnetic, Materials.Copper, false, LV);
+        registerMotor(Materials.Tin, false, Materials.Steel, Materials.SteelMagnetic, Materials.Copper, false, LV);
+        registerMotor(Materials.Copper, false, Materials.Aluminium, Materials.SteelMagnetic, Materials.Cupronickel,
                 true, MV);
-        registerMotors(Materials.Silver, true, Materials.StainlessSteel, Materials.IronMagnetic, Materials.Electrum,
+        registerMotor(Materials.Silver, true, Materials.StainlessSteel, Materials.IronMagnetic, Materials.Electrum,
                 true, HV);
-        registerMotors(Materials.Aluminium, true, Materials.Titanium, Materials.NeodymiumMagnetic, Materials.Kanthal,
+        registerMotor(Materials.Aluminium, true, Materials.Titanium, Materials.NeodymiumMagnetic, Materials.Kanthal,
                 true, EV);
-        registerMotors(Materials.Tungsten, true, Materials.TungstenSteel, Materials.NeodymiumMagnetic,
+        registerMotor(Materials.Tungsten, true, Materials.TungstenSteel, Materials.NeodymiumMagnetic,
                 Materials.Graphene, true, IV);
-        registerMotorsAL(Materials.SamariumMagnetic, 1, Materials.HSSS, 2, Materials.HSSS, 2, Materials.HSSS, 4,
+        registerMotorAL(Materials.SamariumMagnetic, 1, Materials.HSSS, 2, Materials.HSSS, 2, Materials.HSSS, 4,
                 Materials.Ruridit, 64, Materials.NiobiumTitanium, LuV);
-        registerMotorsAL(Materials.SamariumMagnetic, 1, Materials.Osmiridium, 4, Materials.Osmiridium, 4,
+        registerMotorAL(Materials.SamariumMagnetic, 1, Materials.Osmiridium, 4, Materials.Osmiridium, 4,
                 Materials.Osmiridium, 8, Materials.Europium, 64 + 32, Materials.VanadiumGallium, ZPM);
-        registerMotorsAL(Materials.SamariumMagnetic, 1, Materials.Tritanium, 4, Materials.Tritanium, 4,
+        registerMotorAL(Materials.SamariumMagnetic, 1, Materials.Tritanium, 4, Materials.Tritanium, 4,
                 Materials.Tritanium, 8, Materials.Americium, 64 + 32, Materials.YttriumBariumCuprate, UV);
         // pumps();
         // conveyors
@@ -66,9 +66,9 @@ public class CoALoaders {
      * All rods should convert to long rods. However, the quantity is x24, not x48.
      * Superconducting wires were added on a whim by the author :)
      */
-    public static void registerMotors(Material cableMaterial, boolean isCableDouble, Material stickMaterial,
-                                      Material magneticMaterial, Material wireMaterial, boolean isWireDouble,
-                                      int tier) {
+    public static void registerMotor(Material cableMaterial, boolean isCableDouble, Material stickMaterial,
+                                     Material magneticMaterial, Material wireMaterial, boolean isWireDouble,
+                                     int tier) {
         int cableAmount = isCableDouble ? 12 : 6;
         int wireAmount = isWireDouble ? 24 : 12;
 
@@ -85,10 +85,10 @@ public class CoALoaders {
                 .buildAndRegister();
     }
 
-    public static void registerMotorsAL(Material magneticMaterial, int amountMagnetic, Material stickMaterial,
-                                        int amountStick, Material ringMaterial, int amountRing, Material roundMaterial,
-                                        int amountRound, Material fineMaterial, int amountFine, Material cableMaterial,
-                                        int tier) {
+    public static void registerMotorAL(Material magneticMaterial, int amountMagnetic, Material stickMaterial,
+                                       int amountStick, Material ringMaterial, int amountRing, Material roundMaterial,
+                                       int amountRound, Material fineMaterial, int amountFine, Material cableMaterial,
+                                       int tier) {
         CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
                 .input(stickLong, magneticMaterial, amountMagnetic * 48)
                 .input(stickLong, stickMaterial, amountStick * 48)
