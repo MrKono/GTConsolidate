@@ -1,6 +1,6 @@
 ## Changelog
 
-### 1.0.8.1-beta
+### 1.0.8.2-beta
 - _Circuit Factory_
   - **Add** NAND Chip recipe using `PLASTIC_CIRCUIT_BOARD`.
   - Refactor Energy Hatch Limit. (4 -> 8)
