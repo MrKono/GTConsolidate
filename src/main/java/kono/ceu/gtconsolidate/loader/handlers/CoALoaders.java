@@ -8,6 +8,7 @@ import static kono.ceu.gtconsolidate.loader.Components.*;
 import gregtech.api.GTValues;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
 
 import kono.ceu.gtconsolidate.api.recipes.builder.CoARecipeBuilder;
 
@@ -31,7 +32,23 @@ public class CoALoaders {
                 Materials.Osmiridium, 8, Materials.Europium, 64 + 32, Materials.VanadiumGallium, ZPM);
         registerMotorAL(Materials.SamariumMagnetic, 1, Materials.Tritanium, 4, Materials.Tritanium, 4,
                 Materials.Tritanium, 8, Materials.Americium, 64 + 32, Materials.YttriumBariumCuprate, UV);
-        // pumps();
+        // pumps
+        registerPump(Materials.Tin, Materials.Bronze, Materials.Tin, Materials.Tin,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, LV);
+        registerPump(Materials.Copper, Materials.Steel, Materials.Bronze, Materials.Bronze,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, MV);
+        registerPump(Materials.Gold, Materials.StainlessSteel, Materials.Steel, Materials.Steel,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, HV);
+        registerPump(Materials.Aluminium, Materials.Titanium, Materials.StainlessSteel, Materials.StainlessSteel,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, EV);
+        registerPump(Materials.Tungsten, Materials.TungstenSteel, Materials.TungstenSteel, Materials.TungstenSteel,
+                new Material[] { Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, IV);
+        registerPumpAL(pipeSmallFluid, Materials.NiobiumTitanium, Materials.HSSS, Materials.HSSS, Materials.HSSS,
+                Materials.NiobiumTitanium, 4, LuV);
+        registerPumpAL(pipeNormalFluid, Materials.Polybenzimidazole, Materials.Osmiridium, Materials.Osmiridium,
+                Materials.Osmiridium, Materials.VanadiumGallium, 8, ZPM);
+        registerPumpAL(pipeLargeFluid, Materials.Naquadah, Materials.Tritanium, Materials.Tritanium,
+                Materials.Tritanium, Materials.YttriumBariumCuprate, 4, UV);
         // conveyors
         registerConveyor(Materials.Tin,
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, LV);
@@ -139,6 +156,46 @@ public class CoALoaders {
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
         if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 6 * 48));
+
+        builder.buildAndRegister();
+    }
+
+    public static void registerPump(Material cableMaterial, Material pipeMaterial, Material screwMaterial,
+                                    Material rotorMaterial, Material[] rubberMaterials, int tier) {
+        for (Material rubber : rubberMaterials) {
+            COA_RECIPES.recipeBuilder()
+                    .input(motor(tier), 48)
+                    .input(cableGtHex, cableMaterial, 3)
+                    .input(pipeNormalFluid, pipeMaterial, 48)
+                    .input(screw, screwMaterial, 48)
+                    .input(rotor, rotorMaterial, 48)
+                    .input(ring, rubber, 2 * 48)
+                    .input(wireGtSingle, scMaterial(tier), 48)
+                    .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                    .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                    .output(pump(tier), 64)
+                    .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
+                    .buildAndRegister();
+        }
+    }
+
+    public static void registerPumpAL(OrePrefix pipePreFix, Material pipeMaterial, Material plateMaterial,
+                                      Material screwMaterial, Material rotorMaterial, Material cableMaterial,
+                                      int ringAmount, int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(motor(tier), 48)
+                .input(pipePreFix, pipeMaterial, 48)
+                .input(plate, plateMaterial, 2 * 48)
+                .input(screw, screwMaterial, 8 * 48)
+                .input(ring, Materials.SiliconeRubber, ringAmount * 48)
+                .input(rotor, rotorMaterial, 48)
+                .input(cableGtHex, cableMaterial, 6).input(wireGtSingle, scMaterial(tier), 48)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(pump(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
 
         builder.buildAndRegister();
     }
