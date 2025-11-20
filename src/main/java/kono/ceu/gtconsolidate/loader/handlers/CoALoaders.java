@@ -6,11 +6,8 @@ import static kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps.COA_REC
 import static kono.ceu.gtconsolidate.loader.Components.*;
 
 import gregtech.api.GTValues;
-import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
-import gregtech.api.util.GTUtility;
-import gregtech.common.items.MetaItems;
 
 import kono.ceu.gtconsolidate.api.recipes.builder.CoARecipeBuilder;
 
@@ -20,30 +17,44 @@ public class CoALoaders {
         // motors
         registerMotors(Materials.Tin, false, Materials.Iron, Materials.IronMagnetic, Materials.Copper, false, LV);
         registerMotors(Materials.Tin, false, Materials.Steel, Materials.SteelMagnetic, Materials.Copper, false, LV);
-        registerMotors(Materials.Copper, false, Materials.Aluminium, Materials.SteelMagnetic, Materials.Cupronickel, true, MV);
-        registerMotors(Materials.Silver, true, Materials.StainlessSteel, Materials.IronMagnetic, Materials.Electrum, true, HV);
-        registerMotors(Materials.Aluminium, true, Materials.Titanium, Materials.NeodymiumMagnetic, Materials.Kanthal, true, EV);
-        registerMotors(Materials.Tungsten, true, Materials.TungstenSteel, Materials.NeodymiumMagnetic, Materials.Graphene, true, IV);
-        registerMotorsAL(Materials.SamariumMagnetic, 1, Materials.HSSS, 2, Materials.HSSS, 2, Materials.HSSS, 4, Materials.Ruridit, 64, Materials.NiobiumTitanium, LuV);
-        registerMotorsAL(Materials.SamariumMagnetic, 1, Materials.Osmiridium, 4, Materials.Osmiridium, 4, Materials.Osmiridium, 8, Materials.Europium, 64 + 32, Materials.VanadiumGallium, ZPM);
-        registerMotorsAL(Materials.SamariumMagnetic, 1, Materials.Tritanium, 4, Materials.Tritanium, 4, Materials.Tritanium, 8, Materials.Americium, 64 + 32, Materials.YttriumBariumCuprate, UV);
-        //pumps();
+        registerMotors(Materials.Copper, false, Materials.Aluminium, Materials.SteelMagnetic, Materials.Cupronickel,
+                true, MV);
+        registerMotors(Materials.Silver, true, Materials.StainlessSteel, Materials.IronMagnetic, Materials.Electrum,
+                true, HV);
+        registerMotors(Materials.Aluminium, true, Materials.Titanium, Materials.NeodymiumMagnetic, Materials.Kanthal,
+                true, EV);
+        registerMotors(Materials.Tungsten, true, Materials.TungstenSteel, Materials.NeodymiumMagnetic,
+                Materials.Graphene, true, IV);
+        registerMotorsAL(Materials.SamariumMagnetic, 1, Materials.HSSS, 2, Materials.HSSS, 2, Materials.HSSS, 4,
+                Materials.Ruridit, 64, Materials.NiobiumTitanium, LuV);
+        registerMotorsAL(Materials.SamariumMagnetic, 1, Materials.Osmiridium, 4, Materials.Osmiridium, 4,
+                Materials.Osmiridium, 8, Materials.Europium, 64 + 32, Materials.VanadiumGallium, ZPM);
+        registerMotorsAL(Materials.SamariumMagnetic, 1, Materials.Tritanium, 4, Materials.Tritanium, 4,
+                Materials.Tritanium, 8, Materials.Americium, 64 + 32, Materials.YttriumBariumCuprate, UV);
+        // pumps();
         // conveyors
-        registerConveyor(Materials.Tin, new Material[] {Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber}, LV);
-        registerConveyor(Materials.Tin, new Material[] {Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber}, MV);
-        registerConveyor(Materials.Tin, new Material[] {Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber}, HV);
-        registerConveyor(Materials.Tin, new Material[] {Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber}, EV);
-        registerConveyor(Materials.Tin, new Material[] {Materials.SiliconeRubber, Materials.StyreneButadieneRubber}, IV);
-        registerConveyorAL(Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.NiobiumTitanium, LuV);
-        registerConveyorAL(Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium, Materials.VanadiumGallium, ZPM);
-        registerConveyorAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium, Materials.Tritanium, Materials.NiobiumTitanium, UV);
-        //pistons();
-        //robotArms();
-        //fieldGenerators();
-        //emitters();
-        //sensors();
+        registerConveyor(Materials.Tin,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, LV);
+        registerConveyor(Materials.Tin,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, MV);
+        registerConveyor(Materials.Tin,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, HV);
+        registerConveyor(Materials.Tin,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, EV);
+        registerConveyor(Materials.Tin, new Material[] { Materials.SiliconeRubber, Materials.StyreneButadieneRubber },
+                IV);
+        registerConveyorAL(Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.NiobiumTitanium,
+                LuV);
+        registerConveyorAL(Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium,
+                Materials.VanadiumGallium, ZPM);
+        registerConveyorAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium, Materials.Tritanium,
+                Materials.NiobiumTitanium, UV);
+        // pistons();
+        // robotArms();
+        // fieldGenerators();
+        // emitters();
+        // sensors();
     }
-
 
     /**
      * The recipe is based on GTNH's recipe.
@@ -55,7 +66,9 @@ public class CoALoaders {
      * All rods should convert to long rods. However, the quantity is x24, not x48.
      * Superconducting wires were added on a whim by the author :)
      */
-    public static void registerMotors(Material cableMaterial, boolean isCableDouble, Material stickMaterial, Material magneticMaterial, Material wireMaterial, boolean isWireDouble, int tier) {
+    public static void registerMotors(Material cableMaterial, boolean isCableDouble, Material stickMaterial,
+                                      Material magneticMaterial, Material wireMaterial, boolean isWireDouble,
+                                      int tier) {
         int cableAmount = isCableDouble ? 12 : 6;
         int wireAmount = isWireDouble ? 24 : 12;
 
@@ -72,7 +85,10 @@ public class CoALoaders {
                 .buildAndRegister();
     }
 
-    public static void registerMotorsAL(Material magneticMaterial, int amountMagnetic, Material stickMaterial, int amountStick, Material ringMaterial, int amountRing, Material roundMaterial, int amountRound, Material fineMaterial, int amountFine, Material cableMaterial, int tier) {
+    public static void registerMotorsAL(Material magneticMaterial, int amountMagnetic, Material stickMaterial,
+                                        int amountStick, Material ringMaterial, int amountRing, Material roundMaterial,
+                                        int amountRound, Material fineMaterial, int amountFine, Material cableMaterial,
+                                        int tier) {
         CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
                 .input(stickLong, magneticMaterial, amountMagnetic * 48)
                 .input(stickLong, stickMaterial, amountStick * 48)
@@ -89,8 +105,6 @@ public class CoALoaders {
         if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
 
         builder.buildAndRegister();
-
-
     }
 
     public static void registerConveyor(Material cableMaterial, Material[] rubberMaterials, int tier) {
@@ -108,10 +122,11 @@ public class CoALoaders {
         }
     }
 
-    public static void registerConveyorAL(Material plateMaterial, Material ringMaterial, Material roundMaterial, Material screwMaterial, Material cableMaterial, int tier) {
+    public static void registerConveyorAL(Material plateMaterial, Material ringMaterial, Material roundMaterial,
+                                          Material screwMaterial, Material cableMaterial, int tier) {
         CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
                 .input(pump(tier), 2)
-                .input(plate, plateMaterial, 2* 48)
+                .input(plate, plateMaterial, 2 * 48)
                 .input(ring, ringMaterial, 4 * 48)
                 .input(round, roundMaterial, 16 * 48)
                 .input(screw, screwMaterial, 4 * 48)
@@ -127,6 +142,4 @@ public class CoALoaders {
 
         builder.buildAndRegister();
     }
-
-
 }
