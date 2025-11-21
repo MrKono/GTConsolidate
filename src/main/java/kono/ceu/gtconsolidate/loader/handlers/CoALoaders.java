@@ -2,24 +2,22 @@ package kono.ceu.gtconsolidate.loader.handlers;
 
 import static gregtech.api.GTValues.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.loaders.recipe.CraftingComponent.CIRCUIT;
 import static kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps.COA_RECIPES;
 import static kono.ceu.gtconsolidate.loader.Components.*;
 
+import net.minecraft.item.ItemStack;
+
 import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.recipes.ingredients.GTRecipeInput;
 import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
-
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.api.util.GTUtility;
 import gregtech.common.items.MetaItems;
+
 import kono.ceu.gtconsolidate.api.recipes.builder.CoARecipeBuilder;
-import net.minecraft.item.ItemStack;
 
 public class CoALoaders {
 
@@ -96,17 +94,25 @@ public class CoALoaders {
         registerRobotArm(Materials.Aluminium, Materials.Titanium, EV);
         registerRobotArm(Materials.Tungsten, Materials.TungstenSteel, IV);
         registerRobotArmAL(Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.NiobiumTitanium, LuV);
-        registerRobotArmAL(Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium, Materials.VanadiumGallium, ZPM);
-        registerRobotArmAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium, Materials.YttriumBariumCuprate, UV);
+        registerRobotArmAL(Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium, Materials.VanadiumGallium,
+                ZPM);
+        registerRobotArmAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium,
+                Materials.YttriumBariumCuprate, UV);
         // fieldGenerators
-        registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.EnderPearl)), Materials.Steel, LV);
-        registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.EnderEye)), Materials.Aluminium, MV);
+        registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.EnderPearl)), Materials.Steel,
+                LV);
+        registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.EnderEye)), Materials.Aluminium,
+                MV);
         registerFieldGenerator(MetaItems.QUANTUM_EYE.getStackForm(), Materials.StainlessSteel, HV);
-        registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.NetherStar)), Materials.Titanium, EV);
+        registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.NetherStar)), Materials.Titanium,
+                EV);
         registerFieldGenerator(MetaItems.QUANTUM_STAR.getStackForm(), Materials.TungstenSteel, IV);
-        registerFieldGeneratorAL(Materials.HSSS, Materials.HSSS, MetaItems.QUANTUM_STAR, Materials.NiobiumTitanium,  LuV);
-        registerFieldGeneratorAL(Materials.NaquadahAlloy, Materials.NaquadahAlloy, MetaItems.QUANTUM_STAR, Materials.VanadiumGallium,  ZPM);
-        registerFieldGeneratorAL(Materials.Tritanium, Materials.Tritanium, MetaItems.GRAVI_STAR, Materials.YttriumBariumCuprate,  UV);
+        registerFieldGeneratorAL(Materials.HSSS, Materials.HSSS, MetaItems.QUANTUM_STAR, Materials.NiobiumTitanium,
+                LuV);
+        registerFieldGeneratorAL(Materials.NaquadahAlloy, Materials.NaquadahAlloy, MetaItems.QUANTUM_STAR,
+                Materials.VanadiumGallium, ZPM);
+        registerFieldGeneratorAL(Materials.Tritanium, Materials.Tritanium, MetaItems.GRAVI_STAR,
+                Materials.YttriumBariumCuprate, UV);
         // emitters();
         // sensors();
     }
@@ -292,7 +298,8 @@ public class CoALoaders {
                 .buildAndRegister();
     }
 
-    public static void registerRobotArmAL(Material stickMaterial, Material gearMaterial, Material smallGearMaterial, Material cableMaterial, int tier) {
+    public static void registerRobotArmAL(Material stickMaterial, Material gearMaterial, Material smallGearMaterial,
+                                          Material cableMaterial, int tier) {
         CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
                 .input(stickLong, stickMaterial, 48 * 4)
                 .input(gear, gearMaterial, 48)
@@ -308,7 +315,7 @@ public class CoALoaders {
                 .output(robotArm(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid( L * 4 * 48));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
 
         builder.buildAndRegister();
     }
@@ -327,14 +334,15 @@ public class CoALoaders {
                 .buildAndRegister();
     }
 
-    public static void registerFieldGeneratorAL(Material frameMaterial, Material plateMaterial, MetaItem<?>.MetaValueItem coreItem, Material cableMaterial, int tier) {
+    public static void registerFieldGeneratorAL(Material frameMaterial, Material plateMaterial,
+                                                MetaItem<?>.MetaValueItem coreItem, Material cableMaterial, int tier) {
         CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
                 .input(frameGt, frameMaterial, 48)
                 .input(plate, plateMaterial, 48 * 6)
                 .input(coreItem, 48)
                 .input(emitter(tier), 48)
                 .input(wireGtHex, scMaterial(tier), 48)
-                .input(cableGtHex, cableMaterial ,12)
+                .input(cableGtHex, cableMaterial, 12)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(fieldGenerator(tier), 64)

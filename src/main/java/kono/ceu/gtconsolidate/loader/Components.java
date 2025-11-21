@@ -2,13 +2,9 @@ package kono.ceu.gtconsolidate.loader;
 
 import static gregtech.api.unification.ore.OrePrefix.*;
 
-import gregtech.api.unification.material.MarkerMaterials;
-import gregtech.api.unification.stack.UnificationEntry;
-import net.minecraft.item.ItemStack;
-
 import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.common.items.MetaItems;
