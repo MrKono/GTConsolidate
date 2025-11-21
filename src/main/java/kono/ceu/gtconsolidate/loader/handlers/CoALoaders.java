@@ -1,12 +1,19 @@
 package kono.ceu.gtconsolidate.loader.handlers;
 
+import static gregtech.api.GTValues.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps.COA_RECIPES;
 import static kono.ceu.gtconsolidate.loader.Components.*;
 
+import net.minecraft.item.ItemStack;
+
 import gregtech.api.GTValues;
+import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.api.util.GTUtility;
 import gregtech.common.items.MetaItems;
 
@@ -15,234 +22,426 @@ import kono.ceu.gtconsolidate.api.recipes.builder.CoARecipeBuilder;
 public class CoALoaders {
 
     public static void register() {
-        motors();
-        pumps();
-        conveyors();
-        pistons();
-        robotArms();
-        fieldGenerators();
-        emitters();
-        sensors();
+        // Motors
+        registerMotor(Materials.Tin, false, Materials.Iron, Materials.IronMagnetic, Materials.Copper, false, LV);
+        registerMotor(Materials.Tin, false, Materials.Steel, Materials.SteelMagnetic, Materials.Copper, false, LV);
+        registerMotor(Materials.Copper, false, Materials.Aluminium, Materials.SteelMagnetic, Materials.Cupronickel,
+                true, MV);
+        registerMotor(Materials.Silver, true, Materials.StainlessSteel, Materials.IronMagnetic, Materials.Electrum,
+                true, HV);
+        registerMotor(Materials.Aluminium, true, Materials.Titanium, Materials.NeodymiumMagnetic, Materials.Kanthal,
+                true, EV);
+        registerMotor(Materials.Tungsten, true, Materials.TungstenSteel, Materials.NeodymiumMagnetic,
+                Materials.Graphene, true, IV);
+        registerMotorAL(Materials.SamariumMagnetic, 1, Materials.HSSS, 2, Materials.HSSS, 2, Materials.HSSS, 4,
+                Materials.Ruridit, 64, Materials.NiobiumTitanium, LuV);
+        registerMotorAL(Materials.SamariumMagnetic, 1, Materials.Osmiridium, 4, Materials.Osmiridium, 4,
+                Materials.Osmiridium, 8, Materials.Europium, 64 + 32, Materials.VanadiumGallium, ZPM);
+        registerMotorAL(Materials.SamariumMagnetic, 1, Materials.Tritanium, 4, Materials.Tritanium, 4,
+                Materials.Tritanium, 8, Materials.Americium, 64 + 32, Materials.YttriumBariumCuprate, UV);
+        // Pumps
+        registerPump(Materials.Tin, Materials.Bronze, Materials.Tin, Materials.Tin,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, LV);
+        registerPump(Materials.Copper, Materials.Steel, Materials.Bronze, Materials.Bronze,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, MV);
+        registerPump(Materials.Gold, Materials.StainlessSteel, Materials.Steel, Materials.Steel,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, HV);
+        registerPump(Materials.Aluminium, Materials.Titanium, Materials.StainlessSteel, Materials.StainlessSteel,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, EV);
+        registerPump(Materials.Tungsten, Materials.TungstenSteel, Materials.TungstenSteel, Materials.TungstenSteel,
+                new Material[] { Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, IV);
+        registerPumpAL(pipeSmallFluid, Materials.NiobiumTitanium, Materials.HSSS, Materials.HSSS, Materials.HSSS,
+                Materials.NiobiumTitanium, 4, LuV);
+        registerPumpAL(pipeNormalFluid, Materials.Polybenzimidazole, Materials.Osmiridium, Materials.Osmiridium,
+                Materials.Osmiridium, Materials.VanadiumGallium, 8, ZPM);
+        registerPumpAL(pipeLargeFluid, Materials.Naquadah, Materials.Tritanium, Materials.Tritanium,
+                Materials.NaquadahAlloy, Materials.YttriumBariumCuprate, 4, UV);
+        // Conveyors
+        registerConveyor(Materials.Tin,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, LV);
+        registerConveyor(Materials.Tin,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, MV);
+        registerConveyor(Materials.Tin,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, HV);
+        registerConveyor(Materials.Tin,
+                new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, EV);
+        registerConveyor(Materials.Tin, new Material[] { Materials.SiliconeRubber, Materials.StyreneButadieneRubber },
+                IV);
+        registerConveyorAL(Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.NiobiumTitanium,
+                LuV);
+        registerConveyorAL(Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium,
+                Materials.VanadiumGallium, ZPM);
+        registerConveyorAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium, Materials.Tritanium,
+                Materials.NiobiumTitanium, UV);
+        // Pistons
+        registerPiston(Materials.Steel, Materials.Tin, Materials.Steel, Materials.Steel, LV);
+        registerPiston(Materials.Aluminium, Materials.Copper, Materials.Aluminium, Materials.Aluminium, MV);
+        registerPiston(Materials.StainlessSteel, Materials.Gold, Materials.StainlessSteel, Materials.StainlessSteel,
+                HV);
+        registerPiston(Materials.Titanium, Materials.Aluminium, Materials.Tritanium, Materials.Tritanium, EV);
+        registerPiston(Materials.TungstenSteel, Materials.Tungsten, Materials.TungstenSteel, Materials.TungstenSteel,
+                IV);
+        registerPistonAL(Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS,
+                Materials.NiobiumTitanium, LuV);
+        registerPistonAL(Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium,
+                Materials.Osmiridium, Materials.Osmiridium, Materials.VanadiumGallium, ZPM);
+        registerPistonAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium, Materials.Tritanium,
+                Materials.NaquadahAlloy, Materials.NaquadahAlloy, Materials.YttriumBariumCuprate, UV);
+        // RobotArms
+        registerRobotArm(Materials.Tin, Materials.Steel, LV);
+        registerRobotArm(Materials.Copper, Materials.Aluminium, MV);
+        registerRobotArm(Materials.Gold, Materials.StainlessSteel, HV);
+        registerRobotArm(Materials.Aluminium, Materials.Titanium, EV);
+        registerRobotArm(Materials.Tungsten, Materials.TungstenSteel, IV);
+        registerRobotArmAL(Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.NiobiumTitanium, LuV);
+        registerRobotArmAL(Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium, Materials.VanadiumGallium,
+                ZPM);
+        registerRobotArmAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium,
+                Materials.YttriumBariumCuprate, UV);
+        // FieldGenerators
+        registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.EnderPearl)), Materials.Steel,
+                LV);
+        registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.EnderEye)), Materials.Aluminium,
+                MV);
+        registerFieldGenerator(MetaItems.QUANTUM_EYE.getStackForm(), Materials.StainlessSteel, HV);
+        registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.NetherStar)), Materials.Titanium,
+                EV);
+        registerFieldGenerator(MetaItems.QUANTUM_STAR.getStackForm(), Materials.TungstenSteel, IV);
+        registerFieldGeneratorAL(Materials.HSSS, Materials.HSSS, MetaItems.QUANTUM_STAR, Materials.NiobiumTitanium,
+                LuV);
+        registerFieldGeneratorAL(Materials.NaquadahAlloy, Materials.NaquadahAlloy, MetaItems.QUANTUM_STAR,
+                Materials.VanadiumGallium, ZPM);
+        registerFieldGeneratorAL(Materials.Tritanium, Materials.Tritanium, MetaItems.GRAVI_STAR,
+                Materials.YttriumBariumCuprate, UV);
+        // Emitters
+        registerEmitter(Materials.Brass, Materials.Tin, OreDictUnifier.get(gem, Materials.Quartzite), LV);
+        registerEmitter(Materials.Electrum, Materials.Copper, OreDictUnifier.get(gemFlawless, Materials.Emerald), MV);
+        registerEmitter(Materials.Chrome, Materials.Gold, OreDictUnifier.get(gem, Materials.EnderEye), HV);
+        registerEmitter(Materials.Platinum, Materials.Aluminium, MetaItems.QUANTUM_EYE.getStackForm(), EV);
+        registerEmitter(Materials.TungstenSteel, Materials.Tungsten, MetaItems.QUANTUM_STAR.getStackForm(), IV);
+        registerEmitterAL(Materials.HSSS, Materials.Ruridit, Materials.Palladium, Materials.NiobiumTitanium,
+                MetaItems.QUANTUM_STAR, LuV);
+        registerEmitterAL(Materials.NaquadahAlloy, Materials.Osmiridium, Materials.Trinium, Materials.VanadiumGallium,
+                MetaItems.QUANTUM_STAR, ZPM);
+        registerEmitterAL(Materials.Tritanium, Materials.Tritanium, Materials.Naquadria, Materials.YttriumBariumCuprate,
+                MetaItems.GRAVI_STAR, UV);
+        // Sensors
+        registerSensor(Materials.Brass, Materials.Steel, OreDictUnifier.get(gem, Materials.Quartzite), LV);
+        registerSensor(Materials.Electrum, Materials.Aluminium, OreDictUnifier.get(gemFlawless, Materials.Emerald), MV);
+        registerSensor(Materials.Chrome, Materials.StainlessSteel, OreDictUnifier.get(gem, Materials.EnderEye), HV);
+        registerSensor(Materials.Platinum, Materials.Titanium, MetaItems.QUANTUM_EYE.getStackForm(), EV);
+        registerSensor(Materials.Iridium, Materials.TungstenSteel, MetaItems.QUANTUM_STAR.getStackForm(), IV);
+        registerSensorAL(Materials.HSSS, Materials.Ruridit, Materials.Palladium, Materials.NiobiumTitanium,
+                MetaItems.QUANTUM_STAR, LuV);
+        registerSensorAL(Materials.NaquadahAlloy, Materials.Osmiridium, Materials.Trinium, Materials.VanadiumGallium,
+                MetaItems.QUANTUM_STAR, ZPM);
+        registerSensorAL(Materials.Tritanium, Materials.Tritanium, Materials.Naquadria, Materials.YttriumBariumCuprate,
+                MetaItems.GRAVI_STAR, UV);
     }
 
-    public static void motors() {
-        for (int i = 1; i < GTValues.UHV; i++) {
-            CoARecipeBuilder builder = COA_RECIPES.recipeBuilder();
-            if (i < GTValues.LuV) {
-                if (i < GTValues.HV) {
-                    builder.input(cableGtDouble, cableMaterial(i), 48);
-                } else {
-                    builder.input(cableGtQuadruple, cableMaterial(i), 48);
-                }
-                builder.input(stickLong, partMaterial1(i), 48)
-                        .input(stick, magneticMaterial(i), 48);
-                if (i == GTValues.LV) {
-                    builder.input(wireGtOctal, wireMaterial(i), 24);
-                } else {
-                    builder.input(wireGtHex, wireMaterial(i), 24);
-                }
-            } else {
-                builder.input(cableGtDouble, cableMaterial(i), 48)
-                        .input(stickLong, partMaterial1(i), 48)
-                        .input(stickLong, magneticMaterial(i), 4 * 48)
-                        .input(ring, partMaterial1(i), 4 * 48)
-                        .input(round, partMaterial1(i), 8 * 48)
-                        .input(ingot, wireMaterial(i), 12 * 48)
-                        .notConsumable(MetaItems.SHAPE_EXTRUDER_WIRE);
-            }
-            builder.input(wireGtDouble, scMaterial(i), 48)
-                    .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
-                    .output(motor(i), 64)
-                    .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
+    /**
+     * The recipe is based on GTNH's recipe.
+     * Duplicated recipes for multiple inputs (i.e., SBR vs Silicone) should be respected.
+     * Multiply all inputs by 48x, but output 64 at a time.
+     *
+     * Item conversion rules (in case of odd numbers, round down):
+     * All wires/cables should convert to 16x sizes (excluding fine wires).
+     * All rods should convert to long rods. However, the quantity is x24, not x48.
+     * Superconducting wires were added on a whim by the author :)
+     */
+    public static void registerMotor(Material cableMaterial, boolean isCableDouble, Material stickMaterial,
+                                     Material magneticMaterial, Material wireMaterial, boolean isWireDouble,
+                                     int tier) {
+        int cableAmount = isCableDouble ? 12 : 6;
+        int wireAmount = isWireDouble ? 24 : 12;
+
+        COA_RECIPES.recipeBuilder()
+                .input(cableGtHex, cableMaterial, cableAmount)
+                .input(stickLong, stickMaterial, 48)
+                .input(stickLong, magneticMaterial, 24)
+                .input(wireGtHex, wireMaterial, wireAmount)
+                .input(wireGtSingle, scMaterial(tier), isWireDouble ? 48 * 2 : 48)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(motor(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
+                .buildAndRegister();
+    }
+
+    public static void registerMotorAL(Material magneticMaterial, int amountMagnetic, Material stickMaterial,
+                                       int amountStick, Material ringMaterial, int amountRing, Material roundMaterial,
+                                       int amountRound, Material fineMaterial, int amountFine, Material cableMaterial,
+                                       int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(stickLong, magneticMaterial, amountMagnetic * 48)
+                .input(stickLong, stickMaterial, amountStick * 48)
+                .input(ring, ringMaterial, amountRing * 48)
+                .input(round, roundMaterial, amountRound * 48)
+                .input(wireGtHex, fineMaterial, amountFine * 48 / 128)
+                .input(cableGtHex, cableMaterial, 6)
+                .input(wireGtDouble, scMaterial(tier), 48)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(motor(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+
+        builder.buildAndRegister();
+    }
+
+    public static void registerConveyor(Material cableMaterial, Material[] rubberMaterials, int tier) {
+        for (Material rubber : rubberMaterials) {
+            COA_RECIPES.recipeBuilder()
+                    .input(cableGtHex, cableMaterial, 18)
+                    .input(motor(tier), 48 * 2)
+                    .input(wireGtSingle, scMaterial(tier), 48)
+                    .fluidInputs(rubber.getFluid(L * 6 * 48))
+                    .fluidInputs(Materials.SolderingAlloy.getFluid(L * tier))
+                    .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                    .output(conveyor(tier), 64)
+                    .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
                     .buildAndRegister();
         }
     }
 
-    public static void pumps() {
-        Material[] pipeMaterial = new Material[] {
-                Materials.Steel, Materials.Bronze, Materials.StainlessSteel, Materials.Titanium,
-                Materials.TungstenSteel, Materials.NiobiumTitanium, Materials.Polybenzimidazole, Materials.Naquadah };
-        for (int i = 1; i < GTValues.UHV; i++) {
-            CoARecipeBuilder builder = COA_RECIPES.recipeBuilder();
-            builder.input(motor(i), 48);
-            if (i < GTValues.LuV) {
-                builder.input(cableGtSingle, cableMaterial(i), 48)
-                        .input(pipeNormalFluid, pipeMaterial[i - 1], 48)
-                        .input(screw, partMaterial3(i), 48)
-                        .input(rotor, partMaterial3(i), 48);
-            } else {
-                builder.input(cableGtDouble, cableMaterial(i), 48)
-                        .input(i == GTValues.LuV ? pipeSmallFluid :
-                                i == GTValues.ZPM ? pipeNormalFluid : pipeLargeFluid,
-                                pipeMaterial[i - 1], 48)
-                        .input(plate, partMaterial1(i), 2 * 48)
-                        .input(screw, partMaterial1(i), 8 * 48)
-                        .input(rotor, partMaterial3(i), 48);
-            }
-            builder.input(ring, Materials.SiliconeRubber, 48)
-                    .input(wireGtSingle, scMaterial(i), 48)
-                    .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
-                    .output(pump(i), 64)
-                    .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
+    public static void registerConveyorAL(Material plateMaterial, Material ringMaterial, Material roundMaterial,
+                                          Material screwMaterial, Material cableMaterial, int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(pump(tier), 2)
+                .input(plate, plateMaterial, 2 * 48)
+                .input(ring, ringMaterial, 4 * 48)
+                .input(round, roundMaterial, 16 * 48)
+                .input(screw, screwMaterial, 4 * 48)
+                .input(cableGtHex, cableMaterial, 6)
+                .input(wireGtDouble, scMaterial(tier), 48)
+                .fluidInputs(Materials.StyreneButadieneRubber.getFluid(L * 6 * 48))
+                .fluidInputs(Materials.SolderingAlloy.getFluid(L * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(conveyor(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 6));
+
+        builder.buildAndRegister();
+    }
+
+    public static void registerPump(Material cableMaterial, Material pipeMaterial, Material screwMaterial,
+                                    Material rotorMaterial, Material[] rubberMaterials, int tier) {
+        for (Material rubber : rubberMaterials) {
+            COA_RECIPES.recipeBuilder()
+                    .input(motor(tier), 48)
+                    .input(cableGtHex, cableMaterial, 3)
+                    .input(pipeNormalFluid, pipeMaterial, 48)
+                    .input(screw, screwMaterial, 48)
+                    .input(rotor, rotorMaterial, 48)
+                    .input(ring, rubber, 2 * 48)
+                    .input(wireGtSingle, scMaterial(tier), 48)
+                    .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                    .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                    .output(pump(tier), 64)
+                    .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
                     .buildAndRegister();
         }
     }
 
-    public static void conveyors() {
-        for (int i = 1; i < GTValues.UHV; i++) {
-            CoARecipeBuilder builder = COA_RECIPES.recipeBuilder();
-            builder.input(motor(i), 2 * 48);
-            if (i < GTValues.LuV) {
-                builder.input(cableGtSingle, cableMaterial(i), 48);
-            } else {
-                builder.input(cableGtDouble, cableMaterial(i), 48)
-                        .input(plate, partMaterial1(i), 2 * 48)
-                        .input(ring, partMaterial1(i), 4 * 48)
-                        .input(round, partMaterial1(i), 16 * 48)
-                        .input(screw, partMaterial1(i), 4 * 48);
-            }
-            builder.input(wireGtSingle, scMaterial(i), 48)
-                    .fluidInputs(Materials.StyreneButadieneRubber.getFluid(144 * 6 * 48))
-                    .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
-                    .output(conveyor(i), 64)
-                    .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
-                    .buildAndRegister();
-        }
+    public static void registerPumpAL(OrePrefix pipePreFix, Material pipeMaterial, Material plateMaterial,
+                                      Material screwMaterial, Material rotorMaterial, Material cableMaterial,
+                                      int ringAmount, int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(motor(tier), 48)
+                .input(pipePreFix, pipeMaterial, 48)
+                .input(plate, plateMaterial, 2 * 48)
+                .input(screw, screwMaterial, 8 * 48)
+                .input(ring, Materials.SiliconeRubber, ringAmount * 48)
+                .input(rotor, rotorMaterial, 48)
+                .input(cableGtHex, cableMaterial, 6).input(wireGtSingle, scMaterial(tier), 48)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(pump(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+
+        builder.buildAndRegister();
     }
 
-    public static void pistons() {
-        for (int i = 1; i < GTValues.UHV; i++) {
-            CoARecipeBuilder builder = COA_RECIPES.recipeBuilder();
-            builder.input(motor(i), 48)
-                    .input(cableGtDouble, cableMaterial(i), 48)
-                    .input(gear, partMaterial2(i), 48);
-            if (i < GTValues.LuV) {
-                builder.input(plate, partMaterial2(i), 3 * 48);
-            } else {
-                builder.input(plate, partMaterial1(i), 4 * 48)
-                        .input(ring, partMaterial1(i), 4 * 48)
-                        .input(round, partMaterial1(i), 16 * 48)
-                        .input(stickLong, partMaterial1(i), 2 * 48)
-                        .input(gearSmall, partMaterial2(i), 2 * 48);
-            }
-            builder.input(wireGtSingle, scMaterial(i), 48)
-                    .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
-                    .output(piston(i), 64)
-                    .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
-                    .buildAndRegister();
-        }
+    public static void registerPiston(Material stickMaterial, Material cableMaterial, Material plateMaterial,
+                                      Material gearMaterial, int tier) {
+        COA_RECIPES.recipeBuilder()
+                .input(stickLong, stickMaterial, 48)
+                .input(cableGtHex, cableMaterial, 6)
+                .input(plate, plateMaterial, 3 * 48)
+                .input(gearSmall, gearMaterial, 48)
+                .input(motor(tier), 48)
+                .input(wireGtSingle, scMaterial(tier), 48)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(piston(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
+                .buildAndRegister();
     }
 
-    public static void robotArms() {
-        for (int i = 1; i < GTValues.UHV; i++) {
-            CoARecipeBuilder builder = COA_RECIPES.recipeBuilder();
-            builder.input(motor(i), 2 * 48)
-                    .input(piston(i), 48);
-            if (i < GTValues.LuV) {
-                builder.input(cableGtSingle, cableMaterial(i), 3 * 48)
-                        .input(stickLong, partMaterial1(i), 48)
-                        .input(bestCircuit(i), 48);
-            } else {
-                builder.input(stickLong, partMaterial1(i), 4 * 48)
-                        .input(gear, partMaterial2(i), 48)
-                        .input(gearSmall, partMaterial2(i), 3 * 48)
-                        .input(bestCircuit(i), 48)
-                        .input(bestCircuit(i - 1), 2 * 48)
-                        .input(bestCircuit(i - 2), 4 * 48)
-                        .input(cableGtQuadruple, cableMaterial(i), 48);
-            }
-            builder.input(wireGtSingle, scMaterial(i), 48)
-                    .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
-                    .output(robotArm(i), 64)
-                    .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
-                    .buildAndRegister();
-        }
+    public static void registerPistonAL(Material plateMaterial, Material ringMaterial, Material roundMaterial,
+                                        Material stickMaterial, Material gearMaterial, Material smallGearMaterial,
+                                        Material cableMaterial, int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(motor(tier), 48)
+                .input(plate, plateMaterial, 4 * 48)
+                .input(ring, ringMaterial, 4 * 48)
+                .input(round, roundMaterial, 16 * 48)
+                .input(stickLong, stickMaterial, 2 * 48)
+                .input(gear, gearMaterial, 48)
+                .input(gearSmall, smallGearMaterial, 2 * 48)
+                .input(cableGtHex, cableMaterial, 6)
+                .input(wireGtDouble, scMaterial(tier), 48)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(piston(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+
+        builder.buildAndRegister();
     }
 
-    public static void fieldGenerators() {
-        for (int i = 1; i < GTValues.UHV; i++) {
-            CoARecipeBuilder builder = COA_RECIPES.recipeBuilder();
-            builder.input(bestCircuit(i), 2 * 48);
-            if (i < GTValues.LuV) {
-                builder.inputs(GTUtility.copy(48, partsStack1(i)))
-                        .input(i == GTValues.IV ? plate : plateDouble, partMaterial2(i), 48)
-                        .input(wireGtQuadruple, scMaterial(i), 4 * 48);
-            } else {
-                builder.input(frameGt, partMaterial4(i), 48)
-                        .input(plate, partMaterial4(i), 6 * 48)
-                        .inputs(GTUtility.copy(48, partsStack1(i)))
-                        .input(emitter(i), 2 * 48)
-                        .input(wireFine, scMaterial(i), 64 * 2 * 48)
-                        .input(cableGtQuadruple, cableMaterial(i), 48);
-            }
-            builder.fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
-                    .output(fieldGenerator(i), 64)
-                    .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
-                    .buildAndRegister();
-        }
+    public static void registerRobotArm(Material cableMaterial, Material stickMaterial, int tier) {
+        COA_RECIPES.recipeBuilder()
+                .input(cableGtHex, cableMaterial, 9)
+                .input(stickLong, stickMaterial, 48)
+                .input(motor(tier), 48 * 2)
+                .input(piston(tier), 48)
+                .input(circuit, markerMaterial(tier), 48)
+                .input(wireGtSingle, scMaterial(tier), 48)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(robotArm(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
+                .buildAndRegister();
     }
 
-    public static void emitters() {
-        Material[] exMat = new Material[] {
-                Materials.Brass, Materials.Electrum, Materials.Chrome, Materials.Platinum, Materials.Iridium,
-                Materials.Palladium, Materials.Trinium, Materials.Naquadria };
-        for (int i = 1; i < GTValues.UHV; i++) {
-            CoARecipeBuilder builder = COA_RECIPES.recipeBuilder();
-            if (i < GTValues.LuV) {
-                builder.input(stickLong, exMat[i - 1], 2 * 48)
-                        .input(cableGtDouble, cableMaterial(i), 48)
-                        .input(bestCircuit(i), 2 * 48)
-                        .inputs(GTUtility.copy(2 * 48, partsStack2(i)));
-            } else {
-                builder.input(frameGt, partMaterial4(i), 48)
-                        .input(motor(i), 48)
-                        .input(stickLong, i == GTValues.LuV ? Materials.Ruridit : partMaterial4(i), 4 * 48)
-                        .inputs(GTUtility.copy(i == GTValues.ZPM ? 2 * 48 : 48, partsStack2(i)))
-                        .input(bestCircuit(i), 2 * 48)
-                        .input(foil, exMat[i - 1], (64 + 32) * 48)
-                        .input(cableGtQuadruple, cableMaterial(i), 48);
-            }
-            builder.input(wireGtSingle, scMaterial(i), 48)
-                    .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
-                    .output(emitter(i), 64)
-                    .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
-                    .buildAndRegister();
-        }
+    public static void registerRobotArmAL(Material stickMaterial, Material gearMaterial, Material smallGearMaterial,
+                                          Material cableMaterial, int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(stickLong, stickMaterial, 48 * 4)
+                .input(gear, gearMaterial, 48)
+                .input(gearSmall, smallGearMaterial, 48 * 3)
+                .input(motor(tier), 48 * 2)
+                .input(piston(tier), 48)
+                .input(circuit, markerMaterial(tier), 48)
+                .input(circuit, markerMaterial(tier - 1), 48 * 2)
+                .input(circuit, markerMaterial(tier - 2), 48 * 4)
+                .input(cableGtHex, cableMaterial, 12)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(robotArm(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+
+        builder.buildAndRegister();
     }
 
-    public static void sensors() {
-        Material[] exMat = new Material[] {
-                Materials.Brass, Materials.Electrum, Materials.Chrome, Materials.Platinum, Materials.Iridium,
-                Materials.Palladium, Materials.Trinium, Materials.Naquadria };
-        for (int i = 1; i < GTValues.UHV; i++) {
-            CoARecipeBuilder builder = COA_RECIPES.recipeBuilder();
-            if (i < GTValues.LuV) {
-                builder.input(stick, exMat[i - 1], 48)
-                        .input(plate, partMaterial2(i), 4 * 48)
-                        .input(bestCircuit(i), 48)
-                        .inputs(GTUtility.copy(48, partsStack2(i)));
-            } else {
-                builder.input(frameGt, partMaterial4(i), 48)
-                        .input(motor(i), 48)
-                        .input(plate, i == GTValues.LuV ? Materials.Ruridit : partMaterial4(i), 4 * 48)
-                        .inputs(GTUtility.copy(i == GTValues.ZPM ? 2 * 48 : 48, partsStack2(i)))
-                        .input(bestCircuit(i), 2 * 48)
-                        .input(foil, exMat[i - 1], (64 + 32) * 48)
-                        .input(cableGtQuadruple, cableMaterial(i), 48);
-            }
-            builder.input(wireGtSingle, scMaterial(i), 48)
-                    .fluidInputs(Materials.SolderingAlloy.getFluid(144 * i))
-                    .fluidInputs(Materials.Lubricant.getFluid(1000 * i))
-                    .output(sensor(i), 64)
-                    .casingTier(i).EUt(GTValues.VA[i + 2]).duration(20 * 60 * 2)
-                    .buildAndRegister();
-        }
+    public static void registerFieldGenerator(ItemStack coreStack, Material plateMaterial, int tier) {
+        COA_RECIPES.recipeBuilder()
+                .inputs(GTUtility.copy(48, coreStack))
+                .input(tier >= EV ? plate : plateDouble, plateMaterial, 48)
+                .input(circuit, markerMaterial(tier), 48 * 2)
+                .input(wireGtHex, scMaterial(tier), 48)
+                .input(wireFine, scMaterial(tier), 64)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(fieldGenerator(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
+                .buildAndRegister();
+    }
+
+    public static void registerFieldGeneratorAL(Material frameMaterial, Material plateMaterial,
+                                                MetaItem<?>.MetaValueItem coreItem, Material cableMaterial, int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(frameGt, frameMaterial, 48)
+                .input(plate, plateMaterial, 48 * 6)
+                .input(coreItem, 48)
+                .input(emitter(tier), 48)
+                .input(wireGtHex, scMaterial(tier), 48)
+                .input(cableGtHex, cableMaterial, 12)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(fieldGenerator(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+
+        builder.buildAndRegister();
+    }
+
+    public static void registerSensor(Material stickMaterial, Material plateMaterial, ItemStack coreStack, int tier) {
+        COA_RECIPES.recipeBuilder()
+                .input(stickLong, stickMaterial, 24)
+                .input(plate, plateMaterial, 48 * 4)
+                .input(circuit, markerMaterial(tier), 48)
+                .inputs(GTUtility.copy(48, coreStack))
+                .input(wireFine, scMaterial(tier), 48 * 2)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(sensor(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
+                .buildAndRegister();
+    }
+
+    public static void registerSensorAL(Material frameMaterial, Material plateMaterial, Material foilMaterial,
+                                        Material cableMaterial, MetaItem<?>.MetaValueItem coreItem, int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(frameGt, frameMaterial, 48)
+                .input(motor(tier), 48)
+                .input(plate, plateMaterial, 48 * 4)
+                .input(coreItem, 48)
+                .input(circuit, markerMaterial(tier), 48 * 2)
+                .input(plateDense, foilMaterial, 128)
+                .input(cableGtHex, cableMaterial, 12)
+                .input(wireFine, scMaterial(tier), 48 * 2)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(sensor(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+
+        builder.buildAndRegister();
+    }
+
+    public static void registerEmitter(Material stickMaterial, Material cableMaterial, ItemStack coreStack, int tier) {
+        COA_RECIPES.recipeBuilder()
+                .input(stickLong, stickMaterial, 48 * 2)
+                .input(cableGtHex, cableMaterial, 6)
+                .input(circuit, markerMaterial(tier), 48 * 2)
+                .inputs(GTUtility.copy(48, coreStack))
+                .input(wireFine, scMaterial(tier), 48 * 2)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(emitter(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
+                .buildAndRegister();
+    }
+
+    public static void registerEmitterAL(Material frameMaterial, Material stickMaterial, Material foilMaterial,
+                                         Material cableMaterial, MetaItem<?>.MetaValueItem coreItem, int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(frameGt, frameMaterial, 48)
+                .input(motor(tier), 48)
+                .input(stickLong, stickMaterial, 48 * 4)
+                .input(coreItem, 48)
+                .input(circuit, markerMaterial(tier), 48 * 2)
+                .input(plateDense, foilMaterial, 128)
+                .input(cableGtHex, cableMaterial, 12)
+                .input(wireFine, scMaterial(tier), 48 * 2)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(emitter(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(20 * 60 * 2);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+
+        builder.buildAndRegister();
     }
 }
