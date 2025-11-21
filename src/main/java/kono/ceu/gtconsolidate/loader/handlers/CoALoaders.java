@@ -7,12 +7,19 @@ import static kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps.COA_REC
 import static kono.ceu.gtconsolidate.loader.Components.*;
 
 import gregtech.api.GTValues;
+import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.recipes.ingredients.GTRecipeInput;
+import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 
+import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.api.util.GTUtility;
+import gregtech.common.items.MetaItems;
 import kono.ceu.gtconsolidate.api.recipes.builder.CoARecipeBuilder;
+import net.minecraft.item.ItemStack;
 
 public class CoALoaders {
 
@@ -91,7 +98,15 @@ public class CoALoaders {
         registerRobotArmAL(Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.NiobiumTitanium, LuV);
         registerRobotArmAL(Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium, Materials.VanadiumGallium, ZPM);
         registerRobotArmAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium, Materials.YttriumBariumCuprate, UV);
-        // fieldGenerators();
+        // fieldGenerators
+        registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.EnderPearl)), Materials.Steel, LV);
+        registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.EnderEye)), Materials.Aluminium, MV);
+        registerFieldGenerator(MetaItems.QUANTUM_EYE.getStackForm(), Materials.StainlessSteel, HV);
+        registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.NetherStar)), Materials.Titanium, EV);
+        registerFieldGenerator(MetaItems.QUANTUM_STAR.getStackForm(), Materials.TungstenSteel, IV);
+        registerFieldGeneratorAL(Materials.HSSS, Materials.HSSS, MetaItems.QUANTUM_STAR, Materials.NiobiumTitanium,  LuV);
+        registerFieldGeneratorAL(Materials.NaquadahAlloy, Materials.NaquadahAlloy, MetaItems.QUANTUM_STAR, Materials.VanadiumGallium,  ZPM);
+        registerFieldGeneratorAL(Materials.Tritanium, Materials.Tritanium, MetaItems.GRAVI_STAR, Materials.YttriumBariumCuprate,  UV);
         // emitters();
         // sensors();
     }
@@ -294,6 +309,38 @@ public class CoALoaders {
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
         if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid( L * 4 * 48));
+
+        builder.buildAndRegister();
+    }
+
+    public static void registerFieldGenerator(ItemStack coreStack, Material plateMaterial, int tier) {
+        COA_RECIPES.recipeBuilder()
+                .inputs(GTUtility.copy(48, coreStack))
+                .input(tier >= EV ? plate : plateDouble, plateMaterial, 48)
+                .input(circuit, markerMaterial(tier), 48 * 2)
+                .input(wireGtHex, scMaterial(tier), 48)
+                .input(wireFine, scMaterial(tier), 64)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(fieldGenerator(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
+                .buildAndRegister();
+    }
+
+    public static void registerFieldGeneratorAL(Material frameMaterial, Material plateMaterial, MetaItem<?>.MetaValueItem coreItem, Material cableMaterial, int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(frameGt, frameMaterial, 48)
+                .input(plate, plateMaterial, 48 * 6)
+                .input(coreItem, 48)
+                .input(emitter(tier), 48)
+                .input(wireGtHex, scMaterial(tier), 48)
+                .input(cableGtHex, cableMaterial ,12)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(fieldGenerator(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
 
         builder.buildAndRegister();
     }
