@@ -113,8 +113,30 @@ public class CoALoaders {
                 Materials.VanadiumGallium, ZPM);
         registerFieldGeneratorAL(Materials.Tritanium, Materials.Tritanium, MetaItems.GRAVI_STAR,
                 Materials.YttriumBariumCuprate, UV);
-        // emitters();
-        // sensors();
+        // emitters;
+        registerEmitter(Materials.Brass, Materials.Tin, OreDictUnifier.get(gem, Materials.Quartzite), LV);
+        registerEmitter(Materials.Electrum, Materials.Copper, OreDictUnifier.get(gemFlawless, Materials.Emerald), MV);
+        registerEmitter(Materials.Chrome, Materials.Gold, OreDictUnifier.get(gem, Materials.EnderEye), HV);
+        registerEmitter(Materials.Platinum, Materials.Aluminium, MetaItems.QUANTUM_EYE.getStackForm(), EV);
+        registerEmitter(Materials.TungstenSteel, Materials.Tungsten, MetaItems.QUANTUM_STAR.getStackForm(), IV);
+        registerEmitterAL(Materials.HSSS, Materials.Ruridit, Materials.Palladium, Materials.NiobiumTitanium,
+                MetaItems.QUANTUM_STAR, LuV);
+        registerEmitterAL(Materials.NaquadahAlloy, Materials.Osmiridium, Materials.Trinium, Materials.VanadiumGallium,
+                MetaItems.QUANTUM_STAR, ZPM);
+        registerEmitterAL(Materials.Tritanium, Materials.Tritanium, Materials.Naquadria, Materials.YttriumBariumCuprate,
+                MetaItems.GRAVI_STAR, UV);
+        // sensors;
+        registerSensor(Materials.Brass, Materials.Steel, OreDictUnifier.get(gem, Materials.Quartzite), LV);
+        registerSensor(Materials.Electrum, Materials.Aluminium, OreDictUnifier.get(gemFlawless, Materials.Emerald), MV);
+        registerSensor(Materials.Chrome, Materials.StainlessSteel, OreDictUnifier.get(gem, Materials.EnderEye), HV);
+        registerSensor(Materials.Platinum, Materials.Titanium, MetaItems.QUANTUM_EYE.getStackForm(), EV);
+        registerSensor(Materials.Iridium, Materials.TungstenSteel, MetaItems.QUANTUM_STAR.getStackForm(), IV);
+        registerSensorAL(Materials.HSSS, Materials.Ruridit, Materials.Palladium, Materials.NiobiumTitanium,
+                MetaItems.QUANTUM_STAR, LuV);
+        registerSensorAL(Materials.NaquadahAlloy, Materials.Osmiridium, Materials.Trinium, Materials.VanadiumGallium,
+                MetaItems.QUANTUM_STAR, ZPM);
+        registerSensorAL(Materials.Tritanium, Materials.Tritanium, Materials.Naquadria, Materials.YttriumBariumCuprate,
+                MetaItems.GRAVI_STAR, UV);
     }
 
     /**
@@ -347,6 +369,76 @@ public class CoALoaders {
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(fieldGenerator(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+
+        builder.buildAndRegister();
+    }
+
+    public static void registerSensor(Material stickMaterial, Material plateMaterial, ItemStack coreStack, int tier) {
+        COA_RECIPES.recipeBuilder()
+                .input(stickLong, stickMaterial, 24)
+                .input(plate, plateMaterial, 48 * 4)
+                .input(circuit, markerMaterial(tier), 48)
+                .inputs(GTUtility.copy(48, coreStack))
+                .input(wireFine, scMaterial(tier), 48 * 2)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(sensor(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
+                .buildAndRegister();
+    }
+
+    public static void registerSensorAL(Material frameMaterial, Material plateMaterial, Material foilMaterial,
+                                        Material cableMaterial, MetaItem<?>.MetaValueItem coreItem, int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(frameGt, frameMaterial, 48)
+                .input(motor(tier), 48)
+                .input(plate, plateMaterial, 48 * 4)
+                .input(coreItem, 48)
+                .input(circuit, markerMaterial(tier), 48 * 2)
+                .input(plateDense, foilMaterial, 128)
+                .input(cableGtHex, cableMaterial, 12)
+                .input(wireFine, scMaterial(tier), 48 * 2)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(sensor(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+
+        builder.buildAndRegister();
+    }
+
+    public static void registerEmitter(Material stickMaterial, Material cableMaterial, ItemStack coreStack, int tier) {
+        COA_RECIPES.recipeBuilder()
+                .input(stickLong, stickMaterial, 48 * 2)
+                .input(cableGtHex, cableMaterial, 6)
+                .input(circuit, markerMaterial(tier), 48 * 2)
+                .inputs(GTUtility.copy(48, coreStack))
+                .input(wireFine, scMaterial(tier), 48 * 2)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(emitter(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(20 * 60 * 2)
+                .buildAndRegister();
+    }
+
+    public static void registerEmitterAL(Material frameMaterial, Material stickMaterial, Material foilMaterial,
+                                         Material cableMaterial, MetaItem<?>.MetaValueItem coreItem, int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(frameGt, frameMaterial, 48)
+                .input(motor(tier), 48)
+                .input(stickLong, stickMaterial, 48 * 4)
+                .input(coreItem, 48)
+                .input(circuit, markerMaterial(tier), 48 * 2)
+                .input(plateDense, foilMaterial, 128)
+                .input(cableGtHex, cableMaterial, 12)
+                .input(wireFine, scMaterial(tier), 48 * 2)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(emitter(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(20 * 60 * 2);
 
         if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
 
