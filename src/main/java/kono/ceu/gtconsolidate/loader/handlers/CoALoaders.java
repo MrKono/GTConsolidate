@@ -2,10 +2,12 @@ package kono.ceu.gtconsolidate.loader.handlers;
 
 import static gregtech.api.GTValues.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.loaders.recipe.CraftingComponent.CIRCUIT;
 import static kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps.COA_RECIPES;
 import static kono.ceu.gtconsolidate.loader.Components.*;
 
 import gregtech.api.GTValues;
+import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
@@ -80,7 +82,15 @@ public class CoALoaders {
                 Materials.Osmiridium, Materials.Osmiridium, Materials.VanadiumGallium, ZPM);
         registerPistonAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium, Materials.Tritanium,
                 Materials.NaquadahAlloy, Materials.NaquadahAlloy, Materials.YttriumBariumCuprate, UV);
-        // robotArms();
+        // robotArms
+        registerRobotArm(Materials.Tin, Materials.Steel, LV);
+        registerRobotArm(Materials.Copper, Materials.Aluminium, MV);
+        registerRobotArm(Materials.Gold, Materials.StainlessSteel, HV);
+        registerRobotArm(Materials.Aluminium, Materials.Titanium, EV);
+        registerRobotArm(Materials.Tungsten, Materials.TungstenSteel, IV);
+        registerRobotArmAL(Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.NiobiumTitanium, LuV);
+        registerRobotArmAL(Materials.Osmiridium, Materials.Osmiridium, Materials.Osmiridium, Materials.VanadiumGallium, ZPM);
+        registerRobotArmAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium, Materials.YttriumBariumCuprate, UV);
         // fieldGenerators();
         // emitters();
         // sensors();
@@ -248,6 +258,42 @@ public class CoALoaders {
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
         if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
+
+        builder.buildAndRegister();
+    }
+
+    public static void registerRobotArm(Material cableMaterial, Material stickMaterial, int tier) {
+        COA_RECIPES.recipeBuilder()
+                .input(cableGtHex, cableMaterial, 9)
+                .input(stickLong, stickMaterial, 48)
+                .input(motor(tier), 48 * 2)
+                .input(piston(tier), 48)
+                .input(circuit, markerMaterial(tier), 48)
+                .input(wireGtSingle, scMaterial(tier), 48)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(robotArm(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
+                .buildAndRegister();
+    }
+
+    public static void registerRobotArmAL(Material stickMaterial, Material gearMaterial, Material smallGearMaterial, Material cableMaterial, int tier) {
+        CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
+                .input(stickLong, stickMaterial, 48 * 4)
+                .input(gear, gearMaterial, 48)
+                .input(gearSmall, smallGearMaterial, 48 * 3)
+                .input(motor(tier), 48 * 2)
+                .input(piston(tier), 48)
+                .input(circuit, markerMaterial(tier), 48)
+                .input(circuit, markerMaterial(tier - 1), 48 * 2)
+                .input(circuit, markerMaterial(tier - 2), 48 * 4)
+                .input(cableGtHex, cableMaterial, 12)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
+                .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
+                .output(robotArm(tier), 64)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
+
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid( L * 4 * 48));
 
         builder.buildAndRegister();
     }
