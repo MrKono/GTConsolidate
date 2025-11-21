@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.0.8.3-beta
+- _Component Assembly Line_
+  - :warning:**_WARNING_**:warning: Component recipe has undergone significant changes. Users of AE2 and similar mods should take note.
+
 ### 1.0.8.2-beta
 - _Circuit Factory_
   - **Add** NAND Chip recipe using `PLASTIC_CIRCUIT_BOARD`.
