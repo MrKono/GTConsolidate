@@ -2,6 +2,8 @@ package kono.ceu.gtconsolidate.loader;
 
 import static gregtech.api.unification.ore.OrePrefix.*;
 
+import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.stack.UnificationEntry;
 import net.minecraft.item.ItemStack;
 
 import gregtech.api.GTValues;
@@ -12,107 +14,6 @@ import gregtech.api.unification.material.Materials;
 import gregtech.common.items.MetaItems;
 
 public class Components {
-
-    // Materials
-    public static Material cableMaterial(int voltage) {
-        return switch (voltage) {
-            case 0 -> Materials.RedAlloy;
-            case 1 -> Materials.Tin;
-            case 2 -> Materials.Copper;
-            case 3 -> Materials.Gold;
-            case 4 -> Materials.Aluminium;
-            case 5 -> Materials.Tungsten;
-            case 6 -> Materials.NiobiumTitanium;
-            case 7 -> Materials.VanadiumGallium;
-            case 8 -> Materials.YttriumBariumCuprate;
-            default -> Materials.Neutronium;
-        };
-    }
-
-    public static Material wireMaterial(int voltage) {
-        return switch (voltage) {
-            case 0 -> Materials.Lead;
-            case 1 -> Materials.Copper;
-            case 2 -> Materials.Cupronickel;
-            case 3 -> Materials.Electrum;
-            case 4 -> Materials.Nichrome;
-            case 5 -> Materials.Graphene;
-            case 6 -> Materials.Ruridit;
-            case 7 -> Materials.Europium;
-            case 8 -> Materials.Americium;
-            default -> Materials.Neutronium;
-        };
-    }
-
-    // stick, round, ring etc...
-    public static Material partMaterial1(int voltage) {
-        return switch (voltage) {
-            case 0 -> Materials.Iron;
-            case 1 -> Materials.Steel;
-            case 2 -> Materials.Aluminium;
-            case 3 -> Materials.StainlessSteel;
-            case 4 -> Materials.Titanium;
-            case 5 -> Materials.TungstenSteel;
-            case 6 -> Materials.HSSS;
-            case 7 -> Materials.Osmiridium;
-            case 8 -> Materials.Tritanium;
-            default -> Materials.Neutronium;
-        };
-    }
-
-    public static Material partMaterial2(int voltage) {
-        return switch (voltage) {
-            case 0 -> Materials.WroughtIron;
-            case 1 -> Materials.Steel;
-            case 2 -> Materials.Aluminium;
-            case 3 -> Materials.StainlessSteel;
-            case 4 -> Materials.Titanium;
-            case 5 -> Materials.TungstenSteel;
-            case 6 -> Materials.HSSS;
-            case 7 -> Materials.Osmiridium;
-            case 8 -> Materials.NaquadahAlloy;
-            default -> Materials.Neutronium;
-        };
-    }
-
-    public static Material partMaterial3(int voltage) {
-        return switch (voltage) {
-            case 0 -> Materials.WroughtIron;
-            case 1 -> Materials.Tin;
-            case 2 -> Materials.Bronze;
-            case 3 -> Materials.Steel;
-            case 4 -> Materials.StainlessSteel;
-            case 5 -> Materials.TungstenSteel;
-            case 6 -> Materials.HSSS;
-            case 7 -> Materials.Osmiridium;
-            case 8 -> Materials.NaquadahAlloy;
-            default -> Materials.Neutronium;
-        };
-    }
-
-    public static Material partMaterial4(int voltage) {
-        return switch (voltage) {
-            case 0 -> Materials.WroughtIron;
-            case 1 -> Materials.Steel;
-            case 2 -> Materials.Aluminium;
-            case 3 -> Materials.StainlessSteel;
-            case 4 -> Materials.Titanium;
-            case 5 -> Materials.TungstenSteel;
-            case 6 -> Materials.HSSS;
-            case 7 -> Materials.NaquadahAlloy;
-            case 8 -> Materials.Tritanium;
-            default -> Materials.Neutronium;
-        };
-    }
-
-    public static Material magneticMaterial(int voltage) {
-        return switch (voltage) {
-            case 0 -> Materials.IronMagnetic;
-            case 1, 3, 2 -> Materials.SteelMagnetic;
-            case 4, 5 -> Materials.NeodymiumMagnetic;
-            default -> Materials.SamariumMagnetic;
-        };
-    }
 
     public static Material scMaterial(int voltage) {
         return switch (voltage) {
@@ -296,6 +197,27 @@ public class Components {
         };
     }
 
+    public static Material markerMaterial(int tier) {
+        return switch (tier) {
+            case 0 -> MarkerMaterials.Tier.ULV;
+            case 1 -> MarkerMaterials.Tier.LV;
+            case 2 -> MarkerMaterials.Tier.MV;
+            case 3 -> MarkerMaterials.Tier.HV;
+            case 4 -> MarkerMaterials.Tier.EV;
+            case 5 -> MarkerMaterials.Tier.IV;
+            case 6 -> MarkerMaterials.Tier.LuV;
+            case 7 -> MarkerMaterials.Tier.ZPM;
+            case 8 -> MarkerMaterials.Tier.UV;
+            case 9 -> MarkerMaterials.Tier.UHV;
+            case 10 -> MarkerMaterials.Tier.UEV;
+            case 11 -> MarkerMaterials.Tier.UIV;
+            case 12 -> MarkerMaterials.Tier.UXV;
+            case 13 -> MarkerMaterials.Tier.OpV;
+            case 14 -> MarkerMaterials.Tier.MAX;
+            default -> throw new IllegalStateException("Out of Voltage: " + GTValues.VN[tier]);
+        };
+    }
+
     public static MetaItem<?>.MetaValueItem bestCircuit(int voltage) {
         return switch (voltage) {
             case 0 -> MetaItems.NAND_CHIP_ULV;
@@ -308,30 +230,6 @@ public class Components {
             case 7 -> MetaItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM;
             case 8 -> MetaItems.WETWARE_SUPER_COMPUTER_UV;
             default -> MetaItems.WETWARE_MAINFRAME_UHV;
-        };
-    }
-
-    public static ItemStack partsStack1(int voltage) {
-        return switch (voltage) {
-            case 1 -> OreDictUnifier.get(gem, Materials.EnderPearl);
-            case 2 -> OreDictUnifier.get(gem, Materials.EnderEye);
-            case 3 -> MetaItems.QUANTUM_EYE.getStackForm();
-            case 4 -> OreDictUnifier.get(gem, Materials.NetherStar);
-            case 5, 7, 6 -> MetaItems.QUANTUM_STAR.getStackForm();
-            case 8 -> MetaItems.GRAVI_STAR.getStackForm();
-            default -> throw new IllegalStateException("Out of Voltage: " + GTValues.VN[voltage]);
-        };
-    }
-
-    public static ItemStack partsStack2(int voltage) {
-        return switch (voltage) {
-            case 1 -> OreDictUnifier.get(gem, Materials.Quartzite);
-            case 2 -> OreDictUnifier.get(gemFlawless, Materials.Emerald);
-            case 3 -> OreDictUnifier.get(gem, Materials.EnderEye);
-            case 4 -> MetaItems.QUANTUM_EYE.getStackForm();
-            case 5, 7, 6 -> MetaItems.QUANTUM_STAR.getStackForm();
-            case 8 -> MetaItems.GRAVI_STAR.getStackForm();
-            default -> throw new IllegalStateException("Out of Voltage: " + GTValues.VN[voltage]);
         };
     }
 }
