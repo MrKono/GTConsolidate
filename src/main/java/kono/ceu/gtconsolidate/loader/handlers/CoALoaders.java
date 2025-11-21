@@ -22,7 +22,7 @@ import kono.ceu.gtconsolidate.api.recipes.builder.CoARecipeBuilder;
 public class CoALoaders {
 
     public static void register() {
-        // motors
+        // Motors
         registerMotor(Materials.Tin, false, Materials.Iron, Materials.IronMagnetic, Materials.Copper, false, LV);
         registerMotor(Materials.Tin, false, Materials.Steel, Materials.SteelMagnetic, Materials.Copper, false, LV);
         registerMotor(Materials.Copper, false, Materials.Aluminium, Materials.SteelMagnetic, Materials.Cupronickel,
@@ -39,7 +39,7 @@ public class CoALoaders {
                 Materials.Osmiridium, 8, Materials.Europium, 64 + 32, Materials.VanadiumGallium, ZPM);
         registerMotorAL(Materials.SamariumMagnetic, 1, Materials.Tritanium, 4, Materials.Tritanium, 4,
                 Materials.Tritanium, 8, Materials.Americium, 64 + 32, Materials.YttriumBariumCuprate, UV);
-        // pumps
+        // Pumps
         registerPump(Materials.Tin, Materials.Bronze, Materials.Tin, Materials.Tin,
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, LV);
         registerPump(Materials.Copper, Materials.Steel, Materials.Bronze, Materials.Bronze,
@@ -55,8 +55,8 @@ public class CoALoaders {
         registerPumpAL(pipeNormalFluid, Materials.Polybenzimidazole, Materials.Osmiridium, Materials.Osmiridium,
                 Materials.Osmiridium, Materials.VanadiumGallium, 8, ZPM);
         registerPumpAL(pipeLargeFluid, Materials.Naquadah, Materials.Tritanium, Materials.Tritanium,
-                Materials.Tritanium, Materials.YttriumBariumCuprate, 4, UV);
-        // conveyors
+                Materials.NaquadahAlloy, Materials.YttriumBariumCuprate, 4, UV);
+        // Conveyors
         registerConveyor(Materials.Tin,
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, LV);
         registerConveyor(Materials.Tin,
@@ -73,7 +73,7 @@ public class CoALoaders {
                 Materials.VanadiumGallium, ZPM);
         registerConveyorAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium, Materials.Tritanium,
                 Materials.NiobiumTitanium, UV);
-        // pistons;
+        // Pistons
         registerPiston(Materials.Steel, Materials.Tin, Materials.Steel, Materials.Steel, LV);
         registerPiston(Materials.Aluminium, Materials.Copper, Materials.Aluminium, Materials.Aluminium, MV);
         registerPiston(Materials.StainlessSteel, Materials.Gold, Materials.StainlessSteel, Materials.StainlessSteel,
@@ -87,7 +87,7 @@ public class CoALoaders {
                 Materials.Osmiridium, Materials.Osmiridium, Materials.VanadiumGallium, ZPM);
         registerPistonAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium, Materials.Tritanium,
                 Materials.NaquadahAlloy, Materials.NaquadahAlloy, Materials.YttriumBariumCuprate, UV);
-        // robotArms
+        // RobotArms
         registerRobotArm(Materials.Tin, Materials.Steel, LV);
         registerRobotArm(Materials.Copper, Materials.Aluminium, MV);
         registerRobotArm(Materials.Gold, Materials.StainlessSteel, HV);
@@ -98,7 +98,7 @@ public class CoALoaders {
                 ZPM);
         registerRobotArmAL(Materials.Tritanium, Materials.Tritanium, Materials.Tritanium,
                 Materials.YttriumBariumCuprate, UV);
-        // fieldGenerators
+        // FieldGenerators
         registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.EnderPearl)), Materials.Steel,
                 LV);
         registerFieldGenerator(OreDictUnifier.get(new UnificationEntry(gem, Materials.EnderEye)), Materials.Aluminium,
@@ -113,7 +113,7 @@ public class CoALoaders {
                 Materials.VanadiumGallium, ZPM);
         registerFieldGeneratorAL(Materials.Tritanium, Materials.Tritanium, MetaItems.GRAVI_STAR,
                 Materials.YttriumBariumCuprate, UV);
-        // emitters;
+        // Emitters
         registerEmitter(Materials.Brass, Materials.Tin, OreDictUnifier.get(gem, Materials.Quartzite), LV);
         registerEmitter(Materials.Electrum, Materials.Copper, OreDictUnifier.get(gemFlawless, Materials.Emerald), MV);
         registerEmitter(Materials.Chrome, Materials.Gold, OreDictUnifier.get(gem, Materials.EnderEye), HV);
@@ -125,7 +125,7 @@ public class CoALoaders {
                 MetaItems.QUANTUM_STAR, ZPM);
         registerEmitterAL(Materials.Tritanium, Materials.Tritanium, Materials.Naquadria, Materials.YttriumBariumCuprate,
                 MetaItems.GRAVI_STAR, UV);
-        // sensors;
+        // Sensors
         registerSensor(Materials.Brass, Materials.Steel, OreDictUnifier.get(gem, Materials.Quartzite), LV);
         registerSensor(Materials.Electrum, Materials.Aluminium, OreDictUnifier.get(gemFlawless, Materials.Emerald), MV);
         registerSensor(Materials.Chrome, Materials.StainlessSteel, OreDictUnifier.get(gem, Materials.EnderEye), HV);
@@ -177,7 +177,7 @@ public class CoALoaders {
                 .input(stickLong, stickMaterial, amountStick * 48)
                 .input(ring, ringMaterial, amountRing * 48)
                 .input(round, roundMaterial, amountRound * 48)
-                .input(wireFine, fineMaterial, amountFine * 48)
+                .input(wireGtHex, fineMaterial, amountFine * 48 / 128)
                 .input(cableGtHex, cableMaterial, 6)
                 .input(wireGtDouble, scMaterial(tier), 48)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
@@ -221,7 +221,7 @@ public class CoALoaders {
                 .output(conveyor(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 6 * 48));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 6));
 
         builder.buildAndRegister();
     }
@@ -261,7 +261,7 @@ public class CoALoaders {
                 .output(pump(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
 
         builder.buildAndRegister();
     }
@@ -300,7 +300,7 @@ public class CoALoaders {
                 .output(piston(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
 
         builder.buildAndRegister();
     }
@@ -337,7 +337,7 @@ public class CoALoaders {
                 .output(robotArm(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
 
         builder.buildAndRegister();
     }
@@ -420,7 +420,7 @@ public class CoALoaders {
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(emitter(tier), 64)
-                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(20 * 60 * 2)
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800)
                 .buildAndRegister();
     }
 
