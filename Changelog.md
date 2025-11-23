@@ -3,6 +3,8 @@
 ### 1.0.8.3-beta
 - _Component Assembly Line_
   - :warning:**_WARNING_**:warning: Component recipe has undergone significant changes. Users of AE2 and similar mods should take note.
+- **Fix** Circuit Assembler recipe (NAND Chip).
+---
 
 ### 1.0.8.2-beta
 - _Circuit Factory_
