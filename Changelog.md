@@ -1,4 +1,8 @@
 ## Changelog
+### 1.1.0.2-beta
+- _Apply 1.0.8.3-beta_
+---
+
 ### 1.1.0.1-alpha
 - **Fix** NPE when without Gregified Energistics
 ---
