@@ -78,7 +78,7 @@ public class CoALoaders {
         registerPiston(Materials.Aluminium, Materials.Copper, Materials.Aluminium, Materials.Aluminium, MV);
         registerPiston(Materials.StainlessSteel, Materials.Gold, Materials.StainlessSteel, Materials.StainlessSteel,
                 HV);
-        registerPiston(Materials.Titanium, Materials.Aluminium, Materials.Tritanium, Materials.Tritanium, EV);
+        registerPiston(Materials.Titanium, Materials.Aluminium, Materials.Titanium, Materials.Titanium, EV);
         registerPiston(Materials.TungstenSteel, Materials.Tungsten, Materials.TungstenSteel, Materials.TungstenSteel,
                 IV);
         registerPistonAL(Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS,
