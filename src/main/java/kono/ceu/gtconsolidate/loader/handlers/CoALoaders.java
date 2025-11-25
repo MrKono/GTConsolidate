@@ -333,6 +333,7 @@ public class CoALoaders {
                 .input(circuit, markerMaterial(tier - 1), 48 * 2)
                 .input(circuit, markerMaterial(tier - 2), 48 * 4)
                 .input(cableGtHex, cableMaterial, 12)
+                .input(wireGtSingle, scMaterial(tier), 48)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(robotArm(tier), 64)
