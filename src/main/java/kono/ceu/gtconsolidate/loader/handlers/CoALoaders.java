@@ -194,7 +194,7 @@ public class CoALoaders {
     public static void registerConveyor(Material cableMaterial, Material[] rubberMaterials, int tier) {
         for (Material rubber : rubberMaterials) {
             COA_RECIPES.recipeBuilder()
-                    .input(cableGtHex, cableMaterial, 18)
+                    .input(cableGtOctal, cableMaterial, 3)
                     .input(motor(tier), 48 * 2)
                     .input(wireGtSingle, scMaterial(tier), 48)
                     .fluidInputs(rubber.getFluid(L * (tier + 2) * 48))
@@ -214,7 +214,7 @@ public class CoALoaders {
                 .input(ring, ringMaterial, 4 * 48)
                 .input(round, roundMaterial, 16 * 48)
                 .input(screw, screwMaterial, 4 * 48)
-                .input(cableGtHex, cableMaterial, 6)
+                .input(cableGtHex, cableMaterial, 3)
                 .input(wireGtDouble, scMaterial(tier), 48)
                 .fluidInputs(Materials.StyreneButadieneRubber.getFluid(L * (tier + 2) * 48))
                 .fluidInputs(Materials.SolderingAlloy.getFluid(L * tier))
