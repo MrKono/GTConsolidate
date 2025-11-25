@@ -134,9 +134,9 @@ public class CoALoaders {
         registerSensorAL(Materials.HSSS, Materials.Ruridit, Materials.Palladium, Materials.NiobiumTitanium,
                 MetaItems.QUANTUM_STAR, 1, LuV);
         registerSensorAL(Materials.NaquadahAlloy, Materials.Osmiridium, Materials.Trinium, Materials.VanadiumGallium,
-                MetaItems.QUANTUM_STAR, 2,  ZPM);
+                MetaItems.QUANTUM_STAR, 2, ZPM);
         registerSensorAL(Materials.Tritanium, Materials.Tritanium, Materials.Naquadria, Materials.YttriumBariumCuprate,
-                MetaItems.GRAVI_STAR, 1,  UV);
+                MetaItems.GRAVI_STAR, 1, UV);
     }
 
     /**
@@ -393,7 +393,8 @@ public class CoALoaders {
     }
 
     public static void registerSensorAL(Material frameMaterial, Material plateMaterial, Material foilMaterial,
-                                        Material cableMaterial, MetaItem<?>.MetaValueItem coreItem, int coreItemAmount, int tier) {
+                                        Material cableMaterial, MetaItem<?>.MetaValueItem coreItem, int coreItemAmount,
+                                        int tier) {
         CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
                 .input(frameGt, frameMaterial, 48)
                 .input(motor(tier), 48)
