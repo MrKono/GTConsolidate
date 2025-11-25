@@ -38,7 +38,7 @@ public class CoALoaders {
         registerMotorAL(Materials.SamariumMagnetic, 1, Materials.Osmiridium, 4, Materials.Osmiridium, 4,
                 Materials.Osmiridium, 8, Materials.Europium, 64 + 32, Materials.VanadiumGallium, ZPM);
         registerMotorAL(Materials.SamariumMagnetic, 1, Materials.Tritanium, 4, Materials.Tritanium, 4,
-                Materials.Tritanium, 8, Materials.Americium, 64 + 32, Materials.YttriumBariumCuprate, UV);
+                Materials.Tritanium, 8, Materials.Americium, 64 + 64, Materials.YttriumBariumCuprate, UV);
         // Pumps
         registerPump(Materials.Tin, Materials.Bronze, Materials.Tin, Materials.Tin,
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, LV);
@@ -55,7 +55,7 @@ public class CoALoaders {
         registerPumpAL(pipeNormalFluid, Materials.Polybenzimidazole, Materials.Osmiridium, Materials.Osmiridium,
                 Materials.Osmiridium, Materials.VanadiumGallium, 8, ZPM);
         registerPumpAL(pipeLargeFluid, Materials.Naquadah, Materials.Tritanium, Materials.Tritanium,
-                Materials.NaquadahAlloy, Materials.YttriumBariumCuprate, 4, UV);
+                Materials.NaquadahAlloy, Materials.YttriumBariumCuprate, 16, UV);
         // Conveyors
         registerConveyor(Materials.Tin,
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, LV);
@@ -78,7 +78,7 @@ public class CoALoaders {
         registerPiston(Materials.Aluminium, Materials.Copper, Materials.Aluminium, Materials.Aluminium, MV);
         registerPiston(Materials.StainlessSteel, Materials.Gold, Materials.StainlessSteel, Materials.StainlessSteel,
                 HV);
-        registerPiston(Materials.Titanium, Materials.Aluminium, Materials.Tritanium, Materials.Tritanium, EV);
+        registerPiston(Materials.Titanium, Materials.Aluminium, Materials.Titanium, Materials.Titanium, EV);
         registerPiston(Materials.TungstenSteel, Materials.Tungsten, Materials.TungstenSteel, Materials.TungstenSteel,
                 IV);
         registerPistonAL(Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS,
@@ -118,7 +118,7 @@ public class CoALoaders {
         registerEmitter(Materials.Electrum, Materials.Copper, OreDictUnifier.get(gemFlawless, Materials.Emerald), MV);
         registerEmitter(Materials.Chrome, Materials.Gold, OreDictUnifier.get(gem, Materials.EnderEye), HV);
         registerEmitter(Materials.Platinum, Materials.Aluminium, MetaItems.QUANTUM_EYE.getStackForm(), EV);
-        registerEmitter(Materials.TungstenSteel, Materials.Tungsten, MetaItems.QUANTUM_STAR.getStackForm(), IV);
+        registerEmitter(Materials.Iridium, Materials.Tungsten, MetaItems.QUANTUM_STAR.getStackForm(), IV);
         registerEmitterAL(Materials.HSSS, Materials.Ruridit, Materials.Palladium, Materials.NiobiumTitanium,
                 MetaItems.QUANTUM_STAR, LuV);
         registerEmitterAL(Materials.NaquadahAlloy, Materials.Osmiridium, Materials.Trinium, Materials.VanadiumGallium,
@@ -132,11 +132,11 @@ public class CoALoaders {
         registerSensor(Materials.Platinum, Materials.Titanium, MetaItems.QUANTUM_EYE.getStackForm(), EV);
         registerSensor(Materials.Iridium, Materials.TungstenSteel, MetaItems.QUANTUM_STAR.getStackForm(), IV);
         registerSensorAL(Materials.HSSS, Materials.Ruridit, Materials.Palladium, Materials.NiobiumTitanium,
-                MetaItems.QUANTUM_STAR, LuV);
+                MetaItems.QUANTUM_STAR, 1, LuV);
         registerSensorAL(Materials.NaquadahAlloy, Materials.Osmiridium, Materials.Trinium, Materials.VanadiumGallium,
-                MetaItems.QUANTUM_STAR, ZPM);
+                MetaItems.QUANTUM_STAR, 2, ZPM);
         registerSensorAL(Materials.Tritanium, Materials.Tritanium, Materials.Naquadria, Materials.YttriumBariumCuprate,
-                MetaItems.GRAVI_STAR, UV);
+                MetaItems.GRAVI_STAR, 1, UV);
     }
 
     /**
@@ -160,7 +160,7 @@ public class CoALoaders {
                 .input(stickLong, stickMaterial, 48)
                 .input(stickLong, magneticMaterial, 24)
                 .input(wireGtHex, wireMaterial, wireAmount)
-                .input(wireGtSingle, scMaterial(tier), isWireDouble ? 48 * 2 : 48)
+                .input(wireGtSingle, scMaterial(tier), isWireDouble ? 2 * 48 : 48)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(motor(tier), 64)
@@ -168,6 +168,7 @@ public class CoALoaders {
                 .buildAndRegister();
     }
 
+    // Fine Wire -> 16x Wire (x3/4)
     public static void registerMotorAL(Material magneticMaterial, int amountMagnetic, Material stickMaterial,
                                        int amountStick, Material ringMaterial, int amountRing, Material roundMaterial,
                                        int amountRound, Material fineMaterial, int amountFine, Material cableMaterial,
@@ -177,7 +178,7 @@ public class CoALoaders {
                 .input(stickLong, stickMaterial, amountStick * 48)
                 .input(ring, ringMaterial, amountRing * 48)
                 .input(round, roundMaterial, amountRound * 48)
-                .input(wireGtHex, fineMaterial, amountFine * 48 / 128)
+                .input(wireGtHex, fineMaterial, amountFine * 3 / 4)
                 .input(cableGtHex, cableMaterial, 6)
                 .input(wireGtDouble, scMaterial(tier), 48)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
@@ -185,7 +186,7 @@ public class CoALoaders {
                 .output(motor(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
 
         builder.buildAndRegister();
     }
@@ -193,10 +194,10 @@ public class CoALoaders {
     public static void registerConveyor(Material cableMaterial, Material[] rubberMaterials, int tier) {
         for (Material rubber : rubberMaterials) {
             COA_RECIPES.recipeBuilder()
-                    .input(cableGtHex, cableMaterial, 18)
-                    .input(motor(tier), 48 * 2)
+                    .input(cableGtOctal, cableMaterial, 3)
+                    .input(motor(tier), 2 * 48)
                     .input(wireGtSingle, scMaterial(tier), 48)
-                    .fluidInputs(rubber.getFluid(L * 6 * 48))
+                    .fluidInputs(rubber.getFluid(L * (tier + 2) * 48))
                     .fluidInputs(Materials.SolderingAlloy.getFluid(L * tier))
                     .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                     .output(conveyor(tier), 64)
@@ -208,20 +209,20 @@ public class CoALoaders {
     public static void registerConveyorAL(Material plateMaterial, Material ringMaterial, Material roundMaterial,
                                           Material screwMaterial, Material cableMaterial, int tier) {
         CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
-                .input(pump(tier), 2)
+                .input(motor(tier), 2 * 48)
                 .input(plate, plateMaterial, 2 * 48)
                 .input(ring, ringMaterial, 4 * 48)
                 .input(round, roundMaterial, 16 * 48)
                 .input(screw, screwMaterial, 4 * 48)
-                .input(cableGtHex, cableMaterial, 6)
+                .input(cableGtHex, cableMaterial, 3)
                 .input(wireGtDouble, scMaterial(tier), 48)
-                .fluidInputs(Materials.StyreneButadieneRubber.getFluid(L * 6 * 48))
+                .fluidInputs(Materials.StyreneButadieneRubber.getFluid(L * (tier + 2) * 48))
                 .fluidInputs(Materials.SolderingAlloy.getFluid(L * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(conveyor(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 6));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 6 * 48));
 
         builder.buildAndRegister();
     }
@@ -255,13 +256,14 @@ public class CoALoaders {
                 .input(screw, screwMaterial, 8 * 48)
                 .input(ring, Materials.SiliconeRubber, ringAmount * 48)
                 .input(rotor, rotorMaterial, 48)
-                .input(cableGtHex, cableMaterial, 6).input(wireGtSingle, scMaterial(tier), 48)
+                .input(cableGtHex, cableMaterial, 6)
+                .input(wireGtSingle, scMaterial(tier), 48)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(pump(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
 
         builder.buildAndRegister();
     }
@@ -300,7 +302,7 @@ public class CoALoaders {
                 .output(piston(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
 
         builder.buildAndRegister();
     }
@@ -309,7 +311,7 @@ public class CoALoaders {
         COA_RECIPES.recipeBuilder()
                 .input(cableGtHex, cableMaterial, 9)
                 .input(stickLong, stickMaterial, 48)
-                .input(motor(tier), 48 * 2)
+                .input(motor(tier), 2 * 48)
                 .input(piston(tier), 48)
                 .input(circuit, markerMaterial(tier), 48)
                 .input(wireGtSingle, scMaterial(tier), 48)
@@ -323,21 +325,22 @@ public class CoALoaders {
     public static void registerRobotArmAL(Material stickMaterial, Material gearMaterial, Material smallGearMaterial,
                                           Material cableMaterial, int tier) {
         CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
-                .input(stickLong, stickMaterial, 48 * 4)
+                .input(stickLong, stickMaterial, 4 * 48)
                 .input(gear, gearMaterial, 48)
-                .input(gearSmall, smallGearMaterial, 48 * 3)
-                .input(motor(tier), 48 * 2)
+                .input(gearSmall, smallGearMaterial, 3 * 48)
+                .input(motor(tier), 2 * 48)
                 .input(piston(tier), 48)
                 .input(circuit, markerMaterial(tier), 48)
-                .input(circuit, markerMaterial(tier - 1), 48 * 2)
-                .input(circuit, markerMaterial(tier - 2), 48 * 4)
+                .input(circuit, markerMaterial(tier - 1), 2 * 48)
+                .input(circuit, markerMaterial(tier - 2), 4 * 48)
                 .input(cableGtHex, cableMaterial, 12)
+                .input(wireGtSingle, scMaterial(tier), 48)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(robotArm(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
 
         builder.buildAndRegister();
     }
@@ -345,8 +348,8 @@ public class CoALoaders {
     public static void registerFieldGenerator(ItemStack coreStack, Material plateMaterial, int tier) {
         COA_RECIPES.recipeBuilder()
                 .inputs(GTUtility.copy(48, coreStack))
-                .input(tier >= EV ? plate : plateDouble, plateMaterial, 48)
-                .input(circuit, markerMaterial(tier), 48 * 2)
+                .input(tier >= EV ? plateDouble : plate, plateMaterial, 2 * 48)
+                .input(circuit, markerMaterial(tier), 2 * 48)
                 .input(wireGtHex, scMaterial(tier), 48)
                 .input(wireFine, scMaterial(tier), 64)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
@@ -360,17 +363,18 @@ public class CoALoaders {
                                                 MetaItem<?>.MetaValueItem coreItem, Material cableMaterial, int tier) {
         CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
                 .input(frameGt, frameMaterial, 48)
-                .input(plate, plateMaterial, 48 * 6)
+                .input(plate, plateMaterial, 6 * 48)
                 .input(coreItem, 48)
-                .input(emitter(tier), 48)
-                .input(wireGtHex, scMaterial(tier), 48)
+                .input(emitter(tier), 2 * 48)
+                .input(circuit, markerMaterial(tier), 2 * 48)
+                .input(wireGtHex, scMaterial(tier), 2 * 48)
                 .input(cableGtHex, cableMaterial, 12)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(fieldGenerator(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
 
         builder.buildAndRegister();
     }
@@ -378,10 +382,10 @@ public class CoALoaders {
     public static void registerSensor(Material stickMaterial, Material plateMaterial, ItemStack coreStack, int tier) {
         COA_RECIPES.recipeBuilder()
                 .input(stickLong, stickMaterial, 24)
-                .input(plate, plateMaterial, 48 * 4)
+                .input(plate, plateMaterial, 4 * 48)
                 .input(circuit, markerMaterial(tier), 48)
                 .inputs(GTUtility.copy(48, coreStack))
-                .input(wireFine, scMaterial(tier), 48 * 2)
+                .input(wireFine, scMaterial(tier), 2 * 48)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(sensor(tier), 64)
@@ -390,33 +394,34 @@ public class CoALoaders {
     }
 
     public static void registerSensorAL(Material frameMaterial, Material plateMaterial, Material foilMaterial,
-                                        Material cableMaterial, MetaItem<?>.MetaValueItem coreItem, int tier) {
+                                        Material cableMaterial, MetaItem<?>.MetaValueItem coreItem, int coreItemAmount,
+                                        int tier) {
         CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
                 .input(frameGt, frameMaterial, 48)
                 .input(motor(tier), 48)
-                .input(plate, plateMaterial, 48 * 4)
-                .input(coreItem, 48)
-                .input(circuit, markerMaterial(tier), 48 * 2)
+                .input(plate, plateMaterial, 4 * 48)
+                .input(coreItem, coreItemAmount * 48)
+                .input(circuit, markerMaterial(tier), 2 * 48)
                 .input(plateDense, foilMaterial, 128)
                 .input(cableGtHex, cableMaterial, 12)
-                .input(wireFine, scMaterial(tier), 48 * 2)
+                .input(wireFine, scMaterial(tier), 2 * 48)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(sensor(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
 
         builder.buildAndRegister();
     }
 
     public static void registerEmitter(Material stickMaterial, Material cableMaterial, ItemStack coreStack, int tier) {
         COA_RECIPES.recipeBuilder()
-                .input(stickLong, stickMaterial, 48 * 2)
+                .input(stickLong, stickMaterial, 2 * 48)
                 .input(cableGtHex, cableMaterial, 6)
-                .input(circuit, markerMaterial(tier), 48 * 2)
+                .input(circuit, markerMaterial(tier), 2 * 48)
                 .inputs(GTUtility.copy(48, coreStack))
-                .input(wireFine, scMaterial(tier), 48 * 2)
+                .input(wireFine, scMaterial(tier), 2 * 48)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(emitter(tier), 64)
@@ -429,18 +434,18 @@ public class CoALoaders {
         CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
                 .input(frameGt, frameMaterial, 48)
                 .input(motor(tier), 48)
-                .input(stickLong, stickMaterial, 48 * 4)
+                .input(stickLong, stickMaterial, 4 * 48)
                 .input(coreItem, 48)
-                .input(circuit, markerMaterial(tier), 48 * 2)
+                .input(circuit, markerMaterial(tier), 2 * 48)
                 .input(plateDense, foilMaterial, 128)
                 .input(cableGtHex, cableMaterial, 12)
-                .input(wireFine, scMaterial(tier), 48 * 2)
+                .input(wireFine, scMaterial(tier), 2 * 48)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(emitter(tier), 64)
-                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(20 * 60 * 2);
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 48 * 4));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
 
         builder.buildAndRegister();
     }
