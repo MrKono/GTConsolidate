@@ -1,4 +1,7 @@
 ## Changelog
+### 1.0.8.4-beta
+- _Component Assembly Line_
+  - **Fix** numerous issues related to incorrect ingredients and ingredient counts. (Thanks to @sivaDog)
 
 ### 1.0.8.3-beta
 - _Component Assembly Line_
