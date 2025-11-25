@@ -442,7 +442,7 @@ public class CoALoaders {
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(emitter(tier), 64)
-                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(20 * 60 * 2);
+                .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
         if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
 
