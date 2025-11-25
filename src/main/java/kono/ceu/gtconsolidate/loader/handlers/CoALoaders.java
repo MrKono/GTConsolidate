@@ -117,8 +117,8 @@ public class CoALoaders {
         registerEmitter(Materials.Brass, Materials.Tin, OreDictUnifier.get(gem, Materials.Quartzite), LV);
         registerEmitter(Materials.Electrum, Materials.Copper, OreDictUnifier.get(gemFlawless, Materials.Emerald), MV);
         registerEmitter(Materials.Chrome, Materials.Gold, OreDictUnifier.get(gem, Materials.EnderEye), HV);
-        registerEmitter(Materials.Iridium, Materials.Aluminium, MetaItems.QUANTUM_EYE.getStackForm(), EV);
-        registerEmitter(Materials.TungstenSteel, Materials.Tungsten, MetaItems.QUANTUM_STAR.getStackForm(), IV);
+        registerEmitter(Materials.Platinum, Materials.Aluminium, MetaItems.QUANTUM_EYE.getStackForm(), EV);
+        registerEmitter(Materials.Iridium, Materials.Tungsten, MetaItems.QUANTUM_STAR.getStackForm(), IV);
         registerEmitterAL(Materials.HSSS, Materials.Ruridit, Materials.Palladium, Materials.NiobiumTitanium,
                 MetaItems.QUANTUM_STAR, LuV);
         registerEmitterAL(Materials.NaquadahAlloy, Materials.Osmiridium, Materials.Trinium, Materials.VanadiumGallium,
