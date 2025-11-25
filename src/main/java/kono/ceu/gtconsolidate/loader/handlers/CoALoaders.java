@@ -38,7 +38,7 @@ public class CoALoaders {
         registerMotorAL(Materials.SamariumMagnetic, 1, Materials.Osmiridium, 4, Materials.Osmiridium, 4,
                 Materials.Osmiridium, 8, Materials.Europium, 64 + 32, Materials.VanadiumGallium, ZPM);
         registerMotorAL(Materials.SamariumMagnetic, 1, Materials.Tritanium, 4, Materials.Tritanium, 4,
-                Materials.Tritanium, 8, Materials.Americium, 64 + 32, Materials.YttriumBariumCuprate, UV);
+                Materials.Tritanium, 8, Materials.Americium, 64 + 64, Materials.YttriumBariumCuprate, UV);
         // Pumps
         registerPump(Materials.Tin, Materials.Bronze, Materials.Tin, Materials.Tin,
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, LV);
@@ -168,6 +168,7 @@ public class CoALoaders {
                 .buildAndRegister();
     }
 
+    // Fine Wire -> 16x Wire (x3/4)
     public static void registerMotorAL(Material magneticMaterial, int amountMagnetic, Material stickMaterial,
                                        int amountStick, Material ringMaterial, int amountRing, Material roundMaterial,
                                        int amountRound, Material fineMaterial, int amountFine, Material cableMaterial,
@@ -177,7 +178,7 @@ public class CoALoaders {
                 .input(stickLong, stickMaterial, amountStick * 48)
                 .input(ring, ringMaterial, amountRing * 48)
                 .input(round, roundMaterial, amountRound * 48)
-                .input(wireGtHex, fineMaterial, amountFine * 48 / 128)
+                .input(wireGtHex, fineMaterial, amountFine * 3 / 4)
                 .input(cableGtHex, cableMaterial, 6)
                 .input(wireGtDouble, scMaterial(tier), 48)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * tier))
