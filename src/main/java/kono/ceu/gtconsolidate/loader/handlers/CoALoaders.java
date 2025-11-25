@@ -132,11 +132,11 @@ public class CoALoaders {
         registerSensor(Materials.Platinum, Materials.Titanium, MetaItems.QUANTUM_EYE.getStackForm(), EV);
         registerSensor(Materials.Iridium, Materials.TungstenSteel, MetaItems.QUANTUM_STAR.getStackForm(), IV);
         registerSensorAL(Materials.HSSS, Materials.Ruridit, Materials.Palladium, Materials.NiobiumTitanium,
-                MetaItems.QUANTUM_STAR, LuV);
+                MetaItems.QUANTUM_STAR, 1, LuV);
         registerSensorAL(Materials.NaquadahAlloy, Materials.Osmiridium, Materials.Trinium, Materials.VanadiumGallium,
-                MetaItems.QUANTUM_STAR, ZPM);
+                MetaItems.QUANTUM_STAR, 2,  ZPM);
         registerSensorAL(Materials.Tritanium, Materials.Tritanium, Materials.Naquadria, Materials.YttriumBariumCuprate,
-                MetaItems.GRAVI_STAR, UV);
+                MetaItems.GRAVI_STAR, 1,  UV);
     }
 
     /**
@@ -391,12 +391,12 @@ public class CoALoaders {
     }
 
     public static void registerSensorAL(Material frameMaterial, Material plateMaterial, Material foilMaterial,
-                                        Material cableMaterial, MetaItem<?>.MetaValueItem coreItem, int tier) {
+                                        Material cableMaterial, MetaItem<?>.MetaValueItem coreItem, int coreItemAmount, int tier) {
         CoARecipeBuilder builder = COA_RECIPES.recipeBuilder()
                 .input(frameGt, frameMaterial, 48)
                 .input(motor(tier), 48)
                 .input(plate, plateMaterial, 48 * 4)
-                .input(coreItem, 48)
+                .input(coreItem, coreItemAmount * 48)
                 .input(circuit, markerMaterial(tier), 48 * 2)
                 .input(plateDense, foilMaterial, 128)
                 .input(cableGtHex, cableMaterial, 12)
