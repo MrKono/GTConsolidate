@@ -55,7 +55,7 @@ public class CoALoaders {
         registerPumpAL(pipeNormalFluid, Materials.Polybenzimidazole, Materials.Osmiridium, Materials.Osmiridium,
                 Materials.Osmiridium, Materials.VanadiumGallium, 8, ZPM);
         registerPumpAL(pipeLargeFluid, Materials.Naquadah, Materials.Tritanium, Materials.Tritanium,
-                Materials.NaquadahAlloy, Materials.YttriumBariumCuprate, 4, UV);
+                Materials.NaquadahAlloy, Materials.YttriumBariumCuprate, 16, UV);
         // Conveyors
         registerConveyor(Materials.Tin,
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, LV);
