@@ -346,7 +346,7 @@ public class CoALoaders {
     public static void registerFieldGenerator(ItemStack coreStack, Material plateMaterial, int tier) {
         COA_RECIPES.recipeBuilder()
                 .inputs(GTUtility.copy(48, coreStack))
-                .input(tier >= EV ? plate : plateDouble, plateMaterial, 48)
+                .input(tier >= EV ? plateDouble : plate, plateMaterial, 48 * 2)
                 .input(circuit, markerMaterial(tier), 48 * 2)
                 .input(wireGtHex, scMaterial(tier), 48)
                 .input(wireFine, scMaterial(tier), 64)
