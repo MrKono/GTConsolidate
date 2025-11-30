@@ -1,4 +1,9 @@
 ## Changelog
+### 1.1.0.4-beta
+- **Fix** crash with GTExpertCore.
+- **Re-balance** CoA recipe.
+---
+
 ### 1.1.0.3-beta
 - _Apply 1.0.8.4-beta_
 ---
