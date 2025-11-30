@@ -1,8 +1,31 @@
 ## Changelog
+### 1.1.0.4-beta
+- **Fix** crash with GTExpertCore.
+- **Re-balance** CoA recipe.
+---
+
+### 1.1.0.3-beta
+- _Apply 1.0.8.4-beta_
+---
+
+### 1.1.0.2-beta
+- _Apply 1.0.8.3-beta_
+---
+
+### 1.1.0.1-alpha
+- **Fix** NPE when without Gregified Energistics
+---
+
+### 1.1.0-alpha
+- Bump version to MixinBooter v10
+  - Updated MixinBooter from v9.1 to v10.6
+- **New integration**: Gregified Energistics
+  - `ME Assembly Line Bus` and `ME Assembly Line Optical Bus` are now available in Parallelized Assembly Line.
+---
 ### 1.0.8.4-beta
 - _Component Assembly Line_
   - **Fix** numerous issues related to incorrect ingredients and ingredient counts. (Thanks to @sivaDog)
-
+---
 ### 1.0.8.3-beta
 - _Component Assembly Line_
   - :warning:**_WARNING_**:warning: Component recipe has undergone significant changes. Users of AE2 and similar mods should take note.

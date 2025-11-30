@@ -25,6 +25,8 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.walhay.gregifiedenergistics.common.metatileentities.GregifiedEnergisticsMetaTileEntities;
+
 import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.capability.IDataAccessHatch;
 import gregtech.api.capability.IEnergyContainer;
@@ -58,6 +60,7 @@ import gregtech.core.sound.GTSoundEvents;
 import gregicality.multiblocks.api.capability.IParallelMultiblock;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 
+import kono.ceu.gtconsolidate.api.util.Mods;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.blocks.*;
@@ -101,11 +104,19 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
         return maxParallel;
     }
 
+    private TraceabilityPredicate inputBusPredicate() {
+        return Mods.GregifiedEnergistics.isModLoaded() ?
+                abilities(MultiblockAbility.IMPORT_ITEMS)
+                        .or(metaTileEntities(GregifiedEnergisticsMetaTileEntities.ME_ASSEMBLY_LINE_BUS,
+                                GregifiedEnergisticsMetaTileEntities.ME_ASSEMBLY_LINE_OPTICAL_BUS)) :
+                abilities(MultiblockAbility.IMPORT_ITEMS);
+    }
+
     @NotNull
     @Override
     protected BlockPattern createStructurePattern() {
         FactoryBlockPattern pattern = FactoryBlockPattern.start(FRONT, UP, RIGHT)
-                .aisle("FIF", "RTR", "SAG", " Y ")
+                .aisle("FBF", "RTR", "SAG", " Y ")
                 .aisle("FIF", "RTR", "DAG", " Y ").setRepeatable(3, 15)
                 .aisle("FOF", "RTR", "DAG", " Y ")
                 .where('S', selfPredicate())
@@ -116,6 +127,7 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
                         .addTooltips("gregtech.multiblock.pattern.location_end"))
                 .where('Y', states(getCasingState())
                         .or(energyHatchLimit(false, maxParallel == 4, maxParallel != 64, maxParallel == 64)))
+                .where('B', inputBusPredicate())
                 .where('I', abilities(MultiblockAbility.IMPORT_ITEMS)
                         .addTooltips("gtconsolidate.multiblock.jei.bus.filtered"))
                 .where('G', states(getGrateState()))

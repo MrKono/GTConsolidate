@@ -197,7 +197,7 @@ public class CoALoaders {
                     .input(cableGtOctal, cableMaterial, 3)
                     .input(motor(tier), 2 * 48)
                     .input(wireGtSingle, scMaterial(tier), 48)
-                    .fluidInputs(rubber.getFluid(L * (tier + 2) * 48))
+                    .fluidInputs(rubber.getFluid(L * 6 * 48))
                     .fluidInputs(Materials.SolderingAlloy.getFluid(L * tier))
                     .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                     .output(conveyor(tier), 64)
@@ -214,15 +214,15 @@ public class CoALoaders {
                 .input(ring, ringMaterial, 4 * 48)
                 .input(round, roundMaterial, 16 * 48)
                 .input(screw, screwMaterial, 4 * 48)
-                .input(cableGtHex, cableMaterial, 3)
+                .input(cableGtHex, cableMaterial, 6)
                 .input(wireGtDouble, scMaterial(tier), 48)
-                .fluidInputs(Materials.StyreneButadieneRubber.getFluid(L * (tier + 2) * 48))
+                .fluidInputs(Materials.StyreneButadieneRubber.getFluid(L * 8 * (tier - 6) * 48))
                 .fluidInputs(Materials.SolderingAlloy.getFluid(L * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(conveyor(tier), 64)
                 .casingTier(tier).EUt(GTValues.VA[tier + 2]).duration(4800);
 
-        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 6 * 48));
+        if (tier == UV) builder.fluidInputs(Materials.Naquadria.getFluid(L * 4 * 48));
 
         builder.buildAndRegister();
     }
