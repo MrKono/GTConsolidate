@@ -166,9 +166,9 @@ gtconsolidate.machine.extended_processing_array.tooltip.factor.64=もっとい�
 gtconsolidate.machine.extended_processing_array.tooltip.1=設定した機械を§e%s倍§7して動作する。
 
 # Industrial Bricked Blast Furnace
-gtconsolidate.machine.industrial_bbf.tooltip.1=Height gives bonuses, but bigger isn’t always better.
-gtconsolidate.machine.industrial_bbf.tooltip.2=Parallel count increases with height (up to 64 parallel).
-gtconsolidate.machine.industrial_bbf.tooltip.3=A speed bonus is applied based on height (up to +500%).
+gtconsolidate.machine.industrial_bbf.tooltip.1=高さでボーナスは入るが、大きければ良いというものでもない。
+gtconsolidate.machine.industrial_bbf.tooltip.2=高さに応じて§d並列処理数数§7が変化する (最大§b64§7)。
+gtconsolidate.machine.industrial_bbf.tooltip.3=高さに応じて§d動作速度§7にボーナスがかかる (最大§b+500§7%%)。
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。

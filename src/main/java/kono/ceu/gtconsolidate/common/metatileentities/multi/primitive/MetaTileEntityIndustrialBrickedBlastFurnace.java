@@ -7,12 +7,14 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemStackHandler;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -49,6 +51,7 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
     public MetaTileEntityIndustrialBrickedBlastFurnace(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.PRIMITIVE_BLAST_FURNACE_RECIPES);
         this.recipeMapWorkable = new ParallelizedPrimitiveRecipeLogic(this, RecipeMaps.PRIMITIVE_BLAST_FURNACE_RECIPES);
+        initializeAbilities();
     }
 
     @Override
@@ -63,6 +66,16 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
     }
 
     @Override
+    public void invalidateStructure() {
+        this.importItems = new ItemStackHandler(0);
+        this.exportItems = new ItemStackHandler(0);
+        super.invalidateStructure();
+    }
+
+    @Override
+    public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {}
+
+    @Override
     protected @NotNull BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.FRONT, RelativeDirection.DOWN)
                 .aisle("#######", "#######", "##XXX##", "##XAX##", "##XXX##", "#######", "#######")
@@ -73,9 +86,8 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
                 .where('C',
                         states(MetaBlocks.STEAM_CASING.getState(BlockSteamCasing.SteamCasingType.STEEL_BRICKS_HULL))
                                 .setMinGlobalLimited(10)
-                                .or(abilities(MultiblockAbility.IMPORT_ITEMS).setMinGlobalLimited(2).setPreviewCount(2))
-                                .or(abilities(MultiblockAbility.EXPORT_ITEMS).setMinGlobalLimited(2)
-                                        .setPreviewCount(2)))
+                                .or(abilities(MultiblockAbility.IMPORT_ITEMS).setMinGlobalLimited(2, 1))
+                                .or(abilities(MultiblockAbility.EXPORT_ITEMS).setMinGlobalLimited(2, 1)))
                 .where('I', indicatorPredicate())
                 .where('S', selfPredicate())
                 .where('T', states(getPillarState()))
@@ -152,10 +164,12 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
         builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive());
         builder.addWorkingStatusLine();
         builder.addCustom(list -> {
-            ITextComponent bonus = TextComponentUtil.stringWithColor(TextFormatting.WHITE,
-                    TextFormattingUtil.formatNumbers((1 / getSpeedBonus()) * 100f));
-            list.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY,
-                    "gtconsolidate.multiblock.speed_bonus", bonus));
+            if (isStructureFormed()) {
+                ITextComponent bonus = TextComponentUtil.stringWithColor(TextFormatting.WHITE,
+                        TextFormattingUtil.formatNumbers((1 / getSpeedBonus()) * 100f));
+                list.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                        "gtconsolidate.multiblock.speed_bonus", bonus));
+            }
         });
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
@@ -170,7 +184,6 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
         tooltip.add(I18n.format("gtconsolidate.machine.industrial_bbf.tooltip.1"));
         tooltip.add(I18n.format("gtconsolidate.machine.industrial_bbf.tooltip.2"));
         tooltip.add(I18n.format("gtconsolidate.machine.industrial_bbf.tooltip.3"));
-        tooltip.add(I18n.format("gtconsolidate.machine.industrial_bbf.tooltip.4"));
     }
 
     @Override

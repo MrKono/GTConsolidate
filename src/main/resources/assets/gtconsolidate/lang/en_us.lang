@@ -167,8 +167,8 @@ gtconsolidate.machine.extended_processing_array.tooltip.1=Counts as §e%sx§7 th
 
 # Industrial Bricked Blast Furnace
 gtconsolidate.machine.industrial_bbf.tooltip.1=Height gives bonuses, but bigger isn’t always better.
-gtconsolidate.machine.industrial_bbf.tooltip.2=Parallel count increases with height (up to 64 parallel).
-gtconsolidate.machine.industrial_bbf.tooltip.3=A speed bonus is applied based on height (up to +500%).
+gtconsolidate.machine.industrial_bbf.tooltip.2=§dParallel count§7 increases with height (up to §b64§7 parallel).
+gtconsolidate.machine.industrial_bbf.tooltip.3=§dA speed bonus§7 is applied based on height (up to §b+500§7%%).
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
