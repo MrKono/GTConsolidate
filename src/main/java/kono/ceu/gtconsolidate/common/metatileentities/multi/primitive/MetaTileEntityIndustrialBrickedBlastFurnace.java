@@ -1,11 +1,23 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.primitive;
 
-import codechicken.lib.render.CCRenderState;
-import codechicken.lib.render.pipeline.IVertexOperation;
-import codechicken.lib.vec.Matrix4;
-import gregtech.api.GTValues;
+import java.util.List;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import gregtech.api.capability.impl.ItemHandlerList;
-import gregtech.api.capability.impl.PrimitiveRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.*;
@@ -13,7 +25,6 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
-import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.util.RelativeDirection;
 import gregtech.api.util.TextComponentUtil;
@@ -23,25 +34,13 @@ import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockSteamCasing;
 import gregtech.common.blocks.MetaBlocks;
+
 import kono.ceu.gtconsolidate.api.capability.impl.ParallelizedPrimitiveRecipeLogic;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import codechicken.lib.render.CCRenderState;
+import codechicken.lib.render.pipeline.IVertexOperation;
+import codechicken.lib.vec.Matrix4;
 
 public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimitiveMultiblockController {
 
@@ -71,9 +70,12 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
                 .aisle("##XXX##", "#XAAAX#", "XAAAAAX", "XAAIAAX", "XAAAAAX", "#XAAAX#", "##XXX##").setRepeatable(1, 63)
                 .aisle("##XSX##", "#XAAAX#", "XAAAAAX", "XAATAAX", "XAAAAAX", "#XAAAX#", "##XXX##")
                 .aisle("##CCC##", "#CXXXC#", "CXXXXXC", "CXXXXXC", "CXXXXXC", "#CXXXC#", "##CCC##")
-                .where('C', states(MetaBlocks.STEAM_CASING.getState(BlockSteamCasing.SteamCasingType.STEEL_BRICKS_HULL)).setMinGlobalLimited(12)
-                        .or(abilities(MultiblockAbility.IMPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
-                        .or(abilities(MultiblockAbility.EXPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1)))
+                .where('C',
+                        states(MetaBlocks.STEAM_CASING.getState(BlockSteamCasing.SteamCasingType.STEEL_BRICKS_HULL))
+                                .setMinGlobalLimited(12)
+                                .or(abilities(MultiblockAbility.IMPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
+                                .or(abilities(MultiblockAbility.EXPORT_ITEMS).setMinGlobalLimited(1)
+                                        .setPreviewCount(1)))
                 .where('I', indicatorPredicate())
                 .where('S', selfPredicate())
                 .where('T', states(getPillarState()))
@@ -150,7 +152,8 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
         builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive());
         builder.addWorkingStatusLine();
         builder.addCustom(list -> {
-            ITextComponent bonus = TextComponentUtil.stringWithColor(TextFormatting.WHITE, TextFormattingUtil.formatNumbers((1 / getSpeedBonus()) * 100f));
+            ITextComponent bonus = TextComponentUtil.stringWithColor(TextFormatting.WHITE,
+                    TextFormattingUtil.formatNumbers((1 / getSpeedBonus()) * 100f));
             list.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY,
                     "gtconsolidate.multiblock.speed_bonus", bonus));
         });
