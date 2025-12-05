@@ -1,4 +1,8 @@
 ## Changelog
+### 1.1.0.4.1-beta
+- **Fix** conveyor recipe's fluid input (CoA)
+--- 
+
 ### 1.1.0.4-beta
 - **Fix** crash with GTExpertCore.
 - **Re-balance** CoA recipe.
