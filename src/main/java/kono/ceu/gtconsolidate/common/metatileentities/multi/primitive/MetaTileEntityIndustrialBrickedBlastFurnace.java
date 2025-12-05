@@ -51,7 +51,6 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
     public MetaTileEntityIndustrialBrickedBlastFurnace(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.PRIMITIVE_BLAST_FURNACE_RECIPES);
         this.recipeMapWorkable = new ParallelizedPrimitiveRecipeLogic(this, RecipeMaps.PRIMITIVE_BLAST_FURNACE_RECIPES);
-        initializeAbilities();
     }
 
     @Override
@@ -80,14 +79,14 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
         return FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.FRONT, RelativeDirection.DOWN)
                 .aisle("#######", "#######", "##XXX##", "##XAX##", "##XXX##", "#######", "#######")
                 .aisle("#######", "##XXX##", "#XAAAX#", "#XAAAX#", "#XAAAX#", "##XXX##", "#######")
-                .aisle("##XXX##", "#XAAAX#", "XAAAAAX", "XAAIAAX", "XAAAAAX", "#XAAAX#", "##XXX##").setRepeatable(1, 63)
+                .aisle("##XXX##", "#XAAAX#", "XAAAAAX", "XAITAAX", "XAAAAAX", "#XAAAX#", "##XXX##").setRepeatable(1, 63)
                 .aisle("##XSX##", "#XAAAX#", "XAAAAAX", "XAATAAX", "XAAAAAX", "#XAAAX#", "##XXX##")
                 .aisle("##CCC##", "#CXXXC#", "CXXXXXC", "CXXXXXC", "CXXXXXC", "#CXXXC#", "##CCC##")
                 .where('C',
                         states(MetaBlocks.STEAM_CASING.getState(BlockSteamCasing.SteamCasingType.STEEL_BRICKS_HULL))
-                                .setMinGlobalLimited(10)
-                                .or(abilities(MultiblockAbility.IMPORT_ITEMS).setMinGlobalLimited(2, 1))
-                                .or(abilities(MultiblockAbility.EXPORT_ITEMS).setMinGlobalLimited(2, 1)))
+                                .setMinGlobalLimited(8)
+                                .or(abilities(MultiblockAbility.IMPORT_ITEMS).setPreviewCount(2))
+                                .or(abilities(MultiblockAbility.EXPORT_ITEMS).setPreviewCount(2)))
                 .where('I', indicatorPredicate())
                 .where('S', selfPredicate())
                 .where('T', states(getPillarState()))
@@ -108,7 +107,7 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
     // This function is highly useful for detecting the length of this multiblock.
     public TraceabilityPredicate indicatorPredicate() {
         return new TraceabilityPredicate((blockWorldState) -> {
-            if (states(getPillarState()).test(blockWorldState)) {
+            if (air().test(blockWorldState)) {
                 blockWorldState.getMatchContext().increment("parallel", 1);
                 return true;
             } else
