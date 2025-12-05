@@ -36,6 +36,8 @@ gtconsolidate.machine.elite_processing_array.name=Elite Processing Array
 gtconsolidate.machine.master_processing_array.name=Master Processing Array
 gtconsolidate.machine.ultimate_processing_array.name=Ultimate Processing Array
 
+gtconsolidate.machine.industrial_bbf.name=Industrial Bricked Blast Furnace
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
@@ -163,6 +165,11 @@ gtconsolidate.machine.extended_processing_array.tooltip.factor.16=Do you really 
 gtconsolidate.machine.extended_processing_array.tooltip.factor.64=There must be a better way...
 gtconsolidate.machine.extended_processing_array.tooltip.1=Counts as §e%sx§7 the set machines when operating.
 
+# Industrial Bricked Blast Furnace
+gtconsolidate.machine.industrial_bbf.tooltip.1=Height gives bonuses, but bigger isn’t always better.
+gtconsolidate.machine.industrial_bbf.tooltip.2=Parallel count increases with height (up to 64 parallel).
+gtconsolidate.machine.industrial_bbf.tooltip.3=A speed bonus is applied based on height (up to +500%).
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
 
@@ -176,6 +183,7 @@ gtconsolidate.multiblock.parallel_extended=Parallels: %s / %s
 gtconsolidate.multiblock.parallel_extended_hover=Number of parallels this machine can process. Current parallels / Max. Parallels
 gtconsolidate.multiblock.recipe_outputs=Outputs: %s
 gtconsolidate.multiblock.recipe_outputs_hover=Output per parallel. The actual output is multiplied by Current Parallel.
+gtconsolidate.multiblock.speed_bonus=Speed Bonus: %f§f%%
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r
