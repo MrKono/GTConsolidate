@@ -216,7 +216,7 @@ public class CoALoaders {
                 .input(screw, screwMaterial, 4 * 48)
                 .input(cableGtHex, cableMaterial, 6)
                 .input(wireGtDouble, scMaterial(tier), 48)
-                .fluidInputs(Materials.StyreneButadieneRubber.getFluid(L * 8 * (tier - 6) * 48))
+                .fluidInputs(Materials.StyreneButadieneRubber.getFluid(L * 8 * (tier - 5) * 48))
                 .fluidInputs(Materials.SolderingAlloy.getFluid(L * tier))
                 .fluidInputs(Materials.Lubricant.getFluid(1000 * tier))
                 .output(conveyor(tier), 64)
