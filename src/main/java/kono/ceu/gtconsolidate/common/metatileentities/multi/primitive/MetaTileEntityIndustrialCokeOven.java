@@ -1,34 +1,10 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.primitive;
 
-import codechicken.lib.render.CCRenderState;
-import codechicken.lib.render.pipeline.IVertexOperation;
-import codechicken.lib.vec.Matrix4;
-import gregtech.api.GTValues;
-import gregtech.api.capability.impl.FluidTankList;
-import gregtech.api.capability.impl.ItemHandlerList;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.*;
-import gregtech.api.pattern.*;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.util.TextComponentUtil;
-import gregtech.api.util.TextFormattingUtil;
-import gregtech.client.renderer.ICubeRenderer;
-import gregtech.client.renderer.texture.Textures;
-import gregtech.common.blocks.BlockMetalCasing;
-import gregtech.common.blocks.BlockSteamCasing;
-import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.metatileentities.MetaTileEntities;
-import kono.ceu.gtconsolidate.api.capability.impl.ParallelizedPrimitiveRecipeLogic;
-import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
-import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
-import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
-import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
-import net.minecraft.block.Block;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
@@ -40,11 +16,33 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
+
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import gregtech.api.GTValues;
+import gregtech.api.capability.impl.FluidTankList;
+import gregtech.api.capability.impl.ItemHandlerList;
+import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.multiblock.*;
+import gregtech.api.pattern.*;
+import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.util.TextComponentUtil;
+import gregtech.api.util.TextFormattingUtil;
+import gregtech.client.renderer.ICubeRenderer;
+import gregtech.client.renderer.texture.Textures;
+import gregtech.common.blocks.BlockMetalCasing;
+import gregtech.common.blocks.BlockSteamCasing;
+import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
+
+import kono.ceu.gtconsolidate.api.capability.impl.ParallelizedPrimitiveRecipeLogic;
+import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
+import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
+
+import codechicken.lib.render.CCRenderState;
+import codechicken.lib.render.pipeline.IVertexOperation;
+import codechicken.lib.vec.Matrix4;
 
 public class MetaTileEntityIndustrialCokeOven extends RecipeMapPrimitiveMultiblockController {
 
@@ -76,7 +74,8 @@ public class MetaTileEntityIndustrialCokeOven extends RecipeMapPrimitiveMultiblo
     protected void initializeAbilities() {
         this.importItems = new ItemHandlerList(getAbilities(MultiblockAbility.IMPORT_ITEMS));
         this.exportItems = new ItemHandlerList(getAbilities(MultiblockAbility.EXPORT_ITEMS));
-        this.exportFluids = new FluidTankList(allowSameFluidFillForOutputs(), getAbilities(MultiblockAbility.EXPORT_FLUIDS));
+        this.exportFluids = new FluidTankList(allowSameFluidFillForOutputs(),
+                getAbilities(MultiblockAbility.EXPORT_FLUIDS));
     }
 
     protected boolean allowSameFluidFillForOutputs() {
@@ -144,46 +143,45 @@ public class MetaTileEntityIndustrialCokeOven extends RecipeMapPrimitiveMultiblo
 
     private TraceabilityPredicate indicatorPredicate() {
         return new TraceabilityPredicate((blockWorldState) -> {
-                if (states(floors.get(0)).test(blockWorldState)) {
-                    // Coke Bricks -> x4 speed, 2 parallels
-                    blockWorldState.getMatchContext().set("efficiency", 4);
-                    blockWorldState.getMatchContext().set("parallel", 2);
-                    return true;
-                } else if (states(floors.get(1)).test(blockWorldState)) {
-                    // Bronze Brick Hull -> x2 speed, 8 parallels
-                    blockWorldState.getMatchContext().set("efficiency", 2);
-                    blockWorldState.getMatchContext().set("parallel", 8);
-                    return true;
-                } else if (states(floors.get(2)).test(blockWorldState)) {
-                    // Bronze Machine Casing -> x6 speed, 8 parallels
-                    blockWorldState.getMatchContext().set("efficiency", 6);
-                    blockWorldState.getMatchContext().set("parallel", 8);
-                    return true;
-                } else if (states(floors.get(3)).test(blockWorldState)) {
-                    // Bronze Hull -> x8 speed, 8 parallels
-                    blockWorldState.getMatchContext().set("efficiency", 8);
-                    blockWorldState.getMatchContext().set("parallel", 8);
-                    return true;
-                } else if (states(floors.get(4)).test(blockWorldState)) {
-                    // Steel Brick Hull -> x8 speed, 16 parallels
-                    blockWorldState.getMatchContext().set("efficiency", 8);
-                    blockWorldState.getMatchContext().set("parallel", 16);
-                    return true;
-                } else if (states(floors.get(5)).test(blockWorldState)) {
-                    // Steel Machine Casing -> x16 speed, 16 parallels
-                    blockWorldState.getMatchContext().set("efficiency", 16);
-                    blockWorldState.getMatchContext().set("parallel", 16);
-                    return true;
-                } else if (states(floors.get(6)).test(blockWorldState)) {
-                    // Steel Hull -> x32 speed, 16 parallels
-                    blockWorldState.getMatchContext().set("efficiency", 32);
-                    blockWorldState.getMatchContext().set("parallel", 16);
-                    return true;
-                }
+            if (states(floors.get(0)).test(blockWorldState)) {
+                // Coke Bricks -> x4 speed, 2 parallels
+                blockWorldState.getMatchContext().set("efficiency", 4);
+                blockWorldState.getMatchContext().set("parallel", 2);
+                return true;
+            } else if (states(floors.get(1)).test(blockWorldState)) {
+                // Bronze Brick Hull -> x2 speed, 8 parallels
+                blockWorldState.getMatchContext().set("efficiency", 2);
+                blockWorldState.getMatchContext().set("parallel", 8);
+                return true;
+            } else if (states(floors.get(2)).test(blockWorldState)) {
+                // Bronze Machine Casing -> x6 speed, 8 parallels
+                blockWorldState.getMatchContext().set("efficiency", 6);
+                blockWorldState.getMatchContext().set("parallel", 8);
+                return true;
+            } else if (states(floors.get(3)).test(blockWorldState)) {
+                // Bronze Hull -> x8 speed, 8 parallels
+                blockWorldState.getMatchContext().set("efficiency", 8);
+                blockWorldState.getMatchContext().set("parallel", 8);
+                return true;
+            } else if (states(floors.get(4)).test(blockWorldState)) {
+                // Steel Brick Hull -> x8 speed, 16 parallels
+                blockWorldState.getMatchContext().set("efficiency", 8);
+                blockWorldState.getMatchContext().set("parallel", 16);
+                return true;
+            } else if (states(floors.get(5)).test(blockWorldState)) {
+                // Steel Machine Casing -> x16 speed, 16 parallels
+                blockWorldState.getMatchContext().set("efficiency", 16);
+                blockWorldState.getMatchContext().set("parallel", 16);
+                return true;
+            } else if (states(floors.get(6)).test(blockWorldState)) {
+                // Steel Hull -> x32 speed, 16 parallels
+                blockWorldState.getMatchContext().set("efficiency", 32);
+                blockWorldState.getMatchContext().set("parallel", 16);
+                return true;
+            }
             return false;
         });
     }
-
 
     @Override
     protected void formStructure(PatternMatchContext context) {
