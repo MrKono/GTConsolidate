@@ -1,9 +1,12 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.primitive;
 
+import static kono.ceu.gtconsolidate.api.util.GTConsolidateUtil.isTABDown;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,11 +16,13 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import gregtech.api.GTValues;
 import gregtech.api.capability.impl.FluidTankList;
@@ -233,6 +238,33 @@ public class MetaTileEntityIndustrialCokeOven extends RecipeMapPrimitiveMultiblo
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
         ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World world, @NotNull List<String> tooltip,
+                               boolean advanced) {
+        super.addInformation(stack, world, tooltip, advanced);
+        tooltip.add(I18n.format("gtconsolidate.machine.industrial_coke_oven.tooltip.1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.industrial_coke_oven.tooltip.2"));
+        if (isTABDown()) {
+            tooltip.add(I18n.format("gtconsolidate.machine.industrial_coke_oven.tooltip.info",
+                    I18n.format("tile.metal_casing.coke_bricks.name"), 400, 2));
+            tooltip.add(I18n.format("gtconsolidate.machine.industrial_coke_oven.tooltip.info",
+                    I18n.format("tile.steam_casing.bronze_bricks_hull.name"), 200, 8));
+            tooltip.add(I18n.format("gtconsolidate.machine.industrial_coke_oven.tooltip.info",
+                    I18n.format("tile.metal_casing.bronze_bricks.name"), 600, 8));
+            tooltip.add(I18n.format("gtconsolidate.machine.industrial_coke_oven.tooltip.info",
+                    I18n.format("tile.steam_casing.bronze_hull.name"), 800, 8));
+            tooltip.add(I18n.format("gtconsolidate.machine.industrial_coke_oven.tooltip.info",
+                    I18n.format("tile.steam_casing.steel_bricks_hull.name"), 800, 16));
+            tooltip.add(I18n.format("gtconsolidate.machine.industrial_coke_oven.tooltip.info",
+                    I18n.format("tile.metal_casing.steel_solid.name"), 1600, 16));
+            tooltip.add(I18n.format("gtconsolidate.machine.industrial_coke_oven.tooltip.info",
+                    I18n.format("tile.steam_casing.steel_hull.name"), 3200, 16));
+        } else {
+            tooltip.add((I18n.format("gtconsolidate.multiblock.tooltip.universal.tab.build")));
+        }
     }
 
     @Override

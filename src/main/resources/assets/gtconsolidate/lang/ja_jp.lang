@@ -38,6 +38,8 @@ gtconsolidate.machine.circuit_factory.name=回路工房
 
 gtconsolidate.machine.industrial_bbf.name=工業用レンガ高炉
 
+gtconsolidate.machine.industrial_coke_oven.name=工業用コークス炉
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
@@ -169,6 +171,11 @@ gtconsolidate.machine.extended_processing_array.tooltip.1=設定した機械を�
 gtconsolidate.machine.industrial_bbf.tooltip.1=高さでボーナスは入るが、大きければ良いというものでもない。
 gtconsolidate.machine.industrial_bbf.tooltip.2=高さに応じて§d並列処理数数§7が変化する (最大§b64§7)。
 gtconsolidate.machine.industrial_bbf.tooltip.3=高さに応じて§d動作速度§7にボーナスがかかる (最大§b+500§7%%)。
+
+# Industrial Coke Oven
+gtconsolidate.machine.industrial_coke_oven.tooltip.1=この構造、どこかで見たような...
+gtconsolidate.machine.industrial_coke_oven.tooltip.2=最下層のブロックによって§d並列処理数§7と§d動作速度§7にボーナスがかかる。
+gtconsolidate.machine.industrial_coke_oven.tooltip.info=§d%s§7; 動作速度: +§b%f%%§7、最大並列処理数: §b%s§7
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。

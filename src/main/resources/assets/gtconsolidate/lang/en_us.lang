@@ -38,6 +38,8 @@ gtconsolidate.machine.ultimate_processing_array.name=Ultimate Processing Array
 
 gtconsolidate.machine.industrial_bbf.name=Industrial Bricked Blast Furnace
 
+gtconsolidate.machine.industrial_coke_oven.name=Industrial Coke Oven
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
@@ -169,6 +171,11 @@ gtconsolidate.machine.extended_processing_array.tooltip.1=Counts as §e%sx§7 th
 gtconsolidate.machine.industrial_bbf.tooltip.1=Height gives bonuses, but bigger isn’t always better.
 gtconsolidate.machine.industrial_bbf.tooltip.2=§dParallel count§7 increases with height (up to §b64§7 parallel).
 gtconsolidate.machine.industrial_bbf.tooltip.3=§dA speed bonus§7 is applied based on height (up to §b+500§7%%).
+
+# Industrial Coke Oven
+gtconsolidate.machine.industrial_coke_oven.tooltip.1=This structure... I feel like I've seen it somewhere before...
+gtconsolidate.machine.industrial_coke_oven.tooltip.2=§dParallel count§7 and §dSpeed bonus§7 are varied depending on the bottom blook.
+gtconsolidate.machine.industrial_coke_oven.tooltip.info=§d%s§7; Speed Bonus: +§b%f%%§7, Maximum parallel: §b%s§7
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
