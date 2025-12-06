@@ -11,6 +11,7 @@ import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaT
 import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityMoreParallelHatch;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.*;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialBrickedBlastFurnace;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialCokeOven;
 
 public class GTConsolidateMetaTileEntity {
 
@@ -30,6 +31,7 @@ public class GTConsolidateMetaTileEntity {
 
     // Primitive
     public static MetaTileEntityIndustrialBrickedBlastFurnace INDUSTRIAL_BBF;
+    public static MetaTileEntityIndustrialCokeOven INDUSTRIAL_COKE_OVEN;
 
     // Multiblock Part
     public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
@@ -101,6 +103,9 @@ public class GTConsolidateMetaTileEntity {
         // Industrial Bricked Blast Furnace
         INDUSTRIAL_BBF = registerMetaTileEntity(id + 20, new MetaTileEntityIndustrialBrickedBlastFurnace(
                 modId("industrial_bbf")));
+        // Industrial Coke Oven
+        INDUSTRIAL_COKE_OVEN = registerMetaTileEntity(id + 21, new MetaTileEntityIndustrialCokeOven(
+                modId("industrial_coke_oven")));
     }
 
     public static void registerMultiblockPart() {
