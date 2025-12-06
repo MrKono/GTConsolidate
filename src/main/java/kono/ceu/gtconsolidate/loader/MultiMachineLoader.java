@@ -249,6 +249,22 @@ public class MultiMachineLoader {
                         .EUt(VA[UV]))
                 .output(GTConsolidateMetaTileEntity.EXTENDED_PROCESSING_ARRAY[2])
                 .duration(3 * min).EUt(VA[UHV]).buildAndRegister();
+
+        // Industrial Bricked Blast Furnace
+        ModHandler.addShapedRecipe(true, "industrial_bricked_blast_furnace",
+                GTConsolidateMetaTileEntity.INDUSTRIAL_BBF.getStackForm(), "PBP", "FCF", "PBP",
+                'P', new UnificationEntry(plate, Materials.Steel),
+                'B', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.PRIMITIVE_BRICKS),
+                'F', MetaTileEntities.PRIMITIVE_BLAST_FURNACE.getStackForm(),
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.ULV));
+
+        // Industrial Coke Oven
+        ModHandler.addShapedRecipe(true, "industrial_coke_oven",
+                GTConsolidateMetaTileEntity.INDUSTRIAL_COKE_OVEN.getStackForm(), "PBP", "FCF", "PBP",
+                'P', new UnificationEntry(gem, Materials.Coke),
+                'B', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.COKE_BRICKS),
+                'F', MetaTileEntities.COKE_OVEN.getStackForm(),
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.ULV));
     }
 
     public static void GTFOMultiblock() {
