@@ -10,6 +10,8 @@ import kono.ceu.gtconsolidate.api.util.Mods;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityFilteredItemBus;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityMoreParallelHatch;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.*;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialBrickedBlastFurnace;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialCokeOven;
 
 public class GTConsolidateMetaTileEntity {
 
@@ -27,6 +29,11 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityCircuitFactory CIRCUIT_FACTORY;
     public static MetaTileEntityExtendedProcessingArray[] EXTENDED_PROCESSING_ARRAY = new MetaTileEntityExtendedProcessingArray[3];
 
+    // Primitive
+    public static MetaTileEntityIndustrialBrickedBlastFurnace INDUSTRIAL_BBF;
+    public static MetaTileEntityIndustrialCokeOven INDUSTRIAL_COKE_OVEN;
+
+    // Multiblock Part
     public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
             1];
     public static final MetaTileEntityMoreParallelHatch[] MORE_PARALLEL_HATCHES = new MetaTileEntityMoreParallelHatch[8];
@@ -93,6 +100,12 @@ public class GTConsolidateMetaTileEntity {
                 modId("master_processing_array"), 1));
         EXTENDED_PROCESSING_ARRAY[2] = registerMetaTileEntity(id + 19, new MetaTileEntityExtendedProcessingArray(
                 modId("ultimate_processing_array"), 2));
+        // Industrial Bricked Blast Furnace
+        INDUSTRIAL_BBF = registerMetaTileEntity(id + 20, new MetaTileEntityIndustrialBrickedBlastFurnace(
+                modId("industrial_bbf")));
+        // Industrial Coke Oven
+        INDUSTRIAL_COKE_OVEN = registerMetaTileEntity(id + 21, new MetaTileEntityIndustrialCokeOven(
+                modId("industrial_coke_oven")));
     }
 
     public static void registerMultiblockPart() {

@@ -1,4 +1,10 @@
 ## Changelog
+### 1.1.1-beta
+- **New Machines**
+  - Industrial Bricked Furnace (Parallelized Primitive Blast Furnace)
+  - Industrial Coke Oven (Parallelized Coke Oven)
+
+---
 ### 1.1.0.4.1-beta
 - **Fix** conveyor recipe's fluid input (CoA)
 --- 

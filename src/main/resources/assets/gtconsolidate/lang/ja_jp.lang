@@ -36,6 +36,10 @@ gtconsolidate.machine.ultimate_processing_array.name=究極型プロセッシン
 
 gtconsolidate.machine.circuit_factory.name=回路工房
 
+gtconsolidate.machine.industrial_bbf.name=工業用レンガ高炉
+
+gtconsolidate.machine.industrial_coke_oven.name=工業用コークス炉
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
@@ -103,16 +107,15 @@ gtconsolidate.multiblock.tooltip.universal.limit.energy_in.laser=§eレーザー
 gtconsolidate.multiblock.tooltip.universal.limit.maintenance_no_clean=フィルター付きメンテナンスハッチは§e使えない§7。
 gtconsolidate.multiblock.tooltip.universal.limit.manual_maintenance=自動メンテナンスハッチは§e使えない§7。
 gtconsolidate.multiblock.accept_64a=64A エナジーハッチも受け付ける。
+gtconsolidate.multiblock.tooltip.universal.shift_ctrl=SHIFTとCTRLでさらに情報を表示。
+gtconsolidate.multiblock.tooltip.universal.tab.build=Tabで構造の追加情報を表示。
+gtconsolidate.multiblock.tooltip.pattern_info.not_shown=§bマルチブロックの構造§eに表示されないが、構築に必要なブロック
+gtconsolidate.multiblock.tooltip.pattern_info.not_shown.detail=     §e%s§7 x §e%s
 
 # Adv. Fusion Reactor
 gtconsolidate.machine.parallelized_fusion_reactor.tooltip.1=並列化された核融合炉。ただし制限あり。
 gtconsolidate.machine.parallelized_fusion_reactor.tooltip.2=§bエナジーハッチ§7の数によって並列処理数が決定される。
 gtconsolidate.machine.parallelized_fusion_reactor.capacity=蓄電量 §e%sM EU
-gtconsolidate.machine.parallelized_fusion_reactor.limit=エナジーハッチは§e16Aのみ§7。
-gtconsolidate.multiblock.tooltip.universal.shift_ctrl=SHIFTとCTRLでさらに情報を表示。
-gtconsolidate.multiblock.tooltip.universal.tab.build=Tabで構造の追加情報を表示。
-gtconsolidate.multiblock.tooltip.pattern_info.not_shown=§bマルチブロックの構造§eに表示されないが、構築に必要なブロック
-gtconsolidate.multiblock.tooltip.pattern_info.not_shown.detail=     §e%s§7 x §e%s
 
 # Adv. Electric Blast Furnace
 gtconsolidate.machine.parallelized_ebf.tooltip.1=並列化された工業用電気炉。ただし制限あり。
@@ -164,6 +167,16 @@ gtconsolidate.machine.extended_processing_array.tooltip.factor.16=こんなに�
 gtconsolidate.machine.extended_processing_array.tooltip.factor.64=もっといい手段があるんじゃない?
 gtconsolidate.machine.extended_processing_array.tooltip.1=設定した機械を§e%s倍§7して動作する。
 
+# Industrial Bricked Blast Furnace
+gtconsolidate.machine.industrial_bbf.tooltip.1=高さでボーナスは入るが、大きければ良いというものでもない。
+gtconsolidate.machine.industrial_bbf.tooltip.2=高さに応じて§d並列処理数数§7が変化する (最大§b64§7)。
+gtconsolidate.machine.industrial_bbf.tooltip.3=高さに応じて§d動作速度§7にボーナスがかかる (最大§b+500§7%%)。
+
+# Industrial Coke Oven
+gtconsolidate.machine.industrial_coke_oven.tooltip.1=この構造、どこかで見たような...
+gtconsolidate.machine.industrial_coke_oven.tooltip.2=最下層のブロックによって§d並列処理数§7と§d動作速度§7にボーナスがかかる。
+gtconsolidate.machine.industrial_coke_oven.tooltip.info=§d%s§7; 動作速度: +§b%f%%§7、最大並列処理数: §b%s§7
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
 
@@ -177,6 +190,7 @@ gtconsolidate.multiblock.parallel_extended=並列処理数: %s / %s
 gtconsolidate.multiblock.parallel_extended_hover=この機械の並列処理数。現在の並列処理数 / 最大並列処理数
 gtconsolidate.multiblock.recipe_outputs=作成中: %s
 gtconsolidate.multiblock.recipe_outputs_hover=1動作あたりの作成数です。総作成数は現在の並列処理数をかけてください。
+gtconsolidate.multiblock.speed_bonus=速度ボーナス: %f%%§f
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§c部品組立外装は全て同じでなければならない§r
