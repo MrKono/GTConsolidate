@@ -28,6 +28,8 @@ _New Machines_
 - Absolute Freezer (Since 1.0.6-beta)
 - Circuit Factory (Since 1.0.7-beta)
 - Extended Processing Array (since 1.0.7-beta)
+- Industrial Bricked Blast Furnace (since 1.1.1-beta)
+- Industrial Coke Oven (since 1.1.1-beta)
 
 _New Multiblock Part_
 - Filtered Input Bus (Only one type of item can input, since 1.0.2-beta)
