@@ -110,7 +110,7 @@ public class MetaTileEntityIndustrialCokeOven extends RecipeMapPrimitiveMultiblo
                 .aisle("XXXSXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX", "XXXXXXX")
                 .where('S', selfPredicate())
                 .where('X',
-                        states(getBrickState()).setMinGlobalLimited(50)
+                        states(getBrickState()).setMinGlobalLimited(130)
                                 .or(abilities(MultiblockAbility.IMPORT_ITEMS).setMinGlobalLimited(1, 2))
                                 .or(abilities(MultiblockAbility.EXPORT_ITEMS).setMinGlobalLimited(1, 2))
                                 .or(abilities(MultiblockAbility.EXPORT_FLUIDS).setMinGlobalLimited(1, 2)))
