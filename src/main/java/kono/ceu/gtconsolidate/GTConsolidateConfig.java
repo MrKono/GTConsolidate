@@ -66,5 +66,17 @@ public class GTConsolidateConfig {
         @Config.Comment({ "Whether to add the \"Output\" line of the Multiblock Controller.",
                 "This change applies only to Multiblock in GTConsolidate.", "Default: false" })
         public boolean addOutputLine = false;
+
+        @Config.Comment({ "Whether to add UHV+ Rotor Holders.", "Of course, UEV+ requires \"highTierContent\" to be enabled, and there is no recipe.", "Default: true"})
+        public boolean addHighTierRotorHolders = true;
+
+        @Config.Comment({ "Whether to add LV and HV Rotor Holders.", "Default: false"})
+        public boolean addLowTierRotorHolders = false;
+
+        @Config.Comment({ "Whether to add Power Enhanced Rotor Holders.", "Default: true"})
+        public boolean addPowerEnhancedRotorHolders = true;
+
+        @Config.Comment({ "Whether to add Speed Enhanced Rotor Holders.", "Default: true"})
+        public boolean addSpeedEnhancedRotorHolders = true;
     }
 }
