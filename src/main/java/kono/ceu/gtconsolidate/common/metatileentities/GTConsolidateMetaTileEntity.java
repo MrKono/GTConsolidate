@@ -7,8 +7,8 @@ import gregtech.api.GTValues;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.util.Mods;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityFilteredItemBus;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityMoreParallelHatch;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntityFilteredItemBus;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntityMoreParallelHatch;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.*;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialBrickedBlastFurnace;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialCokeOven;
