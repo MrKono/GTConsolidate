@@ -63,6 +63,48 @@ gtconsolidate.machine.more_parallel_hatch.luv.name=Legendary Parallel Control Ha
 gtconsolidate.machine.more_parallel_hatch.zpm.name=Mythic Parallel Control Hatch
 gtconsolidate.machine.more_parallel_hatch.uv.name=Transcendent Parallel Control Hatch
 
+# Rotor Holders
+gtconsolidate.machine.rotor_holder.lv.name=LV Rotor Holder
+gtconsolidate.machine.rotor_holder.mv.name=MV Rotor Holder
+gtconsolidate.machine.rotor_holder.uhv.name=UHV Rotor Holder
+gtconsolidate.machine.rotor_holder.uev.name=UEV Rotor Holder
+gtconsolidate.machine.rotor_holder.uiv.name=UIV Rotor Holder
+gtconsolidate.machine.rotor_holder.uxv.name=UXV Rotor Holder
+gtconsolidate.machine.rotor_holder.opv.name=OpV Rotor Holder
+gtconsolidate.machine.rotor_holder.max.name=MAX Rotor Holder
+
+# Power Enhanced Rotor Holders
+gtconsolidate.machine.power_enhanced_rotor_holder.lv.name=Power-Enhanced LV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.mv.name=Power-Enhanced MV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.hv.name=Power-Enhanced HV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.ev.name=Power-Enhanced EV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.iv.name=Power-Enhanced IV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.luv.name=Power-Enhanced LuV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.zpm.name=Power-Enhanced ZPM Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.uv.name=Power-Enhanced UV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.uhv.name=Power-Enhanced UHV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.uev.name=Power-Enhanced UEV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.uiv.name=Power-Enhanced UIV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.uxv.name=Power-Enhanced UXV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.opv.name=Power-Enhanced OpV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.max.name=Power-Enhanced MAX Rotor Holder
+
+# Speed Enhanced Rotor Holders
+gtconsolidate.machine.speed_enhanced_rotor_holder.lv.name=Speed-Enhanced LV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.mv.name=Speed-Enhanced MV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.hv.name=Speed-Enhanced HV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.ev.name=Speed-Enhanced EV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.iv.name=Speed-Enhanced IV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.luv.name=Speed-Enhanced LuV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.zpm.name=Speed-Enhanced ZPM Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.uv.name=Speed-Enhanced UV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.uhv.name=Speed-Enhanced UHV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.uev.name=Speed-Enhanced UEV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.uiv.name=Speed-Enhanced UIV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.uxv.name=Speed-Enhanced UXV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.opv.name=Speed-Enhanced OpV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=Speed-Enhanced MAX Rotor Holder
+
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=Advanced Assembly Line Casing
 tile.parallelized_assembly_line_casing.assembly_control_casing.name=Advanced Assembly Control Casing
@@ -179,6 +221,16 @@ gtconsolidate.machine.industrial_coke_oven.tooltip.info=§d%s§7; Speed Bonus: +
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
+
+# Rotor Holders
+gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.1=A strengthened version with increased output.
+gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.2=Puts greater load on the Turbine Rotor; causes durability to drop more quickly and makes it decelerate more easily.
+gtconsolidate.machine.speed_enhanced_rotor_holder.tooltip.1=A strengthened version with increased rotation speed.
+gtconsolidate.machine.speed_enhanced_rotor_holder.tooltip.2=Puts less load on the Turbine Rotor; causes durability to drop more slowly and makes it accelerate easily while resisting deceleration.
+gtconsolidate.machine.rotor_holder.ctrl=Hold Ctrl to show properties.
+gtconsolidate.machine.rotor_holder.info.speed=Maximum Rotor Speed: %s
+gtconsolidate.machine.rotor_holder.info.efficiency=Turbine Efficiency: %s
+gtconsolidate.machine.rotor_holder.info.power=Maximum Output: %s
 
 # Display
 gtconsolidate.multiblock.coa.recipe_tier=Casing Tier: %s

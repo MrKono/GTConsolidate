@@ -63,6 +63,48 @@ gtconsolidate.machine.more_parallel_hatch.luv.name=伝説的な並列制御ユ�
 gtconsolidate.machine.more_parallel_hatch.zpm.name=神話級の並列制御ユニット
 gtconsolidate.machine.more_parallel_hatch.uv.name=超越した並列制御ユニット
 
+# Rotor Holders
+gtconsolidate.machine.rotor_holder.lv.name=LVローターホルダー
+gtconsolidate.machine.rotor_holder.mv.name=MVローターホルダー
+gtconsolidate.machine.rotor_holder.uhv.name=UHVローターホルダー
+gtconsolidate.machine.rotor_holder.uev.name=UEVローターホルダー
+gtconsolidate.machine.rotor_holder.uiv.name=UIVローターホルダー
+gtconsolidate.machine.rotor_holder.uxv.name=UXVローターホルダー
+gtconsolidate.machine.rotor_holder.opv.name=OpVローターホルダー
+gtconsolidate.machine.rotor_holder.max.name=MAXローターホルダー
+
+# Power Enhanced Rotor Holders
+gtconsolidate.machine.power_enhanced_rotor_holder.lv.name=出力強化型LVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.mv.name=出力強化型MVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.hv.name=出力強化型HVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.ev.name=出力強化型EVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.iv.name=出力強化型IVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.luv.name=出力強化型LuVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.zpm.name=出力強化型ZPMローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uv.name=出力強化型UVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uhv.name=出力強化型UHVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uev.name=出力強化型UEVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uiv.name=出力強化型UIVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uxv.name=出力強化型UXVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.opv.name=出力強化型OpVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.max.name=出力強化型MAXローターホルダー
+
+# Speed Enhanced Rotor Holders
+gtconsolidate.machine.speed_enhanced_rotor_holder.lv.name=速度強化型LVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.mv.name=速度強化型MVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.hv.name=速度強化型HVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.ev.name=速度強化型EVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.iv.name=速度強化型IVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.luv.name=速度強化型LuVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.zpm.name=速度強化型ZPMローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uv.name=速度強化型UVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uhv.name=速度強化型UHVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uev.name=速度強化型UEVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uiv.name=速度強化型UIVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uxv.name=速度強化型UXVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.opv.name=速度強化型OpVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=速度強化型MAXローターホルダー
+
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=発展型組立機マシン外装
 tile.parallelized_assembly_line_casing.assembly_control_casing.name=発展型組立機制御外装
@@ -179,6 +221,16 @@ gtconsolidate.machine.industrial_coke_oven.tooltip.info=§d%s§7; 動作速度: 
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
+
+# Rotor Holders
+gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.1=通常より出力が強化されたタイプ。
+gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.2=タービンローターに大きな負荷がかかり、耐久がより早く減少し、減速しやすくなる。
+gtconsolidate.machine.speed_enhanced_rotor_holder.tooltip.1=通常より回転速度が強化されたタイプ。
+gtconsolidate.machine.speed_enhanced_rotor_holder.tooltip.2=タービンローターにかかる負荷が小さくなり、耐久がゆっくり減少し、加速しやすく減速しにくくなる。
+gtconsolidate.machine.rotor_holder.ctrl=Ctrlで特性を表示
+gtconsolidate.machine.rotor_holder.info.speed=最大ローター速度: %s
+gtconsolidate.machine.rotor_holder.info.efficiency=タービン効率: %s
+gtconsolidate.machine.rotor_holder.info.power=最大出力: %s
 
 # Display
 gtconsolidate.multiblock.coa.recipe_tier=外装Tier: %s
