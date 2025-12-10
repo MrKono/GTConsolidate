@@ -13,6 +13,7 @@ import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.*;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntityFilteredItemBus;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntityMoreParallelHatch;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntityPowerEnhancedRotorHolder;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntitySpeedEnhancedRotorHolder;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialBrickedBlastFurnace;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialCokeOven;
 
@@ -43,6 +44,8 @@ public class GTConsolidateMetaTileEntity {
     public static final MetaTileEntityRotorHolder[] ROTOR_HOLDERS_LOW = new MetaTileEntityRotorHolder[2]; // LV and MV
     public static final MetaTileEntityRotorHolder[] ROTOR_HOLDERS_HI = new MetaTileEntityRotorHolder[7]; // UHV - MAX
     public static final MetaTileEntityPowerEnhancedRotorHolder[] ROTOR_HOLDER_POWERED = new MetaTileEntityPowerEnhancedRotorHolder[GTValues.V.length -
+            1];
+    public static final MetaTileEntitySpeedEnhancedRotorHolder[] ROTOR_HOLDER_SPEEDED = new MetaTileEntitySpeedEnhancedRotorHolder[GTValues.V.length -
             1];
 
     public static void init() {
@@ -162,22 +165,24 @@ public class GTConsolidateMetaTileEntity {
         }
         id = id + ROTOR_HOLDERS_HI.length - 1;
 
+        int start = addLowTier ? GTValues.LV - 1 : GTValues.HV - 1;
+        int end = addHighTier ? GregTechAPI.isHighTier() ? GTValues.MAX : GTValues.UHV : GTValues.UV;
         // Power Enhanced Rotor Holders
         if (GTConsolidateConfig.feature.addPowerEnhancedRotorHolders) {
-            for (int i = 0; i < ROTOR_HOLDER_POWERED.length; i++) {
-                if (addLowTier && i < GTValues.HV) {
-                    ROTOR_HOLDER_POWERED[i] = registerMetaTileEntity(id + i,
-                            new MetaTileEntityPowerEnhancedRotorHolder(
-                                    modId("power_enhanced_rotor_holder." + GTValues.VN[i + 1].toLowerCase()), i + 1));
-                } else if (addHighTier && GTValues.UV < i) {
-                    ROTOR_HOLDER_POWERED[i] = registerMetaTileEntity(id + i,
-                            new MetaTileEntityPowerEnhancedRotorHolder(
-                                    modId("power_enhanced_rotor_holder." + GTValues.VN[i + 1].toLowerCase()), i + 1));
-                } else {
-                    ROTOR_HOLDER_POWERED[i] = registerMetaTileEntity(id + i,
-                            new MetaTileEntityPowerEnhancedRotorHolder(
-                                    modId("power_enhanced_rotor_holder." + GTValues.VN[i + 1].toLowerCase()), i + 1));
-                }
+            for (int i = start; i < end; i++) {
+                ROTOR_HOLDER_POWERED[i] = registerMetaTileEntity(id + i,
+                        new MetaTileEntityPowerEnhancedRotorHolder(
+                                modId("power_enhanced_rotor_holder." + GTValues.VN[i + 1].toLowerCase()), i + 1));
+            }
+        }
+        id = id + ROTOR_HOLDER_POWERED.length;
+
+        // Speed Enhanced Rotor Holders
+        if (GTConsolidateConfig.feature.addSpeedEnhancedRotorHolders) {
+            for (int i = start; i < end; i++) {
+                ROTOR_HOLDER_SPEEDED[i] = registerMetaTileEntity(id + i,
+                        new MetaTileEntitySpeedEnhancedRotorHolder(
+                                modId("speed_enhanced_rotor_holder." + GTValues.VN[i + 1].toLowerCase()), i + 1));
             }
         }
     }
