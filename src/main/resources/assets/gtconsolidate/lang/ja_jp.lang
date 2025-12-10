@@ -222,6 +222,16 @@ gtconsolidate.machine.industrial_coke_oven.tooltip.info=§d%s§7; 動作速度: 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
 
+# Rotor Holders
+gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.1=通常より出力が強化されたタイプ。
+gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.2=タービンローターに大きな負荷がかかり、耐久がより早く減少し、減速しやすくなる。
+gtconsolidate.machine.speed_enhanced_rotor_holder.tooltip.1=通常より回転速度が強化されたタイプ。
+gtconsolidate.machine.speed_enhanced_rotor_holder.tooltip.2=タービンローターにかかる負荷が小さくなり、耐久がゆっくり減少し、加速しやすく減速しにくくなる。
+gtconsolidate.machine.rotor_holder.ctrl=Ctrlで特性を表示
+gtconsolidate.machine.rotor_holder.info.speed=最大ローター速度: %s
+gtconsolidate.machine.rotor_holder.info.efficiency=タービン効率: %s
+gtconsolidate.machine.rotor_holder.info.power=最大出力: %s
+
 # Display
 gtconsolidate.multiblock.coa.recipe_tier=外装Tier: %s
 gtconsolidate.multiblock.progress=進捗: %s / %s (%s%%)

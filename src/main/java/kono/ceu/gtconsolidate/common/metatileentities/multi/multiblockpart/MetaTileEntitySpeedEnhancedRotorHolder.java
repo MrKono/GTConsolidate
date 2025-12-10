@@ -1,5 +1,7 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart;
 
+import static gregtech.client.utils.TooltipHelper.isCtrlDown;
+
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
@@ -89,6 +91,15 @@ public class MetaTileEntitySpeedEnhancedRotorHolder extends MetaTileEntityMultib
         tooltip.add(I18n.format("gregtech.machine.rotor_holder.tooltip1"));
         tooltip.add(I18n.format("gregtech.machine.rotor_holder.tooltip2"));
         tooltip.add(I18n.format("gregtech.universal.disabled"));
+        tooltip.add(I18n.format("gtconsolidate.machine.speed_enhanced_rotor_holder.tooltip.1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.speed_enhanced_rotor_holder.tooltip.2"));
+        if (isCtrlDown()) {
+            tooltip.add(I18n.format("gtconsolidate.machine.rotor_holder.info.speed", "§b+300%"));
+            tooltip.add(I18n.format("gtconsolidate.machine.rotor_holder.info.efficiency", "§b+50%"));
+            tooltip.add(I18n.format("gtconsolidate.machine.rotor_holder.info.power", "§c-10%"));
+        } else {
+            tooltip.add(I18n.format("gtconsolidate.machine.rotor_holder.ctrl"));
+        }
     }
 
     @Override

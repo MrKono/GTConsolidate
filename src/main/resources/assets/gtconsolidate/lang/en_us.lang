@@ -222,6 +222,16 @@ gtconsolidate.machine.industrial_coke_oven.tooltip.info=§d%s§7; Speed Bonus: +
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
 
+# Rotor Holders
+gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.1=A strengthened version with increased output.
+gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.2=Puts greater load on the Turbine Rotor; causes durability to drop more quickly and makes it decelerate more easily.
+gtconsolidate.machine.speed_enhanced_rotor_holder.tooltip.1=A strengthened version with increased rotation speed.
+gtconsolidate.machine.speed_enhanced_rotor_holder.tooltip.2=Puts less load on the Turbine Rotor; causes durability to drop more slowly and makes it accelerate easily while resisting deceleration.
+gtconsolidate.machine.rotor_holder.ctrl=Hold Ctrl to show properties.
+gtconsolidate.machine.rotor_holder.info.speed=Maximum Rotor Speed: %s
+gtconsolidate.machine.rotor_holder.info.efficiency=Turbine Efficiency: %s
+gtconsolidate.machine.rotor_holder.info.power=Maximum Output: %s
+
 # Display
 gtconsolidate.multiblock.coa.recipe_tier=Casing Tier: %s
 gtconsolidate.multiblock.progress=Progress: %s / %s (%s%%)
