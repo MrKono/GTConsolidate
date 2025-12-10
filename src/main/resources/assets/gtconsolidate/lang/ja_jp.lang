@@ -63,6 +63,48 @@ gtconsolidate.machine.more_parallel_hatch.luv.name=伝説的な並列制御ユ�
 gtconsolidate.machine.more_parallel_hatch.zpm.name=神話級の並列制御ユニット
 gtconsolidate.machine.more_parallel_hatch.uv.name=超越した並列制御ユニット
 
+# Rotor Holders
+gtconsolidate.machine.rotor_holder.lv.name=LVローターホルダー
+gtconsolidate.machine.rotor_holder.mv.name=MVローターホルダー
+gtconsolidate.machine.rotor_holder.uhv.name=UHVローターホルダー
+gtconsolidate.machine.rotor_holder.uev.name=UEVローターホルダー
+gtconsolidate.machine.rotor_holder.uiv.name=UIVローターホルダー
+gtconsolidate.machine.rotor_holder.uxv.name=UXVローターホルダー
+gtconsolidate.machine.rotor_holder.opv.name=OpVローターホルダー
+gtconsolidate.machine.rotor_holder.max.name=MAXローターホルダー
+
+# Power Enhanced Rotor Holders
+gtconsolidate.machine.power_enhanced_rotor_holder.lv=出力強化型LVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.mv=出力強化型MVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.hv=出力強化型HVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.ev=出力強化型EVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.iv=出力強化型IVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.luv=出力強化型LuVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.zpm=出力強化型ZPMローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uv=出力強化型UVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uhv=出力強化型UHVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uev=出力強化型UEVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uiv=出力強化型UIVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uxv=出力強化型UXVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.opv=出力強化型OpVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.max=出力強化型MAXローターホルダー
+
+# Speed Enhanced Rotor Holders
+gtconsolidate.machine.speed_enhanced_rotor_holder.lv=速度強化型LVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.mv=速度強化型MVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.hv=速度強化型HVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.ev=速度強化型EVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.iv=速度強化型IVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.luv=速度強化型LuVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.zpm=速度強化型ZPMローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uv=速度強化型UVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uhv=速度強化型UHVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uev=速度強化型UEVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uiv=速度強化型UIVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uxv=速度強化型UXVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.opv=速度強化型OpVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.max=速度強化型MAXローターホルダー
+
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=発展型組立機マシン外装
 tile.parallelized_assembly_line_casing.assembly_control_casing.name=発展型組立機制御外装

@@ -63,6 +63,48 @@ gtconsolidate.machine.more_parallel_hatch.luv.name=Legendary Parallel Control Ha
 gtconsolidate.machine.more_parallel_hatch.zpm.name=Mythic Parallel Control Hatch
 gtconsolidate.machine.more_parallel_hatch.uv.name=Transcendent Parallel Control Hatch
 
+# Rotor Holders
+gtconsolidate.machine.rotor_holder.lv.name=LV Rotor Holder
+gtconsolidate.machine.rotor_holder.mv.name=MV Rotor Holder
+gtconsolidate.machine.rotor_holder.uhv.name=UHV Rotor Holder
+gtconsolidate.machine.rotor_holder.uev.name=UEV Rotor Holder
+gtconsolidate.machine.rotor_holder.uiv.name=UIV Rotor Holder
+gtconsolidate.machine.rotor_holder.uxv.name=UXV Rotor Holder
+gtconsolidate.machine.rotor_holder.opv.name=OpV Rotor Holder
+gtconsolidate.machine.rotor_holder.max.name=MAX Rotor Holder
+
+# Power Enhanced Rotor Holders
+gtconsolidate.machine.power_enhanced_rotor_holder.lv=Power-Enhanced LV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.mv=Power-Enhanced MV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.hv=Power-Enhanced HV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.ev=Power-Enhanced EV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.iv=Power-Enhanced IV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.luv=Power-Enhanced LuV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.zpm=Power-Enhanced ZPM Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.uv=Power-Enhanced UV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.uhv=Power-Enhanced UHV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.uev=Power-Enhanced UEV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.uiv=Power-Enhanced UIV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.uxv=Power-Enhanced UXV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.opv=Power-Enhanced OpV Rotor Holder
+gtconsolidate.machine.power_enhanced_rotor_holder.max=Power-Enhanced MAX Rotor Holder
+
+# Speed Enhanced Rotor Holders
+gtconsolidate.machine.speed_enhanced_rotor_holder.lv=Speed-Enhanced LV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.mv=Speed-Enhanced MV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.hv=Speed-Enhanced HV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.ev=Speed-Enhanced EV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.iv=Speed-Enhanced IV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.luv=Speed-Enhanced LuV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.zpm=Speed-Enhanced ZPM Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.uv=Speed-Enhanced UV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.uhv=Speed-Enhanced UHV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.uev=Speed-Enhanced UEV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.uiv=Speed-Enhanced UIV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.uxv=Speed-Enhanced UXV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.opv=Speed-Enhanced OpV Rotor Holder
+gtconsolidate.machine.speed_enhanced_rotor_holder.max=Speed-Enhanced MAX Rotor Holder
+
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=Advanced Assembly Line Casing
 tile.parallelized_assembly_line_casing.assembly_control_casing.name=Advanced Assembly Control Casing
