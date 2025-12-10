@@ -45,28 +45,28 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 
-public class MetaTileEntityPowerEnhancedRotorHolder extends MetaTileEntityMultiblockNotifiablePart
+public class MetaTileEntitySpeedEnhancedRotorHolder extends MetaTileEntityMultiblockNotifiablePart
                                                     implements IMultiblockAbilityPart<IRotorHolder>, IRotorHolder {
 
-    static final int SPEED_INCREMENT = 1;
-    static final int SPEED_DECREMENT = 3;
+    static final int SPEED_INCREMENT = 10;
+    static final int SPEED_DECREMENT = 1;
 
-    private final InventoryRotorHolder inventory;
+    private final MetaTileEntitySpeedEnhancedRotorHolder.InventoryRotorHolder inventory;
     private final int maxSpeed;
     private int rotorColor = -1;
     private int currentSpeed;
     private boolean isRotorSpinning;
     private boolean frontFaceFree;
 
-    public MetaTileEntityPowerEnhancedRotorHolder(ResourceLocation metaTileEntityId, int tier) {
+    public MetaTileEntitySpeedEnhancedRotorHolder(ResourceLocation metaTileEntityId, int tier) {
         super(metaTileEntityId, tier, false);
         this.inventory = new InventoryRotorHolder();
-        this.maxSpeed = 2000 + 1000 * tier;
+        this.maxSpeed = (2000 + 1000 * tier) * 4;
     }
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
-        return new MetaTileEntityPowerEnhancedRotorHolder(metaTileEntityId, getTier());
+        return new MetaTileEntitySpeedEnhancedRotorHolder(metaTileEntityId, getTier());
     }
 
     @Override
@@ -122,8 +122,8 @@ public class MetaTileEntityPowerEnhancedRotorHolder extends MetaTileEntityMultib
             if (currentSpeed < maxSpeed) {
                 setCurrentSpeed(currentSpeed + SPEED_INCREMENT);
             }
-            if (getOffsetTimer() % 20 == 0) {
-                damageRotor((1 + controller.getNumMaintenanceProblems()) * 2);
+            if (getOffsetTimer() % 30 == 0) {
+                damageRotor(1 + controller.getNumMaintenanceProblems());
             }
         } else if (!hasRotor()) {
             setCurrentSpeed(0);
@@ -210,12 +210,12 @@ public class MetaTileEntityPowerEnhancedRotorHolder extends MetaTileEntityMultib
 
     @Override
     public int getRotorEfficiency() {
-        return inventory.getRotorEfficiency() * 3 / 4;
+        return inventory.getRotorEfficiency() * 3 / 2;
     }
 
     @Override
     public int getRotorPower() {
-        return inventory.getRotorPower() * 4;
+        return inventory.getRotorPower() * 9 / 10;
     }
 
     @Override
@@ -344,7 +344,7 @@ public class MetaTileEntityPowerEnhancedRotorHolder extends MetaTileEntityMultib
     private class InventoryRotorHolder extends NotifiableItemStackHandler {
 
         public InventoryRotorHolder() {
-            super(MetaTileEntityPowerEnhancedRotorHolder.this, 1, null, false);
+            super(MetaTileEntitySpeedEnhancedRotorHolder.this, 1, null, false);
         }
 
         @Override
