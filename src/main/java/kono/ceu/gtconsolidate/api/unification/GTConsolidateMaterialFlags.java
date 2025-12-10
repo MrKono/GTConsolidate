@@ -28,6 +28,10 @@ public class GTConsolidateMaterialFlags {
         addFlags(Materials.Americium, GENERATE_GEAR, GENERATE_SMALL_GEAR);
         addFlags(Materials.Neutronium, GENERATE_SMALL_GEAR);
         addFlags(Materials.Ruthenium, GENERATE_SMALL_GEAR);
+        addFlags(Materials.Darmstadtium, GENERATE_GEAR);
+        addFlags(Materials.RhodiumPlatedPalladium, GENERATE_GEAR);
+        addFlags(Materials.BlackSteel, GENERATE_SMALL_GEAR);
+        addFlags(Materials.Ultimet, GENERATE_SMALL_GEAR);
         for (int i = 0; i < GTValues.LuV; i++) {
             addFlags(scMaterial(i), GENERATE_FINE_WIRE);
         }

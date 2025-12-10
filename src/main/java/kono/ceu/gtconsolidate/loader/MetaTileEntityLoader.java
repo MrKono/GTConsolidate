@@ -96,7 +96,7 @@ public class MetaTileEntityLoader {
                 Materials.Titanium, Materials.TungstenSteel, Materials.RhodiumPlatedPalladium, Materials.NaquadahAlloy,
                 Materials.Darmstadtium, Materials.Neutronium };
         Material[] normal = new Material[] { Materials.Steel, Materials.Aluminium, Materials.BlackSteel,
-                Materials.Ultimet, Materials.HSSG, Materials.Ruthenium, Materials.Trinium, Materials.Tritium,
+                Materials.Ultimet, Materials.HSSG, Materials.Ruthenium, Materials.Trinium, Materials.Tritanium,
                 Materials.Americium };
         MetaItem<?>.MetaValueItem[] powerCircuit = new MetaItem<?>.MetaValueItem[] {
                 MetaItems.ULTRA_LOW_POWER_INTEGRATED_CIRCUIT, MetaItems.ULTRA_LOW_POWER_INTEGRATED_CIRCUIT,
