@@ -34,6 +34,10 @@ _New Machines_
 _New Multiblock Part_
 - Filtered Input Bus (Only one type of item can input, since 1.0.2-beta)
 - More Parallel Hatch (Configurable, `default: false`, since 1.0.7-beta)
+- More Rotor Holders (Configurable, since 1.1.1-beta)
+  - LV and MV Rotor Holders (`default: true`)
+  - UHV+ Rotor Holders (`default: true`)
+  - Two unique Rotor Holders  (`default: true`)
 
 ### Planning
 _None so far. We are looking for suggestions._ 
