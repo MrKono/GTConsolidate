@@ -4,10 +4,15 @@ import static gregtech.api.GTValues.*;
 import static kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity.*;
 import static kono.ceu.gtconsolidate.loader.Components.*;
 
+import gregtech.api.GTValues;
+import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 
@@ -16,6 +21,9 @@ import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
 
 public class MetaTileEntityLoader {
+
+    private static final boolean addLowTier = GTConsolidateConfig.feature.addLowTierRotorHolders;
+    private static final boolean addHighTier = GTConsolidateConfig.feature.addHighTierRotorHolders;
 
     public static void init() {
         // Filtered Input Bus
@@ -60,6 +68,62 @@ public class MetaTileEntityLoader {
                                 .EUt(VA[UEV]))
                         .output(MORE_PARALLEL_HATCHES[i])
                         .duration(20 * 120).EUt(VA[UEV]).buildAndRegister();
+            }
+        }
+        // Rotor Holders
+        if (addLowTier) {
+            ModHandler.addShapedRecipe(true, "rotor_holder_lv",
+                    ROTOR_HOLDERS_LOW[0].getStackForm(), "gGg", "GHG", "gGg",
+                    'g', new UnificationEntry(OrePrefix.gearSmall, Materials.Steel),
+                    'G', new UnificationEntry(OrePrefix.gear, Materials.Steel),
+                    'H', MetaTileEntities.HULL[1].getStackForm());
+            ModHandler.addShapedRecipe(true, "rotor_holder_mv",
+                    ROTOR_HOLDERS_LOW[1].getStackForm(), "gGg", "GHG", "gGg",
+                    'g', new UnificationEntry(OrePrefix.gearSmall, Materials.Aluminium),
+                    'G', new UnificationEntry(OrePrefix.gear, Materials.Aluminium),
+                    'H', MetaTileEntities.HULL[2].getStackForm());
+        }
+        if (addHighTier) {
+            ModHandler.addShapedRecipe(true, "rotor_holder_uhv",
+                    ROTOR_HOLDERS_HI[0].getStackForm(), "gGg", "GHG", "gGg",
+                    'g', new UnificationEntry(OrePrefix.gearSmall, Materials.Neutronium),
+                    'G', new UnificationEntry(OrePrefix.gear, Materials.Americium),
+                    'H', MetaTileEntities.HULL[GTValues.UHV].getStackForm());
+        }
+        int start = addLowTier ? GTValues.LV - 1 : GTValues.HV - 1;
+        int end = addHighTier ? GTValues.UHV : GTValues.UV;
+        Material[] small = new Material[] { Materials.Steel, Materials.Aluminium, Materials.StainlessSteel,
+                Materials.Titanium, Materials.TungstenSteel, Materials.RhodiumPlatedPalladium, Materials.NaquadahAlloy,
+                Materials.Darmstadtium, Materials.Neutronium };
+        Material[] normal = new Material[] { Materials.Steel, Materials.Aluminium, Materials.BlackSteel,
+                Materials.Ultimet, Materials.HSSG, Materials.Ruthenium, Materials.Trinium, Materials.Tritium,
+                Materials.Americium };
+        MetaItem<?>.MetaValueItem[] powerCircuit = new MetaItem<?>.MetaValueItem[] {
+                MetaItems.ULTRA_LOW_POWER_INTEGRATED_CIRCUIT, MetaItems.ULTRA_LOW_POWER_INTEGRATED_CIRCUIT,
+                MetaItems.LOW_POWER_INTEGRATED_CIRCUIT, MetaItems.POWER_INTEGRATED_CIRCUIT,
+                MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT, MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT,
+                MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT,
+                MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT };
+        for (int i = start; i < end; i++) {
+            if (GTConsolidateConfig.feature.addPowerEnhancedRotorHolders) {
+                RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                        .input(OrePrefix.gear, small[i], 4)
+                        .input(OrePrefix.gear, normal[i], 16)
+                        .input(powerCircuit[i], 8)
+                        .input(MetaTileEntities.HULL[i + 1])
+                        .fluidInputs(Materials.Lubricant.getFluid(250 * (i + 1)))
+                        .output(ROTOR_HOLDER_POWERED[i])
+                        .EUt(VA[GTValues.LuV]).duration(20 * 30).buildAndRegister();
+            }
+            if (GTConsolidateConfig.feature.addSpeedEnhancedRotorHolders) {
+                RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                        .input(OrePrefix.gearSmall, small[i], 8)
+                        .input(OrePrefix.gearSmall, normal[i], 32)
+                        .input(OrePrefix.circuit, markerMaterial(i + 1), 2)
+                        .input(MetaTileEntities.HULL[i + 1])
+                        .fluidInputs(Materials.Lubricant.getFluid(2000 * (i + 1)))
+                        .output(ROTOR_HOLDER_SPEEDED[i])
+                        .EUt(VA[GTValues.IV]).duration(20 * 30).buildAndRegister();
             }
         }
     }

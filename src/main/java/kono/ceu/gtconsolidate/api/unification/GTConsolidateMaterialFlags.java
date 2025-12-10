@@ -7,8 +7,10 @@ import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.material.info.MaterialFlags;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.material.properties.WireProperties;
+import net.minecraft.block.material.Material;
 
 public class GTConsolidateMaterialFlags {
 
@@ -30,6 +32,7 @@ public class GTConsolidateMaterialFlags {
         // Trinium
         if (!Materials.Trinium.hasFlag(GENERATE_FRAME)) Materials.Trinium.addFlags(GENERATE_FRAME);
         if (!Materials.Trinium.hasFlag(GENERATE_DENSE)) Materials.Trinium.addFlags(GENERATE_DENSE);
+        if (!Materials.Trinium.hasFlag(GENERATE_SMALL_GEAR)) Materials.Trinium.addFlags(GENERATE_SMALL_GEAR);
         // IronMagnetic
         if (!Materials.IronMagnetic.hasFlag(GENERATE_LONG_ROD)) Materials.IronMagnetic.addFlags(GENERATE_LONG_ROD);
         // SteelMagnetic
@@ -53,5 +56,11 @@ public class GTConsolidateMaterialFlags {
         if (!Materials.Americium.hasProperty(PropertyKey.WIRE)) {
             Materials.Americium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[GTValues.UV], 12, 8));
         }
+        if (!Materials.Americium.hasFlag(GENERATE_GEAR)) Materials.Americium.addFlags(GENERATE_GEAR);
+        if (!Materials.Americium.hasFlag(GENERATE_SMALL_GEAR)) Materials.Americium.addFlags(GENERATE_SMALL_GEAR);
+        // Neutronium
+        if (!Materials.Neutronium.hasFlag(GENERATE_SMALL_GEAR)) Materials.Neutronium.addFlags(GENERATE_SMALL_GEAR);
+        // Ruthenium
+        if (!Materials.Ruthenium.hasFlag(GENERATE_SMALL_GEAR)) Materials.Ruthenium.addFlags(GENERATE_SMALL_GEAR);
     }
 }
