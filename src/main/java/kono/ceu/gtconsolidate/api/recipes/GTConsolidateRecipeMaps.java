@@ -53,4 +53,12 @@ public class GTConsolidateRecipeMaps {
             new CircuitFactoryRecipeBuilder().cleanroom(CleanroomType.CLEANROOM), false)
                     .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL)
                     .setSound(GTSoundEvents.ASSEMBLER);
+
+    @ZenProperty
+    public static final RecipeMap<SimpleRecipeBuilder> ORE_FACTORY_RECIPES = new RecipeMap<>(
+            "ore_factory", 2, 12, 2, 0, new SimpleRecipeBuilder().EUt(VA[LV]), false)
+            .setSlotOverlay(false, false, GuiTextures.IN_SLOT_OVERLAY)
+            .setSlotOverlay(true, false, GuiTextures.DUST_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_MULTI_ENERGY_YELLOW, ProgressWidget.MoveType.HORIZONTAL)
+            .setSound(GTSoundEvents.MACERATOR);
 }

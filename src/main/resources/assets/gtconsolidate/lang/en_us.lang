@@ -40,6 +40,9 @@ gtconsolidate.machine.industrial_bbf.name=Industrial Bricked Blast Furnace
 
 gtconsolidate.machine.industrial_coke_oven.name=Industrial Coke Oven
 
+gtconsolidate.machine.ore_factory.name=Ore Processing Factory
+gtconsolidate.machine.industrial_ore_factory.name=Industrial Ore Processing Factory
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
@@ -135,6 +138,14 @@ tile.component_assembly_line_casing.max.name=MAX Component Assembly Line Casing
 tile.multiblock_casing.osmiridium_sturdy.name=Osmiridium Sturdy Casing
 tile.multiblock_casing.darmstadtium_sturdy.name=Darmstadtium Sturdy Casing
 tile.multiblock_casing.tritanium_sturdy.name=Tritanium Sturdy Casing
+tile.multiblock_casing.iridium_plated.name=Iridium Plated Factory Casing
+tile.multiblock_casing.americium_plated.name=Americium Plated Factory Casing
+
+tile.pipe_casing.iridium_pipe.name=Iridium Pipe Casing
+tile.pipe_casing.americium_pipe.name=Americium Pipe Casing
+
+tile.gearbox_casing.iridium_gearbox.name=Iridium Gear Box Casing
+tile.gearbox_casing.americium_gearbox.name=Americium Gear Box Casing
 
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.filtered=§3Using §nFiltered Input Bus§r§3 may be convenient.
@@ -219,6 +230,22 @@ gtconsolidate.machine.industrial_coke_oven.tooltip.1=This structure... I feel li
 gtconsolidate.machine.industrial_coke_oven.tooltip.2=§dParallel count§7 and §dSpeed bonus§7 are varied depending on the bottom blook.
 gtconsolidate.machine.industrial_coke_oven.tooltip.info=§d%s§7; Speed Bonus: +§b%f%%§7, Maximum parallel: §b%s§7
 
+# Ore Factory
+gtconsolidate.machine.ore_factory.tooltip1=All ore-processing in a single step
+gtconsolidate.machine.ore_factory.tooltip2=Processing varies depending on §eProgrammed Circuit§7
+gtconsolidate.machine.ore_factory.tooltip.hold_ctrl=Hold CTRL to show processing details
+gtconsolidate.machine.ore_factory.tooltip.process1=§e1.§7 Macerate -> Ore Washer -> Macerate -> Centrifuge
+gtconsolidate.machine.ore_factory.tooltip.process2=§e2.§7 Macerate -> Ore Washer -> Thermal Centrifuge -> Macerate
+gtconsolidate.machine.ore_factory.tooltip.process3=§e3.§7 Macerate -> Ore Washer -> Sifter -> Centrifuge
+gtconsolidate.machine.ore_factory.tooltip.process4=§e4.§7 Macerate -> Macerate -> Centrifuge
+gtconsolidate.machine.ore_factory.tooltip.process5=§e5.§7 Macerate -> Thermal Centrifuge -> Macerate
+gtconsolidate.machine.ore_factory.tooltip.process6=§e6.§7 Macerate -> Chemical Bathing -> Macerate -> Centrifuge
+gtconsolidate.machine.ore_factory.tooltip.process7=§e7.§7 Macerate -> Chemical Bathing -> Thermal Centrifuge -> Macerate
+gtconsolidate.machine.ore_factory.tooltip.process8=§e8.§7 Macerate -> Ore Washer -> Sifter -> Centrifuge / Macerate (All Gems)
+gtconsolidate.machine.ore_factory.tooltip.process9=§e9.§7 Macerate -> Ore Washer -> Sifter -> Centrifuge / Macerate (Flawed and Chipped)
+gtconsolidate.machine.ore_factory.tooltip.process10=§e10.§7 Macerate -> Ore Washer -> Macerate -> Electromagnetic Separating
+gtconsolidate.machine.ore_factory.tooltip.process11=§e11.§7 Macerate -> Chemical Bathing -> Macerate -> Electromagnetic Separating
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
 
@@ -252,5 +279,6 @@ recipemap.component_assembly_line.name=Component Assembly Line
 recipemap.turbo_blast_recipe.name=Rotary Hearth Blast Smelter
 recipemap.absolute_vacuum_recipe.name=Absolute Freezer
 recipemap.circuit_factory.name=Circuit Factory
+recipemap.ore_factory.name=Ore Processing Factory
 
 gtconsolidate.recipe.coa=Minimum Casing Tier: %s

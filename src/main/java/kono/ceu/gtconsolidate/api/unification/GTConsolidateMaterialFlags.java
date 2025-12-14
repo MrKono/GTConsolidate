@@ -25,7 +25,7 @@ public class GTConsolidateMaterialFlags {
         addFlags(Materials.NeodymiumMagnetic, GENERATE_LONG_ROD);
         addFlags(Materials.Palladium, GENERATE_DENSE);
         addFlags(Materials.Naquadria, GENERATE_DENSE);
-        addFlags(Materials.Americium, GENERATE_GEAR, GENERATE_SMALL_GEAR);
+        addFlags(Materials.Americium, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FRAME);
         addFlags(Materials.Neutronium, GENERATE_SMALL_GEAR);
         addFlags(Materials.Ruthenium, GENERATE_SMALL_GEAR);
         addFlags(Materials.Darmstadtium, GENERATE_GEAR);

@@ -40,6 +40,9 @@ gtconsolidate.machine.industrial_bbf.name=工業用レンガ高炉
 
 gtconsolidate.machine.industrial_coke_oven.name=工業用コークス炉
 
+gtconsolidate.machine.ore_factory.name=鉱石処理ファクトリー
+gtconsolidate.machine.industrial_ore_factory.name=工業用鉱石処理ファクトリー
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
@@ -135,6 +138,14 @@ tile.component_assembly_line_casing.max.name=MAX 部品組立ライン外装
 tile.multiblock_casing.osmiridium_sturdy.name=頑丈なオスミリジウム製マシン外装
 tile.multiblock_casing.darmstadtium_sturdy.name=頑丈なダームスタチウム製マシン外装
 tile.multiblock_casing.tritanium_sturdy.name=頑丈なトリタニウム製マシン外装
+tile.multiblock_casing.iridium_plated.name=イリジウムメッキファクトリー外装
+tile.multiblock_casing.americium_plated.name=アメリシウムメッキファクトリー外装
+
+tile.pipe_casing.iridium_pipe.name=イリジウム製パイプ外装
+tile.pipe_casing.americium_pipe.name=アメリシウム製パイプ外装
+
+tile.gearbox_casing.iridium_gearbox.name=イリジウム製ギアボックス外装
+tile.gearbox_casing.americium_gearbox.name=アメリシウム製ギアボックス外装
 
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.filtered=§3§nフィルター付き搬入バス§r§3を利用すると便利かもしれません。
@@ -219,6 +230,22 @@ gtconsolidate.machine.industrial_coke_oven.tooltip.1=この構造、どこかで
 gtconsolidate.machine.industrial_coke_oven.tooltip.2=最下層のブロックによって§d並列処理数§7と§d動作速度§7にボーナスがかかる。
 gtconsolidate.machine.industrial_coke_oven.tooltip.info=§d%s§7; 動作速度: +§b%f%%§7、最大並列処理数: §b%s§7
 
+# Ore Factory
+gtconsolidate.machine.ore_factory.tooltip1=全ての鉱石処理をワンステップで
+gtconsolidate.machine.ore_factory.tooltip2=§eプログラム回路§7によって処理方法が変わる
+gtconsolidate.machine.ore_factory.tooltip.hold_ctrl=CTRLで処理方法を表示
+gtconsolidate.machine.ore_factory.tooltip.process1=§e1.§7 粉砕 -> 洗浄 -> 粉砕 -> 遠心
+gtconsolidate.machine.ore_factory.tooltip.process2=§e2.§7 粉砕 -> 洗浄 -> 熱遠心 -> 粉砕
+gtconsolidate.machine.ore_factory.tooltip.process3=§e3.§7 粉砕 -> 洗浄 -> 選別 -> 遠心
+gtconsolidate.machine.ore_factory.tooltip.process4=§e4.§7 粉砕 -> 粉砕 -> 遠心
+gtconsolidate.machine.ore_factory.tooltip.process5=§e5.§7 粉砕 -> 熱遠心 -> 粉砕
+gtconsolidate.machine.ore_factory.tooltip.process6=§e6.§7 粉砕 -> 化学槽 -> 粉砕 -> 遠心
+gtconsolidate.machine.ore_factory.tooltip.process7=§e7.§7 粉砕 -> 化学槽 -> 熱遠心 -> 粉砕
+gtconsolidate.machine.ore_factory.tooltip.process8=§e8.§7 粉砕 -> 洗浄 -> 選別 -> 遠心 / 粉砕 (全て)
+gtconsolidate.machine.ore_factory.tooltip.process9=§e9.§7 粉砕 -> 洗浄 -> 選別 -> 遠心 / 粉砕 (欠けたものと傷のあるもの)
+gtconsolidate.machine.ore_factory.tooltip.process10=§e10.§7 粉砕 -> 洗浄 -> 粉砕 -> 電磁分離
+gtconsolidate.machine.ore_factory.tooltip.process11=§e11.§7 粉砕 -> 化学槽 -> 粉砕 -> 電磁分離
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
 
@@ -252,5 +279,6 @@ recipemap.component_assembly_line.name=部品アセンブリライン
 recipemap.turbo_blast_recipe.name=回転式炉床製錬炉
 recipemap.absolute_vacuum_recipe.name=絶対冷凍機
 recipemap.circuit_factory.name=回路工房
+recipemap.ore_factory.name=鉱石処理ファクトリー
 
 gtconsolidate.recipe.coa=外装の最小Tier: %s

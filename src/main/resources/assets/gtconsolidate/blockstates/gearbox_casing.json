@@ -1,0 +1,25 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "textures": {
+      "all": "gregtech:blocks/rendering_error"
+    }
+  },
+  "variants": {
+    "variant": {
+      "iridium_gearbox": {
+      "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/gearbox/gearbox_iridium"
+        }
+      },
+      "americium_gearbox": {
+      "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/gearbox/gearbox_americium"
+        }
+      }
+    }
+  }
+}

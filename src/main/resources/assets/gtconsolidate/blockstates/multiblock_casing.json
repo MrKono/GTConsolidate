@@ -19,6 +19,16 @@
         "textures": {
           "all": "gregtech:blocks/casings/multiblock/tritanium_sturdy"
         }
+      },
+      "iridium_plated": {
+        "textures": {
+          "all": "gregtech:blocks/casings/multiblock/iridium_plated"
+        }
+      },
+      "americium_plated": {
+        "textures": {
+          "all": "gregtech:blocks/casings/multiblock/americium_plated"
+        }
       }
     }
   }

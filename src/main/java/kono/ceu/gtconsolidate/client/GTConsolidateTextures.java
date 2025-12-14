@@ -20,6 +20,12 @@ public class GTConsolidateTextures {
     public static SimpleOverlayRenderer OSMIRIDIUM_STURDY;
     public static SimpleOverlayRenderer DARMSTADTIUM_STURDY;
     public static SimpleOverlayRenderer TRITANIUM_STURDY;
+    public static SimpleOverlayRenderer IRIDIUM_PLATED;
+    public static SimpleOverlayRenderer AMERICIUM_PLATED;
+    public static SimpleOverlayRenderer IRIDIUM_PIPE;
+    public static SimpleOverlayRenderer AMERICIUM_PIPE;
+    public static SimpleOverlayRenderer IRIDIUM_GEARBOX;
+    public static SimpleOverlayRenderer AMERICIUM_GEARBOX;
 
     public static void preInit() {
         PARALLELIZED_ASSEMBLY_LINE_CASING = new SimpleOverlayRenderer(
@@ -40,5 +46,11 @@ public class GTConsolidateTextures {
                 "casings/multiblock/darmstadtium_sturdy");
         TRITANIUM_STURDY = new SimpleOverlayRenderer(
                 "casings/multiblock/tritanium_sturdy");
+        IRIDIUM_PLATED = new SimpleOverlayRenderer("casings/multiblock/iridium_plated");
+        AMERICIUM_PLATED = new SimpleOverlayRenderer("casings/multiblock/americium_plated");
+        IRIDIUM_PIPE = new SimpleOverlayRenderer("casings/pipe/pipe_iridium");
+        AMERICIUM_PIPE = new SimpleOverlayRenderer("casings/pipe/pipe_americium");
+        IRIDIUM_GEARBOX = new SimpleOverlayRenderer("casings/gearbox/gearbox_iridium");
+        AMERICIUM_GEARBOX = new SimpleOverlayRenderer("casings/gearbox/gearbox_americium");
     }
 }
