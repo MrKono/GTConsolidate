@@ -1,7 +1,16 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
-import gregicality.multiblocks.api.metatileentity.GCYMMultiblockAbility;
-import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
+import java.util.List;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
@@ -16,22 +25,16 @@ import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
+
+import gregicality.multiblocks.api.metatileentity.GCYMMultiblockAbility;
+import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
+
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
 import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.blocks.BlockGearBoxCasing;
 import kono.ceu.gtconsolidate.common.blocks.BlockMultiblockCasing;
 import kono.ceu.gtconsolidate.common.blocks.BlockPipeCasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntityPowerEnhancedRotorHolder;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class MetaTileEntityOreFactory extends GCYMRecipeMapMultiblockController {
 
@@ -49,7 +52,7 @@ public class MetaTileEntityOreFactory extends GCYMRecipeMapMultiblockController 
 
     @Override
     protected @NotNull BlockPattern createStructurePattern() {
-        FactoryBlockPattern builder =  FactoryBlockPattern.start()
+        FactoryBlockPattern builder = FactoryBlockPattern.start()
                 .aisle("AAAAAAA#####", "AGGGGGA#####", "AGGGGGA#####", "AGGGGGA#####", "AGGGGGA#####", "AGGGGGA#####",
                         "AAAAAAA#####", "############", "############", "############", "############", "############",
                         "############")
@@ -87,7 +90,7 @@ public class MetaTileEntityOreFactory extends GCYMRecipeMapMultiblockController 
                 .where('$', air());
 
         if (isParallelized) {
-                builder.where('C', states(getCasingState2())
+            builder.where('C', states(getCasingState2())
                     .or(autoAbilities(true, false))
                     .or(abilities(MultiblockAbility.IMPORT_ITEMS).setMaxGlobalLimited(20, 1))
                     .or(abilities(GCYMMultiblockAbility.PARALLEL_HATCH).setMaxGlobalLimited(1)))
@@ -95,12 +98,12 @@ public class MetaTileEntityOreFactory extends GCYMRecipeMapMultiblockController 
                             tieredCasing().or(states(getGearBoxState())));
         } else {
             builder.where('C', states(getCasingState2())
-                            .or(autoAbilities(true, false))
-                            .or(abilities(MultiblockAbility.IMPORT_ITEMS).setMaxGlobalLimited(20, 1)))
-                    .where('V',states(getGearBoxState()));
+                    .or(autoAbilities(true, false))
+                    .or(abilities(MultiblockAbility.IMPORT_ITEMS).setMaxGlobalLimited(20, 1)))
+                    .where('V', states(getGearBoxState()));
 
         }
-                return builder.build();
+        return builder.build();
     }
 
     @Override
@@ -115,19 +118,29 @@ public class MetaTileEntityOreFactory extends GCYMRecipeMapMultiblockController 
     }
 
     protected IBlockState getCasingState() {
-        return isParallelized ? GTConsolidateMetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.AMERICIUM_PLATED) : GTConsolidateMetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.IRIDIUM_PLATED);
+        return isParallelized ?
+                GTConsolidateMetaBlocks.MULTIBLOCK_CASING
+                        .getState(BlockMultiblockCasing.MultiblockCasingType.AMERICIUM_PLATED) :
+                GTConsolidateMetaBlocks.MULTIBLOCK_CASING
+                        .getState(BlockMultiblockCasing.MultiblockCasingType.IRIDIUM_PLATED);
     }
 
     protected IBlockState getCasingState2() {
-        return isParallelized ? GTConsolidateMetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.IRIDIUM_PLATED) : MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STAINLESS_CLEAN);
+        return isParallelized ?
+                GTConsolidateMetaBlocks.MULTIBLOCK_CASING
+                        .getState(BlockMultiblockCasing.MultiblockCasingType.IRIDIUM_PLATED) :
+                MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STAINLESS_CLEAN);
     }
 
     protected IBlockState getGearBoxState() {
-        return isParallelized ? GTConsolidateMetaBlocks.GEARBOX_CASING.getState(BlockGearBoxCasing.CasingType.AMERICIUM) : GTConsolidateMetaBlocks.GEARBOX_CASING.getState(BlockGearBoxCasing.CasingType.IRIDIUM);
+        return isParallelized ?
+                GTConsolidateMetaBlocks.GEARBOX_CASING.getState(BlockGearBoxCasing.CasingType.AMERICIUM) :
+                GTConsolidateMetaBlocks.GEARBOX_CASING.getState(BlockGearBoxCasing.CasingType.IRIDIUM);
     }
 
     protected IBlockState getPipeState() {
-        return isParallelized ? GTConsolidateMetaBlocks.PIPE_CASING.getState(BlockPipeCasing.CasingType.AMERICIUM) : GTConsolidateMetaBlocks.PIPE_CASING.getState(BlockPipeCasing.CasingType.IRIDIUM);
+        return isParallelized ? GTConsolidateMetaBlocks.PIPE_CASING.getState(BlockPipeCasing.CasingType.AMERICIUM) :
+                GTConsolidateMetaBlocks.PIPE_CASING.getState(BlockPipeCasing.CasingType.IRIDIUM);
     }
 
     @Override

@@ -27,9 +27,7 @@ import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
 
 import kono.ceu.gtconsolidate.common.blocks.BlockCoACasing;
-import kono.ceu.gtconsolidate.common.blocks.BlockGearBoxCasing;
 import kono.ceu.gtconsolidate.common.blocks.BlockPipeCasing;
-import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 
 public class CasingLoader {
 
@@ -234,12 +232,14 @@ public class CasingLoader {
                 .duration(5 * 20).EUt(VA[LV]).buildAndRegister();
 
         // Pipe Casing
-        ModHandler.addShapedRecipe("pipe_casing_iridium", PIPE_CASING.getItemVariant(BlockPipeCasing.CasingType.IRIDIUM, amount),
+        ModHandler.addShapedRecipe("pipe_casing_iridium",
+                PIPE_CASING.getItemVariant(BlockPipeCasing.CasingType.IRIDIUM, amount),
                 "PNP", "NFN", "PNP",
                 'P', new UnificationEntry(plate, Materials.Iridium),
                 'N', new UnificationEntry(pipeNormalFluid, Materials.Iridium),
                 'F', new UnificationEntry(frameGt, Materials.Iridium));
-        ModHandler.addShapedRecipe("pipe_casing_americium", PIPE_CASING.getItemVariant(BlockPipeCasing.CasingType.AMERICIUM, amount),
+        ModHandler.addShapedRecipe("pipe_casing_americium",
+                PIPE_CASING.getItemVariant(BlockPipeCasing.CasingType.AMERICIUM, amount),
                 "PNP", "NFN", "PNP",
                 'P', new UnificationEntry(plate, Materials.Americium),
                 'N', new UnificationEntry(pipeNormalItem, Materials.Americium),

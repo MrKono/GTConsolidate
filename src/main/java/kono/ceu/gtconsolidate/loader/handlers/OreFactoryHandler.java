@@ -1,5 +1,14 @@
 package kono.ceu.gtconsolidate.loader.handlers;
 
+import static gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT;
+
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
+import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.NotNull;
+
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
@@ -10,14 +19,8 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.MaterialStack;
 import gregtech.api.util.GTUtility;
 import gregtech.common.ConfigHolder;
+
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
-import net.minecraft.item.ItemStack;
-import org.apache.commons.lang3.tuple.Pair;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-
-import static gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT;
 
 public class OreFactoryHandler {
 
@@ -30,7 +33,8 @@ public class OreFactoryHandler {
             OrePrefix.oreDiorite.addProcessingHandler(PropertyKey.ORE, OreFactoryHandler::registerOreFactoryProcess);
             OrePrefix.oreAndesite.addProcessingHandler(PropertyKey.ORE, OreFactoryHandler::registerOreFactoryProcess);
             OrePrefix.oreBasalt.addProcessingHandler(PropertyKey.ORE, OreFactoryHandler::registerOreFactoryProcess);
-            OrePrefix.oreBlackgranite.addProcessingHandler(PropertyKey.ORE, OreFactoryHandler::registerOreFactoryProcess);
+            OrePrefix.oreBlackgranite.addProcessingHandler(PropertyKey.ORE,
+                    OreFactoryHandler::registerOreFactoryProcess);
             OrePrefix.oreMarble.addProcessingHandler(PropertyKey.ORE, OreFactoryHandler::registerOreFactoryProcess);
             OrePrefix.oreRedgranite.addProcessingHandler(PropertyKey.ORE, OreFactoryHandler::registerOreFactoryProcess);
             OrePrefix.oreSand.addProcessingHandler(PropertyKey.ORE, OreFactoryHandler::registerOreFactoryProcess);
@@ -430,7 +434,7 @@ public class OreFactoryHandler {
         ItemStack separateStack = OreDictUnifier.get(OrePrefix.dust, separatedMaterial.get(0));
         OrePrefix prefix = (separatedMaterial.get(separatedMaterial.size() - 1).getBlastTemperature() == 0 &&
                 separatedMaterial.get(separatedMaterial.size() - 1).hasProperty(PropertyKey.INGOT)) ?
-                OrePrefix.nugget : OrePrefix.dust;
+                        OrePrefix.nugget : OrePrefix.dust;
         ItemStack separatedStack2 = OreDictUnifier.get(prefix, separatedMaterial.get(separatedMaterial.size() - 1),
                 prefix == OrePrefix.nugget ? 2 : 1);
         separateStack.setCount(amount);
@@ -475,7 +479,7 @@ public class OreFactoryHandler {
         ItemStack separateStack = OreDictUnifier.get(OrePrefix.dust, separatedMaterial.get(0));
         OrePrefix prefix = (separatedMaterial.get(separatedMaterial.size() - 1).getBlastTemperature() == 0 &&
                 separatedMaterial.get(separatedMaterial.size() - 1).hasProperty(PropertyKey.INGOT)) ?
-                OrePrefix.nugget : OrePrefix.dust;
+                        OrePrefix.nugget : OrePrefix.dust;
         ItemStack separatedStack2 = OreDictUnifier.get(prefix, separatedMaterial.get(separatedMaterial.size() - 1),
                 prefix == OrePrefix.nugget ? 2 : 1);
         separateStack.setCount(amount);
