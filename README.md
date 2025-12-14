@@ -30,6 +30,7 @@ _New Machines_
 - Extended Processing Array (since 1.0.7-beta)
 - Industrial Bricked Blast Furnace (since 1.1.1-beta)
 - Industrial Coke Oven (since 1.1.1-beta)
+- Ore Factory (since 1.1.1-beta, port from [GTMoreOreProcessing](https://github.com/MrKono/GTCEu-MoreOreProcessing))
 
 _New Multiblock Part_
 - Filtered Input Bus (Only one type of item can input, since 1.0.2-beta)

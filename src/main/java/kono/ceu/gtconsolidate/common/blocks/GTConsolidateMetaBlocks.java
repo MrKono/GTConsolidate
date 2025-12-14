@@ -18,6 +18,8 @@ public class GTConsolidateMetaBlocks {
     public static BlockCoolantCasing COOLANT_CASING;
     public static BlockCoACasing COA_CASING;
     public static BlockMultiblockCasing MULTIBLOCK_CASING;
+    public static BlockGearBoxCasing GEARBOX_CASING;
+    public static BlockPipeCasing PIPE_CASING;
 
     public static void init() {
         PARALLELIZED_ASSEMBLY_LINE_CASING = new BlockParallelizedAssemblyLineCasing();
@@ -28,6 +30,10 @@ public class GTConsolidateMetaBlocks {
         COA_CASING.setRegistryName("component_assembly_line_casing");
         MULTIBLOCK_CASING = new BlockMultiblockCasing();
         MULTIBLOCK_CASING.setRegistryName("multiblock_casing");
+        GEARBOX_CASING = new BlockGearBoxCasing();
+        GEARBOX_CASING.setRegistryName("gearbox_casing");
+        PIPE_CASING = new BlockPipeCasing();
+        PIPE_CASING.setRegistryName("pipe_casing");
     }
 
     @SideOnly(Side.CLIENT)
@@ -36,6 +42,8 @@ public class GTConsolidateMetaBlocks {
         registerItemModel(COOLANT_CASING);
         registerItemModel(COA_CASING);
         registerItemModel(MULTIBLOCK_CASING);
+        registerItemModel(GEARBOX_CASING);
+        registerItemModel(PIPE_CASING);
     }
 
     @SideOnly(Side.CLIENT)

@@ -36,7 +36,9 @@ public class BlockMultiblockCasing extends
 
         OSMIRIDIUM_STURDY("osmiridium_sturdy"),
         DARMSTADTIUM_STURDY("darmstadtium_sturdy"),
-        TRITANIUM_STURDY("tritanium_sturdy");
+        TRITANIUM_STURDY("tritanium_sturdy"),
+        IRIDIUM_PLATED("iridium_plated"),
+        AMERICIUM_PLATED("americium_plated");
 
         private final String name;
 

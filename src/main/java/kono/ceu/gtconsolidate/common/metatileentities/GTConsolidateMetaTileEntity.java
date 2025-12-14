@@ -32,6 +32,7 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityGigaVF ABSOLUTE_FREEZER;
     public static MetaTileEntityCircuitFactory CIRCUIT_FACTORY;
     public static MetaTileEntityExtendedProcessingArray[] EXTENDED_PROCESSING_ARRAY = new MetaTileEntityExtendedProcessingArray[3];
+    public static MetaTileEntityOreFactory[] ORE_FACTORY = new MetaTileEntityOreFactory[2];
 
     // Primitive
     public static MetaTileEntityIndustrialBrickedBlastFurnace INDUSTRIAL_BBF;
@@ -116,6 +117,11 @@ public class GTConsolidateMetaTileEntity {
         // Industrial Coke Oven
         INDUSTRIAL_COKE_OVEN = registerMetaTileEntity(id + 21, new MetaTileEntityIndustrialCokeOven(
                 modId("industrial_coke_oven")));
+        // Ore Factory
+        ORE_FACTORY[0] = registerMetaTileEntity(id + 22, new MetaTileEntityOreFactory(
+                modId("ore_factory"), false));
+        ORE_FACTORY[1] = registerMetaTileEntity(id + 23, new MetaTileEntityOreFactory(
+                modId("industrial_ore_factory"), true));
     }
 
     public static void registerMultiblockPart() {

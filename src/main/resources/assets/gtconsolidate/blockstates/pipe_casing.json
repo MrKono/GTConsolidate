@@ -1,0 +1,25 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "textures": {
+      "all": "gregtech:blocks/rendering_error"
+    }
+  },
+  "variants": {
+    "variant": {
+      "iridium_pipe": {
+      "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/pipe/pipe_iridium"
+        }
+      },
+      "americium_pipe": {
+      "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gregtech:blocks/casings/pipe/pipe_americium"
+        }
+      }
+    }
+  }
+}

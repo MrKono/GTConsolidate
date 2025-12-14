@@ -19,6 +19,7 @@ import gregtech.common.metatileentities.MetaTileEntities;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
+import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 
 public class MetaTileEntityLoader {
 
@@ -126,5 +127,32 @@ public class MetaTileEntityLoader {
                         .EUt(VA[GTValues.IV]).duration(20 * 30).buildAndRegister();
             }
         }
+        // Ore Processing Factory
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.MACERATOR[IV])
+                .input(MetaTileEntities.ORE_WASHER[IV])
+                .input(MetaTileEntities.CENTRIFUGE[IV])
+                .input(MetaTileEntities.SIFTER[IV])
+                .input(MetaTileEntities.CHEMICAL_BATH[IV])
+                .input(MetaTileEntities.THERMAL_CENTRIFUGE[IV])
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.LuV, 4)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 8))
+                .output(GTConsolidateMetaTileEntity.ORE_FACTORY[0])
+                .duration(10 * 20).EUt(VA[IV]).buildAndRegister();
+
+        // Industrial Ore Processing Factory
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(GTConsolidateMetaTileEntity.ORE_FACTORY[0])
+                .input(OrePrefix.gearSmall, Materials.TungstenCarbide, 8)
+                .input(OrePrefix.gear, Materials.Tritanium, 4)
+                .input(MetaItems.ELECTRIC_MOTOR_UV, 2)
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.UHV, 1)
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.UV, 4)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 16))
+                .fluidInputs(Materials.Lubricant.getFluid(4000))
+                .output(GTConsolidateMetaTileEntity.ORE_FACTORY[1])
+                .stationResearch(b -> b.researchStack(GTConsolidateMetaTileEntity.ORE_FACTORY[0].getStackForm())
+                        .CWUt(144).EUt(VA[ZPM]))
+                .duration(60 * 20).EUt(VA[UHV]).buildAndRegister();
     }
 }

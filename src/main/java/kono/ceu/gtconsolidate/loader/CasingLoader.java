@@ -4,6 +4,7 @@ import static gregtech.api.GTValues.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing.CasingType.*;
+import static kono.ceu.gtconsolidate.common.blocks.BlockGearBoxCasing.CasingType.*;
 import static kono.ceu.gtconsolidate.common.blocks.BlockMultiblockCasing.MultiblockCasingType.*;
 import static kono.ceu.gtconsolidate.common.blocks.BlockParallelizedAssemblyLineCasing.ParallelizedAssemblyLineCasingType.*;
 import static kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks.*;
@@ -18,6 +19,7 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
+import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
 import gregtech.common.blocks.MetaBlocks;
 
@@ -25,6 +27,7 @@ import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
 
 import kono.ceu.gtconsolidate.common.blocks.BlockCoACasing;
+import kono.ceu.gtconsolidate.common.blocks.BlockPipeCasing;
 
 public class CasingLoader {
 
@@ -188,5 +191,58 @@ public class CasingLoader {
                 .circuitMeta(6)
                 .outputs(MULTIBLOCK_CASING.getItemVariant(TRITANIUM_STURDY, amount))
                 .duration(50).EUt(16).buildAndRegister();
+        // Iridium Plated Casing
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.STAINLESS_CLEAN))
+                .fluidInputs(Materials.Iridium.getFluid(144))
+                .outputs(MULTIBLOCK_CASING.getItemVariant(IRIDIUM_PLATED))
+                .duration(50).EUt(VA[LV]).buildAndRegister();
+        // Americium Plated Casing
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MULTIBLOCK_CASING.getItemVariant(IRIDIUM_PLATED))
+                .fluidInputs(Materials.Americium.getFluid(144))
+                .outputs(MULTIBLOCK_CASING.getItemVariant(AMERICIUM_PLATED))
+                .duration(50).EUt(VA[LV]).buildAndRegister();
+
+        // Gearbox Casing
+        ModHandler.addShapedRecipe("gearbox_iridium",
+                GEARBOX_CASING.getItemVariant(IRIDIUM, amount),
+                "PhP", "GFG", "PwP",
+                'P', new UnificationEntry(plate, Materials.Iridium),
+                'G', new UnificationEntry(gear, Materials.Iridium),
+                'F', new UnificationEntry(frameGt, Materials.Iridium));
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, Materials.Iridium, 6)
+                .input(gear, Materials.Iridium, 2)
+                .input(frameGt, Materials.Iridium)
+                .circuitMeta(4)
+                .outputs(GEARBOX_CASING.getItemVariant(IRIDIUM, amount))
+                .duration(5 * 20).EUt(VA[LV]).buildAndRegister();
+        ModHandler.addShapedRecipe("gearbox_americium", GEARBOX_CASING.getItemVariant(AMERICIUM, amount),
+                "PhP", "GFG", "PwP",
+                'P', new UnificationEntry(plate, Materials.Americium),
+                'G', new UnificationEntry(gear, Materials.Americium),
+                'F', new UnificationEntry(frameGt, Materials.Americium));
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, Materials.Americium, 6)
+                .input(gear, Materials.Americium, 2)
+                .input(frameGt, Materials.Americium)
+                .circuitMeta(4)
+                .outputs(GEARBOX_CASING.getItemVariant(AMERICIUM, amount))
+                .duration(5 * 20).EUt(VA[LV]).buildAndRegister();
+
+        // Pipe Casing
+        ModHandler.addShapedRecipe("pipe_casing_iridium",
+                PIPE_CASING.getItemVariant(BlockPipeCasing.CasingType.IRIDIUM, amount),
+                "PNP", "NFN", "PNP",
+                'P', new UnificationEntry(plate, Materials.Iridium),
+                'N', new UnificationEntry(pipeNormalFluid, Materials.Iridium),
+                'F', new UnificationEntry(frameGt, Materials.Iridium));
+        ModHandler.addShapedRecipe("pipe_casing_americium",
+                PIPE_CASING.getItemVariant(BlockPipeCasing.CasingType.AMERICIUM, amount),
+                "PNP", "NFN", "PNP",
+                'P', new UnificationEntry(plate, Materials.Americium),
+                'N', new UnificationEntry(pipeNormalItem, Materials.Americium),
+                'F', new UnificationEntry(frameGt, Materials.Americium));
     }
 }
