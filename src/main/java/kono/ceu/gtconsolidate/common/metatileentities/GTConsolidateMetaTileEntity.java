@@ -16,6 +16,7 @@ import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaT
 import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntitySpeedEnhancedRotorHolder;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialBrickedBlastFurnace;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialCokeOven;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.steam.MetaTileEntitySteamAlloyKiln;
 
 public class GTConsolidateMetaTileEntity {
 
@@ -37,6 +38,9 @@ public class GTConsolidateMetaTileEntity {
     // Primitive
     public static MetaTileEntityIndustrialBrickedBlastFurnace INDUSTRIAL_BBF;
     public static MetaTileEntityIndustrialCokeOven INDUSTRIAL_COKE_OVEN;
+
+    // Steam
+    public static MetaTileEntitySteamAlloyKiln STEAM_ALLOY_KILN;
 
     // Multiblock Part
     public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
@@ -122,6 +126,9 @@ public class GTConsolidateMetaTileEntity {
                 modId("ore_factory"), false));
         ORE_FACTORY[1] = registerMetaTileEntity(id + 23, new MetaTileEntityOreFactory(
                 modId("industrial_ore_factory"), true));
+        // Steam Alloy Kiln
+        STEAM_ALLOY_KILN = registerMetaTileEntity(id + 24, new MetaTileEntitySteamAlloyKiln(
+                modId("steam_alloy_kiln")));
     }
 
     public static void registerMultiblockPart() {

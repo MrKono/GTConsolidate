@@ -50,7 +50,6 @@ public class MetaTileEntitySteamAlloyKiln extends RecipeMapSteamMultiblockContro
         super(metaTileEntityId, RecipeMaps.ALLOY_SMELTER_RECIPES, CONVERSION_RATE);
         this.recipeMapWorkable = new ExtendedSteamMultiWorkable(this, CONVERSION_RATE);
         this.recipeMapWorkable.setParallelLimit(MAX_PARALLELS);
-        this.recipeMapWorkable.setEUDiscount(1.5);
     }
 
     @Override
@@ -179,21 +178,15 @@ public class MetaTileEntitySteamAlloyKiln extends RecipeMapSteamMultiblockContro
         }
 
         @Override
-        public @NotNull ParallelLogicType getParallelLogicType() {
-            return ParallelLogicType.MULTIPLY;
+        public long getMaxVoltage() {
+            return GTValues.V[GTValues.HV];
         }
 
-        /*
-         * @Override
-         * public long getMaxVoltage() {
-         * return GTValues.HV;
-         * }
-         * 
-         * @Override
-         * protected long getMaxParallelVoltage() {
-         * return GTValues.HV;
-         * }
-         */
+         @Override
+         protected long getMaxParallelVoltage() {
+            return GTValues.V[GTValues.HV];
+         }
+
 
         @Override
         public void applyParallelBonus(@NotNull RecipeBuilder<?> builder) {
