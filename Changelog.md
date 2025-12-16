@@ -3,7 +3,13 @@
 - **New Machines**
   - Industrial Bricked Furnace (Parallelized Primitive Blast Furnace)
   - Industrial Coke Oven (Parallelized Coke Oven)
-
+  - Ore Factory (port from [GTMoreOreProcessing](https://github.com/MrKono/GTCEu-MoreOreProcessing))
+- **New Multiblock Parts** (_Whether to add it is configurable_)
+  - LV and MV Rotor Holders (default: false)
+  - UHV+ Rotor Holders (default: true)
+  - Power-Enhanced Rotor Holders (default: true)
+  - Speed-Enhanced Rotor Holders (default: true)
+  
 ---
 ### 1.1.0.4.1-beta
 - **Fix** conveyor recipe's fluid input (CoA)

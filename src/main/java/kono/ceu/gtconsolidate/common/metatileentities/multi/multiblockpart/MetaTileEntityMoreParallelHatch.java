@@ -1,4 +1,4 @@
-package kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart;
+package kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart;
 
 import java.util.List;
 import java.util.function.Function;

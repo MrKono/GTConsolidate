@@ -40,6 +40,9 @@ gtconsolidate.machine.industrial_bbf.name=工業用レンガ高炉
 
 gtconsolidate.machine.industrial_coke_oven.name=工業用コークス炉
 
+gtconsolidate.machine.ore_factory.name=鉱石処理ファクトリー
+gtconsolidate.machine.industrial_ore_factory.name=工業用鉱石処理ファクトリー
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
@@ -62,6 +65,48 @@ gtconsolidate.machine.more_parallel_hatch.iv.name=伝説的な並列制御ユニ
 gtconsolidate.machine.more_parallel_hatch.luv.name=伝説的な並列制御ユニット II
 gtconsolidate.machine.more_parallel_hatch.zpm.name=神話級の並列制御ユニット
 gtconsolidate.machine.more_parallel_hatch.uv.name=超越した並列制御ユニット
+
+# Rotor Holders
+gtconsolidate.machine.rotor_holder.lv.name=LVローターホルダー
+gtconsolidate.machine.rotor_holder.mv.name=MVローターホルダー
+gtconsolidate.machine.rotor_holder.uhv.name=UHVローターホルダー
+gtconsolidate.machine.rotor_holder.uev.name=UEVローターホルダー
+gtconsolidate.machine.rotor_holder.uiv.name=UIVローターホルダー
+gtconsolidate.machine.rotor_holder.uxv.name=UXVローターホルダー
+gtconsolidate.machine.rotor_holder.opv.name=OpVローターホルダー
+gtconsolidate.machine.rotor_holder.max.name=MAXローターホルダー
+
+# Power Enhanced Rotor Holders
+gtconsolidate.machine.power_enhanced_rotor_holder.lv.name=出力強化型LVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.mv.name=出力強化型MVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.hv.name=出力強化型HVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.ev.name=出力強化型EVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.iv.name=出力強化型IVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.luv.name=出力強化型LuVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.zpm.name=出力強化型ZPMローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uv.name=出力強化型UVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uhv.name=出力強化型UHVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uev.name=出力強化型UEVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uiv.name=出力強化型UIVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.uxv.name=出力強化型UXVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.opv.name=出力強化型OpVローターホルダー
+gtconsolidate.machine.power_enhanced_rotor_holder.max.name=出力強化型MAXローターホルダー
+
+# Speed Enhanced Rotor Holders
+gtconsolidate.machine.speed_enhanced_rotor_holder.lv.name=速度強化型LVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.mv.name=速度強化型MVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.hv.name=速度強化型HVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.ev.name=速度強化型EVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.iv.name=速度強化型IVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.luv.name=速度強化型LuVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.zpm.name=速度強化型ZPMローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uv.name=速度強化型UVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uhv.name=速度強化型UHVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uev.name=速度強化型UEVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uiv.name=速度強化型UIVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.uxv.name=速度強化型UXVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.opv.name=速度強化型OpVローターホルダー
+gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=速度強化型MAXローターホルダー
 
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=発展型組立機マシン外装
@@ -93,6 +138,14 @@ tile.component_assembly_line_casing.max.name=MAX 部品組立ライン外装
 tile.multiblock_casing.osmiridium_sturdy.name=頑丈なオスミリジウム製マシン外装
 tile.multiblock_casing.darmstadtium_sturdy.name=頑丈なダームスタチウム製マシン外装
 tile.multiblock_casing.tritanium_sturdy.name=頑丈なトリタニウム製マシン外装
+tile.multiblock_casing.iridium_plated.name=イリジウムメッキファクトリー外装
+tile.multiblock_casing.americium_plated.name=アメリシウムメッキファクトリー外装
+
+tile.pipe_casing.iridium_pipe.name=イリジウム製パイプ外装
+tile.pipe_casing.americium_pipe.name=アメリシウム製パイプ外装
+
+tile.gearbox_casing.iridium_gearbox.name=イリジウム製ギアボックス外装
+tile.gearbox_casing.americium_gearbox.name=アメリシウム製ギアボックス外装
 
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.filtered=§3§nフィルター付き搬入バス§r§3を利用すると便利かもしれません。
@@ -177,8 +230,34 @@ gtconsolidate.machine.industrial_coke_oven.tooltip.1=この構造、どこかで
 gtconsolidate.machine.industrial_coke_oven.tooltip.2=最下層のブロックによって§d並列処理数§7と§d動作速度§7にボーナスがかかる。
 gtconsolidate.machine.industrial_coke_oven.tooltip.info=§d%s§7; 動作速度: +§b%f%%§7、最大並列処理数: §b%s§7
 
+# Ore Factory
+gtconsolidate.machine.ore_factory.tooltip1=全ての鉱石処理をワンステップで
+gtconsolidate.machine.ore_factory.tooltip2=§eプログラム回路§7によって処理方法が変わる
+gtconsolidate.machine.ore_factory.tooltip.hold_ctrl=CTRLで処理方法を表示
+gtconsolidate.machine.ore_factory.tooltip.process1=§e1.§7 粉砕 -> 洗浄 -> 粉砕 -> 遠心
+gtconsolidate.machine.ore_factory.tooltip.process2=§e2.§7 粉砕 -> 洗浄 -> 熱遠心 -> 粉砕
+gtconsolidate.machine.ore_factory.tooltip.process3=§e3.§7 粉砕 -> 洗浄 -> 選別 -> 遠心
+gtconsolidate.machine.ore_factory.tooltip.process4=§e4.§7 粉砕 -> 粉砕 -> 遠心
+gtconsolidate.machine.ore_factory.tooltip.process5=§e5.§7 粉砕 -> 熱遠心 -> 粉砕
+gtconsolidate.machine.ore_factory.tooltip.process6=§e6.§7 粉砕 -> 化学槽 -> 粉砕 -> 遠心
+gtconsolidate.machine.ore_factory.tooltip.process7=§e7.§7 粉砕 -> 化学槽 -> 熱遠心 -> 粉砕
+gtconsolidate.machine.ore_factory.tooltip.process8=§e8.§7 粉砕 -> 洗浄 -> 選別 -> 遠心 / 粉砕 (全て)
+gtconsolidate.machine.ore_factory.tooltip.process9=§e9.§7 粉砕 -> 洗浄 -> 選別 -> 遠心 / 粉砕 (欠けたものと傷のあるもの)
+gtconsolidate.machine.ore_factory.tooltip.process10=§e10.§7 粉砕 -> 洗浄 -> 粉砕 -> 電磁分離
+gtconsolidate.machine.ore_factory.tooltip.process11=§e11.§7 粉砕 -> 化学槽 -> 粉砕 -> 電磁分離
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
+
+# Rotor Holders
+gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.1=通常より出力が強化されたタイプ。
+gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.2=タービンローターに大きな負荷がかかり、耐久がより早く減少し、減速しやすくなる。
+gtconsolidate.machine.speed_enhanced_rotor_holder.tooltip.1=通常より回転速度が強化されたタイプ。
+gtconsolidate.machine.speed_enhanced_rotor_holder.tooltip.2=タービンローターにかかる負荷が小さくなり、耐久がゆっくり減少し、加速しやすく減速しにくくなる。
+gtconsolidate.machine.rotor_holder.ctrl=Ctrlで特性を表示
+gtconsolidate.machine.rotor_holder.info.speed=最大ローター速度: %s
+gtconsolidate.machine.rotor_holder.info.efficiency=タービン効率: %s
+gtconsolidate.machine.rotor_holder.info.power=最大出力: %s
 
 # Display
 gtconsolidate.multiblock.coa.recipe_tier=外装Tier: %s
@@ -200,5 +279,6 @@ recipemap.component_assembly_line.name=部品アセンブリライン
 recipemap.turbo_blast_recipe.name=回転式炉床製錬炉
 recipemap.absolute_vacuum_recipe.name=絶対冷凍機
 recipemap.circuit_factory.name=回路工房
+recipemap.ore_factory.name=鉱石処理ファクトリー
 
 gtconsolidate.recipe.coa=外装の最小Tier: %s

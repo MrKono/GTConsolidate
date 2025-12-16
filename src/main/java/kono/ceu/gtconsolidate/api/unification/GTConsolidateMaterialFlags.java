@@ -6,16 +6,39 @@ import static kono.ceu.gtconsolidate.loader.Components.scMaterial;
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.store.FluidStorageKeys;
+import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.material.info.MaterialFlag;
+import gregtech.api.unification.material.properties.IMaterialProperty;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.material.properties.WireProperties;
 
 public class GTConsolidateMaterialFlags {
 
     public static void add() {
-        // Chrome
-        if (!Materials.Chrome.hasFlag(GENERATE_LONG_ROD)) Materials.Chrome.addFlags(GENERATE_LONG_ROD);
-        // Helium-3
+        // Flags
+        addFlags(Materials.Chrome, GENERATE_LONG_ROD);
+        addFlags(Materials.Duranium, GENERATE_FRAME);
+        addFlags(Materials.Trinium, GENERATE_FRAME, GENERATE_DENSE, GENERATE_SMALL_GEAR);
+        addFlags(Materials.IronMagnetic, GENERATE_LONG_ROD);
+        addFlags(Materials.SteelMagnetic, GENERATE_LONG_ROD);
+        addFlags(Materials.NeodymiumMagnetic, GENERATE_LONG_ROD);
+        addFlags(Materials.Palladium, GENERATE_DENSE);
+        addFlags(Materials.Naquadria, GENERATE_DENSE);
+        addFlags(Materials.Americium, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FRAME);
+        addFlags(Materials.Neutronium, GENERATE_SMALL_GEAR);
+        addFlags(Materials.Ruthenium, GENERATE_SMALL_GEAR);
+        addFlags(Materials.Darmstadtium, GENERATE_GEAR);
+        addFlags(Materials.RhodiumPlatedPalladium, GENERATE_GEAR);
+        addFlags(Materials.BlackSteel, GENERATE_SMALL_GEAR);
+        addFlags(Materials.Ultimet, GENERATE_SMALL_GEAR);
+        for (int i = 0; i < GTValues.LuV; i++) {
+            addFlags(scMaterial(i), GENERATE_FINE_WIRE);
+        }
+        // Properties
+        addProperty(Materials.Ruridit, PropertyKey.WIRE, new WireProperties((int) GTValues.V[GTValues.ZPM], 8, 4));
+        addProperty(Materials.Americium, PropertyKey.WIRE, new WireProperties((int) GTValues.V[GTValues.UV], 12, 8));
+        // Fluids
         if (Materials.Helium3.getFluid(FluidStorageKeys.LIQUID) == null) {
             Materials.Helium3.getProperty(PropertyKey.FLUID).enqueueRegistration(FluidStorageKeys.LIQUID,
                     new FluidBuilder()
@@ -25,33 +48,19 @@ public class GTConsolidateMaterialFlags {
                             .translation("gregtech.fluid.liquid_generic"));
             Materials.Helium3.getProperty(PropertyKey.FLUID).setPrimaryKey(FluidStorageKeys.GAS);
         }
-        // Duranium
-        if (!Materials.Duranium.hasFlag(GENERATE_FRAME)) Materials.Duranium.addFlags(GENERATE_FRAME);
-        // Trinium
-        if (!Materials.Trinium.hasFlag(GENERATE_FRAME)) Materials.Trinium.addFlags(GENERATE_FRAME);
-        if (!Materials.Trinium.hasFlag(GENERATE_DENSE)) Materials.Trinium.addFlags(GENERATE_DENSE);
-        // IronMagnetic
-        if (!Materials.IronMagnetic.hasFlag(GENERATE_LONG_ROD)) Materials.IronMagnetic.addFlags(GENERATE_LONG_ROD);
-        // SteelMagnetic
-        if (!Materials.SteelMagnetic.hasFlag(GENERATE_LONG_ROD)) Materials.SteelMagnetic.addFlags(GENERATE_LONG_ROD);
-        // NeodymiumMagnetic
-        if (!Materials.NeodymiumMagnetic.hasFlag(GENERATE_LONG_ROD))
-            Materials.NeodymiumMagnetic.addFlags(GENERATE_LONG_ROD);
-        // Palladium
-        if (!Materials.Palladium.hasFlag(GENERATE_DENSE)) Materials.Palladium.addFlags(GENERATE_DENSE);
-        // Naquadria
-        if (!Materials.Naquadria.hasFlag(GENERATE_DENSE)) Materials.Naquadria.addFlags(GENERATE_DENSE);
-        // ULV-IV scMaterials
-        for (int i = 0; i < GTValues.LuV; i++) {
-            if (!scMaterial(i).hasFlag(GENERATE_FINE_WIRE)) scMaterial(i).addFlags(GENERATE_FINE_WIRE);
+    }
+
+    private static void addFlags(Material mat, MaterialFlag... flags) {
+        for (MaterialFlag flag : flags) {
+            if (!mat.hasFlag(flag)) {
+                mat.addFlags(flag);
+            }
         }
-        // Ruridit
-        if (!Materials.Ruridit.hasProperty(PropertyKey.WIRE)) {
-            Materials.Ruridit.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[GTValues.ZPM], 8, 4));
-        }
-        // Americium
-        if (!Materials.Americium.hasProperty(PropertyKey.WIRE)) {
-            Materials.Americium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[GTValues.UV], 12, 8));
+    }
+
+    private static void addProperty(Material mat, PropertyKey<?> key, IMaterialProperty prop) {
+        if (!mat.hasProperty(key)) {
+            mat.setProperty(key, prop);
         }
     }
 }

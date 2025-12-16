@@ -4,15 +4,18 @@ import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTile
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.modId;
 
 import gregtech.api.GTValues;
+import gregtech.api.GregTechAPI;
+import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityRotorHolder;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.util.Mods;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityFilteredItemBus;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.MultiblockPart.MetaTileEntityMoreParallelHatch;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.*;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntityFilteredItemBus;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntityMoreParallelHatch;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntityPowerEnhancedRotorHolder;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntitySpeedEnhancedRotorHolder;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialBrickedBlastFurnace;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialCokeOven;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.steam.MetaTileEntitySteamAlloyKiln;
 
 public class GTConsolidateMetaTileEntity {
 
@@ -29,18 +32,22 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityGigaVF ABSOLUTE_FREEZER;
     public static MetaTileEntityCircuitFactory CIRCUIT_FACTORY;
     public static MetaTileEntityExtendedProcessingArray[] EXTENDED_PROCESSING_ARRAY = new MetaTileEntityExtendedProcessingArray[3];
+    public static MetaTileEntityOreFactory[] ORE_FACTORY = new MetaTileEntityOreFactory[2];
 
     // Primitive
     public static MetaTileEntityIndustrialBrickedBlastFurnace INDUSTRIAL_BBF;
     public static MetaTileEntityIndustrialCokeOven INDUSTRIAL_COKE_OVEN;
 
-    // Steam
-    public static MetaTileEntitySteamAlloyKiln ALLOY_KILN;
-
     // Multiblock Part
     public static final MetaTileEntityFilteredItemBus[] FILTERED_ITEM_INPUT = new MetaTileEntityFilteredItemBus[GTValues.UHV +
             1];
     public static final MetaTileEntityMoreParallelHatch[] MORE_PARALLEL_HATCHES = new MetaTileEntityMoreParallelHatch[8];
+    public static final MetaTileEntityRotorHolder[] ROTOR_HOLDERS_LOW = new MetaTileEntityRotorHolder[2]; // LV and MV
+    public static final MetaTileEntityRotorHolder[] ROTOR_HOLDERS_HI = new MetaTileEntityRotorHolder[7]; // UHV - MAX
+    public static final MetaTileEntityPowerEnhancedRotorHolder[] ROTOR_HOLDER_POWERED = new MetaTileEntityPowerEnhancedRotorHolder[GTValues.V.length -
+            1];
+    public static final MetaTileEntitySpeedEnhancedRotorHolder[] ROTOR_HOLDER_SPEEDED = new MetaTileEntitySpeedEnhancedRotorHolder[GTValues.V.length -
+            1];
 
     public static void init() {
         registerMultiMachine();
@@ -110,25 +117,78 @@ public class GTConsolidateMetaTileEntity {
         // Industrial Coke Oven
         INDUSTRIAL_COKE_OVEN = registerMetaTileEntity(id + 21, new MetaTileEntityIndustrialCokeOven(
                 modId("industrial_coke_oven")));
-        // Alloy Kiln
-        ALLOY_KILN = registerMetaTileEntity(id + 22, new MetaTileEntitySteamAlloyKiln(
-                modId("steam_alloy_kiln")));
+        // Ore Factory
+        ORE_FACTORY[0] = registerMetaTileEntity(id + 22, new MetaTileEntityOreFactory(
+                modId("ore_factory"), false));
+        ORE_FACTORY[1] = registerMetaTileEntity(id + 23, new MetaTileEntityOreFactory(
+                modId("industrial_ore_factory"), true));
     }
 
     public static void registerMultiblockPart() {
         int id = GTConsolidateConfig.id.startMulti + 100;
+        // Filtered Input Bus
         for (int i = 0; i < FILTERED_ITEM_INPUT.length; i++) {
             String voltageName = GTValues.VN[i].toLowerCase();
             FILTERED_ITEM_INPUT[i] = registerMetaTileEntity(id + i, new MetaTileEntityFilteredItemBus(
                     modId("filter_input." + voltageName), i));
-
         }
-        id = id + 10;
+        id = id + FILTERED_ITEM_INPUT.length;
+
+        // More Parallel Hatch
         if (GTConsolidateConfig.feature.addMoreParallel) {
             for (int i = 0; i < MORE_PARALLEL_HATCHES.length; i++) {
                 String name = GTValues.VN[i + 1].toLowerCase();
                 MORE_PARALLEL_HATCHES[i] = registerMetaTileEntity(id + i, new MetaTileEntityMoreParallelHatch(
                         modId("more_parallel_hatch." + name), i + 1));
+            }
+        }
+        id = id + MORE_PARALLEL_HATCHES.length;
+
+        // Rotor Holders
+        boolean addLowTier = GTConsolidateConfig.feature.addLowTierRotorHolders;
+        boolean addHighTier = GTConsolidateConfig.feature.addHighTierRotorHolders;
+        // LV and MV Rotor Holder
+        if (addLowTier) {
+            for (int i = 0; i < ROTOR_HOLDERS_LOW.length; i++) {
+                ROTOR_HOLDERS_LOW[i] = registerMetaTileEntity(id + i,
+                        new MetaTileEntityRotorHolder(modId("rotor_holder." + GTValues.VN[1 + i].toLowerCase()),
+                                1 + i));
+            }
+        }
+        id = id + 2;
+
+        // UHV+ Rotor Holders
+        if (addHighTier) {
+            ROTOR_HOLDERS_HI[0] = registerMetaTileEntity(id, new MetaTileEntityRotorHolder(
+                    modId("rotor_holder.uhv"), GTValues.UHV));
+            if (GregTechAPI.isHighTier()) {
+                for (int i = 1; i < ROTOR_HOLDERS_HI.length - 1; i++) {
+                    ROTOR_HOLDERS_HI[i] = registerMetaTileEntity(id + i,
+                            new MetaTileEntityRotorHolder(modId("rotor_holder." + GTValues.VN[i + 9].toLowerCase()),
+                                    9 + i));
+                }
+            }
+        }
+        id = id + ROTOR_HOLDERS_HI.length - 1;
+
+        int start = addLowTier ? GTValues.LV - 1 : GTValues.HV - 1;
+        int end = addHighTier ? GregTechAPI.isHighTier() ? GTValues.MAX : GTValues.UHV : GTValues.UV;
+        // Power Enhanced Rotor Holders
+        if (GTConsolidateConfig.feature.addPowerEnhancedRotorHolders) {
+            for (int i = start; i < end; i++) {
+                ROTOR_HOLDER_POWERED[i] = registerMetaTileEntity(id + i,
+                        new MetaTileEntityPowerEnhancedRotorHolder(
+                                modId("power_enhanced_rotor_holder." + GTValues.VN[i + 1].toLowerCase()), i + 1));
+            }
+        }
+        id = id + ROTOR_HOLDER_POWERED.length;
+
+        // Speed Enhanced Rotor Holders
+        if (GTConsolidateConfig.feature.addSpeedEnhancedRotorHolders) {
+            for (int i = start; i < end; i++) {
+                ROTOR_HOLDER_SPEEDED[i] = registerMetaTileEntity(id + i,
+                        new MetaTileEntitySpeedEnhancedRotorHolder(
+                                modId("speed_enhanced_rotor_holder." + GTValues.VN[i + 1].toLowerCase()), i + 1));
             }
         }
     }
