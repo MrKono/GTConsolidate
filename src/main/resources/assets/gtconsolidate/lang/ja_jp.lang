@@ -222,7 +222,7 @@ gtconsolidate.machine.extended_processing_array.tooltip.1=設定した機械を�
 
 # Industrial Bricked Blast Furnace
 gtconsolidate.machine.industrial_bbf.tooltip.1=高さでボーナスは入るが、大きければ良いというものでもない。
-gtconsolidate.machine.industrial_bbf.tooltip.2=高さに応じて§d並列処理数数§7が変化する (最大§b64§7)。
+gtconsolidate.machine.industrial_bbf.tooltip.2=高さに応じて§d並列処理数§7が変化する (最大§b64§7)。
 gtconsolidate.machine.industrial_bbf.tooltip.3=高さに応じて§d動作速度§7にボーナスがかかる (最大§b+500§7%%)。
 
 # Industrial Coke Oven

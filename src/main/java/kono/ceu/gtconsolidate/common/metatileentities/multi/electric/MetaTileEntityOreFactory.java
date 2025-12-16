@@ -161,7 +161,7 @@ public class MetaTileEntityOreFactory extends GCYMRecipeMapMultiblockController 
             tooltip.add(I18n.format("gtconsolidate.machine.ore_factory.tooltip.process5"));
             tooltip.add(I18n.format("gtconsolidate.machine.ore_factory.tooltip.process6"));
             tooltip.add(I18n.format("gtconsolidate.machine.ore_factory.tooltip.process7"));
-            tooltip.add(I18n.format("mgtconsolidate.machine.ore_factory.tooltip.process8"));
+            tooltip.add(I18n.format("gtconsolidate.machine.ore_factory.tooltip.process8"));
             if (ConfigHolder.recipes.generateLowQualityGems) {
                 tooltip.add(I18n.format("gtconsolidate.machine.ore_factory.tooltip.process9"));
             }
