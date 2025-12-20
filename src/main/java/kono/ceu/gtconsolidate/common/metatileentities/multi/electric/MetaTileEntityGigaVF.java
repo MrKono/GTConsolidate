@@ -5,11 +5,6 @@ import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate
 import java.util.ArrayList;
 import java.util.List;
 
-import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
-import gregtech.api.pattern.PatternMatchContext;
-import gregtech.api.util.TextComponentUtil;
-import gregtech.api.util.TextFormattingUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -32,7 +27,10 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.TextComponentUtil;
+import gregtech.api.util.TextFormattingUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
