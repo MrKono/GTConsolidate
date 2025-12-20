@@ -270,6 +270,7 @@ gtconsolidate.multiblock.parallel_extended_hover=Number of parallels this machin
 gtconsolidate.multiblock.recipe_outputs=Outputs: %s
 gtconsolidate.multiblock.recipe_outputs_hover=Output per parallel. The actual output is multiplied by Current Parallel.
 gtconsolidate.multiblock.speed_bonus=Speed Bonus: %f%%§f
+gtconsolidate.multiblock.temperature=Temperature: %s
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r

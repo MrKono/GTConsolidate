@@ -270,6 +270,7 @@ gtconsolidate.multiblock.parallel_extended_hover=この機械の並列処理数�
 gtconsolidate.multiblock.recipe_outputs=作成中: %s
 gtconsolidate.multiblock.recipe_outputs_hover=1動作あたりの作成数です。総作成数は現在の並列処理数をかけてください。
 gtconsolidate.multiblock.speed_bonus=速度ボーナス: %f%%§f
+gtconsolidate.multiblock.temperature=温度: %s
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§c部品組立外装は全て同じでなければならない§r

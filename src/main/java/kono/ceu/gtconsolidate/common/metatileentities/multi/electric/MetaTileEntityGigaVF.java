@@ -5,11 +5,19 @@ import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate
 import java.util.ArrayList;
 import java.util.List;
 
+import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
+import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
+import gregtech.api.pattern.PatternMatchContext;
+import gregtech.api.util.TextComponentUtil;
+import gregtech.api.util.TextFormattingUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import org.jetbrains.annotations.NotNull;
@@ -43,6 +51,10 @@ import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 
 public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
+
+    private final int MAX_TEMPERATURE = 298;
+    private final int MIN_TEMPERATURE = 10;
+    private int temp = MAX_TEMPERATURE;
 
     public MetaTileEntityGigaVF(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, GTConsolidateRecipeMaps.ABSOLUTE_VACUUM_RECIPE);
@@ -139,7 +151,19 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
         builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
                 .addEnergyUsageLine(getEnergyContainer())
                 .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
-                .addEnergyUsageExactLine(recipeMapWorkable.getInfoProviderEUt());
+                .addEnergyUsageExactLine(recipeMapWorkable.getInfoProviderEUt()).addCustom(tl -> {
+                    // Coil heat capacity line
+                    if (isStructureFormed()) {
+                        ITextComponent heatString = TextComponentUtil.stringWithColor(
+                                TextFormatting.RED,
+                                TextFormattingUtil.formatNumbers(temp) + "K");
+
+                        tl.add(TextComponentUtil.translationWithColor(
+                                TextFormatting.GRAY,
+                                "gtconsolidate.multiblock.temperature",
+                                heatString));
+                    }
+                });;
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
         builder.addWorkingStatusLine();
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
@@ -151,5 +175,66 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18n.format("gtconsolidate.machine.absolute_freezer.tooltip.1"));
         tooltip.add(I18n.format("gtconsolidate.multiblock.accept_64a"));
+    }
+
+    @Override
+    protected void formStructure(PatternMatchContext context) {
+        super.formStructure(context);
+    }
+
+    @Override
+    protected void updateFormedValid() {
+        super.updateFormedValid();
+        if (this.recipeMapWorkable.isWorking()) {
+            if (temp > MIN_TEMPERATURE) {
+                if (getOffsetTimer() % 100 == 0) {
+                    temp -= 1;
+                }
+            }
+        } else {
+            if (temp < MAX_TEMPERATURE) {
+                if (getOffsetTimer() % 20 == 0) {
+                    temp += 1;
+                }
+            }
+        }
+        recipeMapWorkable.setEUDiscount(getFactor(temp));
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound data) {
+        data.setInteger("temp", temp);
+        return super.writeToNBT(data);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound data) {
+        temp = data.getInteger("temp");
+        super.readFromNBT(data);
+    }
+
+    @Override
+    public void writeInitialSyncData(PacketBuffer buf) {
+        super.writeInitialSyncData(buf);
+        buf.writeInt(temp);
+    }
+
+    @Override
+    public void receiveInitialSyncData(PacketBuffer buf) {
+        super.receiveInitialSyncData(buf);
+        temp = buf.readInt();
+    }
+
+    private double getFactor(int temp) {
+        double minT = MIN_TEMPERATURE;
+        double maxT = MAX_TEMPERATURE;
+
+        // clamp
+        double t = Math.max(minT, Math.min(maxT, temp));
+
+        double x = (t - minT) / (maxT - minT);
+        double p = 2.5; // 非線形度（調整用）
+
+        return Math.pow(1024.0, -Math.pow(1.0 - x, p));
     }
 }
