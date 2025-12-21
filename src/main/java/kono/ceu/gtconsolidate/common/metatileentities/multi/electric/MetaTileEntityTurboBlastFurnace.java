@@ -10,6 +10,8 @@ import java.util.List;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -60,9 +62,9 @@ import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 
 public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockController implements IHeatingCoil {
 
-    private int blastFurnaceTemperature;
     private int baseTemperature;
     private int defaultTemperature;
+    private int blastFurnaceTemperature = defaultTemperature;
 
     public MetaTileEntityTurboBlastFurnace(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, GTConsolidateRecipeMaps.TURBO_BLAST_RECIPE);
@@ -112,7 +114,6 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
         this.baseTemperature = this.defaultTemperature;
         this.defaultTemperature += 100 *
                 Math.max(0, GTUtility.getTierByVoltage(getEnergyContainer().getInputVoltage()) - GTValues.MV);
-        this.blastFurnaceTemperature = this.defaultTemperature;
     }
 
     @Override
@@ -336,6 +337,30 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
                         this.blastFurnaceTemperature - bounce * 10);
             }
         }
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound data) {
+        data.setInteger("temp", blastFurnaceTemperature);
+        return super.writeToNBT(data);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound data) {
+        blastFurnaceTemperature = data.getInteger("temp");
+        super.readFromNBT(data);
+    }
+
+    @Override
+    public void writeInitialSyncData(PacketBuffer buf) {
+        super.writeInitialSyncData(buf);
+        buf.writeInt(blastFurnaceTemperature);
+    }
+
+    @Override
+    public void receiveInitialSyncData(PacketBuffer buf) {
+        super.receiveInitialSyncData(buf);
+        blastFurnaceTemperature = buf.readInt();
     }
 
     @Override
