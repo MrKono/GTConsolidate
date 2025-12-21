@@ -90,11 +90,18 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
                         ITextComponent heatString = TextComponentUtil.stringWithColor(
                                 TextFormatting.RED,
                                 TextFormattingUtil.formatNumbers(blastFurnaceTemperature) + "K");
-
-                        tl.add(TextComponentUtil.translationWithColor(
+                        ITextComponent body = TextComponentUtil.translationWithColor(
                                 TextFormatting.GRAY,
                                 "gregtech.multiblock.blast_furnace.max_temperature",
-                                heatString));
+                                heatString);
+                        ITextComponent initialHeatString = TextComponentUtil.stringWithColor(
+                                TextFormatting.RED,
+                                TextFormattingUtil.formatNumbers(initialTemperature) + "K");
+                        ITextComponent hover = TextComponentUtil.translationWithColor(
+                                TextFormatting.GRAY,
+                                "gtconsolidate.multiblock.initial_temperature",
+                                initialHeatString);
+                        tl.add(TextComponentUtil.setHover(body, hover));
                     }
                 });
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
@@ -339,6 +346,7 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
                         this.blastFurnaceTemperature - bounce * 10);
             }
         }
+        setTemperatureBonus(initialTemperature, blastFurnaceTemperature);
     }
 
     @Override
@@ -372,6 +380,18 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
     @Override
     public int getCurrentTemperature() {
         return blastFurnaceTemperature;
+    }
+
+    private void setTemperatureBonus(int baseTemp, int currentTemp) {
+        double ratio = (double) currentTemp / baseTemp;
+
+        // For every doubling, multiply duration by 0.95.
+        double durationBonus = Math.pow(0.9, (int) Math.floor(Math.log(ratio) / Math.log(2)));
+        // For every 5 times, multiply EUt by 0.5
+        double eutBonus = Math.pow(0.5, (int) Math.floor(Math.log(ratio) / Math.log(5)));
+
+        recipeMapWorkable.setSpeedBonus(durationBonus);
+        recipeMapWorkable.setEUDiscount(eutBonus);
     }
 
     @SuppressWarnings("InnerClassMayBeStatic")
