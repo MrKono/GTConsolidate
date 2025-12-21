@@ -206,6 +206,8 @@ gregtech.multiblock.turbo_blast_furnace.description=Note: Due to recipe conflict
 
 # Absolute Freezer
 gtconsolidate.machine.absolute_freezer.tooltip.1=Refrigerant-free freezer.
+gtconsolidate.machine.absolute_freezer.pre_cooling.on=Turn §aon§f the §bPre-Cooling§f.
+gtconsolidate.machine.absolute_freezer.pre_cooling.off=Turn §coff§f the §bPre-Cooling§f.
 
 # Circuit Factory
 gtconsolidate.machine.circuit_factory.tooltip.1=Ultra-precision machine
@@ -271,6 +273,8 @@ gtconsolidate.multiblock.recipe_outputs=Outputs: %s
 gtconsolidate.multiblock.recipe_outputs_hover=Output per parallel. The actual output is multiplied by Current Parallel.
 gtconsolidate.multiblock.speed_bonus=Speed Bonus: %f%%§f
 gtconsolidate.multiblock.temperature=Temperature: %s
+gtconsolidate.multiblock.pre_cooling=Pre-Cooling Mode: %s
+gtconsolidate.multiblock.pre_cooling.hover=When enabled, it consumes §3UV §e1A§7 to lower the temperature.
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r
@@ -283,3 +287,6 @@ recipemap.circuit_factory.name=Circuit Factory
 recipemap.ore_factory.name=Ore Processing Factory
 
 gtconsolidate.recipe.coa=Minimum Casing Tier: %s
+
+gtconsolidate.universal.enabled=Enabled
+gtconsolidate.universal.disabled=Disabled

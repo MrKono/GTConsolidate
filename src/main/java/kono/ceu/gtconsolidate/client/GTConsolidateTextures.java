@@ -5,6 +5,7 @@ import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.MODID;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.relauncher.Side;
 
+import gregtech.api.gui.resources.TextureArea;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 
 @Mod.EventBusSubscriber(modid = MODID, value = Side.CLIENT)
@@ -26,6 +27,8 @@ public class GTConsolidateTextures {
     public static SimpleOverlayRenderer AMERICIUM_PIPE;
     public static SimpleOverlayRenderer IRIDIUM_GEARBOX;
     public static SimpleOverlayRenderer AMERICIUM_GEARBOX;
+
+    public static TextureArea BUTTON_PRE_COOLING;
 
     public static void preInit() {
         PARALLELIZED_ASSEMBLY_LINE_CASING = new SimpleOverlayRenderer(
@@ -52,5 +55,6 @@ public class GTConsolidateTextures {
         AMERICIUM_PIPE = new SimpleOverlayRenderer("casings/pipe/pipe_americium");
         IRIDIUM_GEARBOX = new SimpleOverlayRenderer("casings/gearbox/gearbox_iridium");
         AMERICIUM_GEARBOX = new SimpleOverlayRenderer("casings/gearbox/gearbox_americium");
+        BUTTON_PRE_COOLING = TextureArea.fullImage("textures/gui/widget/pre_cooling.png");
     }
 }
