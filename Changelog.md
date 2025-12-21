@@ -1,6 +1,8 @@
 ## Changelog
 ### 1.1.1.1-beta
 - **Fix** typo.
+- **Refactor** _Absolute Freezer_.
+  - _**It no longer constantly consumes UEV.**_
 ---
 
 ### 1.1.1-beta
