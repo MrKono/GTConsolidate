@@ -65,6 +65,7 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
     private int baseTemperature;
     private int defaultTemperature;
     private int blastFurnaceTemperature = defaultTemperature;
+    private int initialTemperature;
 
     public MetaTileEntityTurboBlastFurnace(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, GTConsolidateRecipeMaps.TURBO_BLAST_RECIPE);
@@ -114,6 +115,7 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
         this.baseTemperature = this.defaultTemperature;
         this.defaultTemperature += 100 *
                 Math.max(0, GTUtility.getTierByVoltage(getEnergyContainer().getInputVoltage()) - GTValues.MV);
+        this.initialTemperature = this.defaultTemperature;
     }
 
     @Override
@@ -331,7 +333,7 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
             if (isActive()) {
                 long maxTemperature = Integer.MAX_VALUE;
                 this.blastFurnaceTemperature = (int) Math.min(maxTemperature,
-                        (long) this.blastFurnaceTemperature + bounce);
+                        (long) this.blastFurnaceTemperature + bounce * 10000L);
             } else {
                 this.blastFurnaceTemperature = Math.max(this.defaultTemperature,
                         this.blastFurnaceTemperature - bounce * 10);
@@ -342,12 +344,14 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         data.setInteger("temp", blastFurnaceTemperature);
+        data.setInteger("initialTemp", initialTemperature);
         return super.writeToNBT(data);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound data) {
         blastFurnaceTemperature = data.getInteger("temp");
+        initialTemperature = data.getInteger("initialTemp");
         super.readFromNBT(data);
     }
 
@@ -355,17 +359,19 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
     public void writeInitialSyncData(PacketBuffer buf) {
         super.writeInitialSyncData(buf);
         buf.writeInt(blastFurnaceTemperature);
+        buf.writeInt(initialTemperature);
     }
 
     @Override
     public void receiveInitialSyncData(PacketBuffer buf) {
         super.receiveInitialSyncData(buf);
         blastFurnaceTemperature = buf.readInt();
+        initialTemperature = buf.readInt();
     }
 
     @Override
     public int getCurrentTemperature() {
-        return this.blastFurnaceTemperature;
+        return blastFurnaceTemperature;
     }
 
     @SuppressWarnings("InnerClassMayBeStatic")
