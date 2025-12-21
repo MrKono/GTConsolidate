@@ -194,6 +194,9 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18n.format("gtconsolidate.machine.absolute_freezer.tooltip.1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.absolute_freezer.tooltip.2"));
+        tooltip.add(I18n.format("gtconsolidate.machine.absolute_freezer.tooltip.3"));
+        tooltip.add(I18n.format("gtconsolidate.machine.absolute_freezer.tooltip.4"));
         tooltip.add(I18n.format("gtconsolidate.multiblock.accept_64a"));
     }
 
@@ -207,14 +210,14 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
         super.updateFormedValid();
         if (this.recipeMapWorkable.isWorking()) {
             if (temp > MIN_TEMPERATURE) {
-                if (getOffsetTimer() % 100 == 0) {
+                if (getOffsetTimer() % 40 == 0) {
                     temp -= 1;
                 }
             }
         } else if (preCooling) {
             if (temp > MIN_TEMPERATURE) {
                 hasEnoughEnergy = drainEnergy();
-                if (drainEnergy() && getOffsetTimer() % 40 == 0) {
+                if (drainEnergy() && getOffsetTimer() % 200 == 0) {
                     temp -= 1;
                 }
             } else {
