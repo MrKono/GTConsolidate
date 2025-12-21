@@ -206,6 +206,11 @@ gregtech.multiblock.turbo_blast_furnace.description=注意：レシピの競合�
 
 # Absolute Freezer
 gtconsolidate.machine.absolute_freezer.tooltip.1=冷媒不要の冷却機
+gtconsolidate.machine.absolute_freezer.tooltip.2=稼働中の場合、§b温度§7が§c0.5 K/s§7で低下する。
+gtconsolidate.machine.absolute_freezer.tooltip.3=停止中の場合、§b温度§7が§c1.0 K/s§7で上昇する。
+gtconsolidate.machine.absolute_freezer.tooltip.4=温度が低いほど§eエネルギー使用量§7が低下する。
+gtconsolidate.machine.absolute_freezer.pre_cooling.on=§b予備冷却§fを§a有効§fにする。
+gtconsolidate.machine.absolute_freezer.pre_cooling.off=§b予備冷却§fを§c無効§fにする。
 
 # Circuit Factory
 gtconsolidate.machine.circuit_factory.tooltip.1=超精密機械
@@ -270,6 +275,9 @@ gtconsolidate.multiblock.parallel_extended_hover=この機械の並列処理数�
 gtconsolidate.multiblock.recipe_outputs=作成中: %s
 gtconsolidate.multiblock.recipe_outputs_hover=1動作あたりの作成数です。総作成数は現在の並列処理数をかけてください。
 gtconsolidate.multiblock.speed_bonus=速度ボーナス: %f%%§f
+gtconsolidate.multiblock.temperature=温度: %s
+gtconsolidate.multiblock.pre_cooling=予備冷却: %s
+gtconsolidate.multiblock.pre_cooling.hover=有効の場合、§3UV §e1A§7を消費して温度を10秒ごとに1 K低下させる。
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§c部品組立外装は全て同じでなければならない§r
@@ -282,3 +290,6 @@ recipemap.circuit_factory.name=回路工房
 recipemap.ore_factory.name=鉱石処理ファクトリー
 
 gtconsolidate.recipe.coa=外装の最小Tier: %s
+
+gtconsolidate.universal.enabled=有効
+gtconsolidate.universal.disabled=無効
