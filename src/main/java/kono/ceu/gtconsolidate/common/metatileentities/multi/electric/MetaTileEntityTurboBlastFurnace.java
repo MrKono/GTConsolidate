@@ -333,7 +333,7 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
             if (isActive()) {
                 long maxTemperature = Integer.MAX_VALUE;
                 this.blastFurnaceTemperature = (int) Math.min(maxTemperature,
-                        (long) this.blastFurnaceTemperature + bounce * 10000L);
+                        (long) this.blastFurnaceTemperature + bounce);
             } else {
                 this.blastFurnaceTemperature = Math.max(this.defaultTemperature,
                         this.blastFurnaceTemperature - bounce * 10);
