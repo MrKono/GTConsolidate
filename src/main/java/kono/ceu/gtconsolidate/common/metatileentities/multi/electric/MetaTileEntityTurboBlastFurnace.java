@@ -360,7 +360,7 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
         if (!getWorld().isRemote) {
             if (isActive() && getOffsetTimer() % 20 == 0L) {
                 if (blastFurnaceTemperature < maxTemperature) {
-                    blastFurnaceTemperature += bounce;
+                    blastFurnaceTemperature += bounce * 5;
                 }
             } else {
                 if (preHeating && blastFurnaceTemperature < maxTemperature && getOffsetTimer() % 20 == 0L) {
