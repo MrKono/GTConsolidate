@@ -215,13 +215,15 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
                 }
             }
         } else if (preCooling) {
-            if (temp > MIN_TEMPERATURE) {
+            if (temp > MIN_TEMPERATURE && getOffsetTimer() % 20 == 0) {
                 hasEnoughEnergy = drainEnergy();
-                if (drainEnergy() && getOffsetTimer() % 200 == 0) {
-                    temp -= 1;
+                if (getOffsetTimer() % 200 == 0) {
+                    if (drainEnergy()) {
+                        temp -= 1;
+                    } else {
+                        temp += 1;
+                    }
                 }
-            } else {
-                hasEnoughEnergy = true;
             }
         } else {
             if (temp < MAX_TEMPERATURE) {
@@ -280,7 +282,7 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
 
     private boolean drainEnergy() {
         if (energyContainer.getEnergyStored() >= preCoolingCost) {
-            energyContainer.removeEnergy(preCoolingCost);
+            energyContainer.removeEnergy(preCoolingCost * 20);
             return true;
         }
         return false;
