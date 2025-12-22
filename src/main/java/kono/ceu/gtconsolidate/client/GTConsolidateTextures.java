@@ -29,6 +29,7 @@ public class GTConsolidateTextures {
     public static SimpleOverlayRenderer AMERICIUM_GEARBOX;
 
     public static TextureArea BUTTON_PRE_COOLING;
+    public static TextureArea BUTTON_PRE_HEATING;
 
     public static void preInit() {
         PARALLELIZED_ASSEMBLY_LINE_CASING = new SimpleOverlayRenderer(
@@ -56,5 +57,6 @@ public class GTConsolidateTextures {
         IRIDIUM_GEARBOX = new SimpleOverlayRenderer("casings/gearbox/gearbox_iridium");
         AMERICIUM_GEARBOX = new SimpleOverlayRenderer("casings/gearbox/gearbox_americium");
         BUTTON_PRE_COOLING = TextureArea.fullImage("textures/gui/widget/pre_cooling.png");
+        BUTTON_PRE_HEATING = TextureArea.fullImage("textures/gui/widget/pre_heating.png");
     }
 }

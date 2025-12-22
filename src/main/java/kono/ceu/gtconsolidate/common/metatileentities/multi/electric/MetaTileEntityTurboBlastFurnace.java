@@ -1,6 +1,7 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
+import static gregtech.client.utils.TooltipHelper.isCtrlDown;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.energyHatchLimit;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateUtil.*;
 
@@ -10,6 +11,8 @@ import java.util.List;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -24,6 +27,8 @@ import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.IHeatingCoil;
 import gregtech.api.capability.IMufflerHatch;
 import gregtech.api.capability.impl.EnergyContainerList;
+import gregtech.api.gui.Widget;
+import gregtech.api.gui.widgets.ImageCycleButtonWidget;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -55,14 +60,19 @@ import gregicality.multiblocks.common.block.blocks.BlockUniqueCasing;
 
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
+import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 
 public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockController implements IHeatingCoil {
 
-    private int blastFurnaceTemperature;
     private int baseTemperature;
     private int defaultTemperature;
+    private int blastFurnaceTemperature = defaultTemperature;
+    private int initialTemperature;
+    private boolean preHeating = false;
+    private final long preHeatingCost = GTValues.V[GTValues.UV];
+    private boolean hasEnoughEnergy;
 
     public MetaTileEntityTurboBlastFurnace(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, GTConsolidateRecipeMaps.TURBO_BLAST_RECIPE);
@@ -87,15 +97,62 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
                         ITextComponent heatString = TextComponentUtil.stringWithColor(
                                 TextFormatting.RED,
                                 TextFormattingUtil.formatNumbers(blastFurnaceTemperature) + "K");
-
-                        tl.add(TextComponentUtil.translationWithColor(
+                        ITextComponent body = TextComponentUtil.translationWithColor(
                                 TextFormatting.GRAY,
                                 "gregtech.multiblock.blast_furnace.max_temperature",
-                                heatString));
+                                heatString);
+
+                        ITextComponent initialHeatString = TextComponentUtil.stringWithColor(
+                                TextFormatting.RED,
+                                TextFormattingUtil.formatNumbers(initialTemperature) + "K");
+                        ITextComponent hover1 = TextComponentUtil.translationWithColor(
+                                TextFormatting.GRAY,
+                                "gtconsolidate.multiblock.initial_temperature",
+                                initialHeatString);
+
+                        ITextComponent tempIncreaseString = TextComponentUtil.stringWithColor(
+                                TextFormatting.AQUA,
+                                "+" + TextFormattingUtil.formatNumbers(getBonus() * 5) + "K/s");
+                        ITextComponent hover_active = TextComponentUtil.translationWithColor(
+                                TextFormatting.GRAY,
+                                "gtconsolidate.multiblock.temperature_change",
+                                tempIncreaseString);
+                        ITextComponent tempDecreaseString = TextComponentUtil.stringWithColor(
+                                TextFormatting.AQUA,
+                                "-" + TextFormattingUtil.formatNumbers(getBonus() * 10) + "K/s");
+                        ITextComponent hover_not_active = TextComponentUtil.translationWithColor(
+                                TextFormatting.GRAY,
+                                "gtconsolidate.multiblock.temperature_change",
+                                tempDecreaseString);
+
+                        ITextComponent hoverString = recipeMapWorkable.isActive() && isActive() ?
+                                hover1.appendText("\n").appendSibling(hover_active) :
+                                preHeating ? hover1 : hover1.appendText("\n").appendSibling(hover_not_active);
+                        tl.add(TextComponentUtil.setHover(body, hoverString));
                     }
                 });
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
-        builder.addWorkingStatusLine();
+        builder.addWorkingStatusLine()
+                .addCustom(tl -> {
+                    if (!isActive()) {
+                        ITextComponent status = TextComponentUtil.translationWithColor(
+                                preHeating ? TextFormatting.GREEN : TextFormatting.RED,
+                                preHeating ? "gtconsolidate.universal.enabled" : "gtconsolidate.universal.disabled");
+
+                        ITextComponent body = TextComponentUtil.translationWithColor(
+                                TextFormatting.GRAY,
+                                "gtconsolidate.multiblock.pre_heating", status);
+
+                        ITextComponent heatChangeString = TextComponentUtil.stringWithColor(
+                                TextFormatting.RED,
+                                TextFormattingUtil.formatNumbers(getBonus()) + "K");
+                        ITextComponent hover = TextComponentUtil.translationWithColor(
+                                TextFormatting.GRAY,
+                                "gtconsolidate.multiblock.pre_heating.hover", heatChangeString);
+
+                        tl.add(TextComponentUtil.setHover(body, hover));
+                    }
+                });
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
         ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
     }
@@ -112,7 +169,7 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
         this.baseTemperature = this.defaultTemperature;
         this.defaultTemperature += 100 *
                 Math.max(0, GTUtility.getTierByVoltage(getEnergyContainer().getInputVoltage()) - GTValues.MV);
-        this.blastFurnaceTemperature = this.defaultTemperature;
+        this.initialTemperature = this.defaultTemperature;
     }
 
     @Override
@@ -278,11 +335,21 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.1"));
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"));
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"));
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"));
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.2"));
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.3"));
+        if (isCtrlDown()) {
+            tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"));
+            tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"));
+            tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"));
+        } else {
+            tooltip.add((I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.ctrl")));
+        }
+        if (isAltDown()) {
+            tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.5"));
+            tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.6"));
+        } else {
+            tooltip.add((I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.alt")));
+        }
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.4"));
         tooltip.add(I18n.format("gtconsolidate.multiblock.accept_64a"));
         if (isTABDown()) {
@@ -325,22 +392,119 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
     @Override
     protected void updateFormedValid() {
         super.updateFormedValid();
-        int bounce = baseTemperature / 100;
-        if (!getWorld().isRemote && getOffsetTimer() % 20 == 0L) {
-            if (isActive()) {
-                long maxTemperature = Integer.MAX_VALUE;
-                this.blastFurnaceTemperature = (int) Math.min(maxTemperature,
-                        (long) this.blastFurnaceTemperature + bounce);
+        int bounce = getBonus();
+        long maxTemperature = Integer.MAX_VALUE;
+        if (!getWorld().isRemote) {
+            if (isActive() && getOffsetTimer() % 20 == 0L) {
+                if (blastFurnaceTemperature < maxTemperature) {
+                    blastFurnaceTemperature += bounce * 5;
+                }
             } else {
-                this.blastFurnaceTemperature = Math.max(this.defaultTemperature,
-                        this.blastFurnaceTemperature - bounce * 10);
+                if (preHeating && blastFurnaceTemperature < maxTemperature && getOffsetTimer() % 20 == 0L) {
+                    hasEnoughEnergy = drainEnergy();
+                    if (getOffsetTimer() % 100 == 0L) {
+                        if (drainEnergy()) {
+                            blastFurnaceTemperature += bounce;
+                        } else {
+                            blastFurnaceTemperature -= bounce;
+                        }
+                    }
+                } else {
+                    if (getOffsetTimer() % 20 == 0L) {
+                        this.blastFurnaceTemperature = Math.max(this.defaultTemperature,
+                                this.blastFurnaceTemperature - bounce * 10);
+                    }
+                }
             }
         }
+        setTemperatureBonus(initialTemperature, blastFurnaceTemperature);
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound data) {
+        data.setInteger("temp", blastFurnaceTemperature);
+        data.setInteger("initialTemp", initialTemperature);
+        data.setBoolean("preHeating", preHeating);
+        data.setBoolean("hasEnoughEnergy", hasEnoughEnergy);
+        return super.writeToNBT(data);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound data) {
+        blastFurnaceTemperature = data.getInteger("temp");
+        initialTemperature = data.getInteger("initialTemp");
+        preHeating = data.getBoolean("preHeating");
+        hasEnoughEnergy = data.getBoolean("hasEnoughEnergy");
+        super.readFromNBT(data);
+    }
+
+    @Override
+    public void writeInitialSyncData(PacketBuffer buf) {
+        super.writeInitialSyncData(buf);
+        buf.writeInt(blastFurnaceTemperature);
+        buf.writeInt(initialTemperature);
+        buf.writeBoolean(preHeating);
+        buf.writeBoolean(hasEnoughEnergy);
+    }
+
+    @Override
+    public void receiveInitialSyncData(PacketBuffer buf) {
+        super.receiveInitialSyncData(buf);
+        blastFurnaceTemperature = buf.readInt();
+        initialTemperature = buf.readInt();
+        preHeating = buf.readBoolean();
+        hasEnoughEnergy = buf.readBoolean();
     }
 
     @Override
     public int getCurrentTemperature() {
-        return this.blastFurnaceTemperature;
+        return blastFurnaceTemperature;
+    }
+
+    private void setTemperatureBonus(int baseTemp, int currentTemp) {
+        double ratio = (double) currentTemp / baseTemp;
+
+        // For every doubling, multiply duration by 0.95.
+        double durationBonus = Math.pow(0.9, (int) Math.floor(Math.log(ratio) / Math.log(2)));
+        // For every 5 times, multiply EUt by 0.5
+        double eutBonus = Math.pow(0.5, (int) Math.floor(Math.log(ratio) / Math.log(5)));
+
+        recipeMapWorkable.setSpeedBonus(durationBonus);
+        recipeMapWorkable.setEUDiscount(eutBonus);
+    }
+
+    private int getBonus() {
+        return baseTemperature / 100;
+    }
+
+    private boolean drainEnergy() {
+        if (energyContainer.getEnergyStored() >= preHeatingCost) {
+            energyContainer.removeEnergy(preHeatingCost * 20);
+            return true;
+        }
+        return false;
+    }
+
+    public int getPreHeatingMode() {
+        return preHeating ? 0 : 1;
+    }
+
+    public void setPreHeatingMode(int mode) {
+        preHeating = mode == 0;
+    }
+
+    @Override
+    protected @NotNull Widget getFlexButton(int x, int y, int width, int height) {
+        return (new ImageCycleButtonWidget(x, y, width, height, GTConsolidateTextures.BUTTON_PRE_HEATING, 2,
+                this::getPreHeatingMode, this::setPreHeatingMode)).setTooltipHoverString((mode) -> {
+                    String tooltip = switch (mode) {
+                        case 0 -> "gtconsolidate.machine.turbo_blast_furnace.pre_heating.off";
+                        case 1 -> "gtconsolidate.machine.turbo_blast_furnace.pre_heating.on";
+                        default -> "";
+                    };
+
+                    return tooltip;
+                });
     }
 
     @SuppressWarnings("InnerClassMayBeStatic")
