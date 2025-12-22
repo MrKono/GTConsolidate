@@ -1,6 +1,7 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
+import static gregtech.client.utils.TooltipHelper.isCtrlDown;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.energyHatchLimit;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateUtil.*;
 
@@ -100,14 +101,34 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
                                 TextFormatting.GRAY,
                                 "gregtech.multiblock.blast_furnace.max_temperature",
                                 heatString);
+
                         ITextComponent initialHeatString = TextComponentUtil.stringWithColor(
                                 TextFormatting.RED,
                                 TextFormattingUtil.formatNumbers(initialTemperature) + "K");
-                        ITextComponent hover = TextComponentUtil.translationWithColor(
+                        ITextComponent hover1 = TextComponentUtil.translationWithColor(
                                 TextFormatting.GRAY,
                                 "gtconsolidate.multiblock.initial_temperature",
                                 initialHeatString);
-                        tl.add(TextComponentUtil.setHover(body, hover));
+
+                        ITextComponent tempIncreaseString = TextComponentUtil.stringWithColor(
+                                TextFormatting.AQUA,
+                                "+" + TextFormattingUtil.formatNumbers(getBonus() * 5) + "K/s");
+                        ITextComponent hover_active = TextComponentUtil.translationWithColor(
+                                TextFormatting.GRAY,
+                                "gtconsolidate.multiblock.temperature_change",
+                                tempIncreaseString);
+                        ITextComponent tempDecreaseString = TextComponentUtil.stringWithColor(
+                                TextFormatting.AQUA,
+                                "-" + TextFormattingUtil.formatNumbers(getBonus() * 10) + "K/s");
+                        ITextComponent hover_not_active = TextComponentUtil.translationWithColor(
+                                TextFormatting.GRAY,
+                                "gtconsolidate.multiblock.temperature_change",
+                                tempDecreaseString);
+
+                        ITextComponent hoverString = recipeMapWorkable.isActive() && isActive() ?
+                                hover1.appendText("\n").appendSibling(hover_active) :
+                                preHeating ? hover1 : hover1.appendText("\n").appendSibling(hover_not_active);
+                        tl.add(TextComponentUtil.setHover(body, hoverString));
                     }
                 });
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
@@ -117,12 +138,18 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
                         ITextComponent status = TextComponentUtil.translationWithColor(
                                 preHeating ? TextFormatting.GREEN : TextFormatting.RED,
                                 preHeating ? "gtconsolidate.universal.enabled" : "gtconsolidate.universal.disabled");
+
                         ITextComponent body = TextComponentUtil.translationWithColor(
                                 TextFormatting.GRAY,
                                 "gtconsolidate.multiblock.pre_heating", status);
+
+                        ITextComponent heatChangeString = TextComponentUtil.stringWithColor(
+                                TextFormatting.RED,
+                                TextFormattingUtil.formatNumbers(getBonus()) + "K");
                         ITextComponent hover = TextComponentUtil.translationWithColor(
                                 TextFormatting.GRAY,
-                                "gtconsolidate.multiblock.pre_heating.hover");
+                                "gtconsolidate.multiblock.pre_heating.hover", heatChangeString);
+
                         tl.add(TextComponentUtil.setHover(body, hover));
                     }
                 });
@@ -308,11 +335,21 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.1"));
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"));
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"));
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"));
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.2"));
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.3"));
+        if (isCtrlDown()) {
+            tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"));
+            tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"));
+            tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"));
+        } else {
+            tooltip.add((I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.ctrl")));
+        }
+        if (isAltDown()) {
+            tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.5"));
+            tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.6"));
+        } else {
+            tooltip.add((I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.alt")));
+        }
         tooltip.add(I18n.format("gtconsolidate.machine.turbo_blast_furnace.tooltip.4"));
         tooltip.add(I18n.format("gtconsolidate.multiblock.accept_64a"));
         if (isTABDown()) {

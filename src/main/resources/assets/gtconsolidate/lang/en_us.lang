@@ -199,10 +199,16 @@ gtconsolidate.machine.mega_furnace.tooltip.2=Can more parallelize with §bParall
 
 # Turbo Rotary Hearth Blast Smelter
 gtconsolidate.machine.turbo_blast_furnace.tooltip.1=Integrated EBF and ABS
-gtconsolidate.machine.turbo_blast_furnace.tooltip.2=If active, §bTemperature§7 increases in §cCoil's Temperature * 0.01§fK/s§7.
-gtconsolidate.machine.turbo_blast_furnace.tooltip.3=If idle, §bTemperature§7 decreases in §cCoil's Temperature * 0.1§fK/s§7.
+gtconsolidate.machine.turbo_blast_furnace.tooltip.2=If active, §bHeat Capacity§7 increases in §cCoil's Heat Capacity * 0.05K/s§7.
+gtconsolidate.machine.turbo_blast_furnace.tooltip.3=If idle, §bHeat Capacity§7 decreases in §cCoil's Heat Capacity * 0.1K/s§7.
 gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eStrongly recommended to enable Distinct Buses.
+gtconsolidate.machine.turbo_blast_furnace.tooltip.5=For every §fdoubling of the Initial Heat Capacity§7, the §erecipe duration§7 is reduced to §f90%%§7
+gtconsolidate.machine.turbo_blast_furnace.tooltip.6=For every §ffivefold increase over the Initial Heat Capacity§7, the §eEnergy Usage§7 is reduced to §f50%%§7.
+gtconsolidate.machine.turbo_blast_furnace.tooltip.ctrl=Hold CTRL to show the §cInitial Heat Capacity Bonus§7.
+gtconsolidate.machine.turbo_blast_furnace.tooltip.alt=Hold ALT to show the §cAdditional Heat Capacity Bonus§7.
 gregtech.multiblock.turbo_blast_furnace.description=Note: Due to recipe conflicts, some recipes have been changed.\n\nSteel Ingot: Some recipes have been required Programmed Circuit in addition.\nYttrium Ingot: Has been required Programmed Circuit in addition.
+gtconsolidate.machine.turbo_blast_furnace.pre_heating.on=Turn §aon§f the §cPre-Heating§f.
+gtconsolidate.machine.turbo_blast_furnace.pre_heating.off=Turn §coff§f the §cPre-Heating§f.
 
 # Absolute Freezer
 gtconsolidate.machine.absolute_freezer.tooltip.1=Refrigerant-free freezer.
@@ -278,6 +284,10 @@ gtconsolidate.multiblock.speed_bonus=Speed Bonus: %f%%§f
 gtconsolidate.multiblock.temperature=Temperature: %s
 gtconsolidate.multiblock.pre_cooling=Pre-Cooling Mode: %s
 gtconsolidate.multiblock.pre_cooling.hover=When enabled, it consumes §3UV §e1A§7 to reduce the temperature by 1 K every 10 seconds.
+gtconsolidate.multiblock.initial_temperature=Initial Heat Capacity: %s
+gtconsolidate.multiblock.temperature_change=Current Heat Change: %s
+gtconsolidate.multiblock.pre_heating=Pre-Heating Mode: %s
+gtconsolidate.multiblock.pre_heating.hover=When enabled, it consumes §3UV §e1A§7 to raise the Heat Capacity by %s every 5 seconds.
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r

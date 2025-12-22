@@ -10,6 +10,10 @@ public class GTConsolidateUtil {
         return Keyboard.isKeyDown(Keyboard.KEY_TAB);
     }
 
+    public static boolean isAltDown() {
+        return Keyboard.isKeyDown(Keyboard.KEY_RMENU) || Keyboard.isKeyDown(Keyboard.KEY_LMENU);
+    }
+
     public static byte getOCTierByVoltage(long voltage) {
         if (voltage <= GTValues.V[GTValues.ULV]) {
             return GTValues.ULV;
