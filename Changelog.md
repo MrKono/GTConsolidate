@@ -3,6 +3,9 @@
 - **Fix** typo.
 - **Refactor** _Absolute Freezer_.
   - _**It no longer constantly consumes UEV.**_
+- **Refactor** _Turbo Rotary Hearth Blast Smelter_.
+  - _**It no longer resets Heat Capacity.**_
+  - _**The increase in heat capacity now makes proper sense.**_
 ---
 
 ### 1.1.1-beta
