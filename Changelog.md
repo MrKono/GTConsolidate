@@ -1,4 +1,9 @@
 ## Changelog
+### 1.1.1.2-beta
+- **Fix** Long Magnetic Neodymium Rod could not be crafted by Polarizer.
+- **Fix** CoA Recipe: Wrong HV Motor's material.
+---
+
 ### 1.1.1.1-beta
 - **Fix** typo.
 - **Refactor** _Absolute Freezer_.
