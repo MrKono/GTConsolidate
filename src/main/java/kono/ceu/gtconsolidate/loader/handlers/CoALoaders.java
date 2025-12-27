@@ -27,7 +27,7 @@ public class CoALoaders {
         registerMotor(Materials.Tin, false, Materials.Steel, Materials.SteelMagnetic, Materials.Copper, false, LV);
         registerMotor(Materials.Copper, false, Materials.Aluminium, Materials.SteelMagnetic, Materials.Cupronickel,
                 true, MV);
-        registerMotor(Materials.Silver, true, Materials.StainlessSteel, Materials.IronMagnetic, Materials.Electrum,
+        registerMotor(Materials.Silver, true, Materials.StainlessSteel, Materials.SteelMagnetic, Materials.Electrum,
                 true, HV);
         registerMotor(Materials.Aluminium, true, Materials.Titanium, Materials.NeodymiumMagnetic, Materials.Kanthal,
                 true, EV);

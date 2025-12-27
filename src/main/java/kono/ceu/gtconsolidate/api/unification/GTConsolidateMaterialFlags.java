@@ -22,6 +22,7 @@ public class GTConsolidateMaterialFlags {
         addFlags(Materials.Trinium, GENERATE_FRAME, GENERATE_DENSE, GENERATE_SMALL_GEAR);
         addFlags(Materials.IronMagnetic, GENERATE_LONG_ROD);
         addFlags(Materials.SteelMagnetic, GENERATE_LONG_ROD);
+        addFlags(Materials.Neodymium, GENERATE_LONG_ROD);
         addFlags(Materials.NeodymiumMagnetic, GENERATE_LONG_ROD);
         addFlags(Materials.Palladium, GENERATE_DENSE);
         addFlags(Materials.Naquadria, GENERATE_DENSE);
