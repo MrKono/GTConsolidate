@@ -21,6 +21,7 @@ public class GTConsolidateMetaBlocks {
     public static BlockGearBoxCasing GEARBOX_CASING;
     public static BlockPipeCasing PIPE_CASING;
     public static BlockTankPart TANK_PART;
+    public static BlockTankWall TANK_WALL;
 
     public static void init() {
         PARALLELIZED_ASSEMBLY_LINE_CASING = new BlockParallelizedAssemblyLineCasing();
@@ -37,6 +38,8 @@ public class GTConsolidateMetaBlocks {
         PIPE_CASING.setRegistryName("pipe_casing");
         TANK_PART = new BlockTankPart();
         TANK_PART.setRegistryName("tank_block");
+        TANK_WALL = new BlockTankWall();
+        TANK_WALL.setRegistryName("tank_wall");
     }
 
     @SideOnly(Side.CLIENT)
@@ -48,6 +51,7 @@ public class GTConsolidateMetaBlocks {
         registerItemModel(GEARBOX_CASING);
         registerItemModel(PIPE_CASING);
         registerItemModel(TANK_PART);
+        registerItemModel(TANK_WALL);
     }
 
     @SideOnly(Side.CLIENT)
