@@ -3,7 +3,6 @@ package kono.ceu.gtconsolidate.common.blocks;
 import gregtech.api.GTValues;
 import gregtech.api.block.VariantBlock;
 import gregtech.api.items.toolitem.ToolClasses;
-import gregtech.api.util.TextFormattingUtil;
 import kono.ceu.gtconsolidate.api.multiblock.ITankData;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -94,7 +93,6 @@ public class BlockTankPart  extends VariantBlock<BlockTankPart.TankPartType> {
 
     public enum TankPartType implements IStringSerializable, ITankData {
 
-
         EMPTY_TIER_I,
         SUPER_I(GTValues.ULV, calCapacity(GTValues.ULV)),
         SUPER_II(GTValues.LV, calCapacity(GTValues.LV)),
@@ -139,6 +137,7 @@ public class BlockTankPart  extends VariantBlock<BlockTankPart.TankPartType> {
             return capacity;
         }
 
+
         // must be separately named because of reobf issue
         @NotNull
         @Override
@@ -152,5 +151,14 @@ public class BlockTankPart  extends VariantBlock<BlockTankPart.TankPartType> {
             return getTankName();
         }
 
+        @NotNull
+        public static TankPartType getTankPartTypeFromTier(int tier) {
+            for (TankPartType type : values()) {
+                if (type.tier == tier) {
+                    return type;
+                }
+            }
+            return EMPTY_TIER_I;
+        }
     }
 }

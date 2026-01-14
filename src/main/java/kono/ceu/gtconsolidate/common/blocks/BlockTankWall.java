@@ -32,27 +32,43 @@ public class BlockTankWall extends
 
     public enum TankWallType implements IStringSerializable {
 
-        MK_I("mk_i"),
-        MK_II("mk_ii"),
-        MK_III("mk_iii"),
-        MK_IV("mk_iv"),
-        MK_V("mk_v"),
-        MK_VI("mk_vi"),
-        MK_VII("mk_vii"),
-        MK_VIII("mk_viii"),
-        MK_IX("mk_ix"),
-        MK_X("mk_x");
+        MK_I("mk_i", 0),
+        MK_II("mk_ii", 1),
+        MK_III("mk_iii", 2),
+        MK_IV("mk_iv", 3),
+        MK_V("mk_v", 4),
+        MK_VI("mk_vi", 5),
+        MK_VII("mk_vii", 6),
+        MK_VIII("mk_viii", 7),
+        MK_IX("mk_ix", 8),
+        MK_X("mk_x", 9);
 
         private final String name;
+        private final int tier;
 
-        TankWallType(String name) {
+        TankWallType(String name, int tier) {
             this.name = name;
+            this.tier = tier;
         }
 
         @NotNull
         @Override
         public String getName() {
             return this.name;
+        }
+
+        public int getTier() {
+            return this.tier;
+        }
+
+        @NotNull
+        public static TankWallType getWallTypeFromTier(int tier) {
+            for (TankWallType type : values()) {
+                if (type.tier == tier) {
+                    return type;
+                }
+            }
+            return MK_I;
         }
     }
 }
