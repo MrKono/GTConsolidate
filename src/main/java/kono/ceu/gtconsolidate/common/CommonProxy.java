@@ -4,6 +4,8 @@ import static kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks.*;
 
 import java.util.function.Function;
 
+import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
+import kono.ceu.gtconsolidate.common.blocks.BlockTankPart;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -42,6 +44,9 @@ public class CommonProxy {
         GTConsolidateMetaBlocks.init();
         RecipeMapModify.modifyRecipeMap();
         RecipeMapModify.modifyRecipeBuild();
+        for (BlockTankPart.TankPartType type : BlockTankPart.TankPartType.values()) {
+            GTConsolidateValues.MULTIBLOCK_INTERNAL_TANKS.put(TANK_PART.getState(type), type);
+        }
     }
 
     public void init(FMLInitializationEvent e) {}
@@ -58,6 +63,7 @@ public class CommonProxy {
         registry.register(MULTIBLOCK_CASING);
         registry.register(GEARBOX_CASING);
         registry.register(PIPE_CASING);
+        registry.register(TANK_PART);
         if (Mods.GregTechFoodOption.isModLoaded()) {
             MetaTileLargeGreenHouse.addGrasses();
         }
@@ -73,6 +79,7 @@ public class CommonProxy {
         registry.register(createItemBlock(MULTIBLOCK_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GEARBOX_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(PIPE_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(TANK_PART, VariantItemBlock::new));
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {

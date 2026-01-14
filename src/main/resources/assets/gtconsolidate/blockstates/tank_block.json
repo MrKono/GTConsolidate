@@ -1,0 +1,101 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_bottom_top"
+  },
+  "variants": {
+    "variant": {
+      "empty_tier_i": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/empty_i_top",
+          "top": "gregtech:blocks/casings/tank_block/empty_i_top",
+          "side": "gregtech:blocks/casings/tank_block/empty_i_side"
+        }
+      },
+      "super_i": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/super_i_top",
+          "top": "gregtech:blocks/casings/tank_block/super_i_top",
+          "side": "gregtech:blocks/casings/tank_block/super_i_side"
+        }
+      },
+      "super_ii": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/super_ii_top",
+          "top": "gregtech:blocks/casings/tank_block/super_ii_top",
+          "side": "gregtech:blocks/casings/tank_block/super_ii_side"
+        }
+      },
+      "super_iii": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/super_iii_top",
+          "top": "gregtech:blocks/casings/tank_block/super_iii_top",
+          "side": "gregtech:blocks/casings/tank_block/super_iii_side"
+        }
+      },
+      "empty_tier_ii": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/empty_ii_top",
+          "top": "gregtech:blocks/casings/tank_block/empty_ii_top",
+          "side": "gregtech:blocks/casings/tank_block/empty_ii_side"
+        }
+      },
+      "super_iv": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/super_iv_top",
+          "top": "gregtech:blocks/casings/tank_block/super_iv_top",
+          "side": "gregtech:blocks/casings/tank_block/super_iv_side"
+        }
+      },
+      "super_v": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/super_v_top",
+          "top": "gregtech:blocks/casings/tank_block/super_v_top",
+          "side": "gregtech:blocks/casings/tank_block/super_v_side"
+        }
+      },
+      "quantum_i": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/quantum_i_top",
+          "top": "gregtech:blocks/casings/tank_block/quantum_i_top",
+          "side": "gregtech:blocks/casings/tank_block/quantum_i_side"
+        }
+      },
+      "empty_tier_iii": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/empty_iii_top",
+          "top": "gregtech:blocks/casings/tank_block/empty_iii_top",
+          "side": "gregtech:blocks/casings/tank_block/empty_iii_side"
+        }
+      },
+      "quantum_ii": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/quantum_ii_top",
+          "top": "gregtech:blocks/casings/tank_block/quantum_ii_top",
+          "side": "gregtech:blocks/casings/tank_block/quantum_ii_side"
+        }
+      },
+      "quantum_iii": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/quantum_iii_top",
+          "top": "gregtech:blocks/casings/tank_block/quantum_iii_top",
+          "side": "gregtech:blocks/casings/tank_block/quantum_iii_side"
+        }
+      },
+      "quantum_iv": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/quantum_iv_top",
+          "top": "gregtech:blocks/casings/tank_block/quantum_iv_top",
+          "side": "gregtech:blocks/casings/tank_block/quantum_iv_side"
+        }
+      },
+      "quantum_v": {
+        "textures": {
+          "bottom": "gregtech:blocks/casings/tank_block/quantum_v_top",
+          "top": "gregtech:blocks/casings/tank_block/quantum_v_top",
+          "side": "gregtech:blocks/casings/tank_block/quantum_v_side"
+        }
+      }
+    }
+  }
+}
