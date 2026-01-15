@@ -29,6 +29,7 @@ import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.blocks.BlockTankPart;
 import kono.ceu.gtconsolidate.common.blocks.BlockTankWall;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
+import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,7 +45,9 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
@@ -102,7 +105,7 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
         return (int) (getCapacity() % MAX);
     }
 
-    private int getTotalTanks() {
+    public int getTotalTanks() {
         int extra = capacityExtraTank() > 0 ? 1 : 0;
         return  numIntMaxTanks() + extra;
     }
@@ -121,7 +124,9 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
                 .aisle("XXXXX", "XXXXX", "XXSXX", "XXXXX", "XXXXX")
                 .where('S', selfPredicate())
                 .where('X', states(getCasingState())
-                        .or(metaTileEntities(getValve()).setMaxGlobalLimited(4).setPreviewCount(2)))
+                        .or(metaTileEntities(MetaTileEntities.STEEL_TANK_VALVE,
+                                GTConsolidateMetaTileEntity.ADVANCED_TANK_VALVE)
+                                .setMaxGlobalLimited(10).setPreviewCount(2)))
                 .where('H', states(getHermeticState()))
                 .where('T', states(getTankState()))
                 .build();
@@ -147,10 +152,6 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
 
     private IBlockState getTankState() {
         return GTConsolidateMetaBlocks.TANK_PART.getState(BlockTankPart.TankPartType.getTankPartTypeFromTier(this.tier));
-    }
-
-    private MetaTileEntity getValve() {
-        return MetaTileEntities.STEEL_TANK_VALVE;
     }
 
     @SideOnly(Side.CLIENT)
@@ -266,14 +267,33 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing side) {
+        int maxPage = getPageSize();
+        int displayPage = this.currentPage < 0 ? 0 : Math.min(this.currentPage, maxPage);
+        int pageGroupStart = (displayPage / 3) * 3;
+        int startIndex = pageGroupStart * PAGE_SIZE;
+        int endIndex = Math.min(startIndex + PAGE_SIZE * 3, this.fluidTankList.getTanks());
+
+        List<IFluidTank> displayTanks = new ArrayList<>();
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
             if (isStructureFormed() && this.fluidTankList.getTanks() > 0) {
-                return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(fluidInventory);
+                for (int i = startIndex; i < endIndex; i++) {
+                    IMultipleTankHandler.MultiFluidTankEntry tankEntry = this.importFluids.getTankAt(i);
+                    displayTanks.add(tankEntry);
+                }
+                return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(new FluidTankList(true, displayTanks));
             } else {
                 return null;
             }
         }
         return super.getCapability(capability, side);
+    }
+
+    @NotNull
+    public IFluidHandler getFluidInventory(int index) {
+        if (index < 1 || index > this.fluidTankList.getTanks()) {
+            return getFluidInventory();
+        }
+        return this.fluidTankList.getTankAt(index - 1);
     }
 
     private int getPageSize() {
