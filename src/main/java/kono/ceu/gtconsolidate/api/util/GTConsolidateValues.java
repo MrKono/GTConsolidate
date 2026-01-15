@@ -1,8 +1,5 @@
 package kono.ceu.gtconsolidate.api.util;
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import kono.ceu.gtconsolidate.api.multiblock.ITankData;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 
@@ -10,6 +7,10 @@ import org.jetbrains.annotations.NotNull;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.Tags;
+import kono.ceu.gtconsolidate.api.multiblock.ITankData;
+
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
 public class GTConsolidateValues {
 

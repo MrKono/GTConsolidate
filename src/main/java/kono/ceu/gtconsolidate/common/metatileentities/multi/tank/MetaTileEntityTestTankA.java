@@ -1,34 +1,8 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.tank;
 
-import codechicken.lib.raytracer.CuboidRayTraceResult;
-import codechicken.lib.render.CCRenderState;
-import codechicken.lib.render.pipeline.IVertexOperation;
-import codechicken.lib.vec.Matrix4;
-import gregtech.api.capability.IMultipleTankHandler;
-import gregtech.api.capability.impl.FilteredFluidHandler;
-import gregtech.api.capability.impl.FluidTankList;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.widgets.*;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.*;
-import gregtech.api.pattern.BlockPattern;
-import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.pattern.PatternMatchContext;
-import gregtech.api.pattern.TraceabilityPredicate;
-import gregtech.api.util.BlockInfo;
-import gregtech.api.util.TextComponentUtil;
-import gregtech.api.util.TextFormattingUtil;
-import gregtech.client.renderer.ICubeRenderer;
-import gregtech.client.renderer.texture.Textures;
-import gregtech.common.blocks.BlockMetalCasing;
-import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.metatileentities.MetaTileEntities;
-import kono.ceu.gtconsolidate.api.capability.impl.FilteredFluidHandlerIndex;
-import kono.ceu.gtconsolidate.api.multiblock.ITankData;
-import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
+import java.util.*;
+import java.util.function.Supplier;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,14 +19,41 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
-import java.util.function.Supplier;
+import gregtech.api.capability.IMultipleTankHandler;
+import gregtech.api.capability.impl.FilteredFluidHandler;
+import gregtech.api.capability.impl.FluidTankList;
+import gregtech.api.gui.GuiTextures;
+import gregtech.api.gui.ModularUI;
+import gregtech.api.gui.Widget;
+import gregtech.api.gui.widgets.*;
+import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.multiblock.*;
+import gregtech.api.pattern.BlockPattern;
+import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.util.BlockInfo;
+import gregtech.api.util.TextComponentUtil;
+import gregtech.api.util.TextFormattingUtil;
+import gregtech.client.renderer.ICubeRenderer;
+import gregtech.client.renderer.texture.Textures;
+import gregtech.common.blocks.BlockMetalCasing;
+import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
+
+import kono.ceu.gtconsolidate.api.multiblock.ITankData;
+import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
+
+import codechicken.lib.raytracer.CuboidRayTraceResult;
+import codechicken.lib.render.CCRenderState;
+import codechicken.lib.render.pipeline.IVertexOperation;
+import codechicken.lib.vec.Matrix4;
 
 public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
 
@@ -74,11 +75,11 @@ public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
     private int currentPage;
     private int factor;
 
-    public  MetaTileEntityTestTankA(ResourceLocation metaTileEntityId) {
+    public MetaTileEntityTestTankA(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId);
         this.currentPage = 0;
         this.factor = 1;
-        //this.capacity = 0;
+        // this.capacity = 0;
         initializeInventory();
     }
 
@@ -103,51 +104,50 @@ public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
             this.exportFluids = this.importFluids = new FluidTankList(true, filteredFluidHandlers);
             this.fluidInventory = this.fluidTankList = new FluidTankList(true, filteredFluidHandlers);
         }
-        //} else {
-           // FilteredFluidHandler tankEmpty = new FilteredFluidHandler(MAX);
-           // this.exportFluids = this.importFluids = new FluidTankList(true, tankEmpty);
-            //this.fluidInventory = tankEmpty;
-       // }
-
+        // } else {
+        // FilteredFluidHandler tankEmpty = new FilteredFluidHandler(MAX);
+        // this.exportFluids = this.importFluids = new FluidTankList(true, tankEmpty);
+        // this.fluidInventory = tankEmpty;
+        // }
     }
 
     /*
-    @Override
-    protected void formStructure(PatternMatchContext context) {
-        super.formStructure(context);
-        //Object type = context.get("TankPartType");
-        /*
+     * @Override
+     * protected void formStructure(PatternMatchContext context) {
+     * super.formStructure(context);
+     * //Object type = context.get("TankPartType");
+     * /*
+     * 
+     * List<ITankData> parts = new ArrayList<>();
+     * for (Map.Entry<String, Object> battery : context.entrySet()) {
+     * if (battery.getKey().startsWith(PMC_TANK_HEADER) &&
+     * battery.getValue() instanceof TankMatchWrapper wrapper) {
+     * for (int i = 0; i < wrapper.amount; i++) {
+     * parts.add(wrapper.partType);
+     * }
+     * }
+     * }
+     * if (parts.isEmpty()) {
+     * // only empty batteries found in the structure
+     * invalidateStructure();
+     * return;
+     * }
+     * /**
+     * if (this.tankBank == null) {
+     * this.tankBank = new TankBank(parts);
+     * } else {
+     * this.tankBank = tankBank.rebuild(parts);
+     * }
+     **/
+    // parts.forEach(tankType -> this.capacity += tankType.getCapacity());
+    // this.capacity = calculateCapacity(parts);
+    // initializeInventory();
 
-        List<ITankData> parts = new ArrayList<>();
-        for (Map.Entry<String, Object> battery : context.entrySet()) {
-            if (battery.getKey().startsWith(PMC_TANK_HEADER) &&
-                    battery.getValue() instanceof TankMatchWrapper wrapper) {
-                for (int i = 0; i < wrapper.amount; i++) {
-                    parts.add(wrapper.partType);
-                }
-            }
-        }
-        if (parts.isEmpty()) {
-            // only empty batteries found in the structure
-            invalidateStructure();
-            return;
-        }
-        /**
-        if (this.tankBank == null) {
-            this.tankBank = new TankBank(parts);
-        } else {
-            this.tankBank = tankBank.rebuild(parts);
-        }
-         **/
-        //parts.forEach(tankType -> this.capacity += tankType.getCapacity());
-        //this.capacity = calculateCapacity(parts);
-        //initializeInventory();
-
-    //}
+    // }
 
     private long getCapacity() {
-        //return tankBank == null ? 0 : tankBank.getCapacity();
-        //return this.capacity;
+        // return tankBank == null ? 0 : tankBank.getCapacity();
+        // return this.capacity;
         return 4000000000L;
     }
 
@@ -161,7 +161,7 @@ public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
 
     private int getTotalTanks() {
         int extra = capacityExtraTank() > 0 ? 1 : 0;
-        return  numIntMaxTanks() + extra;
+        return numIntMaxTanks() + extra;
     }
 
     @Override
@@ -184,7 +184,7 @@ public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
     }
 
     private IBlockState getCasingState() {
-            return MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID);
+        return MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID);
     }
 
     protected static final Supplier<TraceabilityPredicate> TANK_PREDICATE = () -> new TraceabilityPredicate(
@@ -204,20 +204,20 @@ public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
                 }
                 return false;
             }, () -> GTConsolidateValues.MULTIBLOCK_INTERNAL_TANKS.entrySet().stream()
-            .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
-            .map(entry -> new BlockInfo(entry.getKey(), null))
-            .toArray(BlockInfo[]::new))
-            .addTooltips("gregtech.multiblock.pattern.error.batteries");
+                    .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
+                    .map(entry -> new BlockInfo(entry.getKey(), null))
+                    .toArray(BlockInfo[]::new))
+                            .addTooltips("gregtech.multiblock.pattern.error.batteries");
 
     private MetaTileEntity getValve() {
-            return MetaTileEntities.STEEL_TANK_VALVE;
+        return MetaTileEntities.STEEL_TANK_VALVE;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     @NotNull
     public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart) {
-            return Textures.SOLID_STEEL_CASING;
+        return Textures.SOLID_STEEL_CASING;
     }
 
     @Override
@@ -294,7 +294,8 @@ public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
                                     TextFormatting.GRAY, "gtconsolidate.test.2", i + 1, fluidName);
                             ITextComponent hover = TextComponentUtil.translationWithColor(
                                     TextFormatting.GRAY,
-                                    "gtconsolidate.test.3", fluidName, TextFormattingUtil.formatNumbers(amount), TextFormattingUtil.formatNumbers(tankEntry.getCapacity()));
+                                    "gtconsolidate.test.3", fluidName, TextFormattingUtil.formatNumbers(amount),
+                                    TextFormattingUtil.formatNumbers(tankEntry.getCapacity()));
                             tl.add(TextComponentUtil.setHover(body, hover));
                         }
                     }
@@ -397,12 +398,14 @@ public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
      * custom buttons specific to this implementation.
      * </p>
      *
-     * <p><b>Main modifications:</b></p>
+     * <p>
+     * <b>Main modifications:</b>
+     * </p>
      * <ul>
-     *   <li>Increase the GUI background width by +10.</li>
-     *   <li>Increase the display area width by +10.</li>
-     *   <li>Adjust related widgets to follow the expanded display size.</li>
-     *   <li>Replace unused default buttons with custom buttons.</li>
+     * <li>Increase the GUI background width by +10.</li>
+     * <li>Increase the display area width by +10.</li>
+     * <li>Adjust related widgets to follow the expanded display size.</li>
+     * <li>Replace unused default buttons with custom buttons.</li>
      * </ul>
      */
     @Override
@@ -435,7 +438,7 @@ public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
         // Originally the Distinct Buses Button, but it is unnecessary here,
         // so it is replaced with a custom button.
         // The third argument (width) is increased by +10.
-        builder.widget(getPageButton(173, 153, 18 ,18 ));
+        builder.widget(getPageButton(173, 153, 18, 18));
         // Factor change button.
         // Uses the provided getFlexButton method.
         // The third argument (width) is increased by +10.
@@ -450,9 +453,9 @@ public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
         /*
-        if (tankBank != null) {
-            data.setTag(NBT_TANK_BANK, tankBank.writeToNBT(new NBTTagCompound()));
-        }
+         * if (tankBank != null) {
+         * data.setTag(NBT_TANK_BANK, tankBank.writeToNBT(new NBTTagCompound()));
+         * }
          */
         return data;
     }
@@ -461,9 +464,9 @@ public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
         /*
-        if (data.hasKey(NBT_TANK_BANK)) {
-            tankBank = new TankBank(data.getCompoundTag(NBT_TANK_BANK));
-        }
+         * if (data.hasKey(NBT_TANK_BANK)) {
+         * tankBank = new TankBank(data.getCompoundTag(NBT_TANK_BANK));
+         * }
          */
     }
 
@@ -535,7 +538,6 @@ public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
             }
             return new TankBank(tanks);
         }
-
 
         public long getCapacity() {
             return capacity;

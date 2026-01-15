@@ -1,9 +1,31 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.tank;
 
-import codechicken.lib.raytracer.CuboidRayTraceResult;
-import codechicken.lib.render.CCRenderState;
-import codechicken.lib.render.pipeline.IVertexOperation;
-import codechicken.lib.vec.Matrix4;
+import java.util.*;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.api.capability.impl.FilteredFluidHandler;
 import gregtech.api.capability.impl.FluidTankList;
@@ -25,35 +47,17 @@ import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockHermeticCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
+
 import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.blocks.BlockTankPart;
 import kono.ceu.gtconsolidate.common.blocks.BlockTankWall;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidTank;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import codechicken.lib.raytracer.CuboidRayTraceResult;
+import codechicken.lib.render.CCRenderState;
+import codechicken.lib.render.pipeline.IVertexOperation;
+import codechicken.lib.vec.Matrix4;
 
 public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase {
 
@@ -107,7 +111,7 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
 
     public int getTotalTanks() {
         int extra = capacityExtraTank() > 0 ? 1 : 0;
-        return  numIntMaxTanks() + extra;
+        return numIntMaxTanks() + extra;
     }
 
     @Override
@@ -126,7 +130,7 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
                 .where('X', states(getCasingState())
                         .or(metaTileEntities(MetaTileEntities.STEEL_TANK_VALVE,
                                 GTConsolidateMetaTileEntity.ADVANCED_TANK_VALVE)
-                                .setMaxGlobalLimited(10).setPreviewCount(2)))
+                                        .setMaxGlobalLimited(10).setPreviewCount(2)))
                 .where('H', states(getHermeticState()))
                 .where('T', states(getTankState()))
                 .build();
@@ -151,7 +155,8 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
     }
 
     private IBlockState getTankState() {
-        return GTConsolidateMetaBlocks.TANK_PART.getState(BlockTankPart.TankPartType.getTankPartTypeFromTier(this.tier));
+        return GTConsolidateMetaBlocks.TANK_PART
+                .getState(BlockTankPart.TankPartType.getTankPartTypeFromTier(this.tier));
     }
 
     @SideOnly(Side.CLIENT)
@@ -237,7 +242,8 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
                                     TextFormatting.GRAY, "gtconsolidate.test.2", i + 1, fluidName);
                             ITextComponent hover = TextComponentUtil.translationWithColor(
                                     TextFormatting.GRAY,
-                                    "gtconsolidate.test.3", fluidName, TextFormattingUtil.formatNumbers(amount), TextFormattingUtil.formatNumbers(tankEntry.getCapacity()));
+                                    "gtconsolidate.test.3", fluidName, TextFormattingUtil.formatNumbers(amount),
+                                    TextFormattingUtil.formatNumbers(tankEntry.getCapacity()));
                             tl.add(TextComponentUtil.setHover(body, hover));
                         }
                     }
@@ -359,12 +365,14 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
      * custom buttons specific to this implementation.
      * </p>
      *
-     * <p><b>Main modifications:</b></p>
+     * <p>
+     * <b>Main modifications:</b>
+     * </p>
      * <ul>
-     *   <li>Increase the GUI background height by +10.</li>
-     *   <li>Increase the display area height by +10.</li>
-     *   <li>Adjust related widgets to follow the expanded display size.</li>
-     *   <li>Replace unused default buttons with custom buttons.</li>
+     * <li>Increase the GUI background height by +10.</li>
+     * <li>Increase the display area height by +10.</li>
+     * <li>Adjust related widgets to follow the expanded display size.</li>
+     * <li>Replace unused default buttons with custom buttons.</li>
      * </ul>
      */
     @Override
@@ -397,7 +405,7 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
         // Originally the Distinct Buses Button, but it is unnecessary here,
         // so it is replaced with a custom button.
         // The second argument (y) is increased by 20.
-        builder.widget(getPageButton(173, 163, 18 ,18 ));
+        builder.widget(getPageButton(173, 163, 18, 18));
         // Factor change button.
         // Uses the provided getFlexButton method.
         // The second argument (y) is increased by 20.

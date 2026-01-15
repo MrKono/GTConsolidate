@@ -1,9 +1,9 @@
 package kono.ceu.gtconsolidate.api.capability.impl;
 
-import gregtech.api.capability.impl.FilteredFluidHandler;
-
 import java.util.Map;
 import java.util.WeakHashMap;
+
+import gregtech.api.capability.impl.FilteredFluidHandler;
 
 public class FilteredFluidHandlerIndex {
 

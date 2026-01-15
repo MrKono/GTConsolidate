@@ -1,9 +1,7 @@
 package kono.ceu.gtconsolidate.common.blocks;
 
-import gregtech.api.GTValues;
-import gregtech.api.block.VariantBlock;
-import gregtech.api.items.toolitem.ToolClasses;
-import kono.ceu.gtconsolidate.api.multiblock.ITankData;
+import java.util.List;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,12 +17,17 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import gregtech.api.GTValues;
+import gregtech.api.block.VariantBlock;
+import gregtech.api.items.toolitem.ToolClasses;
 
-public class BlockTankPart  extends VariantBlock<BlockTankPart.TankPartType> {
+import kono.ceu.gtconsolidate.api.multiblock.ITankData;
+
+public class BlockTankPart extends VariantBlock<BlockTankPart.TankPartType> {
 
     public BlockTankPart() {
         super(Material.GLASS);
@@ -51,7 +54,7 @@ public class BlockTankPart  extends VariantBlock<BlockTankPart.TankPartType> {
         if (tankType.getCapacity() != 0) {
             tooltip.add(I18n.format("gregtech.universal.tooltip.fluid_storage_capacity", tankType.getCapacity()));
         } else {
-            //tooltip.add(I18n.format("tile.tank_block.tooltip_empty.1"));
+            // tooltip.add(I18n.format("tile.tank_block.tooltip_empty.1"));
             tooltip.add(I18n.format("tile.tank_block.tooltip_empty.2"));
         }
     }
@@ -136,7 +139,6 @@ public class BlockTankPart  extends VariantBlock<BlockTankPart.TankPartType> {
         public long getCapacity() {
             return capacity;
         }
-
 
         // must be separately named because of reobf issue
         @NotNull

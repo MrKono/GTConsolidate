@@ -4,8 +4,6 @@ import static kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks.*;
 
 import java.util.function.Function;
 
-import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
-import kono.ceu.gtconsolidate.common.blocks.BlockTankPart;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -26,6 +24,7 @@ import gregtech.loaders.recipe.RecyclingRecipes;
 import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
 import kono.ceu.gtconsolidate.api.util.Logs;
 import kono.ceu.gtconsolidate.api.util.Mods;
+import kono.ceu.gtconsolidate.common.blocks.BlockTankPart;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileLargeGreenHouse;

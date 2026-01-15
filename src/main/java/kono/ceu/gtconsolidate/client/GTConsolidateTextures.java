@@ -2,7 +2,6 @@ package kono.ceu.gtconsolidate.client;
 
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.MODID;
 
-import net.minecraft.util.StringUtils;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -59,13 +58,12 @@ public class GTConsolidateTextures {
         IRIDIUM_GEARBOX = new SimpleOverlayRenderer("casings/gearbox/gearbox_iridium");
         AMERICIUM_GEARBOX = new SimpleOverlayRenderer("casings/gearbox/gearbox_americium");
 
-        String[] roman = {"i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x"};
+        String[] roman = { "i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x" };
         for (int i = 0; i < TANK_WALLS.length; i++) {
             TANK_WALLS[i] = new SimpleOverlayRenderer("casings/tank_wall/wall_mk_" + roman[i]);
         }
 
         BUTTON_PRE_COOLING = TextureArea.fullImage("textures/gui/widget/pre_cooling.png");
         BUTTON_PRE_HEATING = TextureArea.fullImage("textures/gui/widget/pre_heating.png");
-
     }
 }
