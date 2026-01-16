@@ -43,6 +43,17 @@ gtconsolidate.machine.industrial_coke_oven.name=工業用コークス炉
 gtconsolidate.machine.ore_factory.name=鉱石処理ファクトリー
 gtconsolidate.machine.industrial_ore_factory.name=工業用鉱石処理ファクトリー
 
+gtconsolidate.machine.multiblock_large_tank.ulv.name=マルチブロックスーパータンク I
+gtconsolidate.machine.multiblock_large_tank.lv.name=マルチブロックスーパータンク II
+gtconsolidate.machine.multiblock_large_tank.mv.name=マルチブロックスーパータンク III
+gtconsolidate.machine.multiblock_large_tank.hv.name=マルチブロックスーパータンク IV
+gtconsolidate.machine.multiblock_large_tank.ev.name=マルチブロックスーパータンク V
+gtconsolidate.machine.multiblock_large_tank.iv.name=マルチブロック量子タンク I
+gtconsolidate.machine.multiblock_large_tank.luv.name=マルチブロック量子タンク II
+gtconsolidate.machine.multiblock_large_tank.zpm.name=マルチブロック量子タンク III
+gtconsolidate.machine.multiblock_large_tank.uv.name=マルチブロック量子タンク IV
+gtconsolidate.machine.multiblock_large_tank.uhv.name=マルチブロック量子タンク V
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
@@ -108,6 +119,9 @@ gtconsolidate.machine.speed_enhanced_rotor_holder.uxv.name=速度強化型UXVロ
 gtconsolidate.machine.speed_enhanced_rotor_holder.opv.name=速度強化型OpVローターホルダー
 gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=速度強化型MAXローターホルダー
 
+## Advanced Tank Valve
+gtconsolidate.machine.advanced_tank_valve.name=発展型タンクバルブ
+
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=発展型組立機マシン外装
 tile.parallelized_assembly_line_casing.assembly_control_casing.name=発展型組立機制御外装
@@ -146,6 +160,31 @@ tile.pipe_casing.americium_pipe.name=アメリシウム製パイプ外装
 
 tile.gearbox_casing.iridium_gearbox.name=イリジウム製ギアボックス外装
 tile.gearbox_casing.americium_gearbox.name=アメリシウム製ギアボックス外装
+
+tile.tank_block.empty_tier_i.name=タンクブロック外装 I
+tile.tank_block.super_i.name=スーパータンクブロック I
+tile.tank_block.super_ii.name=スーパータンクブロック II
+tile.tank_block.super_iii.name=スーパータンクブロック III
+tile.tank_block.empty_tier_ii.name=タンクブロック外装 II
+tile.tank_block.super_iv.name=スーパータンクブロック IV
+tile.tank_block.super_v.name=スーパータンクブロック V
+tile.tank_block.quantum_i.name=量子タンクブロック I
+tile.tank_block.empty_tier_iii.name=タンクブロック外装 III
+tile.tank_block.quantum_ii.name=量子タンクブロック II
+tile.tank_block.quantum_iii.name=量子タンクブロック III
+tile.tank_block.quantum_iv.name=量子タンクブロック IV
+tile.tank_block.quantum_v.name=量子タンクブロック V
+
+tile.tank_wall.mk_i.name=耐水性錬鉄製タンク壁
+tile.tank_wall.mk_ii.name=耐水性スチール製タンク壁
+tile.tank_wall.mk_iii.name=耐水性アルミニウム製タンク壁
+tile.tank_wall.mk_iv.name=耐水性ステンレススチール製タンク壁
+tile.tank_wall.mk_v.name=耐水性チタニウム製タンク壁
+tile.tank_wall.mk_vi.name=耐水性タングステンスチール製タンク壁
+tile.tank_wall.mk_vii.name=耐水性ロジウムメッキパラジウム製タンク壁
+tile.tank_wall.mk_viii.name=耐水性ナクアダ合金製タンク壁
+tile.tank_wall.mk_ix.name=耐水性ダームスタチウム製タンク壁
+tile.tank_wall.mk_x.name=耐水性ニュートロニウム製タンク壁
 
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.filtered=§3§nフィルター付き搬入バス§r§3を利用すると便利かもしれません。
@@ -295,11 +334,11 @@ gtconsolidate.multiblock.tank.capacity_total=容量: %s L
 gtconsolidate.multiblock.tank.tanks=総タンク数: %s (総ページ数: %s)
 gtconsolidate.multiblock.tank.factor=係数: %s
 gtconsolidate.multiblock.tank.factor_hover=一度にめくるページ数です。
-gtconsolidate.multiblock.tank.tank_info=タンク情報 ($2%s中の$1%sページ)
+gtconsolidate.multiblock.tank.tank_info=タンク情報 (%2$sページ中の%1$sページ)
 gtconsolidate.multiblock.tank.tank=タンク #%s: %s
 gtconsolidate.multiblock.tank.tank_hover=%s: %s L / %s L
 gtconsolidate.multiblock.tank.factor_decrement=クリックで§a係数§rを減少させる。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最低値は§a1§r。
-gtconsolidate.multiblock.tank.factor_increment=クリックで§aFactor§rを増加させる。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最大値は§a100000§r。
+gtconsolidate.multiblock.tank.factor_increment=クリックで§a係数§rを増加させる。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最大値は§a100000§r。
 gtconsolidate.multiblock.tank.page_previous=クリックで前のページに移動する。ページ数は§a係数§rの分だけ移動する。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最小値は§a1§r。
 gtconsolidate.multiblock.tank.page_next=クリックで次のページに移動する。ページ数は§a係数§rの分だけ移動する。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最大値は§a%s§r。
 

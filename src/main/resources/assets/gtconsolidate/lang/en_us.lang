@@ -43,6 +43,17 @@ gtconsolidate.machine.industrial_coke_oven.name=Industrial Coke Oven
 gtconsolidate.machine.ore_factory.name=Ore Processing Factory
 gtconsolidate.machine.industrial_ore_factory.name=Industrial Ore Processing Factory
 
+gtconsolidate.machine.multiblock_large_tank.ulv.name=Multiblock Super Tank I
+gtconsolidate.machine.multiblock_large_tank.lv.name=Multiblock Super Tank II
+gtconsolidate.machine.multiblock_large_tank.mv.name=Multiblock Super Tank III
+gtconsolidate.machine.multiblock_large_tank.hv.name=Multiblock Super Tank IV
+gtconsolidate.machine.multiblock_large_tank.ev.name=Multiblock Super Tank V
+gtconsolidate.machine.multiblock_large_tank.iv.name=Multiblock Quantum Tank I
+gtconsolidate.machine.multiblock_large_tank.luv.name=Multiblock Quantum Tank II
+gtconsolidate.machine.multiblock_large_tank.zpm.name=Multiblock Quantum Tank III
+gtconsolidate.machine.multiblock_large_tank.uv.name=Multiblock Quantum Tank IV
+gtconsolidate.machine.multiblock_large_tank.uhv.name=Multiblock Quantum Tank V
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
@@ -108,6 +119,9 @@ gtconsolidate.machine.speed_enhanced_rotor_holder.uxv.name=Speed-Enhanced UXV Ro
 gtconsolidate.machine.speed_enhanced_rotor_holder.opv.name=Speed-Enhanced OpV Rotor Holder
 gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=Speed-Enhanced MAX Rotor Holder
 
+## Advanced Tank Valve
+gtconsolidate.machine.advanced_tank_valve.name=Advanced Tank Valve
+
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=Advanced Assembly Line Casing
 tile.parallelized_assembly_line_casing.assembly_control_casing.name=Advanced Assembly Control Casing
@@ -146,6 +160,31 @@ tile.pipe_casing.americium_pipe.name=Americium Pipe Casing
 
 tile.gearbox_casing.iridium_gearbox.name=Iridium Gear Box Casing
 tile.gearbox_casing.americium_gearbox.name=Americium Gear Box Casing
+
+tile.tank_block.empty_tier_i.name=Tank Block Casing Tier I
+tile.tank_block.super_i.name=Super Tank Block I
+tile.tank_block.super_ii.name=Super Tank Block II
+tile.tank_block.super_iii.name=Super Tank Block III
+tile.tank_block.empty_tier_ii.name=Tank Block Casing Tier II
+tile.tank_block.super_iv.name=Super Tank Block IV
+tile.tank_block.super_v.name=Super Tank Block V
+tile.tank_block.quantum_i.name=Quantum Tank Block I
+tile.tank_block.empty_tier_iii.name=Tank Block Casing Tier III
+tile.tank_block.quantum_ii.name=Quantum Tank Block II
+tile.tank_block.quantum_iii.name=Quantum Tank Block III
+tile.tank_block.quantum_iv.name=Quantum Tank Block IV
+tile.tank_block.quantum_v.name=Quantum Tank Block V
+
+tile.tank_wall.mk_i.name=Watertight Wrought Iron Tank Wall
+tile.tank_wall.mk_ii.name=Watertight Steel Tank Wall
+tile.tank_wall.mk_iii.name=Watertight Aluminium Tank Wall
+tile.tank_wall.mk_iv.name=Watertight Stainless Steel Tank Wall
+tile.tank_wall.mk_v.name=Watertight Titanium Tank Wall
+tile.tank_wall.mk_vi.name=Watertight Tungsten Steel Tank Wall
+tile.tank_wall.mk_vii.name=Watertight Rhodium Plated Palladium Tank Wall
+tile.tank_wall.mk_viii.name=Watertight Naquadah Alloy Tank Wall
+tile.tank_wall.mk_ix.name=Watertight Darmstadtium Tank Wall
+tile.tank_wall.mk_x.name=Watertight Neutronium Tank Wall
 
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.filtered=§3Using §nFiltered Input Bus§r§3 may be convenient.
@@ -298,10 +337,10 @@ gtconsolidate.multiblock.tank.factor_hover=Number of pages turned at once
 gtconsolidate.multiblock.tank.tank_info=Tank Information (Page %s of %s)
 gtconsolidate.multiblock.tank.tank=Tank #%s: %s
 gtconsolidate.multiblock.tank.tank_hover=%s: %s L / %s L
-gtconsolidate.multiblock.tank.factor_decrement=Click to decrease the §aFactor§r./nShift[§6x10§r],Ctrl[§ex100§r],Shift+Ctrl[§ax1000§r]. Minimum is §a1§r.
-gtconsolidate.multiblock.tank.factor_increment=Click to increase the §aFactor§r./nShift[§6x10§r],Ctrl[§ex100§r],Shift+Ctrl[§ax1000§r]. Maximum is §a100000§r.
-gtconsolidate.multiblock.tank.page_previous=Click to go to the previous page. Pages can be switched by §afactor§r pages at a time./nShift[§6x10§r],Ctrl[§ex100§r],Shift+Ctrl[§ax1000§r]. Minimum is §a1§r.
-gtconsolidate.multiblock.tank.page_next=Click to go to the next page. Pages can be switched by §afactor§r pages at a time./nShift[§6x10§r],Ctrl[§ex100§r],Shift+Ctrl[§ax1000§r]. Maximum is §a%s§r.
+gtconsolidate.multiblock.tank.factor_decrement=Click to decrease the §aFactor§r./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Minimum is §a1§r.
+gtconsolidate.multiblock.tank.factor_increment=Click to increase the §aFactor§r./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Maximum is §a100000§r.
+gtconsolidate.multiblock.tank.page_previous=Click to go to the previous page. Pages can be switched by §afactor§r pages at a time./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Minimum is §a1§r.
+gtconsolidate.multiblock.tank.page_next=Click to go to the next page. Pages can be switched by §afactor§r pages at a time./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Maximum is §a%s§r.
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r
