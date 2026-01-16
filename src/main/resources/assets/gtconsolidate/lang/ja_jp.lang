@@ -270,7 +270,8 @@ gtconsolidate.machine.rotor_holder.info.speed=最大ローター速度: %s
 gtconsolidate.machine.rotor_holder.info.efficiency=タービン効率: %s
 gtconsolidate.machine.rotor_holder.info.power=最大出力: %s
 
-# Display
+## Display
+# Multiblock Machine
 gtconsolidate.multiblock.coa.recipe_tier=外装Tier: %s
 gtconsolidate.multiblock.progress=進捗: %s / %s (%s%%)
 gtconsolidate.multiblock.progress_sec=%s 秒
@@ -289,6 +290,19 @@ gtconsolidate.multiblock.temperature_change=現在の温度変化: %s
 gtconsolidate.multiblock.pre_heating=予備加温: %s
 gtconsolidate.multiblock.pre_heating.hover=有効の場合、§3UV §e1A§7を消費して温度を5秒ごとに%s上昇させる。
 
+# Multiblock Tank
+gtconsolidate.multiblock.tank.capacity_total=容量: %s L
+gtconsolidate.multiblock.tank.tanks=総タンク数: %s (総ページ数: %s)
+gtconsolidate.multiblock.tank.factor=係数: %s
+gtconsolidate.multiblock.tank.factor_hover=一度にめくるページ数です。
+gtconsolidate.multiblock.tank.tank_info=タンク情報 ($2%s中の$1%sページ)
+gtconsolidate.multiblock.tank.tank=タンク #%s: %s
+gtconsolidate.multiblock.tank.tank_hover=%s: %s L / %s L
+gtconsolidate.multiblock.tank.factor_decrement=クリックで§a係数§rを減少させる。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最低値は§a1§r。
+gtconsolidate.multiblock.tank.factor_increment=クリックで§aFactor§rを増加させる。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最大値は§a100000§r。
+gtconsolidate.multiblock.tank.page_previous=クリックで前のページに移動する。ページ数は§a係数§rの分だけ移動する。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最小値は§a1§r。
+gtconsolidate.multiblock.tank.page_next=クリックで次のページに移動する。ページ数は§a係数§rの分だけ移動する。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最大値は§a%s§r。
+
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§c部品組立外装は全て同じでなければならない§r
 
@@ -303,3 +317,4 @@ gtconsolidate.recipe.coa=外装の最小Tier: %s
 
 gtconsolidate.universal.enabled=有効
 gtconsolidate.universal.disabled=無効
+gtconsolidate.universal.empty=空
