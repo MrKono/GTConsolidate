@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.IntSupplier;
 
+import gregtech.api.util.TextComponentUtil;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
@@ -108,7 +113,7 @@ public class MetaTileEntityAdvancedTankValve extends MetaTileEntityMultiblockPar
         super.addToMultiBlock(controllerBase);
         if (controllerBase instanceof MetaTileEntityMultiblockLargeTank) {
             this.fluidInventory = ((MetaTileEntityMultiblockLargeTank) controllerBase)
-                    .getFluidInventory(this.targetTank);
+                    .getFluidInventoryFromIndex(this.targetTank);
             this.maxTank = ((MetaTileEntityMultiblockLargeTank) controllerBase).getTotalTanks();
         } else {
             this.fluidInventory = controllerBase.getFluidInventory(); // directly use controllers fluid inventory as
@@ -136,7 +141,7 @@ public class MetaTileEntityAdvancedTankValve extends MetaTileEntityMultiblockPar
     protected ModularUI createUI(@NotNull EntityPlayer entityPlayer) {
         ServerWidgetGroup targetPageGroup = new ServerWidgetGroup(() -> true);
         targetPageGroup.addWidget(new ImageWidget(62, 36, 53, 20, GuiTextures.DISPLAY)
-                .setTooltip("gcym.machine.parallel_hatch.display"));
+                .setTooltip("gtconsolidate.machine.advanced_tank_valve.display"));
 
         targetPageGroup.addWidget(new IncrementButtonWidget(118, 36, 30, 20, 1, 4, 16, 64, this::setTargetTank)
                 .setDefaultTooltip()
@@ -159,6 +164,7 @@ public class MetaTileEntityAdvancedTankValve extends MetaTileEntityMultiblockPar
         return ModularUI.defaultBuilder()
                 .widget(new LabelWidget(5, 5, getMetaFullName()))
                 .widget(targetPageGroup)
+                .widget(new AdvancedTextWidget(29, 60, this::addDisplayText, 4210752))
                 .bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT, 0)
                 .build(getHolder(), entityPlayer);
     }
@@ -166,6 +172,15 @@ public class MetaTileEntityAdvancedTankValve extends MetaTileEntityMultiblockPar
     public String getParallelAmountToString() {
         return Integer.toString(this.targetTank);
     }
+
+    private void addDisplayText(List<ITextComponent> textList) {
+        FluidStack fluidStack = this.fluidInventory.drain(1, false);
+        ITextComponent fluidName = TextComponentUtil.stringWithColor(
+                fluidStack != null ? TextFormatting.AQUA : TextFormatting.YELLOW,
+                fluidStack != null ? fluidStack.getLocalizedName() : I18n.format("gtconsolidate.universal.empty"));
+        textList.add(new TextComponentTranslation("gtconsolidate.machine.advanced_tank_valve.fluid", this.targetTank, fluidName));
+    }
+
 
     public static @NotNull Function<String, String> getTextFieldValidator(IntSupplier maxSupplier) {
         return val -> {
