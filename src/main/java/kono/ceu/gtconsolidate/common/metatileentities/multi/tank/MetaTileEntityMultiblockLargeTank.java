@@ -200,7 +200,7 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
                                 TextFormattingUtil.formatNumbers(getCapacity()));
                         tl.add(TextComponentUtil.translationWithColor(
                                 TextFormatting.GRAY,
-                                "gtconsolidate.test.0", capacity));
+                                "gtconsolidate.multiblock.tank.capacity_total", capacity));
                         // Tank
                         ITextComponent numTanks = TextComponentUtil.stringWithColor(
                                 TextFormatting.GREEN,
@@ -209,8 +209,8 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
                                 TextFormatting.YELLOW,
                                 TextFormattingUtil.formatNumbers(getPageSize()));
                         tl.add(TextComponentUtil.translationWithColor(
-                                TextFormatting.WHITE,
-                                "gtconsolidate.test.1", numTanks, pages));
+                                TextFormatting.GRAY,
+                                "gtconsolidate.multiblock.tank.tanks", numTanks, pages));
                         // Tank Info
                         ITextComponent current = TextComponentUtil.stringWithColor(
                                 TextFormatting.AQUA,
@@ -223,26 +223,26 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
                                 TextFormattingUtil.formatNumbers(this.factor));
                         ITextComponent factorBody = TextComponentUtil.translationWithColor(
                                 TextFormatting.GRAY,
-                                "gtconsolidate.test.9", factorLine);
+                                "gtconsolidate.multiblock.tank.factor", factorLine);
                         ITextComponent factorHover = TextComponentUtil.translationWithColor(
                                 TextFormatting.GRAY,
-                                "gtconsolidate.test.10");
+                                "gtconsolidate.multiblock.tank.factor_hover");
                         tl.add(TextComponentUtil.setHover(factorBody, factorHover));
                         tl.add(TextComponentUtil.translationWithColor(
                                 TextFormatting.GRAY,
-                                "gtconsolidate.test.8", current, max));
+                                "gtconsolidate.multiblock.tank.tank_info", current, max));
                         for (int i = startIndex; i < endIndex; i++) {
                             IMultipleTankHandler.MultiFluidTankEntry tankEntry = this.importFluids.getTankAt(i);
                             FluidStack fluid = tankEntry.getFluid();
                             int amount = tankEntry.getFluidAmount();
                             ITextComponent fluidName = TextComponentUtil.stringWithColor(
                                     fluid != null ? TextFormatting.AQUA : TextFormatting.YELLOW,
-                                    fluid != null ? fluid.getLocalizedName() : "Empty");
+                                    fluid != null ? fluid.getLocalizedName() : I18n.format("gtconsolidate.universal.empty"));
                             ITextComponent body = TextComponentUtil.translationWithColor(
-                                    TextFormatting.GRAY, "gtconsolidate.test.2", i + 1, fluidName);
+                                    TextFormatting.GRAY, "gtconsolidate.multiblock.tank.tank", i + 1, fluidName);
                             ITextComponent hover = TextComponentUtil.translationWithColor(
                                     TextFormatting.GRAY,
-                                    "gtconsolidate.test.3", fluidName, TextFormattingUtil.formatNumbers(amount),
+                                    "gtconsolidate.multiblock.tank.tank_hover", fluidName, TextFormattingUtil.formatNumbers(amount),
                                     TextFormattingUtil.formatNumbers(tankEntry.getCapacity()));
                             tl.add(TextComponentUtil.setHover(body, hover));
                         }
@@ -295,7 +295,7 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
     }
 
     @NotNull
-    public IFluidHandler getFluidInventory(int index) {
+    public IFluidHandler getFluidInventoryFromIndex(int index) {
         if (index < 1 || index > this.fluidTankList.getTanks()) {
             return getFluidInventory();
         }
@@ -333,10 +333,10 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
         WidgetGroup group = new WidgetGroup(x, y, width, height);
         group.addWidget(new ClickButtonWidget(0, 0, 9, 18, "", this::decrementFactor)
                 .setButtonTexture(GuiTextures.BUTTON_THROTTLE_MINUS)
-                .setTooltipText("gtconsolidate.test.4"));
+                .setTooltipText("gtconsolidate.multiblock.tank.factor_decrement"));
         group.addWidget(new ClickButtonWidget(9, 0, 9, 18, "", this::incrementFactor)
                 .setButtonTexture(GuiTextures.BUTTON_THROTTLE_PLUS)
-                .setTooltipText("gtconsolidate.test.5"));
+                .setTooltipText("gtconsolidate.multiblock.tank.factor_increment"));
         return group;
     }
 
@@ -345,10 +345,10 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
         WidgetGroup group = new WidgetGroup(x, y, width, height);
         group.addWidget(new ClickButtonWidget(0, 0, 9, 18, "", this::moveToPreviousPage)
                 .setButtonTexture(GuiTextures.BUTTON_THROTTLE_MINUS)
-                .setTooltipText("gtconsolidate.test.6"));
+                .setTooltipText("gtconsolidate.multiblock.tank.page_previous"));
         group.addWidget(new ClickButtonWidget(9, 0, 9, 18, "", this::moveToNextPage)
                 .setButtonTexture(GuiTextures.BUTTON_THROTTLE_PLUS)
-                .setTooltipText("gtconsolidate.test.7", getPageSize()));
+                .setTooltipText("gtconsolidate.multiblock.tank.page_next", getPageSize()));
         return group;
     }
 

@@ -270,7 +270,8 @@ gtconsolidate.machine.rotor_holder.info.speed=Maximum Rotor Speed: %s
 gtconsolidate.machine.rotor_holder.info.efficiency=Turbine Efficiency: %s
 gtconsolidate.machine.rotor_holder.info.power=Maximum Output: %s
 
-# Display
+## Display
+# Multiblock Machine
 gtconsolidate.multiblock.coa.recipe_tier=Casing Tier: %s
 gtconsolidate.multiblock.progress=Progress: %s / %s (%s%%)
 gtconsolidate.multiblock.progress_sec=%s s
@@ -289,6 +290,19 @@ gtconsolidate.multiblock.temperature_change=Current Heat Change: %s
 gtconsolidate.multiblock.pre_heating=Pre-Heating Mode: %s
 gtconsolidate.multiblock.pre_heating.hover=When enabled, it consumes §3UV §e1A§7 to raise the Heat Capacity by %s every 5 seconds.
 
+# Multiblock Tank
+gtconsolidate.multiblock.tank.capacity_total=Total Capacity: %s L
+gtconsolidate.multiblock.tank.tanks=Total Tanks: %s (Total Pages: %s)
+gtconsolidate.multiblock.tank.factor=Factor: %s
+gtconsolidate.multiblock.tank.factor_hover=Number of pages turned at once
+gtconsolidate.multiblock.tank.tank_info=Tank Information (Page %s of %s)
+gtconsolidate.multiblock.tank.tank=Tank #%s: %s
+gtconsolidate.multiblock.tank.tank_hover=%s: %s L / %s L
+gtconsolidate.multiblock.tank.factor_decrement=Click to decrease the §aFactor§r./nShift[§6x10§r],Ctrl[§ex100§r],Shift+Ctrl[§ax1000§r]. Minimum is §a1§r.
+gtconsolidate.multiblock.tank.factor_increment=Click to increase the §aFactor§r./nShift[§6x10§r],Ctrl[§ex100§r],Shift+Ctrl[§ax1000§r]. Maximum is §a100000§r.
+gtconsolidate.multiblock.tank.page_previous=Click to go to the previous page. Pages can be switched by §afactor§r pages at a time./nShift[§6x10§r],Ctrl[§ex100§r],Shift+Ctrl[§ax1000§r]. Minimum is §a1§r.
+gtconsolidate.multiblock.tank.page_next=Click to go to the next page. Pages can be switched by §afactor§r pages at a time./nShift[§6x10§r],Ctrl[§ex100§r],Shift+Ctrl[§ax1000§r]. Maximum is §a%s§r.
+
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r
 
@@ -303,3 +317,5 @@ gtconsolidate.recipe.coa=Minimum Casing Tier: %s
 
 gtconsolidate.universal.enabled=Enabled
 gtconsolidate.universal.disabled=Disabled
+gtconsolidate.universal.empty=Empty
+
