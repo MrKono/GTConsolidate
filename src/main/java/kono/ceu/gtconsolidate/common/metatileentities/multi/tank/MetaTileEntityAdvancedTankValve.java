@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.IntSupplier;
 
-import gregtech.api.util.TextComponentUtil;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -36,6 +35,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.api.util.GTTransferUtils;
+import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockPart;
@@ -178,9 +178,9 @@ public class MetaTileEntityAdvancedTankValve extends MetaTileEntityMultiblockPar
         ITextComponent fluidName = TextComponentUtil.stringWithColor(
                 fluidStack != null ? TextFormatting.AQUA : TextFormatting.YELLOW,
                 fluidStack != null ? fluidStack.getLocalizedName() : I18n.format("gtconsolidate.universal.empty"));
-        textList.add(new TextComponentTranslation("gtconsolidate.machine.advanced_tank_valve.fluid", this.targetTank, fluidName));
+        textList.add(new TextComponentTranslation("gtconsolidate.machine.advanced_tank_valve.fluid", this.targetTank,
+                fluidName));
     }
-
 
     public static @NotNull Function<String, String> getTextFieldValidator(IntSupplier maxSupplier) {
         return val -> {

@@ -237,12 +237,14 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
                             int amount = tankEntry.getFluidAmount();
                             ITextComponent fluidName = TextComponentUtil.stringWithColor(
                                     fluid != null ? TextFormatting.AQUA : TextFormatting.YELLOW,
-                                    fluid != null ? fluid.getLocalizedName() : I18n.format("gtconsolidate.universal.empty"));
+                                    fluid != null ? fluid.getLocalizedName() :
+                                            I18n.format("gtconsolidate.universal.empty"));
                             ITextComponent body = TextComponentUtil.translationWithColor(
                                     TextFormatting.GRAY, "gtconsolidate.multiblock.tank.tank", i + 1, fluidName);
                             ITextComponent hover = TextComponentUtil.translationWithColor(
                                     TextFormatting.GRAY,
-                                    "gtconsolidate.multiblock.tank.tank_hover", fluidName, TextFormattingUtil.formatNumbers(amount),
+                                    "gtconsolidate.multiblock.tank.tank_hover", fluidName,
+                                    TextFormattingUtil.formatNumbers(amount),
                                     TextFormattingUtil.formatNumbers(tankEntry.getCapacity()));
                             tl.add(TextComponentUtil.setHover(body, hover));
                         }
