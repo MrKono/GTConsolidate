@@ -299,6 +299,8 @@ gtconsolidate.machine.ore_factory.tooltip.process11=§e11.§7 Macerate -> Chemic
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
 
+# Advanced Tank Valve
+
 # Rotor Holders
 gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.1=A strengthened version with increased output.
 gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.2=Puts greater load on the Turbine Rotor; causes durability to drop more quickly and makes it decelerate more easily.
@@ -341,6 +343,8 @@ gtconsolidate.multiblock.tank.factor_decrement=Click to decrease the §aFactor§
 gtconsolidate.multiblock.tank.factor_increment=Click to increase the §aFactor§r./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Maximum is §a100000§r.
 gtconsolidate.multiblock.tank.page_previous=Click to go to the previous page. Pages can be switched by §afactor§r pages at a time./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Minimum is §a1§r.
 gtconsolidate.multiblock.tank.page_next=Click to go to the next page. Pages can be switched by §afactor§r pages at a time./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Maximum is §a%s§r.
+gtconsolidate.machine.advanced_tank_valve.fluid=Fluid in Tank #%s: %s
+gtconsolidate.machine.advanced_tank_valve.display=Selects the tank number used for input/output.
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r
