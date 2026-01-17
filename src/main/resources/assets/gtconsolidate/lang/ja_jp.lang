@@ -296,8 +296,17 @@ gtconsolidate.machine.ore_factory.tooltip.process9=§e9.§7 粉砕 -> 洗浄 -> 
 gtconsolidate.machine.ore_factory.tooltip.process10=§e10.§7 粉砕 -> 洗浄 -> 粉砕 -> 電磁分離
 gtconsolidate.machine.ore_factory.tooltip.process11=§e11.§7 粉砕 -> 化学槽 -> 粉砕 -> 電磁分離
 
+# Multiblock Tank
+gtconsolidate.machine.tank.tooltip.1=%,d Lのタンクを複数持つマルチブロックタンク。
+gtconsolidate.machine.tank.tooltip.2=タンクバルブを介して充填および排出します。
+gtconsolidate.machine.tank.tooltip.press_ctrl=§e==注意==§7 (Ctrl押下)
+gtconsolidate.machine.tank.tooltip.note=§e注意§7: タンク数が多い場合、TOPやWailaでスチール製タンクバルブの情報を表示すると、描画処理に大きな負荷がかかる可能性があります。
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
+
+# Advanced Tank Valve
+gtconsolidate.machine.advanced_tank_valve.tooltip=マルチブロックタンクの特定のタンクへの搬入と搬出に使用します。下向きの場合は自動搬出です。
 
 # Rotor Holders
 gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.1=通常より出力が強化されたタイプ。

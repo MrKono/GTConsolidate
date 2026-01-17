@@ -2,6 +2,7 @@ package kono.ceu.gtconsolidate.common.metatileentities.multi.tank;
 
 import java.util.*;
 
+import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -58,6 +59,8 @@ import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+
+import static gregtech.client.utils.TooltipHelper.isCtrlDown;
 
 public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase {
 
@@ -269,8 +272,14 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
     public void addInformation(ItemStack stack, @Nullable World player, @NotNull List<String> tooltip,
                                boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
-        tooltip.add(I18n.format("gregtech.multiblock.tank.tooltip"));
+        tooltip.add(I18n.format("gtconsolidate.machine.tank.tooltip.1", MAX));
+        tooltip.add(I18n.format("gtconsolidate.machine.tank.tooltip.2"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.fluid_storage_capacity", getCapacity()));
+        if (isCtrlDown()) {
+            tooltip.add(I18n.format("gtconsolidate.machine.tank.tooltip.note"));
+        } else {
+            tooltip.add(I18n.format("gtconsolidate.machine.tank.tooltip.press_ctrl"));
+        }
     }
 
     @Override

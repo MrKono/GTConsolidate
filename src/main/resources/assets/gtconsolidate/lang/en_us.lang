@@ -296,10 +296,17 @@ gtconsolidate.machine.ore_factory.tooltip.process9=§e9.§7 Macerate -> Ore Wash
 gtconsolidate.machine.ore_factory.tooltip.process10=§e10.§7 Macerate -> Ore Washer -> Macerate -> Electromagnetic Separating
 gtconsolidate.machine.ore_factory.tooltip.process11=§e11.§7 Macerate -> Chemical Bathing -> Macerate -> Electromagnetic Separating
 
+# Multiblock Tank
+gtconsolidate.machine.tank.tooltip.1=Large tank with multiple %,d L tanks
+gtconsolidate.machine.tank.tooltip.2=Fill and drain through the tank valves.
+gtconsolidate.machine.tank.tooltip.press_ctrl=§e==Warning==§7 (Press Ctrl)
+gtconsolidate.machine.tank.tooltip.note=§eWarning§7: Displaying Steel Tank Valve information via TOP or Waila may cause significant performance overhead when many tanks are present.
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
 
 # Advanced Tank Valve
+gtconsolidate.machine.advanced_tank_valve.tooltip=Use to fill and drain specific tanks within the multiblock tanks. Auto outputs when facing down.
 
 # Rotor Holders
 gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.1=A strengthened version with increased output.

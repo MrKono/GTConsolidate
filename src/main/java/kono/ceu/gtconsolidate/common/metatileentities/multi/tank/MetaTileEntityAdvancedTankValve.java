@@ -117,8 +117,7 @@ public class MetaTileEntityAdvancedTankValve extends MetaTileEntityMultiblockPar
             this.maxTank = ((MetaTileEntityMultiblockLargeTank) controllerBase).getTotalTanks();
         } else {
             this.fluidInventory = controllerBase.getFluidInventory(); // directly use controllers fluid inventory as
-                                                                      // there
-            // is no reason to proxy it
+                                                                      // there is no reason to proxy it
         }
     }
 
@@ -230,7 +229,7 @@ public class MetaTileEntityAdvancedTankValve extends MetaTileEntityMultiblockPar
     public void addInformation(ItemStack stack, @Nullable World player, @NotNull List<String> tooltip,
                                boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
-        tooltip.add(I18n.format("gregtech.tank_valve.tooltip"));
+        tooltip.add(I18n.format("gtconsolidate.machine.advanced_tank_valve.tooltip"));
     }
 
     @Override
