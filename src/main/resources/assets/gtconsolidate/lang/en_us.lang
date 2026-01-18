@@ -122,6 +122,7 @@ gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=Speed-Enhanced MAX Ro
 ## Advanced Tank Valve
 gtconsolidate.machine.advanced_tank_valve.name=Advanced Tank Valve
 gtconsolidate.machine.advanced_tank_valve_4.name=Quadruple Tank Valve
+gtconsolidate.machine.advanced_tank_valve_9.name=Nonuple Tank Valve
 
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=Advanced Assembly Line Casing
@@ -353,8 +354,7 @@ gtconsolidate.multiblock.tank.factor_increment=Click to increase the §aFactor§
 gtconsolidate.multiblock.tank.page_previous=Click to go to the previous page. Pages can be switched by §afactor§r pages at a time./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Minimum is §a1§r.
 gtconsolidate.multiblock.tank.page_next=Click to go to the next page. Pages can be switched by §afactor§r pages at a time./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Maximum is §a%s§r.
 gtconsolidate.machine.advanced_tank_valve.fluid.1=Fluid in Tank #%s: %s
-gtconsolidate.machine.advanced_tank_valve.fluid.2=Fluid in Tank #%s:%s
-gtconsolidate.machine.advanced_tank_valve.fluid.3=%s
+gtconsolidate.machine.advanced_tank_valve.fluid.2=%s
 gtconsolidate.machine.advanced_tank_valve.display=Selects the tank number used for input/output.
 
 # Pattern

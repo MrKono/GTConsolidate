@@ -52,6 +52,7 @@ public class GTConsolidateMetaTileEntity {
             1];
     public static MetaTileEntityAdvancedTankValve ADVANCED_TANK_VALVE;
     public static MetaTileEntityQuadrupleTankValve QUADRUPLE_TANK_VALVE;
+    public static MetaTileEntityNonupleTankValve NONUPLE_TANK_VALVE;
 
     public static void init() {
         registerMultiMachine();
@@ -208,5 +209,7 @@ public class GTConsolidateMetaTileEntity {
                 modId("advanced_tank_valve")));
         QUADRUPLE_TANK_VALVE = registerMetaTileEntity(id + 2, new MetaTileEntityQuadrupleTankValve(
                 modId("advanced_tank_valve_4")));
+        NONUPLE_TANK_VALVE = registerMetaTileEntity(id + 3, new MetaTileEntityNonupleTankValve(
+                modId("advanced_tank_valve_9")));
     }
 }

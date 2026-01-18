@@ -142,7 +142,7 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
         valves.add(MetaTileEntities.STEEL_TANK_VALVE);
         if (getTotalTanks() > 1) valves.add(GTConsolidateMetaTileEntity.ADVANCED_TANK_VALVE);
         if (getTotalTanks() > 3) valves.add(GTConsolidateMetaTileEntity.QUADRUPLE_TANK_VALVE);
-        // if (getTotalTanks() > 8) valves.add(GTConsolidateMetaTileEntity.QUADRUPLE_TANK_VALVE);
+        if (getTotalTanks() > 8) valves.add(GTConsolidateMetaTileEntity.NONUPLE_TANK_VALVE);
         return metaTileEntities(valves.toArray(new MetaTileEntity[0])).setMaxGlobalLimited(10).setPreviewCount(2);
     }
 

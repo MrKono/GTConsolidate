@@ -122,6 +122,7 @@ gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=速度強化型MAXロ
 ## Advanced Tank Valve
 gtconsolidate.machine.advanced_tank_valve.name=発展型タンクバルブ
 gtconsolidate.machine.advanced_tank_valve_4.name=四重タンクバルブ
+gtconsolidate.machine.advanced_tank_valve_9.name=九重タンクバルブ
 
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=発展型組立機マシン外装
@@ -353,8 +354,7 @@ gtconsolidate.multiblock.tank.factor_increment=クリックで§a係数§rを増
 gtconsolidate.multiblock.tank.page_previous=クリックで前のページに移動する。ページ数は§a係数§rの分だけ移動する。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最小値は§a1§r。
 gtconsolidate.multiblock.tank.page_next=クリックで次のページに移動する。ページ数は§a係数§rの分だけ移動する。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最大値は§a%s§r。
 gtconsolidate.machine.advanced_tank_valve.fluid.1=タンク#%sの液体: %s
-gtconsolidate.machine.advanced_tank_valve.fluid.2=タンク#%sの液体:
-gtconsolidate.machine.advanced_tank_valve.fluid.3=%s
+gtconsolidate.machine.advanced_tank_valve.fluid.2=%s
 gtconsolidate.machine.advanced_tank_valve.display=搬入出するタンク番号を指定する。
 
 # Pattern
