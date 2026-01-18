@@ -2,6 +2,7 @@ package kono.ceu.gtconsolidate.common.metatileentities.multi.tank;
 
 import java.util.*;
 
+import gregtech.api.pattern.TraceabilityPredicate;
 import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
@@ -131,12 +132,19 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
                 .aisle("XXXXX", "XXXXX", "XXSXX", "XXXXX", "XXXXX")
                 .where('S', selfPredicate())
                 .where('X', states(getCasingState())
-                        .or(metaTileEntities(MetaTileEntities.STEEL_TANK_VALVE,
-                                GTConsolidateMetaTileEntity.ADVANCED_TANK_VALVE)
-                                        .setMaxGlobalLimited(10).setPreviewCount(2)))
+                        .or(getValves()))
                 .where('H', states(getHermeticState()))
                 .where('T', states(getTankState()))
                 .build();
+    }
+
+    private TraceabilityPredicate getValves() {
+        List<MetaTileEntity> valves = new ArrayList<>();
+        valves.add(MetaTileEntities.STEEL_TANK_VALVE);
+        if (getTotalTanks() > 1) valves.add(GTConsolidateMetaTileEntity.ADVANCED_TANK_VALVE);
+        if (getTotalTanks() > 3) valves.add(GTConsolidateMetaTileEntity.QUADRUPLE_TANK_VALVE);
+        //if (getTotalTanks() > 8) valves.add(GTConsolidateMetaTileEntity.QUADRUPLE_TANK_VALVE);
+        return metaTileEntities(valves.toArray(new MetaTileEntity[0])).setMaxGlobalLimited(10).setPreviewCount(2);
     }
 
     private IBlockState getCasingState() {
@@ -309,6 +317,14 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
     public IFluidHandler getFluidInventoryFromIndex(int index) {
         if (index < 1 || index > this.fluidTankList.getTanks()) {
             return getFluidInventory();
+        }
+        return this.fluidTankList.getTankAt(index - 1);
+    }
+
+    @NotNull
+    public IFluidTank getFluidTankFromIndex(int index) {
+        if (index < 1 || index > this.fluidTankList.getTanks()) {
+            return this.fluidTankList.getTankAt(0);
         }
         return this.fluidTankList.getTankAt(index - 1);
     }
