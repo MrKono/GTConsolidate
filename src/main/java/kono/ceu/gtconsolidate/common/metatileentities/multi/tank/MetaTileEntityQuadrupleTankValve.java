@@ -1,23 +1,10 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.tank;
 
-import codechicken.lib.render.CCRenderState;
-import codechicken.lib.render.pipeline.IVertexOperation;
-import codechicken.lib.vec.Matrix4;
-import gregtech.api.capability.impl.FluidHandlerProxy;
-import gregtech.api.capability.impl.FluidTankList;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.widgets.*;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
-import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
-import gregtech.api.util.GTTransferUtils;
-import gregtech.api.util.TextComponentUtil;
-import gregtech.client.renderer.ICubeRenderer;
-import gregtech.client.renderer.texture.Textures;
-import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockPart;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+import java.util.function.IntSupplier;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -35,16 +22,32 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Function;
-import java.util.function.IntSupplier;
+import gregtech.api.capability.impl.FluidHandlerProxy;
+import gregtech.api.capability.impl.FluidTankList;
+import gregtech.api.gui.GuiTextures;
+import gregtech.api.gui.ModularUI;
+import gregtech.api.gui.widgets.*;
+import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
+import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
+import gregtech.api.util.GTTransferUtils;
+import gregtech.api.util.TextComponentUtil;
+import gregtech.client.renderer.ICubeRenderer;
+import gregtech.client.renderer.texture.Textures;
+import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockPart;
+
+import codechicken.lib.render.CCRenderState;
+import codechicken.lib.render.pipeline.IVertexOperation;
+import codechicken.lib.vec.Matrix4;
 
 public class MetaTileEntityQuadrupleTankValve extends MetaTileEntityMultiblockPart
-        implements IMultiblockAbilityPart<IFluidHandler> {
+                                              implements IMultiblockAbilityPart<IFluidHandler> {
 
     private static final int SELECTABLE_TANKS = 4;
     private int[] selectableTanks = new int[SELECTABLE_TANKS];
@@ -122,7 +125,8 @@ public class MetaTileEntityQuadrupleTankValve extends MetaTileEntityMultiblockPa
         if (controllerBase instanceof MetaTileEntityMultiblockLargeTank) {
             IFluidTank[] fluidTanks = new IFluidTank[selectableTanks.length];
             for (int i = 0; i < selectableTanks.length; i++) {
-                fluidTanks[i] = ((MetaTileEntityMultiblockLargeTank) controllerBase).getFluidTankFromIndex(selectableTanks[i]);
+                fluidTanks[i] = ((MetaTileEntityMultiblockLargeTank) controllerBase)
+                        .getFluidTankFromIndex(selectableTanks[i]);
             }
             this.fluidInventory = new FluidTankList(true, fluidTanks);
         } else {
@@ -134,8 +138,7 @@ public class MetaTileEntityQuadrupleTankValve extends MetaTileEntityMultiblockPa
         int index = tankNumber - 1;
         if (index < 0 || index >= selectableTanks.length) return;
 
-        selectableTanks[index] =
-                MathHelper.clamp(selectableTanks[index] + amount, 1, this.maxTank);
+        selectableTanks[index] = MathHelper.clamp(selectableTanks[index] + amount, 1, this.maxTank);
 
         setFluidHandler(this.getController());
     }
@@ -160,7 +163,8 @@ public class MetaTileEntityQuadrupleTankValve extends MetaTileEntityMultiblockPa
             builder.widget(createSelectorWidget(77, yPos, i));
             yPos += 22;
             int j = i;
-            builder.widget(new AdvancedTextWidget(5, yPos, textList -> addDisplayText(textList, j), 4210752).setMaxWidthLimit(203));
+            builder.widget(new AdvancedTextWidget(5, yPos, textList -> addDisplayText(textList, j), 4210752)
+                    .setMaxWidthLimit(203));
             yPos += 22;
         }
         builder.bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT, 30, yPos);
@@ -169,11 +173,13 @@ public class MetaTileEntityQuadrupleTankValve extends MetaTileEntityMultiblockPa
     }
 
     public void addDisplayText(List<ITextComponent> textList, int targetTankNo) {
-        FluidStack fluidStack =  ((MetaTileEntityMultiblockLargeTank) getController()).getFluidTankFromIndex(selectableTanks[targetTankNo - 1]).getFluid();
+        FluidStack fluidStack = ((MetaTileEntityMultiblockLargeTank) getController())
+                .getFluidTankFromIndex(selectableTanks[targetTankNo - 1]).getFluid();
         ITextComponent fluidName = TextComponentUtil.stringWithColor(
                 fluidStack != null ? TextFormatting.AQUA : TextFormatting.YELLOW,
                 fluidStack != null ? fluidStack.getLocalizedName() : I18n.format("gtconsolidate.universal.empty"));
-        textList.add(new TextComponentTranslation("gtconsolidate.machine.advanced_tank_valve.fluid.1", selectableTanks[targetTankNo - 1], fluidName));
+        textList.add(new TextComponentTranslation("gtconsolidate.machine.advanced_tank_valve.fluid.1",
+                selectableTanks[targetTankNo - 1], fluidName));
     }
 
     public ServerWidgetGroup createSelectorWidget(int xPos, int yPos, int targetTankNo) {
@@ -185,21 +191,24 @@ public class MetaTileEntityQuadrupleTankValve extends MetaTileEntityMultiblockPa
         ServerWidgetGroup selector = new ServerWidgetGroup(() -> true);
         selector.addWidget(new ImageWidget(xPos, yPos, displayWidth, widgetHeight, GuiTextures.DISPLAY)
                 .setTooltip("gtconsolidate.machine.advanced_tank_valve.display"));
-        selector.addWidget(new IncrementButtonWidget(xPos + displayWidth + 3 , yPos, buttonWidth, widgetHeight, 1, 4, 16, 64, amount -> setTargetTankByNumber(amount, targetTankNo))
-                .setDefaultTooltip()
-                .setShouldClientCallback(false));
-        selector.addWidget(new IncrementButtonWidget(xPos - buttonWidth + 3, yPos, buttonWidth, widgetHeight, -1, -4, -16, -64, amount -> setTargetTankByNumber(amount, targetTankNo))
-                .setDefaultTooltip()
-                .setShouldClientCallback(false));
-        selector.addWidget(new TextFieldWidget2(xPos + 1, yPos + 6, textWidth, widgetHeight, () -> getTargetTankToStringByNumber(targetTankNo), val -> {
-            if (val != null && !val.isEmpty()) {
-                setTargetTankByNumber(targetTankNo, Integer.parseInt(val));
-            }
-        })
-                .setCentered(true)
-                .setNumbersOnly(1, this.maxTank)
-                .setMaxLength(3)
-                .setValidator(getTextFieldValidator(() -> this.maxTank)));
+        selector.addWidget(new IncrementButtonWidget(xPos + displayWidth + 3, yPos, buttonWidth, widgetHeight, 1, 4, 16,
+                64, amount -> setTargetTankByNumber(amount, targetTankNo))
+                        .setDefaultTooltip()
+                        .setShouldClientCallback(false));
+        selector.addWidget(new IncrementButtonWidget(xPos - buttonWidth + 3, yPos, buttonWidth, widgetHeight, -1, -4,
+                -16, -64, amount -> setTargetTankByNumber(amount, targetTankNo))
+                        .setDefaultTooltip()
+                        .setShouldClientCallback(false));
+        selector.addWidget(new TextFieldWidget2(xPos + 1, yPos + 6, textWidth, widgetHeight,
+                () -> getTargetTankToStringByNumber(targetTankNo), val -> {
+                    if (val != null && !val.isEmpty()) {
+                        setTargetTankByNumber(targetTankNo, Integer.parseInt(val));
+                    }
+                })
+                        .setCentered(true)
+                        .setNumbersOnly(1, this.maxTank)
+                        .setMaxLength(3)
+                        .setValidator(getTextFieldValidator(() -> this.maxTank)));
         return selector;
     }
 
@@ -266,7 +275,6 @@ public class MetaTileEntityQuadrupleTankValve extends MetaTileEntityMultiblockPa
         tooltip.add(I18n.format("gregtech.tool_action.wrench.set_facing"));
         super.addToolUsages(stack, world, tooltip, advanced);
     }
-
 
     @Override
     public NBTTagCompound writeToNBT(@NotNull NBTTagCompound data) {

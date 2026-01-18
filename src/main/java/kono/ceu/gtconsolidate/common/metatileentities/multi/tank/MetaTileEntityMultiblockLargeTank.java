@@ -1,9 +1,9 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.tank;
 
+import static gregtech.client.utils.TooltipHelper.isCtrlDown;
+
 import java.util.*;
 
-import gregtech.api.pattern.TraceabilityPredicate;
-import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,6 +42,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.api.util.TextFormattingUtil;
 import gregtech.client.renderer.ICubeRenderer;
@@ -60,8 +61,6 @@ import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-
-import static gregtech.client.utils.TooltipHelper.isCtrlDown;
 
 public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase {
 
@@ -143,7 +142,7 @@ public class MetaTileEntityMultiblockLargeTank extends MultiblockWithDisplayBase
         valves.add(MetaTileEntities.STEEL_TANK_VALVE);
         if (getTotalTanks() > 1) valves.add(GTConsolidateMetaTileEntity.ADVANCED_TANK_VALVE);
         if (getTotalTanks() > 3) valves.add(GTConsolidateMetaTileEntity.QUADRUPLE_TANK_VALVE);
-        //if (getTotalTanks() > 8) valves.add(GTConsolidateMetaTileEntity.QUADRUPLE_TANK_VALVE);
+        // if (getTotalTanks() > 8) valves.add(GTConsolidateMetaTileEntity.QUADRUPLE_TANK_VALVE);
         return metaTileEntities(valves.toArray(new MetaTileEntity[0])).setMaxGlobalLimited(10).setPreviewCount(2);
     }
 

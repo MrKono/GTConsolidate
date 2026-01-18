@@ -51,6 +51,7 @@ public class GTConsolidateMetaTileEntity {
     public static final MetaTileEntitySpeedEnhancedRotorHolder[] ROTOR_HOLDER_SPEEDED = new MetaTileEntitySpeedEnhancedRotorHolder[GTValues.V.length -
             1];
     public static MetaTileEntityAdvancedTankValve ADVANCED_TANK_VALVE;
+    public static MetaTileEntityQuadrupleTankValve QUADRUPLE_TANK_VALVE;
 
     public static void init() {
         registerMultiMachine();
@@ -205,5 +206,7 @@ public class GTConsolidateMetaTileEntity {
         id = id + ROTOR_HOLDER_SPEEDED.length;
         ADVANCED_TANK_VALVE = registerMetaTileEntity(id + 1, new MetaTileEntityAdvancedTankValve(
                 modId("advanced_tank_valve")));
+        QUADRUPLE_TANK_VALVE = registerMetaTileEntity(id + 2, new MetaTileEntityQuadrupleTankValve(
+                modId("advanced_tank_valve_4")));
     }
 }
