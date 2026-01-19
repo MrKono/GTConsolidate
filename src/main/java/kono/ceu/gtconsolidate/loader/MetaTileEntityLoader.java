@@ -13,13 +13,14 @@ import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.common.blocks.BlockMetalCasing;
+import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
-import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 
 public class MetaTileEntityLoader {
 
@@ -114,7 +115,7 @@ public class MetaTileEntityLoader {
                         .input(MetaTileEntities.HULL[i + 1])
                         .fluidInputs(Materials.Lubricant.getFluid(250 * (i + 1)))
                         .output(ROTOR_HOLDER_POWERED[i])
-                        .EUt(VA[GTValues.LuV]).duration(20 * 30).buildAndRegister();
+                        .EUt(VA[LuV]).duration(20 * 30).buildAndRegister();
             }
             if (GTConsolidateConfig.feature.addSpeedEnhancedRotorHolders) {
                 RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
@@ -124,8 +125,51 @@ public class MetaTileEntityLoader {
                         .input(MetaTileEntities.HULL[i + 1])
                         .fluidInputs(Materials.Lubricant.getFluid(2000 * (i + 1)))
                         .output(ROTOR_HOLDER_SPEEDED[i])
-                        .EUt(VA[GTValues.IV]).duration(20 * 30).buildAndRegister();
+                        .EUt(VA[IV]).duration(20 * 30).buildAndRegister();
             }
         }
+
+        // Tank Valve
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(OrePrefix.ring, Materials.Titanium, 2)
+                .input(OrePrefix.rotor, Materials.Titanium, 2)
+                .inputs(MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.TITANIUM_STABLE))
+                .input(MetaItems.SENSOR_IV)
+                .input(MetaItems.EMITTER_IV)
+                .circuitMeta(4)
+                .fluidInputs(Materials.Polybenzimidazole.getFluid(144 * 2))
+                .output(ADVANCED_TANK_VALVE)
+                .EUt(VA[IV]).duration(50).buildAndRegister();
+
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(OrePrefix.ring, Materials.TungstenSteel, 8)
+                .input(OrePrefix.rotor, Materials.TungstenSteel, 8)
+                .inputs(MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.TUNGSTENSTEEL_ROBUST))
+                .input(MetaItems.SENSOR_LuV, 2)
+                .input(MetaItems.EMITTER_LuV, 2)
+                .input(OrePrefix.pipeQuadrupleFluid, Materials.TungstenSteel)
+                .fluidInputs(Materials.Polybenzimidazole.getFluid(144 * 4))
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 2))
+                .scannerResearch(b -> b
+                        .researchStack(ADVANCED_TANK_VALVE.getStackForm())
+                        .EUt(VA[IV]).duration(15 * 20))
+                .output(QUADRUPLE_TANK_VALVE)
+                .EUt(VA[LuV]).duration(50).buildAndRegister();
+
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(OrePrefix.ring, Materials.HSSE, 16)
+                .input(OrePrefix.rotor, Materials.HSSE, 16)
+                .inputs(MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.HSSE_STURDY))
+                .input(MetaItems.SENSOR_ZPM, 2)
+                .input(MetaItems.EMITTER_ZPM, 2)
+                .input(OrePrefix.pipeQuadrupleFluid, Materials.Iridium)
+                .fluidInputs(Materials.Polybenzimidazole.getFluid(144 * 4))
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 2))
+                .stationResearch(b -> b
+                        .researchStack(QUADRUPLE_TANK_VALVE.getStackForm())
+                        .CWUt(64)
+                        .EUt(VA[LuV]))
+                .output(NONUPLE_TANK_VALVE)
+                .EUt(VA[ZPM]).duration(50).buildAndRegister();
     }
 }

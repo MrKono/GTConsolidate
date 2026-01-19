@@ -10,24 +10,27 @@ import static kono.ceu.gtconsolidate.common.blocks.BlockParallelizedAssemblyLine
 import static kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks.*;
 import static kono.ceu.gtconsolidate.loader.Components.*;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
 import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
-import gregtech.common.blocks.BlockGlassCasing;
-import gregtech.common.blocks.BlockMetalCasing;
+import gregtech.common.blocks.*;
 import gregtech.common.blocks.BlockMultiblockCasing;
-import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
 
+import gregicality.multiblocks.api.unification.GCYMMaterials;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
 
-import kono.ceu.gtconsolidate.common.blocks.BlockCoACasing;
-import kono.ceu.gtconsolidate.common.blocks.BlockPipeCasing;
+import kono.ceu.gtconsolidate.common.blocks.*;
 
 public class CasingLoader {
 
@@ -244,5 +247,58 @@ public class CasingLoader {
                 'P', new UnificationEntry(plate, Materials.Americium),
                 'N', new UnificationEntry(pipeNormalItem, Materials.Americium),
                 'F', new UnificationEntry(frameGt, Materials.Americium));
+
+        // Tank Wall
+        Material[] tankMaterial = { Materials.WroughtIron, Materials.Steel, Materials.Aluminium,
+                Materials.StainlessSteel, Materials.Titanium, Materials.TungstenSteel, Materials.RhodiumPlatedPalladium,
+                Materials.NaquadahAlloy, Materials.Darmstadtium, Materials.Neutronium };
+        for (int i = ULV; i < UHV + 1; i++) {
+            RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                    .input(plate, tankMaterial[i], 6)
+                    .input(frameGt, tankMaterial[i])
+                    .circuitMeta(7)
+                    .fluidInputs(GCYMMaterials.WatertightSteel.getFluid(144))
+                    .outputs(TANK_WALL.getItemVariant(BlockTankWall.TankWallType.getWallTypeFromTier(i), amount))
+                    .EUt(VA[IV]).duration(50).buildAndRegister();
+        }
+
+        // Tank Block
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.HERMETIC_CASING.getItemVariant(BlockHermeticCasing.HermeticCasingsType.HERMETIC_EV))
+                .input(FIELD_GENERATOR_EV, 4)
+                .inputs(new ItemStack(Items.NETHER_STAR, 4))
+                .input(circuit, MarkerMaterials.Tier.EV, 4)
+                .fluidInputs(Materials.Polyethylene.getFluid(144 * 16))
+                .outputs(TANK_PART.getItemVariant(BlockTankPart.TankPartType.EMPTY_TIER_I))
+                .EUt(VA[EV]).duration(5 * 20).buildAndRegister();
+
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.HERMETIC_CASING.getItemVariant(BlockHermeticCasing.HermeticCasingsType.HERMETIC_LUV))
+                .input(FIELD_GENERATOR_LuV, 4)
+                .input(QUANTUM_STAR, 4)
+                .input(circuit, MarkerMaterials.Tier.LuV, 4)
+                .fluidInputs(Materials.Polytetrafluoroethylene.getFluid(144 * 16))
+                .outputs(TANK_PART.getItemVariant(BlockTankPart.TankPartType.EMPTY_TIER_II))
+                .EUt(VA[LuV]).duration(5 * 20).buildAndRegister();
+
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.HERMETIC_CASING.getItemVariant(BlockHermeticCasing.HermeticCasingsType.HERMETIC_UV))
+                .input(FIELD_GENERATOR_UV, 4)
+                .input(GRAVI_STAR, 4)
+                .input(circuit, MarkerMaterials.Tier.UV, 4)
+                .fluidInputs(Materials.Polybenzimidazole.getFluid(144 * 16))
+                .outputs(TANK_PART.getItemVariant(BlockTankPart.TankPartType.EMPTY_TIER_III))
+                .EUt(VA[UV]).duration(5 * 20).buildAndRegister();
+
+        for (int i = 0; i < 10; i++) {
+            ItemStack casing = i < 3 ? TANK_PART.getItemVariant(BlockTankPart.TankPartType.EMPTY_TIER_I) :
+                    i < 6 ? TANK_PART.getItemVariant(BlockTankPart.TankPartType.EMPTY_TIER_II) :
+                            TANK_PART.getItemVariant(BlockTankPart.TankPartType.EMPTY_TIER_III);
+            RecipeMaps.PACKER_RECIPES.recipeBuilder()
+                    .input(MetaTileEntities.QUANTUM_TANK[i], 4)
+                    .inputs(casing)
+                    .outputs(TANK_PART.getItemVariant(BlockTankPart.TankPartType.getTankPartTypeFromTier(i)))
+                    .EUt(VA[i]).duration(60 * 20).buildAndRegister();
+        }
     }
 }
