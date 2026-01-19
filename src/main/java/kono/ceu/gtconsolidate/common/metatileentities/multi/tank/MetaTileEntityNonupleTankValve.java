@@ -270,7 +270,7 @@ public class MetaTileEntityNonupleTankValve extends MetaTileEntityMultiblockPart
     public void addInformation(ItemStack stack, @Nullable World player, @NotNull List<String> tooltip,
                                boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
-        tooltip.add(I18n.format("gtconsolidate.machine.advanced_tank_valve.tooltip"));
+        tooltip.add(I18n.format("gtconsolidate.machine.advanced_tank_valve.tooltip.base"));
         tooltip.add(I18n.format("gtconsolidate.machine.advanced_tank_valve.tooltip.selectable", SELECTABLE_TANKS));
     }
 

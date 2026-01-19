@@ -43,7 +43,7 @@ public class BlockTankWall extends
     public void addInformation(@NotNull ItemStack stack, @Nullable World world, @NotNull List<String> tooltip,
                                @NotNull ITooltipFlag advanced) {
         super.addInformation(stack, world, tooltip, advanced);
-        tooltip.add(I18n.format("tile.tank_wall.tooltip"));
+        tooltip.add(I18n.format("tile.tank_wall.tooltip.1"));
     }
 
     public enum TankWallType implements IStringSerializable {

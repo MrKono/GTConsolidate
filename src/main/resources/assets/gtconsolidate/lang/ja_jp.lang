@@ -308,7 +308,7 @@ gtconsolidate.machine.tank.tooltip.note=§e注意§7: タンク数が多い場�
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
 
 # Advanced Tank Valve
-gtconsolidate.machine.advanced_tank_valve.tooltip=マルチブロックタンクの特定のタンクへの搬入と搬出に使用します。下向きの場合は自動搬出です。
+gtconsolidate.machine.advanced_tank_valve.tooltip.base=マルチブロックタンクの特定のタンクへの搬入と搬出に使用します。下向きの場合は自動搬出です。
 gtconsolidate.machine.advanced_tank_valve.tooltip.selectable=指定可能なタンク数: §b%s
 
 # Rotor Holders
@@ -326,7 +326,7 @@ tile.tank_block.tooltip_empty.1=モジュール式マルチタンクの空間を
 tile.tank_block.tooltip_empty.2=内部空間が歪んでいるようだ。
 
 # Tank Wall
-tile.tank_wall.tooltip=液体漏れを防ぐため、耐水性スチールで被覆されている。
+tile.tank_wall.tooltip.1=液体漏れを防ぐため、耐水性スチールで被覆されている。
 
 ## Display
 # Multiblock Machine

@@ -308,7 +308,7 @@ gtconsolidate.machine.tank.tooltip.note=§eWarning§7: Displaying Steel Tank Val
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
 
 # Advanced Tank Valve
-gtconsolidate.machine.advanced_tank_valve.tooltip=Use to fill and drain specific tanks within the multiblock tanks. Auto outputs when facing down.
+gtconsolidate.machine.advanced_tank_valve.tooltip.base=Use to fill and drain specific tanks within the multiblock tanks. Auto outputs when facing down.
 gtconsolidate.machine.advanced_tank_valve.tooltip.selectable=Number of Selectable Tanks: §b%s
 
 # Rotor Holders
@@ -326,7 +326,7 @@ tile.tank_block.tooltip_empty.1=For filling space in your Modular Multiblock Tan
 tile.tank_block.tooltip_empty.2=Interior space seems to be distorted.
 
 # Tank Wall
-tile.tank_wall.tooltip=Coated with Watertight Steel to prevent fluid leakage.
+tile.tank_wall.tooltip.1=Coated with Watertight Steel to prevent fluid leakage.
 
 ## Display
 # Multiblock Machine
