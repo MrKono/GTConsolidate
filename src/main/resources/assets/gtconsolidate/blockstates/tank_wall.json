@@ -1,0 +1,60 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all"
+  },
+  "variants": {
+    "variant": {
+      "mk_i": {
+        "textures": {
+          "all": "gregtech:blocks/casings/tank_wall/wall_mk_i"
+        }
+      },
+      "mk_ii": {
+        "textures": {
+          "all": "gregtech:blocks/casings/tank_wall/wall_mk_ii"
+        }
+      },
+      "mk_iii": {
+        "textures": {
+          "all": "gregtech:blocks/casings/tank_wall/wall_mk_iii"
+        }
+      },
+      "mk_iv": {
+        "textures": {
+          "all": "gregtech:blocks/casings/tank_wall/wall_mk_iv"
+        }
+      },
+      "mk_v": {
+        "textures": {
+          "all": "gregtech:blocks/casings/tank_wall/wall_mk_v"
+        }
+      },
+      "mk_vi": {
+        "textures": {
+          "all": "gregtech:blocks/casings/tank_wall/wall_mk_vi"
+        }
+      },
+      "mk_vii": {
+        "textures": {
+          "all": "gregtech:blocks/casings/tank_wall/wall_mk_vii"
+        }
+      },
+      "mk_viii": {
+        "textures": {
+          "all": "gregtech:blocks/casings/tank_wall/wall_mk_viii"
+        }
+      },
+      "mk_ix": {
+        "textures": {
+          "all": "gregtech:blocks/casings/tank_wall/wall_mk_ix"
+        }
+      },
+      "mk_x": {
+        "textures": {
+          "all": "gregtech:blocks/casings/tank_wall/wall_mk_x"
+        }
+      }
+    }
+  }
+}

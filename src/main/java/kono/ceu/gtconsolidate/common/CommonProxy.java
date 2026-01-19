@@ -24,6 +24,7 @@ import gregtech.loaders.recipe.RecyclingRecipes;
 import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
 import kono.ceu.gtconsolidate.api.util.Logs;
 import kono.ceu.gtconsolidate.api.util.Mods;
+import kono.ceu.gtconsolidate.common.blocks.BlockTankPart;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileLargeGreenHouse;
@@ -42,6 +43,9 @@ public class CommonProxy {
         GTConsolidateMetaBlocks.init();
         RecipeMapModify.modifyRecipeMap();
         RecipeMapModify.modifyRecipeBuild();
+        for (BlockTankPart.TankPartType type : BlockTankPart.TankPartType.values()) {
+            GTConsolidateValues.MULTIBLOCK_INTERNAL_TANKS.put(TANK_PART.getState(type), type);
+        }
     }
 
     public void init(FMLInitializationEvent e) {}
@@ -58,6 +62,8 @@ public class CommonProxy {
         registry.register(MULTIBLOCK_CASING);
         registry.register(GEARBOX_CASING);
         registry.register(PIPE_CASING);
+        registry.register(TANK_PART);
+        registry.register(TANK_WALL);
         if (Mods.GregTechFoodOption.isModLoaded()) {
             MetaTileLargeGreenHouse.addGrasses();
         }
@@ -73,6 +79,8 @@ public class CommonProxy {
         registry.register(createItemBlock(MULTIBLOCK_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GEARBOX_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(PIPE_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(TANK_PART, VariantItemBlock::new));
+        registry.register(createItemBlock(TANK_WALL, VariantItemBlock::new));
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {

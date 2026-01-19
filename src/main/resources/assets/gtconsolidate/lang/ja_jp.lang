@@ -43,6 +43,17 @@ gtconsolidate.machine.industrial_coke_oven.name=工業用コークス炉
 gtconsolidate.machine.ore_factory.name=鉱石処理ファクトリー
 gtconsolidate.machine.industrial_ore_factory.name=工業用鉱石処理ファクトリー
 
+gtconsolidate.machine.multiblock_large_tank.ulv.name=マルチブロックスーパータンク I
+gtconsolidate.machine.multiblock_large_tank.lv.name=マルチブロックスーパータンク II
+gtconsolidate.machine.multiblock_large_tank.mv.name=マルチブロックスーパータンク III
+gtconsolidate.machine.multiblock_large_tank.hv.name=マルチブロックスーパータンク IV
+gtconsolidate.machine.multiblock_large_tank.ev.name=マルチブロックスーパータンク V
+gtconsolidate.machine.multiblock_large_tank.iv.name=マルチブロック量子タンク I
+gtconsolidate.machine.multiblock_large_tank.luv.name=マルチブロック量子タンク II
+gtconsolidate.machine.multiblock_large_tank.zpm.name=マルチブロック量子タンク III
+gtconsolidate.machine.multiblock_large_tank.uv.name=マルチブロック量子タンク IV
+gtconsolidate.machine.multiblock_large_tank.uhv.name=マルチブロック量子タンク V
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULVフィルター付き搬入バス
@@ -108,6 +119,11 @@ gtconsolidate.machine.speed_enhanced_rotor_holder.uxv.name=速度強化型UXVロ
 gtconsolidate.machine.speed_enhanced_rotor_holder.opv.name=速度強化型OpVローターホルダー
 gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=速度強化型MAXローターホルダー
 
+## Advanced Tank Valve
+gtconsolidate.machine.advanced_tank_valve.name=発展型タンクバルブ
+gtconsolidate.machine.advanced_tank_valve_4.name=四重タンクバルブ
+gtconsolidate.machine.advanced_tank_valve_9.name=九重タンクバルブ
+
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=発展型組立機マシン外装
 tile.parallelized_assembly_line_casing.assembly_control_casing.name=発展型組立機制御外装
@@ -146,6 +162,31 @@ tile.pipe_casing.americium_pipe.name=アメリシウム製パイプ外装
 
 tile.gearbox_casing.iridium_gearbox.name=イリジウム製ギアボックス外装
 tile.gearbox_casing.americium_gearbox.name=アメリシウム製ギアボックス外装
+
+tile.tank_block.empty_tier_i.name=タンクブロック外装 I
+tile.tank_block.super_i.name=スーパータンクブロック I
+tile.tank_block.super_ii.name=スーパータンクブロック II
+tile.tank_block.super_iii.name=スーパータンクブロック III
+tile.tank_block.empty_tier_ii.name=タンクブロック外装 II
+tile.tank_block.super_iv.name=スーパータンクブロック IV
+tile.tank_block.super_v.name=スーパータンクブロック V
+tile.tank_block.quantum_i.name=量子タンクブロック I
+tile.tank_block.empty_tier_iii.name=タンクブロック外装 III
+tile.tank_block.quantum_ii.name=量子タンクブロック II
+tile.tank_block.quantum_iii.name=量子タンクブロック III
+tile.tank_block.quantum_iv.name=量子タンクブロック IV
+tile.tank_block.quantum_v.name=量子タンクブロック V
+
+tile.tank_wall.mk_i.name=錬鉄製耐水被覆タンク壁
+tile.tank_wall.mk_ii.name=耐スチール製水被覆タンク壁
+tile.tank_wall.mk_iii.name=アルミニウム製耐水被覆タンク壁
+tile.tank_wall.mk_iv.name=ステンレススチール製耐水被覆タンク壁
+tile.tank_wall.mk_v.name=チタニウム製耐水被覆タンク壁
+tile.tank_wall.mk_vi.name=タングステンスチール製耐水被覆タンク壁
+tile.tank_wall.mk_vii.name=ロジウムメッキパラジウム耐水被覆製タンク壁
+tile.tank_wall.mk_viii.name=ナクアダ合金製耐水被覆タンク壁
+tile.tank_wall.mk_ix.name=ダームスタチウム製耐水被覆タンク壁
+tile.tank_wall.mk_x.name=ニュートロニウム製耐水被覆タンク壁
 
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.filtered=§3§nフィルター付き搬入バス§r§3を利用すると便利かもしれません。
@@ -257,8 +298,18 @@ gtconsolidate.machine.ore_factory.tooltip.process9=§e9.§7 粉砕 -> 洗浄 -> 
 gtconsolidate.machine.ore_factory.tooltip.process10=§e10.§7 粉砕 -> 洗浄 -> 粉砕 -> 電磁分離
 gtconsolidate.machine.ore_factory.tooltip.process11=§e11.§7 粉砕 -> 化学槽 -> 粉砕 -> 電磁分離
 
+# Multiblock Tank
+gtconsolidate.machine.tank.tooltip.1=%,d Lのタンクを複数持つマルチブロックタンク。
+gtconsolidate.machine.tank.tooltip.2=タンクバルブを介して充填および排出します。
+gtconsolidate.machine.tank.tooltip.press_ctrl=§e==注意==§7 (Ctrl押下)
+gtconsolidate.machine.tank.tooltip.note=§e注意§7: タンク数が多い場合、TOPやWailaでスチール製タンクバルブの情報を表示すると、描画処理に大きな負荷がかかる可能性があります。
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。
+
+# Advanced Tank Valve
+gtconsolidate.machine.advanced_tank_valve.tooltip.base=マルチブロックタンクの特定のタンクへの搬入と搬出に使用します。下向きの場合は自動搬出です。
+gtconsolidate.machine.advanced_tank_valve.tooltip.selectable=指定可能なタンク数: §b%s
 
 # Rotor Holders
 gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.1=通常より出力が強化されたタイプ。
@@ -270,7 +321,15 @@ gtconsolidate.machine.rotor_holder.info.speed=最大ローター速度: %s
 gtconsolidate.machine.rotor_holder.info.efficiency=タービン効率: %s
 gtconsolidate.machine.rotor_holder.info.power=最大出力: %s
 
-# Display
+# Tank Block
+tile.tank_block.tooltip_empty.1=モジュール式マルチタンクの空間を埋めるために。
+tile.tank_block.tooltip_empty.2=内部空間が歪んでいるようだ。
+
+# Tank Wall
+tile.tank_wall.tooltip.1=液体漏れを防ぐため、耐水性スチールで被覆されている。
+
+## Display
+# Multiblock Machine
 gtconsolidate.multiblock.coa.recipe_tier=外装Tier: %s
 gtconsolidate.multiblock.progress=進捗: %s / %s (%s%%)
 gtconsolidate.multiblock.progress_sec=%s 秒
@@ -289,6 +348,22 @@ gtconsolidate.multiblock.temperature_change=現在の温度変化: %s
 gtconsolidate.multiblock.pre_heating=予備加温: %s
 gtconsolidate.multiblock.pre_heating.hover=有効の場合、§3UV §e1A§7を消費して温度を5秒ごとに%s上昇させる。
 
+# Multiblock Tank
+gtconsolidate.multiblock.tank.capacity_total=容量: %s L
+gtconsolidate.multiblock.tank.tanks=総タンク数: %s (総ページ数: %s)
+gtconsolidate.multiblock.tank.factor=係数: %s
+gtconsolidate.multiblock.tank.factor_hover=一度にめくるページ数です。
+gtconsolidate.multiblock.tank.tank_info=タンク情報 (%2$sページ中の%1$sページ)
+gtconsolidate.multiblock.tank.tank=タンク #%s: %s
+gtconsolidate.multiblock.tank.tank_hover=%s: %s L / %s L
+gtconsolidate.multiblock.tank.factor_decrement=クリックで§a係数§rを減少させる。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最低値は§a1§r。
+gtconsolidate.multiblock.tank.factor_increment=クリックで§a係数§rを増加させる。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最大値は§a100000§r。
+gtconsolidate.multiblock.tank.page_previous=クリックで前のページに移動する。ページ数は§a係数§rの分だけ移動する。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最小値は§a1§r。
+gtconsolidate.multiblock.tank.page_next=クリックで次のページに移動する。ページ数は§a係数§rの分だけ移動する。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最大値は§a%s§r。
+gtconsolidate.machine.advanced_tank_valve.fluid.1=タンク#%sの液体: %s
+gtconsolidate.machine.advanced_tank_valve.fluid.2=%s
+gtconsolidate.machine.advanced_tank_valve.display=搬入出するタンク番号を指定する。
+
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§c部品組立外装は全て同じでなければならない§r
 
@@ -303,3 +378,4 @@ gtconsolidate.recipe.coa=外装の最小Tier: %s
 
 gtconsolidate.universal.enabled=有効
 gtconsolidate.universal.disabled=無効
+gtconsolidate.universal.empty=空

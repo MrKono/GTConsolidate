@@ -43,6 +43,17 @@ gtconsolidate.machine.industrial_coke_oven.name=Industrial Coke Oven
 gtconsolidate.machine.ore_factory.name=Ore Processing Factory
 gtconsolidate.machine.industrial_ore_factory.name=Industrial Ore Processing Factory
 
+gtconsolidate.machine.multiblock_large_tank.ulv.name=Multiblock Super Tank I
+gtconsolidate.machine.multiblock_large_tank.lv.name=Multiblock Super Tank II
+gtconsolidate.machine.multiblock_large_tank.mv.name=Multiblock Super Tank III
+gtconsolidate.machine.multiblock_large_tank.hv.name=Multiblock Super Tank IV
+gtconsolidate.machine.multiblock_large_tank.ev.name=Multiblock Super Tank V
+gtconsolidate.machine.multiblock_large_tank.iv.name=Multiblock Quantum Tank I
+gtconsolidate.machine.multiblock_large_tank.luv.name=Multiblock Quantum Tank II
+gtconsolidate.machine.multiblock_large_tank.zpm.name=Multiblock Quantum Tank III
+gtconsolidate.machine.multiblock_large_tank.uv.name=Multiblock Quantum Tank IV
+gtconsolidate.machine.multiblock_large_tank.uhv.name=Multiblock Quantum Tank V
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
@@ -108,6 +119,11 @@ gtconsolidate.machine.speed_enhanced_rotor_holder.uxv.name=Speed-Enhanced UXV Ro
 gtconsolidate.machine.speed_enhanced_rotor_holder.opv.name=Speed-Enhanced OpV Rotor Holder
 gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=Speed-Enhanced MAX Rotor Holder
 
+## Advanced Tank Valve
+gtconsolidate.machine.advanced_tank_valve.name=Advanced Tank Valve
+gtconsolidate.machine.advanced_tank_valve_4.name=Quadruple Tank Valve
+gtconsolidate.machine.advanced_tank_valve_9.name=Nonuple Tank Valve
+
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=Advanced Assembly Line Casing
 tile.parallelized_assembly_line_casing.assembly_control_casing.name=Advanced Assembly Control Casing
@@ -146,6 +162,31 @@ tile.pipe_casing.americium_pipe.name=Americium Pipe Casing
 
 tile.gearbox_casing.iridium_gearbox.name=Iridium Gear Box Casing
 tile.gearbox_casing.americium_gearbox.name=Americium Gear Box Casing
+
+tile.tank_block.empty_tier_i.name=Tank Block Casing Tier I
+tile.tank_block.super_i.name=Super Tank Block I
+tile.tank_block.super_ii.name=Super Tank Block II
+tile.tank_block.super_iii.name=Super Tank Block III
+tile.tank_block.empty_tier_ii.name=Tank Block Casing Tier II
+tile.tank_block.super_iv.name=Super Tank Block IV
+tile.tank_block.super_v.name=Super Tank Block V
+tile.tank_block.quantum_i.name=Quantum Tank Block I
+tile.tank_block.empty_tier_iii.name=Tank Block Casing Tier III
+tile.tank_block.quantum_ii.name=Quantum Tank Block II
+tile.tank_block.quantum_iii.name=Quantum Tank Block III
+tile.tank_block.quantum_iv.name=Quantum Tank Block IV
+tile.tank_block.quantum_v.name=Quantum Tank Block V
+
+tile.tank_wall.mk_i.name=Watertight-Coated Wrought Iron Tank Wall
+tile.tank_wall.mk_ii.name=Watertight-Coated Steel Tank Wall
+tile.tank_wall.mk_iii.name=Watertight-Coated Aluminium Tank Wall
+tile.tank_wall.mk_iv.name=Watertight-Coated Stainless Steel Tank Wall
+tile.tank_wall.mk_v.name=Watertight-Coated Titanium Tank Wall
+tile.tank_wall.mk_vi.name=Watertight-Coated Tungsten Steel Tank Wall
+tile.tank_wall.mk_vii.name=Watertight-Coated Rhodium Plated Palladium Tank Wall
+tile.tank_wall.mk_viii.name=Watertight-Coated Naquadah Alloy Tank Wall
+tile.tank_wall.mk_ix.name=Watertight-Coated Darmstadtium Tank Wall
+tile.tank_wall.mk_x.name=Watertight-Coated Neutronium Tank Wall
 
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.filtered=§3Using §nFiltered Input Bus§r§3 may be convenient.
@@ -257,8 +298,18 @@ gtconsolidate.machine.ore_factory.tooltip.process9=§e9.§7 Macerate -> Ore Wash
 gtconsolidate.machine.ore_factory.tooltip.process10=§e10.§7 Macerate -> Ore Washer -> Macerate -> Electromagnetic Separating
 gtconsolidate.machine.ore_factory.tooltip.process11=§e11.§7 Macerate -> Chemical Bathing -> Macerate -> Electromagnetic Separating
 
+# Multiblock Tank
+gtconsolidate.machine.tank.tooltip.1=Large tank with multiple %,d L tanks
+gtconsolidate.machine.tank.tooltip.2=Fill and drain through the tank valves.
+gtconsolidate.machine.tank.tooltip.press_ctrl=§e==Warning==§7 (Press Ctrl)
+gtconsolidate.machine.tank.tooltip.note=§eWarning§7: Displaying Steel Tank Valve information via TOP or Waila may cause significant performance overhead when many tanks are present.
+
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
+
+# Advanced Tank Valve
+gtconsolidate.machine.advanced_tank_valve.tooltip.base=Use to fill and drain specific tanks within the multiblock tanks. Auto outputs when facing down.
+gtconsolidate.machine.advanced_tank_valve.tooltip.selectable=Number of Selectable Tanks: §b%s
 
 # Rotor Holders
 gtconsolidate.machine.power_enhanced_rotor_holder.tooltip.1=A strengthened version with increased output.
@@ -270,7 +321,15 @@ gtconsolidate.machine.rotor_holder.info.speed=Maximum Rotor Speed: %s
 gtconsolidate.machine.rotor_holder.info.efficiency=Turbine Efficiency: %s
 gtconsolidate.machine.rotor_holder.info.power=Maximum Output: %s
 
-# Display
+# Tank Block
+tile.tank_block.tooltip_empty.1=For filling space in your Modular Multiblock Tank.
+tile.tank_block.tooltip_empty.2=Interior space seems to be distorted.
+
+# Tank Wall
+tile.tank_wall.tooltip.1=Coated with Watertight Steel to prevent fluid leakage.
+
+## Display
+# Multiblock Machine
 gtconsolidate.multiblock.coa.recipe_tier=Casing Tier: %s
 gtconsolidate.multiblock.progress=Progress: %s / %s (%s%%)
 gtconsolidate.multiblock.progress_sec=%s s
@@ -289,6 +348,22 @@ gtconsolidate.multiblock.temperature_change=Current Heat Change: %s
 gtconsolidate.multiblock.pre_heating=Pre-Heating Mode: %s
 gtconsolidate.multiblock.pre_heating.hover=When enabled, it consumes §3UV §e1A§7 to raise the Heat Capacity by %s every 5 seconds.
 
+# Multiblock Tank
+gtconsolidate.multiblock.tank.capacity_total=Total Capacity: %s L
+gtconsolidate.multiblock.tank.tanks=Total Tanks: %s (Total Pages: %s)
+gtconsolidate.multiblock.tank.factor=Factor: %s
+gtconsolidate.multiblock.tank.factor_hover=Number of pages turned at once
+gtconsolidate.multiblock.tank.tank_info=Tank Information (Page %s of %s)
+gtconsolidate.multiblock.tank.tank=Tank #%s: %s
+gtconsolidate.multiblock.tank.tank_hover=%s: %s L / %s L
+gtconsolidate.multiblock.tank.factor_decrement=Click to decrease the §aFactor§r./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Minimum is §a1§r.
+gtconsolidate.multiblock.tank.factor_increment=Click to increase the §aFactor§r./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Maximum is §a100000§r.
+gtconsolidate.multiblock.tank.page_previous=Click to go to the previous page. Pages can be switched by §afactor§r pages at a time./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Minimum is §a1§r.
+gtconsolidate.multiblock.tank.page_next=Click to go to the next page. Pages can be switched by §afactor§r pages at a time./nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]. Maximum is §a%s§r.
+gtconsolidate.machine.advanced_tank_valve.fluid.1=Fluid in Tank #%s: %s
+gtconsolidate.machine.advanced_tank_valve.fluid.2=%s
+gtconsolidate.machine.advanced_tank_valve.display=Selects the tank number used for input/output.
+
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r
 
@@ -303,3 +378,5 @@ gtconsolidate.recipe.coa=Minimum Casing Tier: %s
 
 gtconsolidate.universal.enabled=Enabled
 gtconsolidate.universal.disabled=Disabled
+gtconsolidate.universal.empty=Empty
+

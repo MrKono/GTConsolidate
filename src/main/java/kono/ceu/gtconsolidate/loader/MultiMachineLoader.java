@@ -3,6 +3,7 @@ package kono.ceu.gtconsolidate.loader;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
+import static kono.ceu.gtconsolidate.loader.Components.markerMaterial;
 
 import com.github.gtexpert.gtwp.common.metatileentities.GTWPMetaTileEntities;
 
@@ -10,11 +11,13 @@ import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtechfoodoption.machines.GTFOTileEntities;
 
@@ -22,6 +25,7 @@ import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 
 import kono.ceu.gtconsolidate.api.util.Mods;
 import kono.ceu.gtconsolidate.common.blocks.BlockParallelizedAssemblyLineCasing;
+import kono.ceu.gtconsolidate.common.blocks.BlockTankWall;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 
@@ -265,6 +269,49 @@ public class MultiMachineLoader {
                 'B', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.COKE_BRICKS),
                 'F', MetaTileEntities.COKE_OVEN.getStackForm(),
                 'C', new UnificationEntry(circuit, MarkerMaterials.Tier.ULV));
+
+        // Ore Processing Factory
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.MACERATOR[IV])
+                .input(MetaTileEntities.ORE_WASHER[IV])
+                .input(MetaTileEntities.CENTRIFUGE[IV])
+                .input(MetaTileEntities.SIFTER[IV])
+                .input(MetaTileEntities.CHEMICAL_BATH[IV])
+                .input(MetaTileEntities.THERMAL_CENTRIFUGE[IV])
+                .input(circuit, MarkerMaterials.Tier.LuV, 4)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 8))
+                .output(GTConsolidateMetaTileEntity.ORE_FACTORY[0])
+                .duration(10 * sec).EUt(VA[IV]).buildAndRegister();
+
+        // Industrial Ore Processing Factory
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(GTConsolidateMetaTileEntity.ORE_FACTORY[0])
+                .input(gearSmall, Materials.TungstenCarbide, 8)
+                .input(gear, Materials.Tritanium, 4)
+                .input(MetaItems.ELECTRIC_MOTOR_UV, 2)
+                .input(circuit, MarkerMaterials.Tier.UHV, 1)
+                .input(circuit, MarkerMaterials.Tier.UV, 4)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 16))
+                .fluidInputs(Materials.Lubricant.getFluid(4000))
+                .output(GTConsolidateMetaTileEntity.ORE_FACTORY[1])
+                .stationResearch(b -> b.researchStack(GTConsolidateMetaTileEntity.ORE_FACTORY[0].getStackForm())
+                        .CWUt(144).EUt(VA[ZPM]))
+                .duration(60 * sec).EUt(VA[UHV]).buildAndRegister();
+
+        // Multiblock Tank
+        Material[] tankMaterial = { Materials.WroughtIron, Materials.Steel, Materials.Aluminium,
+                Materials.StainlessSteel, Materials.Titanium, Materials.TungstenSteel, Materials.RhodiumPlatedPalladium,
+                Materials.NaquadahAlloy, Materials.Darmstadtium, Materials.Neutronium };
+        for (int i = ULV; i < UHV + 1; i++) {
+            RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                    .input(ring, tankMaterial[i], 4)
+                    .inputs(GTConsolidateMetaBlocks.TANK_WALL
+                            .getItemVariant(BlockTankWall.TankWallType.getWallTypeFromTier(i)))
+                    .input(circuit, markerMaterial(i), 4)
+                    .fluidInputs(Materials.Polytetrafluoroethylene.getFluid(144 * 16))
+                    .output(GTConsolidateMetaTileEntity.MULTIBLOCK_LARGE_TANK[i])
+                    .EUt(VA[i == UHV ? UV : i]).duration((i == UHV ? 30 : 15) * sec).buildAndRegister();
+        }
     }
 
     public static void GTFOMultiblock() {

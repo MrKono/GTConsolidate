@@ -27,12 +27,14 @@ public class GTConsolidateMaterialFlags {
         addFlags(Materials.Palladium, GENERATE_DENSE);
         addFlags(Materials.Naquadria, GENERATE_DENSE);
         addFlags(Materials.Americium, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FRAME);
-        addFlags(Materials.Neutronium, GENERATE_SMALL_GEAR);
+        addFlags(Materials.Neutronium, GENERATE_SMALL_GEAR, GENERATE_RING);
         addFlags(Materials.Ruthenium, GENERATE_SMALL_GEAR);
-        addFlags(Materials.Darmstadtium, GENERATE_GEAR);
-        addFlags(Materials.RhodiumPlatedPalladium, GENERATE_GEAR);
+        addFlags(Materials.Darmstadtium, GENERATE_GEAR, GENERATE_FRAME);
+        addFlags(Materials.RhodiumPlatedPalladium, GENERATE_GEAR, GENERATE_FRAME);
         addFlags(Materials.BlackSteel, GENERATE_SMALL_GEAR);
         addFlags(Materials.Ultimet, GENERATE_SMALL_GEAR);
+        addFlags(Materials.HSSE, GENERATE_ROTOR);
+        addFlags(Materials.WroughtIron, GENERATE_FRAME);
         for (int i = 0; i < GTValues.LuV; i++) {
             addFlags(scMaterial(i), GENERATE_FINE_WIRE);
         }

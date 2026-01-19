@@ -27,10 +27,11 @@ _New Machines_
 - Turbo Rotary Hearth Blast Smelter (EBF + ABS, Since 1.0.6-beta)
 - Absolute Freezer (Since 1.0.6-beta)
 - Circuit Factory (Since 1.0.7-beta)
-- Extended Processing Array (since 1.0.7-beta)
-- Industrial Bricked Blast Furnace (since 1.1.1-beta)
-- Industrial Coke Oven (since 1.1.1-beta)
-- Ore Factory (since 1.1.1-beta, port from [GTMoreOreProcessing](https://github.com/MrKono/GTCEu-MoreOreProcessing))
+- Extended Processing Array (Since 1.0.7-beta)
+- Industrial Bricked Blast Furnace (Since 1.1.1-beta)
+- Industrial Coke Oven (Since 1.1.1-beta)
+- Ore Factory (Since 1.1.1-beta, port from [GTMoreOreProcessing](https://github.com/MrKono/GTCEu-MoreOreProcessing))
+- Multiblock Large Tank (Since 1.1.2-beta)
 
 _New Multiblock Part_
 - Filtered Input Bus (Only one type of item can input, since 1.0.2-beta)
@@ -39,6 +40,7 @@ _New Multiblock Part_
   - LV and MV Rotor Holders (`default: false`)
   - UHV+ Rotor Holders (`default: true`)
   - Two unique Rotor Holders  (`default: true`)
+- Advanced Tank Valve (Since 1.1.2-beta)
 
 ### Planning
 _None so far. We are looking for suggestions._ 

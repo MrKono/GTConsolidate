@@ -16,6 +16,7 @@ import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaT
 import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntitySpeedEnhancedRotorHolder;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialBrickedBlastFurnace;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialCokeOven;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.tank.*;
 
 public class GTConsolidateMetaTileEntity {
 
@@ -33,6 +34,7 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityCircuitFactory CIRCUIT_FACTORY;
     public static MetaTileEntityExtendedProcessingArray[] EXTENDED_PROCESSING_ARRAY = new MetaTileEntityExtendedProcessingArray[3];
     public static MetaTileEntityOreFactory[] ORE_FACTORY = new MetaTileEntityOreFactory[2];
+    public static MetaTileEntityMultiblockLargeTank[] MULTIBLOCK_LARGE_TANK = new MetaTileEntityMultiblockLargeTank[10];
 
     // Primitive
     public static MetaTileEntityIndustrialBrickedBlastFurnace INDUSTRIAL_BBF;
@@ -48,6 +50,9 @@ public class GTConsolidateMetaTileEntity {
             1];
     public static final MetaTileEntitySpeedEnhancedRotorHolder[] ROTOR_HOLDER_SPEEDED = new MetaTileEntitySpeedEnhancedRotorHolder[GTValues.V.length -
             1];
+    public static MetaTileEntityAdvancedTankValve ADVANCED_TANK_VALVE;
+    public static MetaTileEntityQuadrupleTankValve QUADRUPLE_TANK_VALVE;
+    public static MetaTileEntityNonupleTankValve NONUPLE_TANK_VALVE;
 
     public static void init() {
         registerMultiMachine();
@@ -122,6 +127,13 @@ public class GTConsolidateMetaTileEntity {
                 modId("ore_factory"), false));
         ORE_FACTORY[1] = registerMetaTileEntity(id + 23, new MetaTileEntityOreFactory(
                 modId("industrial_ore_factory"), true));
+        // Multiblock Large Tank
+        for (int i = 0; i < MULTIBLOCK_LARGE_TANK.length; i++) {
+            String voltageName = GTValues.VN[i].toLowerCase();
+            MULTIBLOCK_LARGE_TANK[i] = registerMetaTileEntity(id + 24 + i, new MetaTileEntityMultiblockLargeTank(
+                    modId("multiblock_large_tank." + voltageName), i));
+        }
+        // next -> id + 34
     }
 
     public static void registerMultiblockPart() {
@@ -191,5 +203,13 @@ public class GTConsolidateMetaTileEntity {
                                 modId("speed_enhanced_rotor_holder." + GTValues.VN[i + 1].toLowerCase()), i + 1));
             }
         }
+
+        id = id + ROTOR_HOLDER_SPEEDED.length;
+        ADVANCED_TANK_VALVE = registerMetaTileEntity(id + 1, new MetaTileEntityAdvancedTankValve(
+                modId("advanced_tank_valve")));
+        QUADRUPLE_TANK_VALVE = registerMetaTileEntity(id + 2, new MetaTileEntityQuadrupleTankValve(
+                modId("advanced_tank_valve_4")));
+        NONUPLE_TANK_VALVE = registerMetaTileEntity(id + 3, new MetaTileEntityNonupleTankValve(
+                modId("advanced_tank_valve_9")));
     }
 }

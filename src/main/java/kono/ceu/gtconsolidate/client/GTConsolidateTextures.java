@@ -27,6 +27,7 @@ public class GTConsolidateTextures {
     public static SimpleOverlayRenderer AMERICIUM_PIPE;
     public static SimpleOverlayRenderer IRIDIUM_GEARBOX;
     public static SimpleOverlayRenderer AMERICIUM_GEARBOX;
+    public static SimpleOverlayRenderer[] TANK_WALLS = new SimpleOverlayRenderer[10];
 
     public static TextureArea BUTTON_PRE_COOLING;
     public static TextureArea BUTTON_PRE_HEATING;
@@ -56,6 +57,12 @@ public class GTConsolidateTextures {
         AMERICIUM_PIPE = new SimpleOverlayRenderer("casings/pipe/pipe_americium");
         IRIDIUM_GEARBOX = new SimpleOverlayRenderer("casings/gearbox/gearbox_iridium");
         AMERICIUM_GEARBOX = new SimpleOverlayRenderer("casings/gearbox/gearbox_americium");
+
+        String[] roman = { "i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x" };
+        for (int i = 0; i < TANK_WALLS.length; i++) {
+            TANK_WALLS[i] = new SimpleOverlayRenderer("casings/tank_wall/wall_mk_" + roman[i]);
+        }
+
         BUTTON_PRE_COOLING = TextureArea.fullImage("textures/gui/widget/pre_cooling.png");
         BUTTON_PRE_HEATING = TextureArea.fullImage("textures/gui/widget/pre_heating.png");
     }
