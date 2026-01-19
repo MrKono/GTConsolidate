@@ -177,16 +177,16 @@ tile.tank_block.quantum_iii.name=量子タンクブロック III
 tile.tank_block.quantum_iv.name=量子タンクブロック IV
 tile.tank_block.quantum_v.name=量子タンクブロック V
 
-tile.tank_wall.mk_i.name=耐水性錬鉄製タンク壁
-tile.tank_wall.mk_ii.name=耐水性スチール製タンク壁
-tile.tank_wall.mk_iii.name=耐水性アルミニウム製タンク壁
-tile.tank_wall.mk_iv.name=耐水性ステンレススチール製タンク壁
-tile.tank_wall.mk_v.name=耐水性チタニウム製タンク壁
-tile.tank_wall.mk_vi.name=耐水性タングステンスチール製タンク壁
-tile.tank_wall.mk_vii.name=耐水性ロジウムメッキパラジウム製タンク壁
-tile.tank_wall.mk_viii.name=耐水性ナクアダ合金製タンク壁
-tile.tank_wall.mk_ix.name=耐水性ダームスタチウム製タンク壁
-tile.tank_wall.mk_x.name=耐水性ニュートロニウム製タンク壁
+tile.tank_wall.mk_i.name=錬鉄製耐水被覆タンク壁
+tile.tank_wall.mk_ii.name=耐スチール製水被覆タンク壁
+tile.tank_wall.mk_iii.name=アルミニウム製耐水被覆タンク壁
+tile.tank_wall.mk_iv.name=ステンレススチール製耐水被覆タンク壁
+tile.tank_wall.mk_v.name=チタニウム製耐水被覆タンク壁
+tile.tank_wall.mk_vi.name=タングステンスチール製耐水被覆タンク壁
+tile.tank_wall.mk_vii.name=ロジウムメッキパラジウム耐水被覆製タンク壁
+tile.tank_wall.mk_viii.name=ナクアダ合金製耐水被覆タンク壁
+tile.tank_wall.mk_ix.name=ダームスタチウム製耐水被覆タンク壁
+tile.tank_wall.mk_x.name=ニュートロニウム製耐水被覆タンク壁
 
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.filtered=§3§nフィルター付き搬入バス§r§3を利用すると便利かもしれません。
@@ -320,6 +320,13 @@ gtconsolidate.machine.rotor_holder.ctrl=Ctrlで特性を表示
 gtconsolidate.machine.rotor_holder.info.speed=最大ローター速度: %s
 gtconsolidate.machine.rotor_holder.info.efficiency=タービン効率: %s
 gtconsolidate.machine.rotor_holder.info.power=最大出力: %s
+
+# Tank Block
+tile.tank_block.tooltip_empty.1=モジュール式マルチタンクの空間を埋めるために。
+tile.tank_block.tooltip_empty.2=内部空間が歪んでいるようだ。
+
+# Tank Wall
+tile.tank_wall.tooltip=液体漏れを防ぐため、耐水性スチールで被覆されている。
 
 ## Display
 # Multiblock Machine

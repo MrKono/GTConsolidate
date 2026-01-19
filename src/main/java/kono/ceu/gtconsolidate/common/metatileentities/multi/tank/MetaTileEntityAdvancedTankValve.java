@@ -127,10 +127,6 @@ public class MetaTileEntityAdvancedTankValve extends MetaTileEntityMultiblockPar
         initializeDummyInventory();
     }
 
-    public int getTargetTank() {
-        return targetTank;
-    }
-
     public void setTargetTank(int amount) {
         this.targetTank = MathHelper.clamp(this.targetTank + amount, 1, this.maxTank);
         addToMultiBlock(getController());

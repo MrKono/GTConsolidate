@@ -177,16 +177,16 @@ tile.tank_block.quantum_iii.name=Quantum Tank Block III
 tile.tank_block.quantum_iv.name=Quantum Tank Block IV
 tile.tank_block.quantum_v.name=Quantum Tank Block V
 
-tile.tank_wall.mk_i.name=Watertight Wrought Iron Tank Wall
-tile.tank_wall.mk_ii.name=Watertight Steel Tank Wall
-tile.tank_wall.mk_iii.name=Watertight Aluminium Tank Wall
-tile.tank_wall.mk_iv.name=Watertight Stainless Steel Tank Wall
-tile.tank_wall.mk_v.name=Watertight Titanium Tank Wall
-tile.tank_wall.mk_vi.name=Watertight Tungsten Steel Tank Wall
-tile.tank_wall.mk_vii.name=Watertight Rhodium Plated Palladium Tank Wall
-tile.tank_wall.mk_viii.name=Watertight Naquadah Alloy Tank Wall
-tile.tank_wall.mk_ix.name=Watertight Darmstadtium Tank Wall
-tile.tank_wall.mk_x.name=Watertight Neutronium Tank Wall
+tile.tank_wall.mk_i.name=Watertight-Coated Wrought Iron Tank Wall
+tile.tank_wall.mk_ii.name=Watertight-Coated Steel Tank Wall
+tile.tank_wall.mk_iii.name=Watertight-Coated Aluminium Tank Wall
+tile.tank_wall.mk_iv.name=Watertight-Coated Stainless Steel Tank Wall
+tile.tank_wall.mk_v.name=Watertight-Coated Titanium Tank Wall
+tile.tank_wall.mk_vi.name=Watertight-Coated Tungsten Steel Tank Wall
+tile.tank_wall.mk_vii.name=Watertight-Coated Rhodium Plated Palladium Tank Wall
+tile.tank_wall.mk_viii.name=Watertight-Coated Naquadah Alloy Tank Wall
+tile.tank_wall.mk_ix.name=Watertight-Coated Darmstadtium Tank Wall
+tile.tank_wall.mk_x.name=Watertight-Coated Neutronium Tank Wall
 
 ## Tooltips
 gtconsolidate.multiblock.jei.bus.filtered=§3Using §nFiltered Input Bus§r§3 may be convenient.
@@ -320,6 +320,13 @@ gtconsolidate.machine.rotor_holder.ctrl=Hold Ctrl to show properties.
 gtconsolidate.machine.rotor_holder.info.speed=Maximum Rotor Speed: %s
 gtconsolidate.machine.rotor_holder.info.efficiency=Turbine Efficiency: %s
 gtconsolidate.machine.rotor_holder.info.power=Maximum Output: %s
+
+# Tank Block
+tile.tank_block.tooltip_empty.1=For filling space in your Modular Multiblock Tank.
+tile.tank_block.tooltip_empty.2=Interior space seems to be distorted.
+
+# Tank Wall
+tile.tank_wall.tooltip=Coated with Watertight Steel to prevent fluid leakage.
 
 ## Display
 # Multiblock Machine
