@@ -175,7 +175,6 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
     @Override
     public void invalidateStructure() {
         super.invalidateStructure();
-        this.blastFurnaceTemperature = 0;
     }
 
     @Override
