@@ -14,10 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,6 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import gregtech.api.GTValues;
 import gregtech.api.capability.IEnergyContainer;
+import gregtech.api.capability.ILaserContainer;
 import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -233,7 +231,6 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
         MultiblockDisplayText.Builder builder = MultiblockDisplayText.builder(textList, isStructureFormed());
-
         builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
                 .addEnergyUsageLine(getEnergyContainer())
                 .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
@@ -281,6 +278,9 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
             tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.3"));
             tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.4"));
             tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.5"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.6"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.7"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.8"));
         } else {
             tooltip.add((I18n.format("gtconsolidate.multiblock.tooltip.universal.tab.build")));
         }
@@ -305,14 +305,42 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
                 }
                 return voltage;
             } else {
-                if (energyContainer instanceof EnergyContainerList energyList) {
-                    long highestVoltage = energyList.getHighestInputVoltage();
-                    if (energyList.getNumHighestInputContainers() > 1) {
-                        int tier = GTUtility.getTierByVoltage(highestVoltage);
-                        return GTValues.V[Math.min(tier + (energyList.getNumHighestInputContainers() - 1),
-                                GTValues.MAX)];
+                List<ILaserContainer> laserList = new ArrayList<>(getAbilities(MultiblockAbility.INPUT_LASER));
+                if (!laserList.isEmpty()) {
+                    // Amperage is divided to prevent overflow and for tier calculation scaling.
+                    final int AMPERAGE_DIVISOR = 128;
+                    // The base of the logarithm used for the tier bonus calculation.
+                    final int TIER_BONUS_LOG_BASE = 4;
+
+                    int maxTier = 0;
+                    int numMaxTier = 0;
+                    int amp = 0;
+                    for (ILaserContainer container : laserList) {
+                        int tier = GTUtility.getTierByVoltage(container.getInputVoltage());
+                        int currentAmp = (int) (container.getInputAmperage() / AMPERAGE_DIVISOR);
+                        if (tier > maxTier) {
+                            // Save the maximum tier
+                            maxTier = tier;
+                            // Reset the maximum tier count
+                            numMaxTier = 1;
+                            // Save the current Amp.
+                            amp = currentAmp;
+                        } else if (tier == maxTier) {
+                            numMaxTier++;
+                            amp += currentAmp;
+                        }
+                    }
+
+                    if (numMaxTier > 1) {
+                        // Tier bonus is based on the number of hatches.
+                        int tierBonusFromHatches = numMaxTier / 2;
+                        // Tier bonus from amperage, calculated with a logarithm.
+                        int tierBonusFromAmps = (int) (Math.log(amp) / Math.log(TIER_BONUS_LOG_BASE));
+                        // The final tier bonus is the minimum of the two, ensuring both conditions are met.
+                        int add = Math.min(tierBonusFromAmps, tierBonusFromHatches);
+                        return GTValues.V[Math.min(maxTier + add, GTValues.MAX)];
                     } else {
-                        return highestVoltage;
+                        return GTValues.V[maxTier];
                     }
                 } else {
                     return energyContainer.getInputVoltage();

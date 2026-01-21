@@ -2,6 +2,11 @@
 ### 1.1.2-beta
 - **Add** _Multiblock "Large" Tank_.
 - **Add** _Advanced Tank Valve_.
+- **Refactor** some Multiblock.
+  - _Turbo Rotary Hearth Blast Smelter_: The temperature no longer resets except when the controller is destroyed.
+  - _Circuit Factory_: Changing the `Max Recipe Tier` calculation logic.
+  - Change some display text.
+  
 ---
 
 ### 1.1.1.2-beta

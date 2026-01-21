@@ -58,8 +58,9 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
             return self();
         }
         int maxParallel = logic.getParallelLimit();
-        if (!isActive || !GTConsolidateConfig.feature.modifyParallelLine) {
-            if (maxParallel > 1) {
+
+        if (maxParallel > 1) {
+            if (!GTConsolidateConfig.feature.modifyParallelLine) {
                 ITextComponent parallels = TextComponentUtil.stringWithColor(
                         TextFormatting.DARK_PURPLE,
                         TextFormattingUtil.formatNumbers(maxParallel));
@@ -68,23 +69,23 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
                         TextFormatting.GRAY,
                         "gregtech.multiblock.parallel",
                         parallels));
-                return self();
+            } else {
+                int currentParallel = ((AbstractRecipeLogicMixinHelper) logic).getCurrentParallel();
+                if (currentParallel == 0) currentParallel = 1;
+                ITextComponent current = TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE,
+                        TextFormattingUtil.formatNumbers(currentParallel));
+                ITextComponent max = TextComponentUtil.translationWithColor(TextFormatting.DARK_PURPLE,
+                        TextFormattingUtil.formatNumbers(maxParallel));
+
+                ITextComponent body = TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                        "gtconsolidate.multiblock.parallel_extended",
+                        current, max);
+                ITextComponent hover = TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                        "gtconsolidate.multiblock.parallel_extended_hover");
+
+                this.textList.add(TextComponentUtil.setHover(body, hover));
             }
         }
-        int currentParallel = ((AbstractRecipeLogicMixinHelper) logic).getCurrentParallel();
-        if (currentParallel == 0) currentParallel = 1;
-        ITextComponent current = TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE,
-                TextFormattingUtil.formatNumbers(currentParallel));
-        ITextComponent max = TextComponentUtil.translationWithColor(TextFormatting.DARK_PURPLE,
-                TextFormattingUtil.formatNumbers(maxParallel));
-
-        ITextComponent body = TextComponentUtil.translationWithColor(TextFormatting.GRAY,
-                "gtconsolidate.multiblock.parallel_extended",
-                current, max);
-        ITextComponent hover = TextComponentUtil.translationWithColor(TextFormatting.GRAY,
-                "gtconsolidate.multiblock.parallel_extended_hover");
-
-        this.textList.add(TextComponentUtil.setHover(body, hover));
         return self();
     }
 
