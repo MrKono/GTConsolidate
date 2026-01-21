@@ -134,7 +134,7 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
         builder.addWorkingStatusLine()
                 .addCustom(tl -> {
-                    if (!isActive()) {
+                    if (!isActive() && isStructureFormed()) {
                         ITextComponent status = TextComponentUtil.translationWithColor(
                                 preHeating ? TextFormatting.GREEN : TextFormatting.RED,
                                 preHeating ? "gtconsolidate.universal.enabled" : "gtconsolidate.universal.disabled");

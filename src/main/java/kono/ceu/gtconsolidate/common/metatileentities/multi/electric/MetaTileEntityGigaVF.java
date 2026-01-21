@@ -173,7 +173,7 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
         ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
         builder.addWorkingStatusLine()
                 .addCustom(tl -> {
-                    if (!isActive()) {
+                    if (!isActive() && isStructureFormed()) {
                         ITextComponent status = TextComponentUtil.translationWithColor(
                                 preCooling ? TextFormatting.GREEN : TextFormatting.RED,
                                 preCooling ? "gtconsolidate.universal.enabled" : "gtconsolidate.universal.disabled");
