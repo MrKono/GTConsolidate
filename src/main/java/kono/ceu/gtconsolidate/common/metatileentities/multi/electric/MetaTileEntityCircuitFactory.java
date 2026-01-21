@@ -307,26 +307,37 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
             } else {
                 List<ILaserContainer> laserList = new ArrayList<>(getAbilities(MultiblockAbility.INPUT_LASER));
                 if (!laserList.isEmpty()) {
+                    // Amperage is divided to prevent overflow and for tier calculation scaling.
+                    final int AMPERAGE_DIVISOR = 128;
+                    // The base of the logarithm used for the tier bonus calculation.
+                    final int TIER_BONUS_LOG_BASE = 4;
+
                     int maxTier = 0;
                     int numMaxTier = 0;
                     int amp = 0;
                     for (ILaserContainer container : laserList) {
                         int tier = GTUtility.getTierByVoltage(container.getInputVoltage());
+                        int currentAmp = (int) (container.getInputAmperage() / AMPERAGE_DIVISOR);
                         if (tier > maxTier) {
+                            // Save the maximum tier
                             maxTier = tier;
-                            numMaxTier = 0;
-                            amp = 0;
-
-                            numMaxTier += 1;
-                            amp += (int) (container.getInputAmperage() / 128);
+                            // Reset the maximum tier count
+                            numMaxTier = 1;
+                            // Save the current Amp.
+                            amp = currentAmp;
                         } else if (tier == maxTier) {
-                            numMaxTier += 1;
-                            amp += (int) (container.getInputAmperage() / 128);
+                            numMaxTier++;
+                            amp += currentAmp;
                         }
                     }
+
                     if (numMaxTier > 1) {
-                        int min = Math.max(numMaxTier / 2, 0);
-                        int add = Math.min((int) (Math.log(amp) / Math.log(4)), min);
+                        // Tier bonus is based on the number of hatches.
+                        int tierBonusFromHatches = numMaxTier / 2;
+                        // Tier bonus from amperage, calculated with a logarithm.
+                        int tierBonusFromAmps = (int) (Math.log(amp) / Math.log(TIER_BONUS_LOG_BASE));
+                        // The final tier bonus is the minimum of the two, ensuring both conditions are met.
+                        int add = Math.min(tierBonusFromAmps, tierBonusFromHatches);
                         return GTValues.V[Math.min(maxTier + add, GTValues.MAX)];
                     } else {
                         return GTValues.V[maxTier];
