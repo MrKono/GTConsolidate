@@ -264,7 +264,10 @@ gtconsolidate.machine.circuit_factory.tooltip.1=Ultra-precision machine
 gtconsolidate.machine.circuit_factory.tooltip.2=Recommended to enable Distinct Buses.
 gtconsolidate.machine.circuit_factory.tooltip.3=§cNothing except AIR§7 may be placed within the structural space.
 gtconsolidate.machine.circuit_factory.tooltip.4=Accepts up to 8 of Laser Target Hatch.
-gtconsolidate.machine.circuit_factory.tooltip.5=    The step-up conditions for the "Max Recipe Tier" have been relaxed.
+gtconsolidate.machine.circuit_factory.tooltip.5===The step-up conditions for the "Max Recipe Tier" have been relaxed.==
+gtconsolidate.machine.circuit_factory.tooltip.6=  As usual, using two laser hatches of the same tier will increase the recipe tier by one.
+gtconsolidate.machine.circuit_factory.tooltip.7=  Using four or more laser hatches of the same tier, with with a total input current of at least 2048A, will increase the recipe tier by two.
+gtconsolidate.machine.circuit_factory.tooltip.8=  Using eight laser hatches of the same tier, with with a total input current of at least 8192A, will increase the recipe tier by three.
 
 # Extended Processing Array
 gtconsolidate.machine.extended_processing_array.tooltip.factor.4=Might be just right.

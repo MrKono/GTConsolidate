@@ -264,7 +264,10 @@ gtconsolidate.machine.circuit_factory.tooltip.1=超精密機械
 gtconsolidate.machine.circuit_factory.tooltip.2=バスの区別を有効にすることを推奨。
 gtconsolidate.machine.circuit_factory.tooltip.3=構造内部の空間には§c空気以外§7のブロックを設置してはならない。
 gtconsolidate.machine.circuit_factory.tooltip.4=レーザー照準ハッチは8つまで設置できる。
-gtconsolidate.machine.circuit_factory.tooltip.5=    実行可能電圧の昇圧条件が緩和されています。
+gtconsolidate.machine.circuit_factory.tooltip.5===実行可能電圧の昇圧条件が緩和されています。==
+gtconsolidate.machine.circuit_factory.tooltip.6=  通常と同じく、2つ以上の同じ電圧のレーザーハッチを用いることで1段階昇圧される。
+gtconsolidate.machine.circuit_factory.tooltip.7=  同じ電圧のレーザーハッチを4つ以上用いており、かつ2048A以上入力している場合、2段階昇圧される。
+gtconsolidate.machine.circuit_factory.tooltip.8=  同じ電圧のレーザーハッチを8つ用いており、かつ8192A以上入力している場合、3段階昇圧される。
 
 # Extended Processing Array
 gtconsolidate.machine.extended_processing_array.tooltip.factor.4=これくらいは欲しいかも。

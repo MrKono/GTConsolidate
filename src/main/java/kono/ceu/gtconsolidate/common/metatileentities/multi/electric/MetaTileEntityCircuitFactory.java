@@ -278,6 +278,9 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
             tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.3"));
             tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.4"));
             tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.5"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.6"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.7"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.8"));
         } else {
             tooltip.add((I18n.format("gtconsolidate.multiblock.tooltip.universal.tab.build")));
         }
