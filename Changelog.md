@@ -1,6 +1,6 @@
 ## Changelog
 
-### 1.1.1.2-beta
+### 1.1.2.1-beta
 - **Fix** Circuit Factory recipe.
 ---
 
