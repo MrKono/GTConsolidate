@@ -213,12 +213,12 @@ public class CircuitFactoryLoader {
 
         // x144 inputs, x256 outputs (9/16)
         // 144x bolts -> 2x blocks
-        // 144x wireFine -> 2x wireGtHex + 1x wireGtDouble
+        // 144x wireFine -> 2x wireGtHex + 1x wireGtQuadruple
         GTConsolidateRecipeMaps.CIRCUIT_FACTORY_RECIPES.recipeBuilder()
-                .input(board, 256)
-                .input(SoCStack, 256)
+                .input(board, 144)
+                .input(SoCStack, 144)
                 .input(wireGtHex, wireFineMaterial, wireFineAmount * 2)
-                .input(wireGtDouble, wireFineMaterial, wireFineAmount)
+                .input(wireGtQuadruple, wireFineMaterial, wireFineAmount)
                 .input(block, boltMaterial, boltAmount * 2)
                 .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 72))
                 .fluidInputs(Materials.DistilledWater.getFluid(10000 * tier))

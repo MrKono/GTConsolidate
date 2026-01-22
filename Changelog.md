@@ -1,4 +1,9 @@
 ## Changelog
+
+### 1.1.1.2-beta
+- **Fix** Circuit Factory recipe.
+---
+
 ### 1.1.2-beta
 - **Add** _Multiblock "Large" Tank_.
 - **Add** _Advanced Tank Valve_.
