@@ -1,5 +1,6 @@
 package kono.ceu.gtconsolidate.api.util;
 
+import static gregtech.api.metatileentity.multiblock.MultiblockControllerBase.abilities;
 import static gregtech.api.metatileentity.multiblock.MultiblockControllerBase.metaTileEntities;
 import static kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks.COA_CASING;
 
@@ -12,6 +13,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 
 import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.pattern.PatternStringError;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.util.BlockInfo;
@@ -60,6 +62,16 @@ public class GTConsolidateTraceabilityPredicate {
         if (allow64A) energyHatch.addAll(Arrays.asList(MetaTileEntities.SUBSTATION_ENERGY_INPUT_HATCH));
         return metaTileEntities(energyHatch.toArray(new MetaTileEntity[0])).setMinGlobalLimited(1)
                 .setMaxGlobalLimited(3).setPreviewCount(2);
+    }
+
+    @NotNull
+    public static TraceabilityPredicate primitiveItemInput() {
+        return abilities(MultiblockAbility.IMPORT_ITEMS, MultiblockAbility.STEAM_IMPORT_ITEMS);
+    }
+
+    @NotNull
+    public static TraceabilityPredicate primitiveItemOutput() {
+        return abilities(MultiblockAbility.EXPORT_ITEMS, MultiblockAbility.STEAM_EXPORT_ITEMS);
     }
 
     @NotNull

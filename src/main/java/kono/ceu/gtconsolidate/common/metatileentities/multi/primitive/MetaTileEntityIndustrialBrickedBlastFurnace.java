@@ -1,5 +1,8 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.primitive;
 
+import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
@@ -14,6 +17,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
 import org.jetbrains.annotations.NotNull;
@@ -60,8 +64,14 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
 
     @Override
     protected void initializeAbilities() {
-        this.importItems = new ItemHandlerList(getAbilities(MultiblockAbility.IMPORT_ITEMS));
-        this.exportItems = new ItemHandlerList(getAbilities(MultiblockAbility.EXPORT_ITEMS));
+        List<IItemHandlerModifiable> itemInput = new ArrayList<>(getAbilities(MultiblockAbility.IMPORT_ITEMS));
+        itemInput.addAll(getAbilities(MultiblockAbility.STEAM_IMPORT_ITEMS));
+
+        List<IItemHandlerModifiable> itemOutput = new ArrayList<>(getAbilities(MultiblockAbility.EXPORT_ITEMS));
+        itemOutput.addAll(getAbilities(MultiblockAbility.STEAM_EXPORT_ITEMS));
+
+        this.importItems = new ItemHandlerList(itemInput);
+        this.exportItems = new ItemHandlerList(itemOutput);
     }
 
     @Override
@@ -85,8 +95,8 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
                 .where('C',
                         states(MetaBlocks.STEAM_CASING.getState(BlockSteamCasing.SteamCasingType.STEEL_BRICKS_HULL))
                                 .setMinGlobalLimited(8)
-                                .or(abilities(MultiblockAbility.IMPORT_ITEMS).setPreviewCount(2))
-                                .or(abilities(MultiblockAbility.EXPORT_ITEMS).setPreviewCount(2)))
+                                .or(primitiveItemInput().setPreviewCount(2))
+                                .or(primitiveItemOutput().setPreviewCount(2)))
                 .where('I', indicatorPredicate())
                 .where('S', selfPredicate())
                 .where('T', states(getPillarState()))

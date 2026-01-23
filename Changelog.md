@@ -1,4 +1,7 @@
 ## Changelog
+### 1.1.2.2-beta
+- Industrial Primitive Machine now accepts Steam Item Bus
+---
 
 ### 1.1.2.1-beta
 - **Fix** Circuit Factory recipe.
