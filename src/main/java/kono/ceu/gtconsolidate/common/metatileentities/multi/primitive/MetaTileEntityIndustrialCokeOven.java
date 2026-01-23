@@ -1,5 +1,6 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.primitive;
 
+import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.*;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateUtil.isTABDown;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
 import org.jetbrains.annotations.NotNull;
@@ -77,8 +79,14 @@ public class MetaTileEntityIndustrialCokeOven extends RecipeMapPrimitiveMultiblo
 
     @Override
     protected void initializeAbilities() {
-        this.importItems = new ItemHandlerList(getAbilities(MultiblockAbility.IMPORT_ITEMS));
-        this.exportItems = new ItemHandlerList(getAbilities(MultiblockAbility.EXPORT_ITEMS));
+        List<IItemHandlerModifiable> itemInput = new ArrayList<>(getAbilities(MultiblockAbility.IMPORT_ITEMS));
+        itemInput.addAll(getAbilities(MultiblockAbility.STEAM_IMPORT_ITEMS));
+
+        List<IItemHandlerModifiable> itemOutput = new ArrayList<>(getAbilities(MultiblockAbility.EXPORT_ITEMS));
+        itemOutput.addAll(getAbilities(MultiblockAbility.STEAM_EXPORT_ITEMS));
+
+        this.importItems = new ItemHandlerList(itemInput);
+        this.exportItems = new ItemHandlerList(itemOutput);
         this.exportFluids = new FluidTankList(allowSameFluidFillForOutputs(),
                 getAbilities(MultiblockAbility.EXPORT_FLUIDS));
     }
@@ -111,9 +119,9 @@ public class MetaTileEntityIndustrialCokeOven extends RecipeMapPrimitiveMultiblo
                 .where('S', selfPredicate())
                 .where('X',
                         states(getBrickState()).setMinGlobalLimited(130)
-                                .or(abilities(MultiblockAbility.IMPORT_ITEMS).setMinGlobalLimited(1, 2))
-                                .or(abilities(MultiblockAbility.EXPORT_ITEMS).setMinGlobalLimited(1, 2))
-                                .or(abilities(MultiblockAbility.EXPORT_FLUIDS).setMinGlobalLimited(1, 2)))
+                                .or(primitiveItemInput().setMinGlobalLimited(1, 2))
+                                .or(primitiveItemOutput().setMinGlobalLimited(1, 2))
+                                .or(abilities(MultiblockAbility.EXPORT_FLUIDS).setPreviewCount(2)))
                 .where('C', indicatorPredicate())
                 .where('A', air())
                 .build();
