@@ -93,31 +93,36 @@ public class CommonProxy {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void registerRecipesHigh(RegistryEvent.Register<IRecipe> event) {}
+    public static void registerRecipesHigh(RegistryEvent.Register<IRecipe> event) {
+        Logs.logger.info("Registering high priority recipes...");
+        Logs.logger.info("Registered high priority recipes.");}
 
     @SubscribeEvent
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-        Logs.logger.info("Registering recipes...");
+        Logs.logger.info("Registering normal priority recipes...");
         MultiMachineLoader.init();
         CasingLoader.init();
         MetaTileEntityLoader.init();
         HandlersLoader.init();
         GTConsolidateMiscLoader.init();
+        Logs.logger.info("Registered normal priority recipes.");
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipesRemoval(RegistryEvent.Register<IRecipe> event) {
         Logs.logger.info("Removing recipes...");
         TurboBlastFurnaceLoader.removeConfitRecipe();
+        Logs.logger.info("Removed recipe .");
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerRecipesLow(RegistryEvent.Register<IRecipe> event) {
-        Logs.logger.info("Registering recipes...");
+        Logs.logger.info("Registering lowest priority recipes...");
         RecyclingRecipes.init();
         TurboBlastFurnaceLoader.reAddRecipe();
         TurboBlastFurnaceLoader.generate();
         RecipeMapModify.modifyRecipeBuildLow();
         HandlersLoader.low();
+        Logs.logger.info("Registered lowest priority recipes.");
     }
 }
