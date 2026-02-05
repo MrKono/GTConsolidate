@@ -119,10 +119,13 @@ gtconsolidate.machine.speed_enhanced_rotor_holder.uxv.name=速度強化型UXVロ
 gtconsolidate.machine.speed_enhanced_rotor_holder.opv.name=速度強化型OpVローターホルダー
 gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=速度強化型MAXローターホルダー
 
-## Advanced Tank Valve
+# Advanced Tank Valve
 gtconsolidate.machine.advanced_tank_valve.name=発展型タンクバルブ
 gtconsolidate.machine.advanced_tank_valve_4.name=四重タンクバルブ
 gtconsolidate.machine.advanced_tank_valve_9.name=九重タンクバルブ
+
+# Creative
+gtconsolidate.machine.creative_rotor_holder.name=クリエイティブローターホルダー
 
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=発展型組立機マシン外装
@@ -323,6 +326,12 @@ gtconsolidate.machine.rotor_holder.ctrl=Ctrlで特性を表示
 gtconsolidate.machine.rotor_holder.info.speed=最大ローター速度: %s
 gtconsolidate.machine.rotor_holder.info.efficiency=タービン効率: %s
 gtconsolidate.machine.rotor_holder.info.power=最大出力: %s
+gtconsolidate.creative_rotor_holder.tier=Tier
+gtconsolidate.creative_rotor_holder.max_speed=最大ローター速度
+gtconsolidate.creative_rotor_holder.rotor_eff=タービン効率
+gtconsolidate.creative_rotor_holder.rotor_pow=タービンパワー
+gtconsolidate.creative_rotor_holder.not_work=動かない場合、コントローラーを再設置してください
+gtconsolidate.creative_rotor_holder.tier_low=ローターホルダーのtierがタービンのtierを下回っています！！
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=モジュール式マルチタンクの空間を埋めるために。

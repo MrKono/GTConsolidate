@@ -119,10 +119,13 @@ gtconsolidate.machine.speed_enhanced_rotor_holder.uxv.name=Speed-Enhanced UXV Ro
 gtconsolidate.machine.speed_enhanced_rotor_holder.opv.name=Speed-Enhanced OpV Rotor Holder
 gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=Speed-Enhanced MAX Rotor Holder
 
-## Advanced Tank Valve
+# Advanced Tank Valve
 gtconsolidate.machine.advanced_tank_valve.name=Advanced Tank Valve
 gtconsolidate.machine.advanced_tank_valve_4.name=Quadruple Tank Valve
 gtconsolidate.machine.advanced_tank_valve_9.name=Nonuple Tank Valve
+
+# Creative
+gtconsolidate.machine.creative_rotor_holder.name=Creative Rotor Holder
 
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=Advanced Assembly Line Casing
@@ -323,6 +326,12 @@ gtconsolidate.machine.rotor_holder.ctrl=Hold Ctrl to show properties.
 gtconsolidate.machine.rotor_holder.info.speed=Maximum Rotor Speed: %s
 gtconsolidate.machine.rotor_holder.info.efficiency=Turbine Efficiency: %s
 gtconsolidate.machine.rotor_holder.info.power=Maximum Output: %s
+gtconsolidate.creative_rotor_holder.tier=Tier
+gtconsolidate.creative_rotor_holder.max_speed=Max Speed
+gtconsolidate.creative_rotor_holder.rotor_eff=Turbine Efficiency
+gtconsolidate.creative_rotor_holder.rotor_pow=Turbine Power
+gtconsolidate.creative_rotor_holder.not_work=If it does not work, try re-placing the controller.
+gtconsolidate.creative_rotor_holder.tier_low=The Rotor Holder tier is lower than the Turbine tier!!
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=For filling space in your Modular Multiblock Tank.

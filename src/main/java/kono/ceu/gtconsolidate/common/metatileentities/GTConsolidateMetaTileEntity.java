@@ -10,10 +10,7 @@ import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityRotor
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.util.Mods;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.*;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntityFilteredItemBus;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntityMoreParallelHatch;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntityPowerEnhancedRotorHolder;
-import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.MetaTileEntitySpeedEnhancedRotorHolder;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.*;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialBrickedBlastFurnace;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialCokeOven;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.tank.*;
@@ -53,6 +50,9 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityAdvancedTankValve ADVANCED_TANK_VALVE;
     public static MetaTileEntityQuadrupleTankValve QUADRUPLE_TANK_VALVE;
     public static MetaTileEntityNonupleTankValve NONUPLE_TANK_VALVE;
+
+    // Creative
+    public static MetaTileEntityCreativeRotorHolder CREATIVE_ROTOR_HOLDER;
 
     public static void init() {
         registerMultiMachine();
@@ -211,5 +211,8 @@ public class GTConsolidateMetaTileEntity {
                 modId("advanced_tank_valve_4")));
         NONUPLE_TANK_VALVE = registerMetaTileEntity(id + 3, new MetaTileEntityNonupleTankValve(
                 modId("advanced_tank_valve_9")));
+
+        CREATIVE_ROTOR_HOLDER = registerMetaTileEntity(id + 4,
+                new MetaTileEntityCreativeRotorHolder(modId("creative_rotor_holder")));
     }
 }
