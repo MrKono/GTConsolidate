@@ -1,9 +1,14 @@
 package kono.ceu.gtconsolidate.api.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 
 import org.jetbrains.annotations.NotNull;
+
+import gregtech.api.unification.material.Material;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.Tags;
@@ -18,6 +23,7 @@ public class GTConsolidateValues {
     public static final String MODNAME = Tags.MODNAME;
     public static final String VERSION = Tags.VERSION;
     public static final Object2ObjectMap<IBlockState, ITankData> MULTIBLOCK_INTERNAL_TANKS = new Object2ObjectOpenHashMap();
+    public static Map<Integer, Material> INTAKE_HATCH_DIMENSION_MAPPING = new HashMap<>();
 
     public static @NotNull ResourceLocation modId(String path) {
         return new ResourceLocation(MODID, path);

@@ -124,6 +124,16 @@ gtconsolidate.machine.advanced_tank_valve.name=Advanced Tank Valve
 gtconsolidate.machine.advanced_tank_valve_4.name=Quadruple Tank Valve
 gtconsolidate.machine.advanced_tank_valve_9.name=Nonuple Tank Valve
 
+# Intake Hatch
+gtconsolidate.machine.intake_hatch.0.name=Intake Hatch
+gtconsolidate.machine.intake_hatch.1.name=Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.2.name=Double Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.3.name=Triple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.4.name=Quadruple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.5.name=Quintuple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.6.name=Sextuple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.7.name=Septuple Compressed Intake Hatch
+
 # Creative
 gtconsolidate.machine.creative_rotor_holder.name=Creative Rotor Holder
 
@@ -333,6 +343,15 @@ gtconsolidate.creative_rotor_holder.rotor_pow=Turbine Power
 gtconsolidate.creative_rotor_holder.not_work=If it does not work, try re-placing the controller.
 gtconsolidate.creative_rotor_holder.tier_low=The Rotor Holder tier is lower than the Turbine tier!!
 
+# Intake Hatches
+gtconsolidate.intake_hatch.tooltip.1=Collects Gas from the atmosphere depending on the current dimension.
+gtconsolidate.intake_hatch.tooltip.2=At least one side must be exposed to air.
+gtconsolidate.intake_hatch.collection_rate=§bCollection Rate: §f%,d L/s
+gtconsolidate.intake_hatch.controller_null=Cannot find the controller!
+gtconsolidate.intake_hatch.blocked=Hatch is Obstructed!
+gtconsolidate.intake_hatch.collecting_fluid=Collecting Gas: %s
+gtconsolidate.intake_hatch.fluid_amount=%s
+
 # Tank Block
 tile.tank_block.tooltip_empty.1=For filling space in your Modular Multiblock Tank.
 tile.tank_block.tooltip_empty.2=Interior space seems to be distorted.
@@ -391,4 +410,4 @@ gtconsolidate.recipe.coa=Minimum Casing Tier: %s
 gtconsolidate.universal.enabled=Enabled
 gtconsolidate.universal.disabled=Disabled
 gtconsolidate.universal.empty=Empty
-
+gtconsolidate.universal.status=Status:
