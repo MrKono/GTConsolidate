@@ -133,6 +133,14 @@ gtconsolidate.machine.intake_hatch.4.name=四重圧縮吸気ハッチ
 gtconsolidate.machine.intake_hatch.5.name=五重圧縮吸気ハッチ
 gtconsolidate.machine.intake_hatch.6.name=六重圧縮吸気ハッチ
 gtconsolidate.machine.intake_hatch.7.name=七重圧縮吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.0.name=発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.1.name=圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.2.name=重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.3.name=三重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.4.name=四重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.5.name=五重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.6.name=六重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.7.name=七重圧縮発展型吸気ハッチ
 
 # Creative
 gtconsolidate.machine.creative_rotor_holder.name=クリエイティブローターホルダー
@@ -351,6 +359,10 @@ gtconsolidate.intake_hatch.controller_null=コントローラーが見つかり�
 gtconsolidate.intake_hatch.blocked=ハッチが塞がれています！
 gtconsolidate.intake_hatch.collecting_fluid=収集対象: %s
 gtconsolidate.intake_hatch.fluid_amount=%s
+gtconsolidate.intake_hatch.dim=対象ディメンション:
+gtconsolidate.intake_hatch.dim.tooltip=ガスを収集するディメンションを設定
+gtconsolidate_intake_hatch.dim_target=%s (DimID: %s)
+gtconsolidate_intake_hatch.dim_unregistered=未定義
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=モジュール式マルチタンクの空間を埋めるために。

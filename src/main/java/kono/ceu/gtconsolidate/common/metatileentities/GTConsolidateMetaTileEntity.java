@@ -51,6 +51,7 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityQuadrupleTankValve QUADRUPLE_TANK_VALVE;
     public static MetaTileEntityNonupleTankValve NONUPLE_TANK_VALVE;
     public static MetaTileEntityIntakeHatch[] INTAKE_HATCH = new MetaTileEntityIntakeHatch[8];
+    public static MetaTileEntityAdvancedIntakeHatch[] ADVANCED_INTAKE_HATCH = new MetaTileEntityAdvancedIntakeHatch[8];
 
     // Creative
     public static MetaTileEntityCreativeRotorHolder CREATIVE_ROTOR_HOLDER;
@@ -220,5 +221,11 @@ public class GTConsolidateMetaTileEntity {
             INTAKE_HATCH[i] = registerMetaTileEntity(id + i, new MetaTileEntityIntakeHatch(
                     modId("intake_hatch." + i), i));
         }
+        id = id + INTAKE_HATCH.length;
+        for (int i = 0; i < ADVANCED_INTAKE_HATCH.length; i++) {
+            ADVANCED_INTAKE_HATCH[i] = registerMetaTileEntity(id + i, new MetaTileEntityAdvancedIntakeHatch(
+                    modId("advanced_intake_hatch." + i), i));
+        }
+        id = id + ADVANCED_INTAKE_HATCH.length;
     }
 }

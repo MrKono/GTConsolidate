@@ -133,6 +133,14 @@ gtconsolidate.machine.intake_hatch.4.name=Quadruple Compressed Intake Hatch
 gtconsolidate.machine.intake_hatch.5.name=Quintuple Compressed Intake Hatch
 gtconsolidate.machine.intake_hatch.6.name=Sextuple Compressed Intake Hatch
 gtconsolidate.machine.intake_hatch.7.name=Septuple Compressed Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.0.name=Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.1.name=Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.2.name=Double Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.3.name=Triple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.4.name=Quadruple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.5.name=Quintuple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.6.name=Sextuple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.7.name=Septuple Compressed Advanced Intake Hatch
 
 # Creative
 gtconsolidate.machine.creative_rotor_holder.name=Creative Rotor Holder
@@ -351,6 +359,10 @@ gtconsolidate.intake_hatch.controller_null=Cannot find the controller!
 gtconsolidate.intake_hatch.blocked=Hatch is Obstructed!
 gtconsolidate.intake_hatch.collecting_fluid=Collecting Gas: %s
 gtconsolidate.intake_hatch.fluid_amount=%s
+gtconsolidate.intake_hatch.dim=Target Dimension:
+gtconsolidate.intake_hatch.dim.tooltip=Set the Dimension ID to collect Gas
+gtconsolidate_intake_hatch.dim_target=%s (DimID: %s)
+gtconsolidate_intake_hatch.dim_unregistered=Unregistered
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=For filling space in your Modular Multiblock Tank.
