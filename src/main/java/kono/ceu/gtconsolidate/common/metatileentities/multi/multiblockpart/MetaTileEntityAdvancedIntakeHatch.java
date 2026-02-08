@@ -166,7 +166,7 @@ public class MetaTileEntityAdvancedIntakeHatch extends MetaTileEntityMultiblockN
 
         ServerWidgetGroup setDimensionGroup = new ServerWidgetGroup(() -> true);
         setDimensionGroup.addWidget(new ImageWidget(74, 65, 77, 20, GuiTextures.DISPLAY)
-                .setTooltip("gtconsolidate.intake_hatch.dim.tooltip"));
+                .setTooltip("gtconsolidate.machine.intake_hatch.dim.tooltip"));
         setDimensionGroup.addWidget(new IncrementButtonWidget(156, 65, 30, 20, 1, 4, 16, 64, this::setDimensionId)
                 .setDefaultTooltip()
                 .setShouldClientCallback(false));
@@ -191,7 +191,7 @@ public class MetaTileEntityAdvancedIntakeHatch extends MetaTileEntityMultiblockN
                 .widget(tankWidget)
                 .label(39, 30, "gtconsolidate.universal.status", 0xFFFFFF)
                 .widget(new AdvancedTextWidget(44, 40, this::addStatusLine, 0xFFFFFF))
-                .label(39, 55, "gtconsolidate.intake_hatch.dim", 0xFFFFFF)
+                .label(39, 55, "gtconsolidate.machine.intake_hatch.dim", 0xFFFFFF)
                 .widget(setDimensionGroup)
                 .widget(new AdvancedTextWidget(49, 95, this::addDimensionLine, 0xFFFFFF).setMaxWidthLimit(150))
                 .widget(new AdvancedTextWidget(39, 110, text -> getCollectingFluidText(tankWidget, text), 0xFFFFFF))
@@ -206,7 +206,7 @@ public class MetaTileEntityAdvancedIntakeHatch extends MetaTileEntityMultiblockN
                     TextFormatting.AQUA, "%s", translation);
             textList.add(TextComponentUtil.translationWithColor(
                     TextFormatting.WHITE,
-                    "gtconsolidate.intake_hatch.collecting_fluid", text));
+                    "gtconsolidate.machine.intake_hatch.collecting_fluid", text));
         }
     }
 
@@ -224,10 +224,10 @@ public class MetaTileEntityAdvancedIntakeHatch extends MetaTileEntityMultiblockN
         ITextComponent status;
         if (getController() == null) {
             status = TextComponentUtil.translationWithColor(
-                    TextFormatting.RED, "gtconsolidate.intake_hatch.controller_null");
+                    TextFormatting.RED, "gtconsolidate.machine.intake_hatch.controller_null");
         } else if (!isExposeAir()) {
             status = TextComponentUtil.translationWithColor(
-                    TextFormatting.YELLOW, "gtconsolidate.intake_hatch.blocked");
+                    TextFormatting.YELLOW, "gtconsolidate.machine.intake_hatch.blocked");
         } else {
             status = TextComponentUtil.translationWithColor(
                     TextFormatting.AQUA, "gregtech.multiblock.running");
@@ -255,10 +255,10 @@ public class MetaTileEntityAdvancedIntakeHatch extends MetaTileEntityMultiblockN
             name = TextComponentUtil.stringWithColor(TextFormatting.AQUA, type.getName());
         } catch (IllegalArgumentException e) {
             name = TextComponentUtil.translationWithColor(TextFormatting.YELLOW,
-                    "gtconsolidate.intake_hatch.dim_unregistered");
+                    "gtconsolidate.machine.intake_hatch.dim_unregistered");
         }
         textList.add(TextComponentUtil.translationWithColor(
-                TextFormatting.WHITE, "gtconsolidate.intake_hatch.dim_target", name, dimId));
+                TextFormatting.WHITE, "gtconsolidate.machine.intake_hatch.dim_target", name, dimId));
     }
 
     public static @NotNull Function<String, String> getTextFieldValidator(IntSupplier maxSupplier) {
@@ -283,10 +283,10 @@ public class MetaTileEntityAdvancedIntakeHatch extends MetaTileEntityMultiblockN
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, @NotNull List<String> tooltip,
                                boolean advanced) {
-        tooltip.add(I18n.format("gtconsolidate.intake_hatch.tooltip.3"));
-        tooltip.add(I18n.format("gtconsolidate.intake_hatch.tooltip.2"));
+        tooltip.add(I18n.format("gtconsolidate.machine.intake_hatch.tooltip.3"));
+        tooltip.add(I18n.format("gtconsolidate.machine.intake_hatch.tooltip.2"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.fluid_storage_capacity", getInventorySize()));
-        tooltip.add(I18n.format("gtconsolidate.intake_hatch.collection_rate", getFillAmount()));
+        tooltip.add(I18n.format("gtconsolidate.machine.intake_hatch.collection_rate", getFillAmount()));
         tooltip.add(I18n.format("gregtech.universal.enabled"));
     }
 

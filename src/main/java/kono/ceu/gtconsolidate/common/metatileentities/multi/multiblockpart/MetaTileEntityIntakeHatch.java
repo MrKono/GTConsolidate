@@ -168,7 +168,7 @@ public class MetaTileEntityIntakeHatch extends MetaTileEntityMultiblockNotifiabl
                     TextFormatting.AQUA, "%s", translation);
             textList.add(TextComponentUtil.translationWithColor(
                     TextFormatting.WHITE,
-                    "gtconsolidate.intake_hatch.collecting_fluid", text));
+                    "gtconsolidate.machine.intake_hatch.collecting_fluid", text));
         }
     }
 
@@ -186,10 +186,10 @@ public class MetaTileEntityIntakeHatch extends MetaTileEntityMultiblockNotifiabl
         ITextComponent status;
         if (getController() == null) {
             status = TextComponentUtil.translationWithColor(
-                    TextFormatting.RED, "gtconsolidate.intake_hatch.controller_null");
+                    TextFormatting.RED, "gtconsolidate.machine.intake_hatch.controller_null");
         } else if (!isExposeAir()) {
             status = TextComponentUtil.translationWithColor(
-                    TextFormatting.YELLOW, "gtconsolidate.intake_hatch.blocked");
+                    TextFormatting.YELLOW, "gtconsolidate.machine.intake_hatch.blocked");
         } else {
             status = TextComponentUtil.translationWithColor(
                     TextFormatting.AQUA, "gregtech.multiblock.running");
@@ -200,10 +200,10 @@ public class MetaTileEntityIntakeHatch extends MetaTileEntityMultiblockNotifiabl
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, @NotNull List<String> tooltip,
                                boolean advanced) {
-        tooltip.add(I18n.format("gtconsolidate.intake_hatch.tooltip.1"));
-        tooltip.add(I18n.format("gtconsolidate.intake_hatch.tooltip.2"));
+        tooltip.add(I18n.format("gtconsolidate.machine.intake_hatch.tooltip.1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.intake_hatch.tooltip.2"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.fluid_storage_capacity", getInventorySize()));
-        tooltip.add(I18n.format("gtconsolidate.intake_hatch.collection_rate", getFillAmount()));
+        tooltip.add(I18n.format("gtconsolidate.machine.intake_hatch.collection_rate", getFillAmount()));
         tooltip.add(I18n.format("gregtech.universal.enabled"));
     }
 

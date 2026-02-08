@@ -350,25 +350,25 @@ gtconsolidate.machine.rotor_holder.ctrl=Ctrlで特性を表示
 gtconsolidate.machine.rotor_holder.info.speed=最大ローター速度: %s
 gtconsolidate.machine.rotor_holder.info.efficiency=タービン効率: %s
 gtconsolidate.machine.rotor_holder.info.power=最大出力: %s
-gtconsolidate.creative_rotor_holder.tier=Tier
+gtconsolidate.machine.creative_rotor_holder.tier=Tier
 gtconsolidate.creative_rotor_holder.max_speed=最大ローター速度
-gtconsolidate.creative_rotor_holder.rotor_eff=タービン効率
-gtconsolidate.creative_rotor_holder.rotor_pow=タービンパワー
-gtconsolidate.creative_rotor_holder.not_work=動かない場合、コントローラーを再設置してください
-gtconsolidate.creative_rotor_holder.tier_low=ローターホルダーのtierがタービンのtierを下回っています！！
+gtconsolidate.machine.creative_rotor_holder.rotor_eff=タービン効率
+gtconsolidate.machine.creative_rotor_holder.rotor_pow=タービンパワー
+gtconsolidate.machine.creative_rotor_holder.not_work=動かない場合、コントローラーを再設置してください
+gtconsolidate.machine.creative_rotor_holder.tier_low=ローターホルダーのtierがタービンのtierを下回っています！！
 
 # Intake Hatches
-gtconsolidate.intake_hatch.tooltip.1=大気から設置ディメンションに応じたガスを収集
-gtconsolidate.intake_hatch.tooltip.2=少なくとも1面は空気に面している必要があります。
-gtconsolidate.intake_hatch.tooltip.3=大気から設定したディメンションに応じたガスを収集
-gtconsolidate.intake_hatch.collection_rate=§b収集速度: §f%,d L/s
-gtconsolidate.intake_hatch.controller_null=コントローラーが見つかりません！
-gtconsolidate.intake_hatch.blocked=ハッチが塞がれています！
-gtconsolidate.intake_hatch.collecting_fluid=収集対象: %s
-gtconsolidate.intake_hatch.dim=対象ディメンション:
-gtconsolidate.intake_hatch.dim.tooltip=ガスを収集するディメンションを設定
-gtconsolidate.intake_hatch.dim_target=%s (DimID: %s)
-gtconsolidate.intake_hatch.dim_unregistered=未定義
+gtconsolidate.machine.intake_hatch.tooltip.1=大気から設置ディメンションに応じたガスを収集
+gtconsolidate.machine.intake_hatch.tooltip.2=少なくとも1面は空気に面している必要があります。
+gtconsolidate.machine.intake_hatch.tooltip.3=大気から設定したディメンションに応じたガスを収集
+gtconsolidate.machine.intake_hatch.collection_rate=§b収集速度: §f%,d L/s
+gtconsolidate.machine.intake_hatch.controller_null=コントローラーが見つかりません！
+gtconsolidate.machine.intake_hatch.blocked=ハッチが塞がれています！
+gtconsolidate.machine.intake_hatch.collecting_fluid=収集対象: %s
+gtconsolidate.machine.intake_hatch.dim=対象ディメンション:
+gtconsolidate.machine.intake_hatch.dim.tooltip=ガスを収集するディメンションを設定
+gtconsolidate.machine.intake_hatch.dim_target=%s (DimID: %s)
+gtconsolidate.machine.intake_hatch.dim_unregistered=未定義
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=モジュール式マルチタンクの空間を埋めるために。

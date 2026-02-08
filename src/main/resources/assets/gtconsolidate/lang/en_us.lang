@@ -350,25 +350,25 @@ gtconsolidate.machine.rotor_holder.ctrl=Hold Ctrl to show properties.
 gtconsolidate.machine.rotor_holder.info.speed=Maximum Rotor Speed: %s
 gtconsolidate.machine.rotor_holder.info.efficiency=Turbine Efficiency: %s
 gtconsolidate.machine.rotor_holder.info.power=Maximum Output: %s
-gtconsolidate.creative_rotor_holder.tier=Tier
-gtconsolidate.creative_rotor_holder.max_speed=Max Speed
-gtconsolidate.creative_rotor_holder.rotor_eff=Turbine Efficiency
-gtconsolidate.creative_rotor_holder.rotor_pow=Turbine Power
-gtconsolidate.creative_rotor_holder.not_work=If it does not work, try re-placing the controller.
-gtconsolidate.creative_rotor_holder.tier_low=The Rotor Holder tier is lower than the Turbine tier!!
+gtconsolidate.machine.creative_rotor_holder.tier=Tier
+gtconsolidate.machine.creative_rotor_holder.max_speed=Max Speed
+gtconsolidate.machine.creative_rotor_holder.rotor_eff=Turbine Efficiency
+gtconsolidate.machine.creative_rotor_holder.rotor_pow=Turbine Power
+gtconsolidate.machine.creative_rotor_holder.not_work=If it does not work, try re-placing the controller.
+gtconsolidate.machine.creative_rotor_holder.tier_low=The Rotor Holder tier is lower than the Turbine tier!!
 
 # Intake Hatches
-gtconsolidate.intake_hatch.tooltip.1=Collects Gas from the atmosphere depending on the current dimension.
-gtconsolidate.intake_hatch.tooltip.2=At least one side must be exposed to air.
-gtconsolidate.intake_hatch.tooltip.3=Collects Gas from the atmosphere depending on the set dimension.
-gtconsolidate.intake_hatch.collection_rate=§bCollection Rate: §f%,d L/s
-gtconsolidate.intake_hatch.controller_null=Cannot find the controller!
-gtconsolidate.intake_hatch.blocked=Hatch is Obstructed!
-gtconsolidate.intake_hatch.collecting_fluid=Collecting Gas: %s
-gtconsolidate.intake_hatch.dim=Target Dimension:
-gtconsolidate.intake_hatch.dim.tooltip=Set the Dimension ID to collect Gas
-gtconsolidate.intake_hatch.dim_target=%s (DimID: %s)
-gtconsolidate.intake_hatch.dim_unregistered=Unregistered
+gtconsolidate.machine.intake_hatch.tooltip.1=Collects Gas from the atmosphere depending on the current dimension.
+gtconsolidate.machine.intake_hatch.tooltip.2=At least one side must be exposed to air.
+gtconsolidate.machine.intake_hatch.tooltip.3=Collects Gas from the atmosphere depending on the set dimension.
+gtconsolidate.machine.intake_hatch.collection_rate=§bCollection Rate: §f%,d L/s
+gtconsolidate.machine.intake_hatch.controller_null=Cannot find the controller!
+gtconsolidate.machine.intake_hatch.blocked=Hatch is Obstructed!
+gtconsolidate.machine.intake_hatch.collecting_fluid=Collecting Gas: %s
+gtconsolidate.machine.intake_hatch.dim=Target Dimension:
+gtconsolidate.machine.intake_hatch.dim.tooltip=Set the Dimension ID to collect Gas
+gtconsolidate.machine.intake_hatch.dim_target=%s (DimID: %s)
+gtconsolidate.machine.intake_hatch.dim_unregistered=Unregistered
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=For filling space in your Modular Multiblock Tank.

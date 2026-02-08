@@ -228,14 +228,15 @@ public class MetaTileEntityCreativeRotorHolder extends MetaTileEntityMultiblockN
         ModularUI.Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 220, 166)
                 .widget(new LabelWidget(5, 5, getMetaFullName()))
                 // tier line
-                .widget(new LabelWidget(5, 23, "gtconsolidate.creative_rotor_holder.tier"))
+                .widget(new LabelWidget(5, 23, "gtconsolidate.machine.creative_rotor_holder.tier"))
                 .widget(new CycleButtonWidget(30, 16, 30, 20, GTValues.VNF, () -> tier, this::setTier))
                 .widget(new AdvancedTextWidget(65, 16, this::addTierInfoText, 4210752).setMaxWidthLimit(150));
 
         // max speed line
         int yPos = 40;
         builder.widget(
-                new LabelWidget(55, yPos + 6, "gtconsolidate.creative_rotor_holder.max_speed").setXCentered(true))
+                new LabelWidget(55, yPos + 6, "gtconsolidate.machine.creative_rotor_holder.max_speed")
+                        .setXCentered(true))
                 .widget(new ImageWidget(103, yPos, 74, 20, GuiTextures.DISPLAY))
                 .widget((new TextFieldWidget2(105, yPos + 6, 70, 16, this::getMaxSpeedToString, val -> {
                     if (val != null && !val.isEmpty()) {
@@ -251,7 +252,8 @@ public class MetaTileEntityCreativeRotorHolder extends MetaTileEntityMultiblockN
         // rotor efficiency line
         yPos += 35;
         builder.widget(
-                new LabelWidget(55, yPos + 6, "gtconsolidate.creative_rotor_holder.rotor_eff").setXCentered(true))
+                new LabelWidget(55, yPos + 6, "gtconsolidate.machine.creative_rotor_holder.rotor_eff")
+                        .setXCentered(true))
                 .widget(new ImageWidget(103, yPos, 74, 20, GuiTextures.DISPLAY))
                 .widget((new TextFieldWidget2(105, yPos + 6, 70, 16, this::getRotorEfficiencyToString, val -> {
                     if (val != null && !val.isEmpty()) {
@@ -267,7 +269,8 @@ public class MetaTileEntityCreativeRotorHolder extends MetaTileEntityMultiblockN
         // rotor power line
         yPos += 35;
         builder.widget(
-                new LabelWidget(55, yPos + 6, "gtconsolidate.creative_rotor_holder.rotor_pow").setXCentered(true))
+                new LabelWidget(55, yPos + 6, "gtconsolidate.machine.creative_rotor_holder.rotor_pow")
+                        .setXCentered(true))
                 .widget(new ImageWidget(103, yPos, 74, 20, GuiTextures.DISPLAY))
                 .widget((new TextFieldWidget2(105, yPos + 6, 70, 16, this::getRotorPowerToString, val -> {
                     if (val != null && !val.isEmpty()) {
@@ -306,8 +309,8 @@ public class MetaTileEntityCreativeRotorHolder extends MetaTileEntityMultiblockN
     public void addTierInfoText(List<ITextComponent> textList) {
         textList.add(TextComponentUtil.translationWithColor(
                 getTierDifference() > -1 ? TextFormatting.AQUA : TextFormatting.YELLOW,
-                getTierDifference() > -1 ? "gtconsolidate.creative_rotor_holder.not_work" :
-                        "gtconsolidate.creative_rotor_holder.tier_low"));
+                getTierDifference() > -1 ? "gtconsolidate.machine.creative_rotor_holder.not_work" :
+                        "gtconsolidate.machine.creative_rotor_holder.tier_low"));
     }
 
     @Override
