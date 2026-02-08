@@ -33,42 +33,49 @@ public class GTConsolidateUtil {
 
         for (String entry : entries) {
             if (entry == null || entry.isEmpty()) {
-                Logs.logger.fatal(
+                Logs.logger.warn(
                         "Invalid format in intakeHatchDimensionMaterials entry: '{}'. Expected format: DimID@modId:materialName. Skipping.",
                         entry);
+                continue;
             }
 
             String[] parts = entry.split("@", -1);
             if (parts.length != 2) {
-                Logs.logger.fatal(
+                Logs.logger.warn(
                         "Invalid format in intakeHatchDimensionMaterials entry: '{}'. Expected format: DimID@modId:materialName. Skipping.",
                         entry);
+                continue;
             }
 
-            int id = 0;
+            int id;
             try {
                 id = Integer.parseInt(parts[0]);
             } catch (NumberFormatException e) {
                 Logs.logger.warn("Invalid Dimension ID '{}' in intakeHatchDimensionMaterials. Skipping entry.",
                         parts[0]);
+                continue;
             }
 
             if (result.containsKey(id)) {
-                Logs.logger.warn("Duplicate id: " + id);
+                Logs.logger.warn("Duplicate id: {}", id);
+                continue;
             }
 
             String name = parts[1];
             if (name.isEmpty()) {
-                Logs.logger.warn("Missing MaterialName: " + entry);
+                Logs.logger.warn("Missing MaterialName: {}", entry);
+                continue;
             }
 
             Material material = GregTechAPI.materialManager.getMaterial(name);
             if (material == null) {
                 Logs.logger.warn("Cannot find '{}'. Skipping entry", name);
+                continue;
 
             }
             if (material.getFluid() == null || material.getFluid(FluidStorageKeys.GAS) == null) {
                 Logs.logger.warn("'{}' does not have Fluid or Gas. Skipping entry", material.getRegistryName());
+                continue;
             }
 
             Logs.logger.info("DimID '{}' has been assigned to '{}'.", id, material.getRegistryName());

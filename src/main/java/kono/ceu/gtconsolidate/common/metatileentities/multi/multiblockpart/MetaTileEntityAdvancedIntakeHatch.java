@@ -92,7 +92,7 @@ public class MetaTileEntityAdvancedIntakeHatch extends MetaTileEntityMultiblockN
                 this.fluid = getMaterial().getFluid(FluidStorageKeys.GAS);
             }
             if (getOffsetTimer() % 20 == 0 && isExposeAir() && getController() != null) {
-                int fillAmount = fluidTank.fill(new FluidStack(fluid, getFillAmount()), true);
+                fluidTank.fill(new FluidStack(fluid, getFillAmount()), true);
             }
         }
         fillContainerFromInternalTank(fluidTank);
@@ -255,10 +255,10 @@ public class MetaTileEntityAdvancedIntakeHatch extends MetaTileEntityMultiblockN
             name = TextComponentUtil.stringWithColor(TextFormatting.AQUA, type.getName());
         } catch (IllegalArgumentException e) {
             name = TextComponentUtil.translationWithColor(TextFormatting.YELLOW,
-                    "gtconsolidate_intake_hatch.dim_unregistered");
+                    "gtconsolidate.intake_hatch.dim_unregistered");
         }
         textList.add(TextComponentUtil.translationWithColor(
-                TextFormatting.WHITE, "gtconsolidate_intake_hatch.dim_target", name, dimId));
+                TextFormatting.WHITE, "gtconsolidate.intake_hatch.dim_target", name, dimId));
     }
 
     public static @NotNull Function<String, String> getTextFieldValidator(IntSupplier maxSupplier) {

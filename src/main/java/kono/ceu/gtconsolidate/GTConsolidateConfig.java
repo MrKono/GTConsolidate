@@ -83,7 +83,7 @@ public class GTConsolidateConfig {
 
         @Config.Comment({ "Configures the Material obtainable from the Intake Hatch for specific Dimension IDs.",
                 "In dimensions not listed here, the obtainable material defaults to \"air\"",
-                "Format: DimID@modId:materialName", "Default: -1@gregtech:nether_air, 2@gregtech:ender_air" })
+                "Format: DimID@modId:materialName", "Default: -1@gregtech:nether_air, 1@gregtech:ender_air" })
         public String[] intakeHatchDimensionMaterials = new String[] {
                 "-1@gregtech:nether_air", "1@gregtech:ender_air"
         };

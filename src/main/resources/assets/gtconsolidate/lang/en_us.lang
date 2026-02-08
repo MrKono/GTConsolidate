@@ -365,11 +365,10 @@ gtconsolidate.intake_hatch.collection_rate=§bCollection Rate: §f%,d L/s
 gtconsolidate.intake_hatch.controller_null=Cannot find the controller!
 gtconsolidate.intake_hatch.blocked=Hatch is Obstructed!
 gtconsolidate.intake_hatch.collecting_fluid=Collecting Gas: %s
-gtconsolidate.intake_hatch.fluid_amount=%s
 gtconsolidate.intake_hatch.dim=Target Dimension:
 gtconsolidate.intake_hatch.dim.tooltip=Set the Dimension ID to collect Gas
-gtconsolidate_intake_hatch.dim_target=%s (DimID: %s)
-gtconsolidate_intake_hatch.dim_unregistered=Unregistered
+gtconsolidate.intake_hatch.dim_target=%s (DimID: %s)
+gtconsolidate.intake_hatch.dim_unregistered=Unregistered
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=For filling space in your Modular Multiblock Tank.

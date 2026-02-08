@@ -118,7 +118,7 @@ public class CommonProxy {
     public static void registerRecipesRemoval(RegistryEvent.Register<IRecipe> event) {
         Logs.logger.info("Removing recipes...");
         TurboBlastFurnaceLoader.removeConfitRecipe();
-        Logs.logger.info("Removed recipe .");
+        Logs.logger.info("Removed recipes.");
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

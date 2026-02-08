@@ -359,17 +359,16 @@ gtconsolidate.creative_rotor_holder.tier_low=ローターホルダーのtierが�
 
 # Intake Hatches
 gtconsolidate.intake_hatch.tooltip.1=大気から設置ディメンションに応じたガスを収集
-gtconsolidate.intake_hatch.tooltip.2=A少なくとも1面は空気に面している必要があります。
+gtconsolidate.intake_hatch.tooltip.2=少なくとも1面は空気に面している必要があります。
 gtconsolidate.intake_hatch.tooltip.3=大気から設定したディメンションに応じたガスを収集
 gtconsolidate.intake_hatch.collection_rate=§b収集速度: §f%,d L/s
 gtconsolidate.intake_hatch.controller_null=コントローラーが見つかりません！
 gtconsolidate.intake_hatch.blocked=ハッチが塞がれています！
 gtconsolidate.intake_hatch.collecting_fluid=収集対象: %s
-gtconsolidate.intake_hatch.fluid_amount=%s
 gtconsolidate.intake_hatch.dim=対象ディメンション:
 gtconsolidate.intake_hatch.dim.tooltip=ガスを収集するディメンションを設定
-gtconsolidate_intake_hatch.dim_target=%s (DimID: %s)
-gtconsolidate_intake_hatch.dim_unregistered=未定義
+gtconsolidate.intake_hatch.dim_target=%s (DimID: %s)
+gtconsolidate.intake_hatch.dim_unregistered=未定義
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=モジュール式マルチタンクの空間を埋めるために。

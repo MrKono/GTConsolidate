@@ -79,7 +79,7 @@ public class MetaTileEntityIntakeHatch extends MetaTileEntityMultiblockNotifiabl
                 this.fluid = getMaterial().getFluid(FluidStorageKeys.GAS);
             }
             if (getOffsetTimer() % 20 == 0 && isExposeAir() && getController() != null) {
-                int fillAmount = fluidTank.fill(new FluidStack(fluid, getFillAmount()), true);
+                fluidTank.fill(new FluidStack(fluid, getFillAmount()), true);
             }
         }
         fillContainerFromInternalTank(fluidTank);
