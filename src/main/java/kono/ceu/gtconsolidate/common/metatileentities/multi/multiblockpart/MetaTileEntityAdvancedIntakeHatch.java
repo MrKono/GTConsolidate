@@ -159,22 +159,22 @@ public class MetaTileEntityAdvancedIntakeHatch extends MetaTileEntityMultiblockN
         ModularUI.Builder builder = new ModularUI.Builder(GuiTextures.BACKGROUND, 196, 216);
 
         TankWidget tankWidget;
-        tankWidget = new TankWidget(fluidTank, 5, 15, 30, 111)
+        tankWidget = new TankWidget(fluidTank, 5, 30, 30, 96)
                 .setBackgroundTexture(GuiTextures.SLOT)
                 .setDrawHoveringText(false)
                 .setContainerClicking(false, false);
 
         ServerWidgetGroup setDimensionGroup = new ServerWidgetGroup(() -> true);
-        setDimensionGroup.addWidget(new ImageWidget(74, 50, 77, 20, GuiTextures.DISPLAY)
+        setDimensionGroup.addWidget(new ImageWidget(74, 65, 77, 20, GuiTextures.DISPLAY)
                 .setTooltip("gtconsolidate.intake_hatch.dim.tooltip"));
-        setDimensionGroup.addWidget(new IncrementButtonWidget(156, 50, 30, 20, 1, 4, 16, 64, this::setDimensionId)
+        setDimensionGroup.addWidget(new IncrementButtonWidget(156, 65, 30, 20, 1, 4, 16, 64, this::setDimensionId)
                 .setDefaultTooltip()
                 .setShouldClientCallback(false));
         setDimensionGroup
-                .addWidget(new IncrementButtonWidget(40, 50, 30, 20, -1, -4, -16, -64, this::setDimensionId)
+                .addWidget(new IncrementButtonWidget(40, 65, 30, 20, -1, -4, -16, -64, this::setDimensionId)
                         .setDefaultTooltip()
                         .setShouldClientCallback(false));
-        setDimensionGroup.addWidget(new TextFieldWidget2(75, 55, 75, 20, this::getDimensionIdToString, val -> {
+        setDimensionGroup.addWidget(new TextFieldWidget2(75, 70, 75, 20, this::getDimensionIdToString, val -> {
             if (val != null && !val.isEmpty()) {
                 setDimensionId(Integer.parseInt(val) - getDimensionId());
             }
@@ -185,15 +185,17 @@ public class MetaTileEntityAdvancedIntakeHatch extends MetaTileEntityMultiblockN
                 .setValidator(getTextFieldValidator(() -> MAX)));
 
         // Add general widgets
-        return builder.label(5, 5, title)
+        return builder.widget(new AdvancedTextWidget(5, 5,
+                textList -> textList.add(new TextComponentTranslation(I18n.format(title))), 0xFFFFFF)
+                        .setMaxWidthLimit(180))
                 .widget(tankWidget)
-                .label(39, 15, "gtconsolidate.universal.status", 0xFFFFFF)
-                .widget(new AdvancedTextWidget(44, 25, this::addStatusLine, 0xFFFFFF))
-                .label(39, 40, "gtconsolidate.intake_hatch.dim", 0xFFFFFF)
+                .label(39, 30, "gtconsolidate.universal.status", 0xFFFFFF)
+                .widget(new AdvancedTextWidget(44, 40, this::addStatusLine, 0xFFFFFF))
+                .label(39, 55, "gtconsolidate.intake_hatch.dim", 0xFFFFFF)
                 .widget(setDimensionGroup)
-                .widget(new AdvancedTextWidget(49, 72, this::addDimensionLine, 0xFFFFFF).setMaxWidthLimit(150))
-                .widget(new AdvancedTextWidget(39, 100, text -> getCollectingFluidText(tankWidget, text), 0xFFFFFF))
-                .widget(new AdvancedTextWidget(49, 110, getFluidAmountText(tankWidget), 0xFFFFFF))
+                .widget(new AdvancedTextWidget(49, 95, this::addDimensionLine, 0xFFFFFF).setMaxWidthLimit(150))
+                .widget(new AdvancedTextWidget(39, 110, text -> getCollectingFluidText(tankWidget, text), 0xFFFFFF))
+                .widget(new AdvancedTextWidget(49, 120, getFluidAmountText(tankWidget), 0xFFFFFF))
                 .bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT, 17, 134);
     }
 
