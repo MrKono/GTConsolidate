@@ -4,6 +4,8 @@ import static gregtech.api.GTValues.*;
 import static kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity.*;
 import static kono.ceu.gtconsolidate.loader.Components.*;
 
+import net.minecraft.init.Blocks;
+
 import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ModHandler;
@@ -171,5 +173,62 @@ public class MetaTileEntityLoader {
                         .EUt(VA[LuV]))
                 .output(NONUPLE_TANK_VALVE)
                 .EUt(VA[ZPM]).duration(50).buildAndRegister();
+
+        // Intake Hatch
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.HULL[IV])
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.IV, 2)
+                .input(OrePrefix.rotor, Materials.TungstenSteel, 6)
+                .input(OrePrefix.pipeNormalFluid, Materials.TungstenSteel, 6)
+                .input(OrePrefix.plate, Materials.Redstone, 4)
+                .input(MetaItems.ELECTRIC_PUMP_IV, 4)
+                .input(MetaItems.FLUID_FILTER)
+                .input(Blocks.IRON_BARS, 6)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(100 * 4))
+                .output(INTAKE_HATCH[0])
+                .EUt(VA[IV]).duration(600).buildAndRegister();
+
+        for (int i = 0; i < INTAKE_HATCH.length - 1; i++) {
+            RecipeMaps.PACKER_RECIPES.recipeBuilder()
+                    .input(INTAKE_HATCH[i], 2)
+                    .circuitMeta(1)
+                    .output(INTAKE_HATCH[i + 1])
+                    .EUt(VA[IV]).duration(20).buildAndRegister();
+            RecipeMaps.PACKER_RECIPES.recipeBuilder()
+                    .input(INTAKE_HATCH[i + 1])
+                    .circuitMeta(2)
+                    .output(INTAKE_HATCH[i], 2)
+                    .EUt(VA[IV]).duration(20).buildAndRegister();
+        }
+
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(MetaTileEntities.HULL[ZPM])
+                .input(OrePrefix.circuit, MarkerMaterials.Tier.ZPM, 2)
+                .input(OrePrefix.rotor, Materials.Osmiridium, 6)
+                .input(OrePrefix.pipeNormalFluid, Materials.Polybenzimidazole, 6)
+                .input(OrePrefix.plate, Materials.Redstone, 4)
+                .input(MetaItems.ELECTRIC_PUMP_ZPM, 4)
+                .input(MetaItems.FLUID_FILTER)
+                .input(Blocks.IRON_BARS, 6)
+                .fluidInputs(Materials.SolderingAlloy.getFluid(100 * 4))
+                .stationResearch(b -> b
+                        .researchStack(INTAKE_HATCH[0].getStackForm())
+                        .CWUt(64)
+                        .EUt(VA[ZPM]))
+                .output(ADVANCED_INTAKE_HATCH[0])
+                .EUt(VA[ZPM]).duration(600).buildAndRegister();
+
+        for (int i = 0; i < ADVANCED_INTAKE_HATCH.length - 1; i++) {
+            RecipeMaps.PACKER_RECIPES.recipeBuilder()
+                    .input(ADVANCED_INTAKE_HATCH[i], 2)
+                    .circuitMeta(1)
+                    .output(ADVANCED_INTAKE_HATCH[i + 1])
+                    .EUt(VA[ZPM]).duration(20).buildAndRegister();
+            RecipeMaps.PACKER_RECIPES.recipeBuilder()
+                    .input(ADVANCED_INTAKE_HATCH[i + 1])
+                    .circuitMeta(2)
+                    .output(ADVANCED_INTAKE_HATCH[i], 2)
+                    .EUt(VA[ZPM]).duration(20).buildAndRegister();
+        }
     }
 }
