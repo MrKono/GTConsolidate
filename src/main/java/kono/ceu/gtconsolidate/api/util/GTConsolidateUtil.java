@@ -73,8 +73,8 @@ public class GTConsolidateUtil {
                 continue;
 
             }
-            if (material.getFluid() == null || material.getFluid(FluidStorageKeys.GAS) == null) {
-                Logs.logger.warn("'{}' does not have Fluid or Gas. Skipping entry", material.getRegistryName());
+            if (material.getFluid(FluidStorageKeys.GAS) == null) {
+                Logs.logger.warn("'{}' does not have Gas. Skipping entry", material.getRegistryName());
                 continue;
             }
 
