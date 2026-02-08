@@ -133,6 +133,9 @@ gtconsolidate.machine.intake_hatch.4.name=Quadruple Compressed Intake Hatch
 gtconsolidate.machine.intake_hatch.5.name=Quintuple Compressed Intake Hatch
 gtconsolidate.machine.intake_hatch.6.name=Sextuple Compressed Intake Hatch
 gtconsolidate.machine.intake_hatch.7.name=Septuple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.8.name=Octuple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.9.name=Nonuple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.10.name=Decuple Compressed Intake Hatch
 gtconsolidate.machine.advanced_intake_hatch.0.name=Advanced Intake Hatch
 gtconsolidate.machine.advanced_intake_hatch.1.name=Compressed Advanced Intake Hatch
 gtconsolidate.machine.advanced_intake_hatch.2.name=Double Compressed Advanced Intake Hatch
@@ -141,6 +144,9 @@ gtconsolidate.machine.advanced_intake_hatch.4.name=Quadruple Compressed Advanced
 gtconsolidate.machine.advanced_intake_hatch.5.name=Quintuple Compressed Advanced Intake Hatch
 gtconsolidate.machine.advanced_intake_hatch.6.name=Sextuple Compressed Advanced Intake Hatch
 gtconsolidate.machine.advanced_intake_hatch.7.name=Septuple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.8.name=Octuple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.9.name=Nonuple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.10.name=Decuple Compressed Advanced Intake Hatch
 
 # Creative
 gtconsolidate.machine.creative_rotor_holder.name=Creative Rotor Holder

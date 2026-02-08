@@ -133,6 +133,9 @@ gtconsolidate.machine.intake_hatch.4.name=四重圧縮吸気ハッチ
 gtconsolidate.machine.intake_hatch.5.name=五重圧縮吸気ハッチ
 gtconsolidate.machine.intake_hatch.6.name=六重圧縮吸気ハッチ
 gtconsolidate.machine.intake_hatch.7.name=七重圧縮吸気ハッチ
+gtconsolidate.machine.intake_hatch.8.name=八重圧縮吸気ハッチ
+gtconsolidate.machine.intake_hatch.9.name=九重圧縮吸気ハッチ
+gtconsolidate.machine.intake_hatch.10.name=十重圧縮吸気ハッチ
 gtconsolidate.machine.advanced_intake_hatch.0.name=発展型吸気ハッチ
 gtconsolidate.machine.advanced_intake_hatch.1.name=圧縮発展型吸気ハッチ
 gtconsolidate.machine.advanced_intake_hatch.2.name=重圧縮発展型吸気ハッチ
@@ -141,6 +144,9 @@ gtconsolidate.machine.advanced_intake_hatch.4.name=四重圧縮発展型吸気�
 gtconsolidate.machine.advanced_intake_hatch.5.name=五重圧縮発展型吸気ハッチ
 gtconsolidate.machine.advanced_intake_hatch.6.name=六重圧縮発展型吸気ハッチ
 gtconsolidate.machine.advanced_intake_hatch.7.name=七重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.8.name=八重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.9.name=九重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.10.name=十重圧縮発展型吸気ハッチ
 
 # Creative
 gtconsolidate.machine.creative_rotor_holder.name=クリエイティブローターホルダー

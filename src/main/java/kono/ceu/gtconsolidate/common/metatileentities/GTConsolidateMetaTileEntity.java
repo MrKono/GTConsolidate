@@ -50,8 +50,8 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityAdvancedTankValve ADVANCED_TANK_VALVE;
     public static MetaTileEntityQuadrupleTankValve QUADRUPLE_TANK_VALVE;
     public static MetaTileEntityNonupleTankValve NONUPLE_TANK_VALVE;
-    public static MetaTileEntityIntakeHatch[] INTAKE_HATCH = new MetaTileEntityIntakeHatch[8];
-    public static MetaTileEntityAdvancedIntakeHatch[] ADVANCED_INTAKE_HATCH = new MetaTileEntityAdvancedIntakeHatch[8];
+    public static MetaTileEntityIntakeHatch[] INTAKE_HATCH = new MetaTileEntityIntakeHatch[11];
+    public static MetaTileEntityAdvancedIntakeHatch[] ADVANCED_INTAKE_HATCH = new MetaTileEntityAdvancedIntakeHatch[11];
 
     // Creative
     public static MetaTileEntityCreativeRotorHolder CREATIVE_ROTOR_HOLDER;
