@@ -119,10 +119,37 @@ gtconsolidate.machine.speed_enhanced_rotor_holder.uxv.name=速度強化型UXVロ
 gtconsolidate.machine.speed_enhanced_rotor_holder.opv.name=速度強化型OpVローターホルダー
 gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=速度強化型MAXローターホルダー
 
-## Advanced Tank Valve
+# Advanced Tank Valve
 gtconsolidate.machine.advanced_tank_valve.name=発展型タンクバルブ
 gtconsolidate.machine.advanced_tank_valve_4.name=四重タンクバルブ
 gtconsolidate.machine.advanced_tank_valve_9.name=九重タンクバルブ
+
+# Intake Hatch
+gtconsolidate.machine.intake_hatch.0.name=吸気ハッチ
+gtconsolidate.machine.intake_hatch.1.name=圧縮吸気ハッチ
+gtconsolidate.machine.intake_hatch.2.name=重圧縮吸気ハッチ
+gtconsolidate.machine.intake_hatch.3.name=三重圧縮吸気ハッチ
+gtconsolidate.machine.intake_hatch.4.name=四重圧縮吸気ハッチ
+gtconsolidate.machine.intake_hatch.5.name=五重圧縮吸気ハッチ
+gtconsolidate.machine.intake_hatch.6.name=六重圧縮吸気ハッチ
+gtconsolidate.machine.intake_hatch.7.name=七重圧縮吸気ハッチ
+gtconsolidate.machine.intake_hatch.8.name=八重圧縮吸気ハッチ
+gtconsolidate.machine.intake_hatch.9.name=九重圧縮吸気ハッチ
+gtconsolidate.machine.intake_hatch.10.name=十重圧縮吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.0.name=発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.1.name=圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.2.name=重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.3.name=三重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.4.name=四重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.5.name=五重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.6.name=六重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.7.name=七重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.8.name=八重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.9.name=九重圧縮発展型吸気ハッチ
+gtconsolidate.machine.advanced_intake_hatch.10.name=十重圧縮発展型吸気ハッチ
+
+# Creative
+gtconsolidate.machine.creative_rotor_holder.name=クリエイティブローターホルダー
 
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=発展型組立機マシン外装
@@ -323,6 +350,25 @@ gtconsolidate.machine.rotor_holder.ctrl=Ctrlで特性を表示
 gtconsolidate.machine.rotor_holder.info.speed=最大ローター速度: %s
 gtconsolidate.machine.rotor_holder.info.efficiency=タービン効率: %s
 gtconsolidate.machine.rotor_holder.info.power=最大出力: %s
+gtconsolidate.machine.creative_rotor_holder.tier=Tier
+gtconsolidate.machine.creative_rotor_holder.max_speed=最大ローター速度
+gtconsolidate.machine.creative_rotor_holder.rotor_eff=タービン効率
+gtconsolidate.machine.creative_rotor_holder.rotor_pow=タービンパワー
+gtconsolidate.machine.creative_rotor_holder.not_work=動かない場合、コントローラーを再設置してください
+gtconsolidate.machine.creative_rotor_holder.tier_low=ローターホルダーのtierがタービンのtierを下回っています！！
+
+# Intake Hatches
+gtconsolidate.machine.intake_hatch.tooltip.1=大気から設置ディメンションに応じたガスを収集
+gtconsolidate.machine.intake_hatch.tooltip.2=少なくとも1面は空気に面している必要があります。
+gtconsolidate.machine.intake_hatch.tooltip.3=大気から設定したディメンションに応じたガスを収集
+gtconsolidate.machine.intake_hatch.collection_rate=§b収集速度: §f%,d L/s
+gtconsolidate.machine.intake_hatch.controller_null=コントローラーが見つかりません！
+gtconsolidate.machine.intake_hatch.blocked=ハッチが塞がれています！
+gtconsolidate.machine.intake_hatch.collecting_fluid=収集対象: %s
+gtconsolidate.machine.intake_hatch.dim=対象ディメンション:
+gtconsolidate.machine.intake_hatch.dim.tooltip=ガスを収集するディメンションを設定
+gtconsolidate.machine.intake_hatch.dim_target=%s (DimID: %s)
+gtconsolidate.machine.intake_hatch.dim_unregistered=未定義
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=モジュール式マルチタンクの空間を埋めるために。
@@ -382,3 +428,4 @@ gtconsolidate.recipe.coa=外装の最小Tier: %s
 gtconsolidate.universal.enabled=有効
 gtconsolidate.universal.disabled=無効
 gtconsolidate.universal.empty=空
+gtconsolidate.universal.status=状態:

@@ -21,6 +21,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.loaders.recipe.RecyclingRecipes;
 
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
+import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
 import kono.ceu.gtconsolidate.api.util.Logs;
 import kono.ceu.gtconsolidate.api.util.Mods;
@@ -50,7 +52,10 @@ public class CommonProxy {
 
     public void init(FMLInitializationEvent e) {}
 
-    public void postInit(FMLPostInitializationEvent e) {}
+    public void postInit(FMLPostInitializationEvent e) {
+        GTConsolidateValues.INTAKE_HATCH_DIMENSION_MAPPING = GTConsolidateUtil
+                .parseToMap(GTConsolidateConfig.feature.intakeHatchDimensionMaterials);
+    }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -93,31 +98,37 @@ public class CommonProxy {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void registerRecipesHigh(RegistryEvent.Register<IRecipe> event) {}
+    public static void registerRecipesHigh(RegistryEvent.Register<IRecipe> event) {
+        Logs.logger.info("Registering high priority recipes...");
+        Logs.logger.info("Registered high priority recipes.");
+    }
 
     @SubscribeEvent
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-        Logs.logger.info("Registering recipes...");
+        Logs.logger.info("Registering normal priority recipes...");
         MultiMachineLoader.init();
         CasingLoader.init();
         MetaTileEntityLoader.init();
         HandlersLoader.init();
         GTConsolidateMiscLoader.init();
+        Logs.logger.info("Registered normal priority recipes.");
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipesRemoval(RegistryEvent.Register<IRecipe> event) {
         Logs.logger.info("Removing recipes...");
         TurboBlastFurnaceLoader.removeConfitRecipe();
+        Logs.logger.info("Removed recipes.");
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerRecipesLow(RegistryEvent.Register<IRecipe> event) {
-        Logs.logger.info("Registering recipes...");
+        Logs.logger.info("Registering lowest priority recipes...");
         RecyclingRecipes.init();
         TurboBlastFurnaceLoader.reAddRecipe();
         TurboBlastFurnaceLoader.generate();
         RecipeMapModify.modifyRecipeBuildLow();
         HandlersLoader.low();
+        Logs.logger.info("Registered lowest priority recipes.");
     }
 }

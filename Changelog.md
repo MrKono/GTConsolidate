@@ -1,4 +1,9 @@
 ## Changelog
+### 1.1.3-beta
+- **Add** _Creative Rotor Holder_.
+- **Add** _Intake Hatches_.
+---
+
 ### 1.1.2.2-beta
 - Industrial Primitive Machine now accepts Steam Item Bus
 ---

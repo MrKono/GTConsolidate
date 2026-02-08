@@ -119,10 +119,37 @@ gtconsolidate.machine.speed_enhanced_rotor_holder.uxv.name=Speed-Enhanced UXV Ro
 gtconsolidate.machine.speed_enhanced_rotor_holder.opv.name=Speed-Enhanced OpV Rotor Holder
 gtconsolidate.machine.speed_enhanced_rotor_holder.max.name=Speed-Enhanced MAX Rotor Holder
 
-## Advanced Tank Valve
+# Advanced Tank Valve
 gtconsolidate.machine.advanced_tank_valve.name=Advanced Tank Valve
 gtconsolidate.machine.advanced_tank_valve_4.name=Quadruple Tank Valve
 gtconsolidate.machine.advanced_tank_valve_9.name=Nonuple Tank Valve
+
+# Intake Hatch
+gtconsolidate.machine.intake_hatch.0.name=Intake Hatch
+gtconsolidate.machine.intake_hatch.1.name=Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.2.name=Double Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.3.name=Triple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.4.name=Quadruple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.5.name=Quintuple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.6.name=Sextuple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.7.name=Septuple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.8.name=Octuple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.9.name=Nonuple Compressed Intake Hatch
+gtconsolidate.machine.intake_hatch.10.name=Decuple Compressed Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.0.name=Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.1.name=Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.2.name=Double Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.3.name=Triple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.4.name=Quadruple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.5.name=Quintuple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.6.name=Sextuple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.7.name=Septuple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.8.name=Octuple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.9.name=Nonuple Compressed Advanced Intake Hatch
+gtconsolidate.machine.advanced_intake_hatch.10.name=Decuple Compressed Advanced Intake Hatch
+
+# Creative
+gtconsolidate.machine.creative_rotor_holder.name=Creative Rotor Holder
 
 ## Block
 tile.parallelized_assembly_line_casing.assembly_line_casing.name=Advanced Assembly Line Casing
@@ -323,6 +350,25 @@ gtconsolidate.machine.rotor_holder.ctrl=Hold Ctrl to show properties.
 gtconsolidate.machine.rotor_holder.info.speed=Maximum Rotor Speed: %s
 gtconsolidate.machine.rotor_holder.info.efficiency=Turbine Efficiency: %s
 gtconsolidate.machine.rotor_holder.info.power=Maximum Output: %s
+gtconsolidate.machine.creative_rotor_holder.tier=Tier
+gtconsolidate.machine.creative_rotor_holder.max_speed=Max Speed
+gtconsolidate.machine.creative_rotor_holder.rotor_eff=Turbine Efficiency
+gtconsolidate.machine.creative_rotor_holder.rotor_pow=Turbine Power
+gtconsolidate.machine.creative_rotor_holder.not_work=If it does not work, try re-placing the controller.
+gtconsolidate.machine.creative_rotor_holder.tier_low=The Rotor Holder tier is lower than the Turbine tier!!
+
+# Intake Hatches
+gtconsolidate.machine.intake_hatch.tooltip.1=Collects Gas from the atmosphere depending on the current dimension.
+gtconsolidate.machine.intake_hatch.tooltip.2=At least one side must be exposed to air.
+gtconsolidate.machine.intake_hatch.tooltip.3=Collects Gas from the atmosphere depending on the set dimension.
+gtconsolidate.machine.intake_hatch.collection_rate=§bCollection Rate: §f%,d L/s
+gtconsolidate.machine.intake_hatch.controller_null=Cannot find the controller!
+gtconsolidate.machine.intake_hatch.blocked=Hatch is Obstructed!
+gtconsolidate.machine.intake_hatch.collecting_fluid=Collecting Gas: %s
+gtconsolidate.machine.intake_hatch.dim=Target Dimension:
+gtconsolidate.machine.intake_hatch.dim.tooltip=Set the Dimension ID to collect Gas
+gtconsolidate.machine.intake_hatch.dim_target=%s (DimID: %s)
+gtconsolidate.machine.intake_hatch.dim_unregistered=Unregistered
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=For filling space in your Modular Multiblock Tank.
@@ -382,4 +428,4 @@ gtconsolidate.recipe.coa=Minimum Casing Tier: %s
 gtconsolidate.universal.enabled=Enabled
 gtconsolidate.universal.disabled=Disabled
 gtconsolidate.universal.empty=Empty
-
+gtconsolidate.universal.status=Status:

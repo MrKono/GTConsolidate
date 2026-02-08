@@ -41,6 +41,8 @@ _New Multiblock Part_
   - UHV+ Rotor Holders (`default: true`)
   - Two unique Rotor Holders  (`default: true`)
 - Advanced Tank Valve (Since 1.1.2-beta)
+- Creative Rotor Holder (Since 1.1.3-beta)
+- Intake Hatch (Since 1.1.3-beta)
 
 ### Planning
 _None so far. We are looking for suggestions._ 
