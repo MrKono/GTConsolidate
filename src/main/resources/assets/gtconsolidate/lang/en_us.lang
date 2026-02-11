@@ -298,7 +298,7 @@ gtconsolidate.machine.circuit_factory.tooltip.laser_4096a=  4096A Laser Hatch: I
 gtconsolidate.machine.circuit_factory.tooltip.6.1=§eNote:§7
 gtconsolidate.machine.circuit_factory.tooltip.6.2=  Up to 8 Laser Hatches can be accepted. However, placing 8 will halve the "Max EU/t".
 gtconsolidate.machine.circuit_factory.tooltip.6.3=  This is due to a technical limitation and cannot currently be fixed.
-gtconsolidate.machine.circuit_factory.tooltip.6.4=  It is therefore recommended to use no more than 7 hatches.)
+gtconsolidate.machine.circuit_factory.tooltip.6.4=  It is therefore recommended to use no more than 7 hatches.
 
 # Extended Processing Array
 gtconsolidate.machine.extended_processing_array.tooltip.factor.4=Might be just right.
