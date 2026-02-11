@@ -292,9 +292,13 @@ gtconsolidate.machine.circuit_factory.tooltip.2=バスの区別を有効にす�
 gtconsolidate.machine.circuit_factory.tooltip.3=構造内部の空間には§c空気以外§7のブロックを設置してはならない。
 gtconsolidate.machine.circuit_factory.tooltip.4=レーザー照準ハッチは8つまで設置できる。
 gtconsolidate.machine.circuit_factory.tooltip.5===実行可能電圧の昇圧条件が緩和されています。==
-gtconsolidate.machine.circuit_factory.tooltip.6=  通常と同じく、2つ以上の同じ電圧のレーザーハッチを用いることで1段階昇圧される。
-gtconsolidate.machine.circuit_factory.tooltip.7=  同じ電圧のレーザーハッチを4つ以上用いており、かつ2048A以上入力している場合、2段階昇圧される。
-gtconsolidate.machine.circuit_factory.tooltip.8=  同じ電圧のレーザーハッチを8つ用いており、かつ8192A以上入力している場合、3段階昇圧される。
+gtconsolidate.machine.circuit_factory.tooltip.laser_256a=  256A レーザーハッチ: 電圧が4段階昇圧されます (個数は影響ありません)。
+gtconsolidate.machine.circuit_factory.tooltip.laser_1024a=  1024A レーザーハッチ: 電圧が5段階昇圧されます (個数は影響ありません)。
+gtconsolidate.machine.circuit_factory.tooltip.laser_4096a=  4096A レーザーハッチ: 電圧が6段階昇圧されます (個数は影響ありません)。
+gtconsolidate.machine.circuit_factory.tooltip.6.1=§e注意:§7
+gtconsolidate.machine.circuit_factory.tooltip.6.2=  レーザーハッチは最大8つまで設置可能ですが、8つ設置すると"最大 EU/t"が半減します。
+gtconsolidate.machine.circuit_factory.tooltip.6.3=  これは技術的な制限によるもので、現在修正できません。
+gtconsolidate.machine.circuit_factory.tooltip.6.4=  そのため、設置数は7つまでにすることを推奨します。
 
 # Extended Processing Array
 gtconsolidate.machine.extended_processing_array.tooltip.factor.4=これくらいは欲しいかも。

@@ -1,5 +1,6 @@
 package kono.ceu.gtconsolidate.common.metatileentities.multi.electric;
 
+import static gregtech.api.recipes.logic.OverclockingLogic.PERFECT_OVERCLOCK_DURATION_DIVISOR;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.CoATieredCasing;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateTraceabilityPredicate.nonCleanMaintenance;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateUtil.isTABDown;
@@ -26,7 +27,6 @@ import gregtech.api.GTValues;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.ILaserContainer;
 import gregtech.api.capability.impl.EnergyContainerList;
-import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.*;
@@ -46,6 +46,9 @@ import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.*;
 import gregtech.common.metatileentities.MetaTileEntities;
 
+import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
+import gregicality.multiblocks.api.metatileentity.GCYMMultiblockAbility;
+import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 import gregicality.multiblocks.api.render.GCYMTextures;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
@@ -57,7 +60,7 @@ import kono.ceu.gtconsolidate.common.blocks.BlockCoACasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 
-public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController {
+public class MetaTileEntityCircuitFactory extends GCYMRecipeMapMultiblockController {
 
     private int workTier;
     private EnergyContainerList inputHatches;
@@ -109,10 +112,11 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
                 .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)))
                 .where('I', abilities(MultiblockAbility.IMPORT_ITEMS).setMinGlobalLimited(1).setMaxGlobalLimited(30, 5)
                         .or(abilities(MultiblockAbility.IMPORT_FLUIDS).setMaxGlobalLimited(10, 4))
-                        .or(states(getCasingState1())))
+                        .or(states(getCasingState1()))
+                        .or(abilities(GCYMMultiblockAbility.PARALLEL_HATCH).setMaxGlobalLimited(1, 0)))
                 .where('M', nonCleanMaintenance().or(states(getCasingState1())))
                 .where('O',
-                        abilities(MultiblockAbility.EXPORT_ITEMS).setMaxGlobalLimited(1).or(states(getCasingState2())))
+                        abilities(MultiblockAbility.EXPORT_ITEMS).setMaxGlobalLimited(12).or(states(getCasingState2())))
                 .where('P',
                         states(MetaBlocks.BOILER_CASING
                                 .getState(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE)))
@@ -188,6 +192,16 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
                 .forEach(casingType -> shapeInfo
                         .add(builder.where('T', GTConsolidateMetaBlocks.COA_CASING.getState(casingType)).build()));
         return shapeInfo;
+    }
+
+    @Override
+    public boolean isParallel() {
+        return true;
+    }
+
+    @Override
+    public boolean isTiered() {
+        return false;
     }
 
     @Override
@@ -278,19 +292,23 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
             tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.3"));
             tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.4"));
             tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.5"));
-            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.6"));
-            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.7"));
-            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.8"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.laser_256a"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.laser_1024a"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.laser_4096a"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.6.1"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.6.2"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.6.3"));
+            tooltip.add(I18n.format("gtconsolidate.machine.circuit_factory.tooltip.6.4"));
         } else {
             tooltip.add((I18n.format("gtconsolidate.multiblock.tooltip.universal.tab.build")));
         }
         tooltip.add(TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"));
     }
 
-    private class CircuitFactoryRecipeLogic extends MultiblockRecipeLogic {
+    private class CircuitFactoryRecipeLogic extends GCYMMultiblockRecipeLogic {
 
         public CircuitFactoryRecipeLogic(MetaTileEntityCircuitFactory mte) {
-            super(mte, true);
+            super(mte);
         }
 
         @Override
@@ -307,44 +325,20 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
             } else {
                 List<ILaserContainer> laserList = new ArrayList<>(getAbilities(MultiblockAbility.INPUT_LASER));
                 if (!laserList.isEmpty()) {
-                    // Amperage is divided to prevent overflow and for tier calculation scaling.
-                    final int AMPERAGE_DIVISOR = 128;
-                    // The base of the logarithm used for the tier bonus calculation.
-                    final int TIER_BONUS_LOG_BASE = 4;
-
                     int maxTier = 0;
-                    int numMaxTier = 0;
                     int amp = 0;
                     for (ILaserContainer container : laserList) {
                         int tier = GTUtility.getTierByVoltage(container.getInputVoltage());
-                        int currentAmp = (int) (container.getInputAmperage() / AMPERAGE_DIVISOR);
+                        int currentAmp = (int) container.getInputAmperage();
                         if (tier > maxTier) {
-                            // Save the maximum tier
                             maxTier = tier;
-                            // Reset the maximum tier count
-                            numMaxTier = 1;
-                            // Save the current Amp.
                             amp = currentAmp;
-                        } else if (tier == maxTier) {
-                            numMaxTier++;
-                            amp += currentAmp;
                         }
                     }
-
-                    if (numMaxTier > 1) {
-                        // Tier bonus is based on the number of hatches.
-                        int tierBonusFromHatches = numMaxTier / 2;
-                        // Tier bonus from amperage, calculated with a logarithm.
-                        int tierBonusFromAmps = (int) (Math.log(amp) / Math.log(TIER_BONUS_LOG_BASE));
-                        // The final tier bonus is the minimum of the two, ensuring both conditions are met.
-                        int add = Math.min(tierBonusFromAmps, tierBonusFromHatches);
-                        return GTValues.V[Math.min(maxTier + add, GTValues.MAX)];
-                    } else {
-                        return GTValues.V[maxTier];
-                    }
-                } else {
-                    return energyContainer.getInputVoltage();
+                    long volt = GTValues.V[maxTier];
+                    return GTValues.V[Math.min(GTUtility.getTierByVoltage(volt * amp), GTValues.MAX)];
                 }
+                return energyContainer.getInputVoltage();
             }
         }
 
@@ -354,6 +348,11 @@ public class MetaTileEntityCircuitFactory extends RecipeMapMultiblockController 
 
             int recipeCasingTier = recipe.getProperty(CoAProperty.getInstance(), 0);
             return recipeCasingTier <= workTier;
+        }
+
+        @Override
+        protected double getOverclockingDurationDivisor() {
+            return PERFECT_OVERCLOCK_DURATION_DIVISOR;
         }
     }
 }
