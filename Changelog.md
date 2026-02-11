@@ -1,4 +1,10 @@
 ## Changelog
+### 1.1.3.1-beta
+- **Fix** _Circuit Factory nerf_.
+  - Re-changing the `Max Recipe Tier` calculation logic.
+  - Now on parallelized.
+---
+
 ### 1.1.3-beta
 - **Add** _Creative Rotor Holder_.
 - **Add** _Intake Hatches_.
