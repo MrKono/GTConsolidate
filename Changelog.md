@@ -2,7 +2,7 @@
 ### 1.1.3.1-beta
 - **Fix** _Circuit Factory nerf_.
   - Re-changing the `Max Recipe Tier` calculation logic.
-  - Now on parallelized.
+  - Parallel processing is now enabled.
 ---
 
 ### 1.1.3-beta
