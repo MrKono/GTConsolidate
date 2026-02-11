@@ -333,12 +333,10 @@ public class MetaTileEntityCircuitFactory extends GCYMRecipeMapMultiblockControl
                         if (tier > maxTier) {
                             maxTier = tier;
                             amp = currentAmp;
-                        } else if (tier == maxTier) {
-                            amp += currentAmp;
                         }
-                        long volt = GTValues.V[maxTier];
-                        return GTValues.V[Math.min(GTUtility.getTierByVoltage(volt * amp), GTValues.MAX)];
                     }
+                    long volt = GTValues.V[maxTier];
+                    return GTValues.V[Math.min(GTUtility.getTierByVoltage(volt * amp), GTValues.MAX)];
                 }
                 return energyContainer.getInputVoltage();
             }
