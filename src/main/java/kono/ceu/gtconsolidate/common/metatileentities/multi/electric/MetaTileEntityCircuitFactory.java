@@ -116,7 +116,7 @@ public class MetaTileEntityCircuitFactory extends GCYMRecipeMapMultiblockControl
                         .or(abilities(GCYMMultiblockAbility.PARALLEL_HATCH).setMaxGlobalLimited(1, 0)))
                 .where('M', nonCleanMaintenance().or(states(getCasingState1())))
                 .where('O',
-                        abilities(MultiblockAbility.EXPORT_ITEMS).setMaxGlobalLimited(6).or(states(getCasingState2())))
+                        abilities(MultiblockAbility.EXPORT_ITEMS).setMaxGlobalLimited(12).or(states(getCasingState2())))
                 .where('P',
                         states(MetaBlocks.BOILER_CASING
                                 .getState(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE)))
