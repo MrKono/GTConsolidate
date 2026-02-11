@@ -52,6 +52,8 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityNonupleTankValve NONUPLE_TANK_VALVE;
     public static MetaTileEntityIntakeHatch[] INTAKE_HATCH = new MetaTileEntityIntakeHatch[11];
     public static MetaTileEntityAdvancedIntakeHatch[] ADVANCED_INTAKE_HATCH = new MetaTileEntityAdvancedIntakeHatch[11];
+    public static MetaTileEntityDualHatch[] DUAL_HATCH_IMPORT = new MetaTileEntityDualHatch[GTValues.UHV + 1]; // ULV-UHV
+    public static MetaTileEntityDualHatch[] DUAL_HATCH_EXPORT = new MetaTileEntityDualHatch[GTValues.UHV + 1]; // ULV-UHV
 
     // Creative
     public static MetaTileEntityCreativeRotorHolder CREATIVE_ROTOR_HOLDER;
@@ -227,5 +229,17 @@ public class GTConsolidateMetaTileEntity {
                     modId("advanced_intake_hatch." + i), i));
         }
         id = id + ADVANCED_INTAKE_HATCH.length;
+        int dualHatchMinimumTier = 0;
+        for (int i = dualHatchMinimumTier; i < DUAL_HATCH_IMPORT.length; i++) {
+            DUAL_HATCH_IMPORT[i] = registerMetaTileEntity(id + i, new MetaTileEntityDualHatch(
+                    modId("dual_hatch.import." + GTValues.VN[i].toLowerCase()), i, false));
+        }
+        id = id + DUAL_HATCH_IMPORT.length;
+        for (int i = dualHatchMinimumTier; i < DUAL_HATCH_EXPORT.length; i++) {
+            DUAL_HATCH_EXPORT[i] = registerMetaTileEntity(id + i, new MetaTileEntityDualHatch(
+                    modId("dual_hatch.export." + GTValues.VN[i].toLowerCase()), i, true));
+        }
+
+        id = id + DUAL_HATCH_EXPORT.length;
     }
 }
