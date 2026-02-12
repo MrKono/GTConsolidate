@@ -16,7 +16,7 @@ on:
         type: boolean
 
 concurrency:
-  group: build-and-test-${{ github.head_ref || github.ref }}
+  group: build-and-test-${{ inputs.target_branch || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -29,28 +29,21 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Apply patch to settings.gradle
-        run: |
-          if [ -f settings.gradle.patch ]; then
-            patch -p0 < settings.gradle.patch
-          fi
-
-      - name: Apply patch to gradle.properties
-        run: sed -i 's/debug_all = false/debug_all = true/g' gradle.properties
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.target_branch || github.ref }}
+        
+      - name: Apply patch to buildscript.properties
+        run: sed -i 's/debug_all = false/debug_all = true/g' buildscript.properties
 
       - name: Setup Build
         uses: ./.github/actions/build_setup
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
       - name: Compile the mod
-        run: ./gradlew --info --scan assemble
+        run: ./gradlew --info --scan --stacktrace assemble
 
       - name: Upload Jars
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: GTExpert-Core
           path: build/libs/*.jar
@@ -64,7 +57,7 @@ jobs:
         if: ${{ failure() && steps.build_mod.conclusion == 'failure' && github.event_name == 'pull_request' && !github.event.pull_request.draft }}
         run: |
           git reset --hard
-          git checkout "${PR_BRANCH}"
+          git checkout "${github.ref_name}"
           ./gradlew --info spotlessApply || exit 1
           git diff --exit-code && exit 1
           git config user.name "GitHub Actions"
@@ -74,15 +67,14 @@ jobs:
           git push --force-with-lease origin "${FIXED_BRANCH}"
           gh pr create \
             --head "${FIXED_BRANCH}" \
-            --base "${PR_BRANCH}" \
+            --base "${github.ref_name}" \
             --title "Spotless apply for branch ${{ github.event.pull_request.head.ref }} for #${{ github.event.pull_request.number }}" \
             --body "Automatic spotless apply to fix formatting errors, applies to PR #${{ github.event.pull_request.number }}" \
             2>&1 | tee pr-message.log || true
-          gh pr comment "${PR_BRANCH}" -F pr-message.log || true
+          gh pr comment "${github.ref_name}" -F pr-message.log || true
         shell: bash # ensures set -eo pipefail
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_BRANCH: ${{ github.head_ref }}
           FIXED_BRANCH: ${{ github.head_ref }}-spotless-fixes
 
       - name: Run server for ${{ inputs.timeout }} seconds

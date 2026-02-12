@@ -51,10 +51,10 @@ dependencies {
     devOnlyNonPublishable(rfg.deobf("curse.maven:gregicality-multiblocks-564858:5619513")) // GCYM 1.2.10
 
     // Optional
-    // GTFO
-    compileOnly rfg.deobf("curse.maven:gregtech-food-option-477021:5487400")
+    // GTFO 1.12.8
+    compileOnly rfg.deobf("curse.maven:gregtech-food-option-477021:7449314")
     if (project.debug_gtfo.toBoolean()) {
-        runtimeOnlyNonPublishable rfg.deobf("curse.maven:gregtech-food-option-477021:5487400")
+        runtimeOnlyNonPublishable rfg.deobf("curse.maven:gregtech-food-option-477021:7449314")
     }
 
     // GTWoodProcessing  1.2.4-beta
@@ -63,8 +63,8 @@ dependencies {
         runtimeOnlyNonPublishable rfg.deobf("curse.maven:gtwoodprocessing-1093753:6334967")
     }
 
-    // GTExpertCore 2.4.11-beta
-    compileOnly rfg.deobf("curse.maven:gte2-coremod-851103:6895062")
+    // GTExpertCore 2.7.2-beta
+    compileOnly rfg.deobf("curse.maven:gte2-coremod-851103:7607958")
 
     // Gregified Energistics 0.1.4
     compileOnly rfg.deobf("curse.maven:ae2-extended-life-570458:6302098")
