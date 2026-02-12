@@ -1,4 +1,9 @@
 ## Changelog
+### 1.1.3.2-beta
+- **Fix** _CoA Recipe_.
+  - Fix wrong conveyor material
+---
+
 ### 1.1.3.1-beta
 - **Fix** _Circuit Factory nerf_.
   - Re-changing the `Max Recipe Tier` calculation logic.
