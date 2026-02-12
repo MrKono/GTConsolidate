@@ -59,13 +59,13 @@ public class CoALoaders {
         // Conveyors
         registerConveyor(Materials.Tin,
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, LV);
-        registerConveyor(Materials.Tin,
+        registerConveyor(Materials.Copper,
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, MV);
-        registerConveyor(Materials.Tin,
+        registerConveyor(Materials.Gold,
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, HV);
-        registerConveyor(Materials.Tin,
+        registerConveyor(Materials.Aluminium,
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, EV);
-        registerConveyor(Materials.Tin, new Material[] { Materials.SiliconeRubber, Materials.StyreneButadieneRubber },
+        registerConveyor(Materials.Tungsten, new Material[] { Materials.SiliconeRubber, Materials.StyreneButadieneRubber },
                 IV);
         registerConveyorAL(Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.NiobiumTitanium,
                 LuV);
