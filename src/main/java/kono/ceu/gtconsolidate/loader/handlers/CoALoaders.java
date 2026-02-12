@@ -65,7 +65,8 @@ public class CoALoaders {
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, HV);
         registerConveyor(Materials.Aluminium,
                 new Material[] { Materials.Rubber, Materials.SiliconeRubber, Materials.StyreneButadieneRubber }, EV);
-        registerConveyor(Materials.Tungsten, new Material[] { Materials.SiliconeRubber, Materials.StyreneButadieneRubber },
+        registerConveyor(Materials.Tungsten,
+                new Material[] { Materials.SiliconeRubber, Materials.StyreneButadieneRubber },
                 IV);
         registerConveyorAL(Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.HSSS, Materials.NiobiumTitanium,
                 LuV);
