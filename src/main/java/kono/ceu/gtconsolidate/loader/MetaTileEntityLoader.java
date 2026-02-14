@@ -184,7 +184,7 @@ public class MetaTileEntityLoader {
                 .input(MetaItems.ELECTRIC_PUMP_IV, 4)
                 .input(MetaItems.FLUID_FILTER)
                 .input(Blocks.IRON_BARS, 6)
-                .fluidInputs(Materials.SolderingAlloy.getFluid(100 * 4))
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 4))
                 .output(INTAKE_HATCH[0])
                 .EUt(VA[IV]).duration(600).buildAndRegister();
 
@@ -210,7 +210,7 @@ public class MetaTileEntityLoader {
                 .input(MetaItems.ELECTRIC_PUMP_ZPM, 4)
                 .input(MetaItems.FLUID_FILTER)
                 .input(Blocks.IRON_BARS, 6)
-                .fluidInputs(Materials.SolderingAlloy.getFluid(100 * 4))
+                .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 4))
                 .stationResearch(b -> b
                         .researchStack(INTAKE_HATCH[0].getStackForm())
                         .CWUt(64)
