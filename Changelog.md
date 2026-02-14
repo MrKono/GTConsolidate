@@ -1,4 +1,9 @@
 ## Changelog
+### 1.1.3.3-beta
+- **Fix** Circuit Factory's `Max Recipe Tier` calculation logic.
+- **Fix** Intake Hatch recipe required wrong Soldering Alloy amount.
+---
+
 ### 1.1.3.2-beta
 - **Fix** _CoA Recipe_.
   - Fix wrong conveyor material
