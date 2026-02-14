@@ -330,14 +330,12 @@ public class MetaTileEntityCircuitFactory extends GCYMRecipeMapMultiblockControl
                     for (ILaserContainer container : laserList) {
                         int currentTier = GTUtility.getTierByVoltage(container.getInputVoltage());
                         int currentAmp = (int) container.getInputAmperage();
-                        if (currentTier >= maxTier) {
-                            if (currentTier > maxTier) {
-                                maxAmp = 0;
-                            }
+
+                        if (currentTier > maxTier) {
                             maxTier = currentTier;
-                        }
-                        if (currentAmp > maxAmp) {
                             maxAmp = currentAmp;
+                        } else if (currentTier == maxTier) {
+                            maxAmp = Math.max(maxAmp, currentAmp);
                         }
                     }
                     long volt = GTValues.V[maxTier];

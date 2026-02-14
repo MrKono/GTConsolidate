@@ -1,5 +1,5 @@
 ## Changelog
-### 1.3.3.3-beta
+### 1.1.3.3-beta
 - **Fix** Circuit Factory's `Max Recipe Tier` calculation logic.
 - **Fix** Intake Hatch recipe required wrong Soldering Alloy amount.
 ---
