@@ -379,7 +379,7 @@ tile.tank_block.tooltip_empty.1=モジュール式マルチタンクの空間を
 tile.tank_block.tooltip_empty.2=内部空間が歪んでいるようだ。
 
 # Tank Wall
-tile.tank_wall.tooltip.1=液体漏れを防ぐため、耐水性スチールで被覆されている。
+tile.tank_wall.tooltip.1=流体漏れを防ぐため、耐水性スチールで被覆されている。
 
 ## Display
 # Multiblock Machine
@@ -413,7 +413,7 @@ gtconsolidate.multiblock.tank.factor_decrement=クリックで§a係数§rを減
 gtconsolidate.multiblock.tank.factor_increment=クリックで§a係数§rを増加させる。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最大値は§a100000§r。
 gtconsolidate.multiblock.tank.page_previous=クリックで前のページに移動する。ページ数は§a係数§rの分だけ移動する。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最小値は§a1§r。
 gtconsolidate.multiblock.tank.page_next=クリックで次のページに移動する。ページ数は§a係数§rの分だけ移動する。/nShift[§6 x10§r], Ctrl[§e x100§r], Shift+Ctrl[§a x1000§r]。最大値は§a%s§r。
-gtconsolidate.machine.advanced_tank_valve.fluid.1=タンク#%sの液体: %s
+gtconsolidate.machine.advanced_tank_valve.fluid.1=タンク#%sの流体: %s
 gtconsolidate.machine.advanced_tank_valve.fluid.2=%s
 gtconsolidate.machine.advanced_tank_valve.display=搬入出するタンク番号を指定する。
 

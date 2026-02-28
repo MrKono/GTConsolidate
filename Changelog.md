@@ -1,4 +1,9 @@
 ## Changelog
+### 1.1.3.4-beta
+- Tiny, tiny change...
+  - Following GTNH, the translation of `Fluid` in `ja_jp` has changed.
+---
+
 ### 1.1.3.3-beta
 - **Fix** Circuit Factory's `Max Recipe Tier` calculation logic.
 - **Fix** Intake Hatch recipe required wrong Soldering Alloy amount.
