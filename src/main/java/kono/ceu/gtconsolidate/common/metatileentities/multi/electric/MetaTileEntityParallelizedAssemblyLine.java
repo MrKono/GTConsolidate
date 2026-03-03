@@ -60,6 +60,8 @@ import gregtech.core.sound.GTSoundEvents;
 import gregicality.multiblocks.api.capability.IParallelMultiblock;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
+import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.Mods;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
@@ -169,10 +171,12 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
                 .addEnergyUsageLine(getEnergyContainer())
                 .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
                 .addEnergyUsageExactLine(recipeMapWorkable.getInfoProviderEUt());
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
+        GTConsolidateUtil.addExtendedParallelLine(builder, recipeMapWorkable);
         builder.addWorkingStatusLine();
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
-        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
+        GTConsolidateUtil.addExtendedProgressLine(builder, recipeMapWorkable);
+        if (GTConsolidateConfig.feature.addOutputLine) {
+            ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
+        }
     }
 
     @NotNull

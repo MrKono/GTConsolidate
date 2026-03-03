@@ -46,7 +46,9 @@ import gregicality.multiblocks.api.render.GCYMTextures;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockUniqueCasing;
 
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
+import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
@@ -169,8 +171,8 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
                                 "gtconsolidate.multiblock.temperature",
                                 heatString));
                     }
-                });;
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
+                });
+        GTConsolidateUtil.addExtendedParallelLine(builder, recipeMapWorkable);
         builder.addWorkingStatusLine()
                 .addCustom(tl -> {
                     if (!isActive() && isStructureFormed()) {
@@ -186,8 +188,10 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
                         tl.add(TextComponentUtil.setHover(body, hover));
                     }
                 });
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
-        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
+        GTConsolidateUtil.addExtendedProgressLine(builder, recipeMapWorkable);
+        if (GTConsolidateConfig.feature.addOutputLine) {
+            ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
+        }
     }
 
     @Override

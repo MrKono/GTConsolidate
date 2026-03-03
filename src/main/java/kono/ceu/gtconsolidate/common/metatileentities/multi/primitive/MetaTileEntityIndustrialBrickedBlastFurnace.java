@@ -41,7 +41,9 @@ import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockSteamCasing;
 import gregtech.common.blocks.MetaBlocks;
 
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.capability.impl.ParallelizedPrimitiveRecipeLogic;
+import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 
 import codechicken.lib.render.CCRenderState;
@@ -171,18 +173,20 @@ public class MetaTileEntityIndustrialBrickedBlastFurnace extends RecipeMapPrimit
         MultiblockDisplayText.Builder builder = MultiblockDisplayText.builder(textList, isStructureFormed());
 
         builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive());
-        builder.addWorkingStatusLine();
-        builder.addCustom(list -> {
-            if (isStructureFormed()) {
-                ITextComponent bonus = TextComponentUtil.stringWithColor(TextFormatting.WHITE,
-                        TextFormattingUtil.formatNumbers((1 / getSpeedBonus()) * 100f));
-                list.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY,
-                        "gtconsolidate.multiblock.speed_bonus", bonus));
-            }
-        });
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
-        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
+        GTConsolidateUtil.addExtendedParallelLine(builder, recipeMapWorkable);
+        builder.addWorkingStatusLine()
+                .addCustom(list -> {
+                    if (isStructureFormed()) {
+                        ITextComponent bonus = TextComponentUtil.stringWithColor(TextFormatting.WHITE,
+                                TextFormattingUtil.formatNumbers((1 / getSpeedBonus()) * 100f));
+                        list.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                                "gtconsolidate.multiblock.speed_bonus", bonus));
+                    }
+                });
+        GTConsolidateUtil.addExtendedProgressLine(builder, recipeMapWorkable);
+        if (GTConsolidateConfig.feature.addOutputLine) {
+            ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
+        }
     }
 
     @SideOnly(Side.CLIENT)
