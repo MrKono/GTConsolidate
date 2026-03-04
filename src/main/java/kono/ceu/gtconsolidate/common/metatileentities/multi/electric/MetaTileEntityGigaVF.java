@@ -46,7 +46,9 @@ import gregicality.multiblocks.api.render.GCYMTextures;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockUniqueCasing;
 
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
+import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
@@ -141,11 +143,6 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
     }
 
     @Override
-    public boolean canBeDistinct() {
-        return true;
-    }
-
-    @Override
     public boolean isTiered() {
         return false;
     }
@@ -169,8 +166,8 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
                                 "gtconsolidate.multiblock.temperature",
                                 heatString));
                     }
-                });;
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
+                });
+        GTConsolidateUtil.addExtendedParallelLine(builder, recipeMapWorkable);
         builder.addWorkingStatusLine()
                 .addCustom(tl -> {
                     if (!isActive() && isStructureFormed()) {
@@ -186,8 +183,10 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
                         tl.add(TextComponentUtil.setHover(body, hover));
                     }
                 });
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
-        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
+        GTConsolidateUtil.addExtendedProgressLine(builder, recipeMapWorkable);
+        if (GTConsolidateConfig.feature.addOutputLine) {
+            ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
+        }
     }
 
     @Override
@@ -271,11 +270,10 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
         double minT = MIN_TEMPERATURE;
         double maxT = MAX_TEMPERATURE;
 
-        // clamp
         double t = Math.max(minT, Math.min(maxT, temp));
 
         double x = (t - minT) / (maxT - minT);
-        double p = 2.5; // 非線形度（調整用）
+        double p = 2.5;
 
         return Math.pow(1024.0, -Math.pow(1.0 - x, p));
     }

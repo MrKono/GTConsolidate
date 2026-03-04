@@ -7,8 +7,13 @@ import org.lwjgl.input.Keyboard;
 
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
+import gregtech.api.capability.impl.AbstractRecipeLogic;
 import gregtech.api.fluids.store.FluidStorageKeys;
+import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.unification.material.Material;
+
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
+import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 
 public class GTConsolidateUtil {
 
@@ -84,5 +89,25 @@ public class GTConsolidateUtil {
 
         Logs.logger.info("Registered Intake Hatch dimension-material mappings...");
         return result;
+    }
+
+    public static MultiblockDisplayText.Builder addExtendedParallelLine(MultiblockDisplayText.Builder builder,
+                                                                        AbstractRecipeLogic logic) {
+        int maxParallel = logic.getParallelLimit();
+        if (!GTConsolidateConfig.feature.modifyParallelLine) {
+            return builder.addParallelsLine(maxParallel);
+        } else {
+            return ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(logic);
+        }
+    }
+
+    public static MultiblockDisplayText.Builder addExtendedProgressLine(MultiblockDisplayText.Builder builder,
+                                                                        AbstractRecipeLogic logic) {
+        if (!GTConsolidateConfig.feature.modifyProgressLine) {
+            int currentProgress = (int) (logic.getProgressPercent() * (double) 100.0F);
+            return builder.addProgressLine(currentProgress);
+        } else {
+            return ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(logic);
+        }
     }
 }

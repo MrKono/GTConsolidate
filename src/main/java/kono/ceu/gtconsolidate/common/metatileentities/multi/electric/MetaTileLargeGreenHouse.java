@@ -43,6 +43,8 @@ import gregtechfoodoption.utils.GTFOLog;
 
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
+import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.Logs;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 
@@ -160,10 +162,12 @@ public class MetaTileLargeGreenHouse extends GCYMRecipeMapMultiblockController {
                 .addEnergyUsageLine(getEnergyContainer())
                 .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
                 .addEnergyUsageExactLine(recipeMapWorkable.getInfoProviderEUt());
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedParallelLine(recipeMapWorkable);
+        GTConsolidateUtil.addExtendedParallelLine(builder, recipeMapWorkable);
         builder.addWorkingStatusLine();
-        ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(recipeMapWorkable);
-        ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
+        GTConsolidateUtil.addExtendedProgressLine(builder, recipeMapWorkable);
+        if (GTConsolidateConfig.feature.addOutputLine) {
+            ((MultiblockDisplayTextMixinHelper) builder).addOutputLine(recipeMapWorkable);
+        }
     }
 
     @Override

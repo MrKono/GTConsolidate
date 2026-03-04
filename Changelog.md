@@ -1,4 +1,10 @@
 ## Changelog
+### 1.1.3.5-beta
+- **Fix** could not open GUI in multiplay
+- **Fix** Turbo Rotary Hearth Blast Smelter and Absolute Freezer were not applied temperature bonus when `distinct bus` is true.
+- **Change** the `distinct bus` in the absolute freezer has been disabled.
+---
+
 ### 1.1.3.4-beta
 - Tiny, tiny change...
   - Following GTNH, the translation of `Fluid` in `ja_jp` has changed.

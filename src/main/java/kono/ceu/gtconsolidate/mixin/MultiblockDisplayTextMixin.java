@@ -7,7 +7,6 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -60,31 +59,20 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
         int maxParallel = logic.getParallelLimit();
 
         if (maxParallel > 1) {
-            if (!GTConsolidateConfig.feature.modifyParallelLine) {
-                ITextComponent parallels = TextComponentUtil.stringWithColor(
-                        TextFormatting.DARK_PURPLE,
-                        TextFormattingUtil.formatNumbers(maxParallel));
+            int currentParallel = ((AbstractRecipeLogicMixinHelper) logic).getCurrentParallel();
+            if (currentParallel == 0) currentParallel = 1;
+            ITextComponent current = TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE,
+                    TextFormattingUtil.formatNumbers(currentParallel));
+            ITextComponent max = TextComponentUtil.translationWithColor(TextFormatting.DARK_PURPLE,
+                    TextFormattingUtil.formatNumbers(maxParallel));
 
-                this.textList.add(TextComponentUtil.translationWithColor(
-                        TextFormatting.GRAY,
-                        "gregtech.multiblock.parallel",
-                        parallels));
-            } else {
-                int currentParallel = ((AbstractRecipeLogicMixinHelper) logic).getCurrentParallel();
-                if (currentParallel == 0) currentParallel = 1;
-                ITextComponent current = TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE,
-                        TextFormattingUtil.formatNumbers(currentParallel));
-                ITextComponent max = TextComponentUtil.translationWithColor(TextFormatting.DARK_PURPLE,
-                        TextFormattingUtil.formatNumbers(maxParallel));
+            ITextComponent body = TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                    "gtconsolidate.multiblock.parallel_extended",
+                    current, max);
+            ITextComponent hover = TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                    "gtconsolidate.multiblock.parallel_extended_hover");
 
-                ITextComponent body = TextComponentUtil.translationWithColor(TextFormatting.GRAY,
-                        "gtconsolidate.multiblock.parallel_extended",
-                        current, max);
-                ITextComponent hover = TextComponentUtil.translationWithColor(TextFormatting.GRAY,
-                        "gtconsolidate.multiblock.parallel_extended_hover");
-
-                this.textList.add(TextComponentUtil.setHover(body, hover));
-            }
+            this.textList.add(TextComponentUtil.setHover(body, hover));
         }
         return self();
     }
@@ -97,10 +85,6 @@ public class MultiblockDisplayTextMixin implements MultiblockDisplayTextMixinHel
             return self();
         }
         int currentProgress = (int) (logic.getProgressPercent() * (double) 100.0F);
-        if (!GTConsolidateConfig.feature.modifyProgressLine) {
-            this.textList.add(new TextComponentTranslation("gregtech.multiblock.progress", currentProgress));
-            return self();
-        }
         double current = (double) logic.getProgress() / 20;
         double total = (double) logic.getMaxProgress() / 20;
 
