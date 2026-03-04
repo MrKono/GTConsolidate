@@ -510,7 +510,7 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
 
         @Override
         protected void modifyOverclockPost(int[] resultOverclock, @NotNull IRecipePropertyStorage storage) {
-            super.modifyOverclockPre(resultOverclock, storage);
+            super.modifyOverclockPost(resultOverclock, storage);
 
             double ratio = (double) getInitialTemperature() / ((IHeatingCoil) metaTileEntity).getCurrentTemperature();
 
