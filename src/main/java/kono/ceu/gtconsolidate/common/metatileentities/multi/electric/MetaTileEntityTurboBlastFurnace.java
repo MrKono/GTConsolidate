@@ -420,7 +420,6 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
                 }
             }
         }
-        setTemperatureBonus(initialTemperature, blastFurnaceTemperature);
     }
 
     @Override
@@ -464,16 +463,8 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
         return blastFurnaceTemperature;
     }
 
-    private void setTemperatureBonus(int baseTemp, int currentTemp) {
-        double ratio = (double) currentTemp / baseTemp;
-
-        // For every doubling, multiply duration by 0.95.
-        double durationBonus = Math.pow(0.9, (int) Math.floor(Math.log(ratio) / Math.log(2)));
-        // For every 5 times, multiply EUt by 0.5
-        double eutBonus = Math.pow(0.5, (int) Math.floor(Math.log(ratio) / Math.log(5)));
-
-        recipeMapWorkable.setSpeedBonus(durationBonus);
-        recipeMapWorkable.setEUDiscount(eutBonus);
+    private int getInitialTemperature() {
+        return initialTemperature;
     }
 
     private int getBonus() {
@@ -515,6 +506,23 @@ public class MetaTileEntityTurboBlastFurnace extends GCYMRecipeMapMultiblockCont
 
         public GigaBlastFurnaceRecipeLogic(RecipeMapMultiblockController metaTileEntity) {
             super(metaTileEntity);
+        }
+
+        @Override
+        protected void modifyOverclockPost(int[] resultOverclock, @NotNull IRecipePropertyStorage storage) {
+            super.modifyOverclockPre(resultOverclock, storage);
+
+            double ratio = (double) getInitialTemperature() / ((IHeatingCoil) metaTileEntity).getCurrentTemperature();
+
+            // For every 5 times, multiply EUt by 0.5
+            double eutBonus = Math.pow(0.5, (int) Math.floor(Math.log(ratio) / Math.log(5)));
+            resultOverclock[0] = (int) (resultOverclock[0] / eutBonus);
+            // For every doubling, multiply duration by 0.9.
+            double durationBonus = Math.pow(0.9, (int) Math.floor(Math.log(ratio) / Math.log(2)));
+            resultOverclock[1] = (int) (resultOverclock[1] / durationBonus);
+
+            resultOverclock[0] = Math.max(1, resultOverclock[0]);
+            resultOverclock[1] = Math.max(1, resultOverclock[1]);
         }
 
         @Override

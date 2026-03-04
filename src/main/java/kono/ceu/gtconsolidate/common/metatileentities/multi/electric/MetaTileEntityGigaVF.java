@@ -143,11 +143,6 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
     }
 
     @Override
-    public boolean canBeDistinct() {
-        return true;
-    }
-
-    @Override
     public boolean isTiered() {
         return false;
     }
@@ -275,11 +270,10 @@ public class MetaTileEntityGigaVF extends GCYMRecipeMapMultiblockController {
         double minT = MIN_TEMPERATURE;
         double maxT = MAX_TEMPERATURE;
 
-        // clamp
         double t = Math.max(minT, Math.min(maxT, temp));
 
         double x = (t - minT) / (maxT - minT);
-        double p = 2.5; // 非線形度（調整用）
+        double p = 2.5;
 
         return Math.pow(1024.0, -Math.pow(1.0 - x, p));
     }
