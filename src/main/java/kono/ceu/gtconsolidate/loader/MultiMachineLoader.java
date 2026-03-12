@@ -10,6 +10,7 @@ import com.github.gtexpert.gtwp.common.metatileentities.GTWPMetaTileEntities;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
@@ -312,6 +313,16 @@ public class MultiMachineLoader {
                     .output(GTConsolidateMetaTileEntity.MULTIBLOCK_LARGE_TANK[i])
                     .EUt(VA[i == UHV ? UV : i]).duration((i == UHV ? 30 : 15) * sec).buildAndRegister();
         }
+
+        // Tree Farm
+        ModHandler.addShapedRecipe(true, "tree_farm_electric", GTConsolidateMetaTileEntity.TREE_FARM.getStackForm(),
+                "BRB", "SMS", "CEC",
+                'B', OreDictUnifier.get(toolHeadBuzzSaw, Materials.Steel),
+                'R', ROBOT_ARM_LV,
+                'S', SENSOR_LV,
+                'M', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.STEEL_SOLID),
+                'C', OreDictUnifier.get(circuit, MarkerMaterials.Tier.LV),
+                'E', EMITTER_LV);
     }
 
     public static void GTFOMultiblock() {
