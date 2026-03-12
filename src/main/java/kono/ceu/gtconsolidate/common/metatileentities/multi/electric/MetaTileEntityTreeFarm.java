@@ -8,6 +8,7 @@ import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -152,27 +153,28 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
     protected BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start()
                 .aisle("###############", "###############", "###############", "###############", "###############",
-                        "###############", "###############", "DDDDDDDDDDDDDDD")
+                        "DDDDDDDDDDDDDDD")
                 .setRepeatable(5)
                 .aisle("#####CCCCC#####", "#####CCCCC#####", "#####CCCCC#####", "#####CCCCC#####", "#####CCCCC#####",
-                        "#####CCCCC#####", "#####CCCCC#####", "DDDDDDDDDDDDDDD")
+                        "DDDDDDDDDDDDDDD")
                 .aisle("#####CCCCC#####", "#####CPPPC#####", "#####CPPPC#####", "#####CPPPC#####", "#####CPPPC#####",
-                        "#####CPPPC#####", "#####CPPPC#####", "DDDDDDDDDDDDDDD")
+                        "DDDDDDDDDDDDDDD")
                 .aisle("#####CCCCC#####", "#####CPGPC#####", "#####CPGPC#####", "#####CPGPC#####", "#####CPGPC#####",
-                        "#####CPGPC#####", "#####CPGPC#####", "DDDDDDDDDDDDDDD")
+                        "DDDDDDDDDDDDDDD")
                 .aisle("#####CCCCC#####", "#####CPPPC#####", "#####CPPPC#####", "#####CPPPC#####", "#####CPPPC#####",
-                        "#####CPPPC#####", "#####CPPPC#####", "DDDDDDDDDDDDDDD")
+                        "DDDDDDDDDDDDDDD")
                 .aisle("#####CCSCC#####", "#####CCCCC#####", "#####CCCCC#####", "#####CCCCC#####", "#####CCCCC#####",
-                        "#####CCCCC#####", "#####CCCCC#####", "DDDDDDDDDDDDDDD")
+                        "DDDDDDDDDDDDDDD")
                 .aisle("###############", "###############", "###############", "###############", "###############",
-                        "###############", "###############", "DDDDDDDDDDDDDDD")
+                        "DDDDDDDDDDDDDDD")
                 .setRepeatable(5)
                 .where('C', states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID))
                         .or(abilities(MultiblockAbility.IMPORT_ITEMS).setMinGlobalLimited(1, 1).setMaxGlobalLimited(5))
                         .or(abilities(MultiblockAbility.EXPORT_ITEMS).setMaxGlobalLimited(1, 1).setMaxGlobalLimited(5))
                         .or(abilities(MultiblockAbility.INPUT_ENERGY).setMaxGlobalLimited(1, 1).setMaxGlobalLimited(5))
                         .or(abilities(MultiblockAbility.MAINTENANCE_HATCH).setExactLimit(1)))
-                .where('D', blocks(Blocks.DIRT, Blocks.GRASS).or(any()))
+                .where('D',
+                        blocks(Blocks.DIRT, Blocks.GRASS).or(any()).addTooltips("gtconsolidate.multiblock.pattern.any"))
                 .where('G',
                         states(MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.STEEL_GEARBOX)))
                 .where('P', states(MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.BRONZE_PIPE)))
@@ -763,5 +765,12 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
     public void addInformation(ItemStack stack, @Nullable World world, @NotNull List<String> tooltip,
                                boolean advanced) {
         super.addInformation(stack, world, tooltip, advanced);
+        tooltip.add(I18n.format("gtconsolidate.machine.tree_farm.tooltip.1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.tree_farm.tooltip.2"));
+        tooltip.add(I18n.format("gtconsolidate.machine.tree_farm.tooltip.2.1"));
+        tooltip.add(I18n.format("gtconsolidate.machine.tree_farm.tooltip.2.2"));
+        tooltip.add(I18n.format("gtconsolidate.machine.tree_farm.tooltip.2.3"));
+        tooltip.add(I18n.format("gtconsolidate.machine.tree_farm.tooltip.2.4"));
+        tooltip.add(I18n.format("gtconsolidate.machine.tree_farm.tooltip.3"));
     }
 }
