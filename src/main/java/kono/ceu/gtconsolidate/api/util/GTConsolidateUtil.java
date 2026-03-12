@@ -3,6 +3,8 @@ package kono.ceu.gtconsolidate.api.util;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import net.minecraftforge.items.IItemHandler;
+
 import org.lwjgl.input.Keyboard;
 
 import gregtech.api.GTValues;
@@ -109,5 +111,17 @@ public class GTConsolidateUtil {
         } else {
             return ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(logic);
         }
+    }
+
+    public static int getFirstUnemptyItemSlot(IItemHandler handler, int startSlot) {
+        for (int i = startSlot; i < handler.getSlots(); i++) {
+            if (!handler.getStackInSlot(i).isEmpty())
+                return i;
+        }
+        for (int i = 0; i < startSlot; i++) {
+            if (!handler.getStackInSlot(i).isEmpty())
+                return i;
+        }
+        return -1;
     }
 }

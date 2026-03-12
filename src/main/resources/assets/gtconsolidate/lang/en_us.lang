@@ -54,6 +54,8 @@ gtconsolidate.machine.multiblock_large_tank.zpm.name=Multiblock Quantum Tank III
 gtconsolidate.machine.multiblock_large_tank.uv.name=Multiblock Quantum Tank IV
 gtconsolidate.machine.multiblock_large_tank.uhv.name=Multiblock Quantum Tank V
 
+gtconsolidate.machine.tree_farm.name=Tree Farm
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
@@ -416,6 +418,25 @@ gtconsolidate.multiblock.tank.page_next=Click to go to the next page. Pages can 
 gtconsolidate.machine.advanced_tank_valve.fluid.1=Fluid in Tank #%s: %s
 gtconsolidate.machine.advanced_tank_valve.fluid.2=%s
 gtconsolidate.machine.advanced_tank_valve.display=Selects the tank number used for input/output.
+
+# Tree Farm
+gtconsolidate.multiblock.tree_farm.radius=Radius: %s
+gtconsolidate.multiblock.tree_farm.work_per_energy.body=Working Energy: %s EU
+gtconsolidate.multiblock.tree_farm.work_per_energy.hover=Energy required for work. Consumed every 0.5 seconds.
+gtconsolidate.multiblock.tree_farm.harvest_per_energy.body=Harvest Energy: %s EU
+gtconsolidate.multiblock.tree_farm.harvest_per_energy.hover=Energy required to harvest one block.
+gtconsolidate.multiblock.tree_farm.radius_leaf.body=Radius (Leaf): %s
+gtconsolidate.multiblock.tree_farm.radius_leaf.hover=Maximum distance of leaf blocks from logs to be harvested.
+gtconsolidate.multiblock.tree_farm.scan_interval.body=Scan Interval: %s ticks
+gtconsolidate.multiblock.tree_farm.scan_interval.hover=The interval at which scans are performed. Set according to radius.
+gtconsolidate.multiblock.tree_farm.fortune.body=Fortune level: %s
+gtconsolidate.multiblock.tree_farm.fortune.hover=Fortune level applied when harvesting leaves.
+gtconsolidate.multiblock.tree_farm.not_enough_space=Output is Full!!
+gtconsolidate.multiblock.tree_farm.status.harvesting_log=Harvesting logs...
+gtconsolidate.multiblock.tree_farm.status.harvesting_leaf=Harvesting leaves...
+gtconsolidate.multiblock.tree_farm.status.scanning=Scanning area...
+gtconsolidate.multiblock.tree_farm.radius_decrement=Click to decrease the §aRadius§r./nShift[§6 x2§r]. Minimum is §a1§r.
+gtconsolidate.multiblock.tree_farm.radius_increment=Click to increase the §aRadius§r./nShift[§6 x2§r]. Maximum is §a7§r.
 
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r
