@@ -391,7 +391,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         int zOffset = scanIndex / size;
 
         int x = center.getX() + xOffset - range;
-        int y = center.getY() + 8;
+        int y = center.getY() + 6;
         int z = center.getZ() + zOffset - range;
 
         mutableScanPos.setPos(x, y, z);
@@ -405,7 +405,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     private void processScanPos(BlockPos pos) {
         World world = this.getWorld();
-        IBlockState state = world.getBlockState(pos);
+        // IBlockState state = world.getBlockState(pos);
 
         // if log, try to harvest logs
         if (isLog(world, pos)) {
