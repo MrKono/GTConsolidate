@@ -7,6 +7,7 @@ import java.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -112,6 +113,7 @@ public class TreeFarmUtil {
     public static void breakLeaves(WorldServer server, BlockPos pos, List<ItemStack> drops, boolean dropped,
                                    int fortune) {
         axe = axe.copy();
+        if (fortune > 0) axe.addEnchantment(Enchantments.FORTUNE, fortune);
 
         IBlockState state = server.getBlockState(pos);
         Block block = state.getBlock();
@@ -129,7 +131,7 @@ public class TreeFarmUtil {
 
         List<ItemStack> generatedDrops = new ArrayList<>();
         NonNullList<ItemStack> blockDrops = NonNullList.create();
-        block.getDrops(blockDrops, server, pos, state, 0);
+        block.getDrops(blockDrops, server, pos, state, fortune);
 
         for (ItemStack drop : blockDrops) {
             if (!drop.isEmpty()) {
