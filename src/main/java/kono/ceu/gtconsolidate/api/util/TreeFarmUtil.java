@@ -7,7 +7,6 @@ import java.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -113,21 +112,20 @@ public class TreeFarmUtil {
     public static void breakLeaves(WorldServer server, BlockPos pos, List<ItemStack> drops, boolean dropped,
                                    int fortune) {
         axe = axe.copy();
-        if (fortune > 0) axe.addEnchantment(Enchantments.FORTUNE, fortune);
 
         IBlockState state = server.getBlockState(pos);
         Block block = state.getBlock();
 
-        FakePlayer leafBraker = getFakePlayer(server);
-        leafBraker.inventory.clear();
-        leafBraker.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
-        leafBraker.setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
-        leafBraker.motionX = leafBraker.motionY = leafBraker.motionZ = 0.0;
-        leafBraker.fallDistance = 0.0F;
-        leafBraker.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+        FakePlayer leafBreaker = getFakePlayer(server);
+        leafBreaker.inventory.clear();
+        leafBreaker.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
+        leafBreaker.setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
+        leafBreaker.motionX = leafBreaker.motionY = leafBreaker.motionZ = 0.0;
+        leafBreaker.fallDistance = 0.0F;
+        leafBreaker.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
 
-        leafBraker.setHeldItem(EnumHand.MAIN_HAND, axe);
-        leafBraker.interactionManager.setGameType(GameType.SURVIVAL);
+        leafBreaker.setHeldItem(EnumHand.MAIN_HAND, axe);
+        leafBreaker.interactionManager.setGameType(GameType.SURVIVAL);
 
         List<ItemStack> generatedDrops = new ArrayList<>();
         NonNullList<ItemStack> blockDrops = NonNullList.create();
@@ -140,14 +138,14 @@ public class TreeFarmUtil {
         }
 
         TileEntity tileEntity = server.getTileEntity(pos);
-        boolean canHarvest = block.canHarvestBlock(server, pos, leafBraker);
-        boolean removed = block.removedByPlayer(state, server, pos, leafBraker, canHarvest);
+        boolean canHarvest = block.canHarvestBlock(server, pos, leafBreaker);
+        boolean removed = block.removedByPlayer(state, server, pos, leafBreaker, canHarvest);
 
         if (removed) {
             block.onPlayerDestroy(server, pos, state);
 
             if (dropped && canHarvest) {
-                block.harvestBlock(server, leafBraker, pos, state, tileEntity, axe);
+                block.harvestBlock(server, leafBreaker, pos, state, tileEntity, axe);
 
             } else {
                 for (ItemStack drop : generatedDrops) {
@@ -155,9 +153,9 @@ public class TreeFarmUtil {
                 }
             }
 
-            axe.onBlockDestroyed(server, state, pos, leafBraker);
+            axe.onBlockDestroyed(server, state, pos, leafBreaker);
         }
-        leafBraker.getHeldItemMainhand().copy();
+        leafBreaker.getHeldItemMainhand().copy();
     }
 
     public static void placeSapling(WorldServer server, BlockPos pos, ItemStack saplingStack) {
