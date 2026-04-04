@@ -6,30 +6,26 @@ import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.common.util.FakePlayerFactory;
-
-import com.mojang.authlib.GameProfile;
 
 import gregtech.api.unification.material.Materials;
+import gregtech.api.util.BlockUtility;
+import gregtech.api.util.GregFakePlayer;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.ToolItems;
 
 public class TreeFarmUtil {
 
-    private static final GameProfile TREE_FARM_PROFILE = new GameProfile(
-            UUID.fromString("12345678-9876-5432-1012-345678909876"), "[Lumberjack]");
     private static ItemStack axe = getAndSetToolData(ToolItems.AXE, Materials.Steel, 999999, 1, 1.0F, 0.1F);
 
     private static final Map<WorldServer, FakePlayer> FAKE_PLAYERS = new HashMap<>();
@@ -54,110 +50,77 @@ public class TreeFarmUtil {
 
     public static FakePlayer getFakePlayer(WorldServer world) {
         FakePlayer fakePlayer = FAKE_PLAYERS.get(world);
-
         if (fakePlayer == null) {
-            fakePlayer = FakePlayerFactory.get(world, TREE_FARM_PROFILE);
+            fakePlayer = GregFakePlayer.get(world);
             FAKE_PLAYERS.put(world, fakePlayer);
         }
-
         return fakePlayer;
     }
 
-    public static void breakLogWithAxe(WorldServer server, BlockPos pos, List<ItemStack> drops, boolean dropped) {
+    public static void breakLogWithAxe(WorldServer server, BlockPos pos, List<ItemStack> drops, boolean hasSpace) {
         axe = axe.copy();
         IBlockState state = server.getBlockState(pos);
         Block block = state.getBlock();
 
         FakePlayer lumberjack = getFakePlayer(server);
-        lumberjack.inventory.clear();
-        lumberjack.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
-        lumberjack.setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
-        lumberjack.motionX = lumberjack.motionY = lumberjack.motionZ = 0.0;
-        lumberjack.fallDistance = 0.0F;
-        lumberjack.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-
-        lumberjack.setHeldItem(EnumHand.MAIN_HAND, axe);
-        lumberjack.interactionManager.setGameType(GameType.SURVIVAL);
-
-        List<ItemStack> generatedDrops = new ArrayList<>();
-        NonNullList<ItemStack> blockDrops = NonNullList.create();
-        block.getDrops(blockDrops, server, pos, state, 0);
-
-        for (ItemStack drop : blockDrops) {
-            if (!drop.isEmpty()) {
-                generatedDrops.add(drop.copy());
-            }
-        }
-
         TileEntity tileEntity = server.getTileEntity(pos);
-        boolean canHarvest = block.canHarvestBlock(server, pos, lumberjack);
-        boolean removed = block.removedByPlayer(state, server, pos, lumberjack, canHarvest);
-
-        if (removed) {
+        boolean canHarvest = state.getBlock().removedByPlayer(state, server, pos, lumberjack, true);
+        if (canHarvest) {
+            server.playEvent(null, 2001, pos, Block.getStateId(state));
             block.onPlayerDestroy(server, pos, state);
-
-            if (dropped && canHarvest) {
-                block.harvestBlock(server, lumberjack, pos, state, tileEntity, axe);
-
+            BlockUtility.startCaptureDrops();
+            if (hasSpace) {
+                state.getBlock().harvestBlock(server, lumberjack, pos, state, tileEntity, axe);
+                drops.addAll(BlockUtility.stopCaptureDrops());
             } else {
-                for (ItemStack drop : generatedDrops) {
-                    drops.add(drop.copy());
+                double itemSpawnX = pos.getX() + 0.5;
+                double itemSpawnY = pos.getY() + 0.5;
+                double itemSpawnZ = pos.getZ() + 0.5;
+                for (ItemStack overStack : BlockUtility.stopCaptureDrops()) {
+                    EntityItem item = new EntityItem(server, itemSpawnX, itemSpawnY, itemSpawnZ, overStack);
+                    server.spawnEntity(item);
                 }
             }
-
-            axe.onBlockDestroyed(server, state, pos, lumberjack);
         }
-        lumberjack.getHeldItemMainhand().copy();
     }
 
-    public static void breakLeaves(WorldServer server, BlockPos pos, List<ItemStack> drops, boolean dropped,
-                                   int fortune) {
-        axe = axe.copy();
-        if (fortune > 0) axe.addEnchantment(Enchantments.FORTUNE, fortune);
-
+    public static void breakLeaves(WorldServer server, BlockPos pos, List<ItemStack> drops, boolean hasSpace,
+                                   int fortune, int tier) {
         IBlockState state = server.getBlockState(pos);
         Block block = state.getBlock();
 
         FakePlayer leafBreaker = getFakePlayer(server);
-        leafBreaker.inventory.clear();
-        leafBreaker.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
-        leafBreaker.setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
-        leafBreaker.motionX = leafBreaker.motionY = leafBreaker.motionZ = 0.0;
-        leafBreaker.fallDistance = 0.0F;
-        leafBreaker.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
 
-        leafBreaker.setHeldItem(EnumHand.MAIN_HAND, axe);
-        leafBreaker.interactionManager.setGameType(GameType.SURVIVAL);
-
-        List<ItemStack> generatedDrops = new ArrayList<>();
+        boolean canHarvest = state.getBlock().removedByPlayer(state, server, pos, leafBreaker, true);
+        Random random = new Random();
         NonNullList<ItemStack> blockDrops = NonNullList.create();
-        block.getDrops(blockDrops, server, pos, state, fortune);
 
-        for (ItemStack drop : blockDrops) {
-            if (!drop.isEmpty()) {
-                generatedDrops.add(drop.copy());
+        if (canHarvest) {
+            server.playEvent(null, 2001, pos, Block.getStateId(state));
+            int x = tier * 100;
+            while (true) {
+                int r = random.nextInt(10000) + 1;
+
+                if (r > x) break;
+                block.getDrops(blockDrops, server, pos, state, fortune);
+
             }
-        }
-
-        TileEntity tileEntity = server.getTileEntity(pos);
-        boolean canHarvest = block.canHarvestBlock(server, pos, leafBreaker);
-        boolean removed = block.removedByPlayer(state, server, pos, leafBreaker, canHarvest);
-
-        if (removed) {
+            block.getDrops(blockDrops, server, pos, state, fortune);
             block.onPlayerDestroy(server, pos, state);
-
-            if (dropped && canHarvest) {
-                block.harvestBlock(server, leafBreaker, pos, state, tileEntity, axe);
-
-            } else {
-                for (ItemStack drop : generatedDrops) {
-                    drops.add(drop.copy());
+            if (!blockDrops.isEmpty()) {
+                if (hasSpace) {
+                    drops.addAll(blockDrops);
+                } else {
+                    double itemSpawnX = pos.getX() + 0.5;
+                    double itemSpawnY = pos.getY() + 0.5;
+                    double itemSpawnZ = pos.getZ() + 0.5;
+                    for (ItemStack overStack : blockDrops) {
+                        EntityItem item = new EntityItem(server, itemSpawnX, itemSpawnY, itemSpawnZ, overStack);
+                        server.spawnEntity(item);
+                    }
                 }
             }
-
-            axe.onBlockDestroyed(server, state, pos, leafBreaker);
         }
-        leafBreaker.getHeldItemMainhand().copy();
     }
 
     public static void placeSapling(WorldServer server, BlockPos pos, ItemStack saplingStack) {
@@ -166,22 +129,12 @@ public class TreeFarmUtil {
         }
 
         FakePlayer placer = getFakePlayer(server);
-        ItemStack placeSapling = saplingStack.copy();
 
-        placer.inventory.clear();
-        placer.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
-        placer.setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
-        placer.motionX = placer.motionY = placer.motionZ = 0.0;
-        placer.fallDistance = 0.0F;
-        placer.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-
-        placer.setHeldItem(EnumHand.MAIN_HAND, placeSapling);
+        placer.setHeldItem(EnumHand.MAIN_HAND, saplingStack);
 
         BlockPos supportPos = pos.down();
 
-        placeSapling.onItemUse(placer, server, supportPos, EnumHand.MAIN_HAND, EnumFacing.UP, 0.5F, 1.0F, 0.5F);
-
-        placer.getHeldItem(EnumHand.MAIN_HAND).copy();
+        saplingStack.onItemUse(placer, server, supportPos, EnumHand.MAIN_HAND, EnumFacing.UP, 0.5F, 1.0F, 0.5F);
     }
 
     public static void collectNearbyLeaves(World world, BlockPos center, Deque<BlockPos> pendingLeaves,

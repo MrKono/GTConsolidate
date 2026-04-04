@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -71,6 +72,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
     private final int maxWoodsPerTick = 8;
     private final int maxLeavesPerTick = 8;
     private int scanInterval;
+    private int waitTime;
     private int radiusScanning;
     private int radiusLeaf;
     private int slot;
@@ -204,7 +206,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
         MultiblockDisplayText.Builder builder = MultiblockDisplayText.builder(textList, isStructureFormed());
-        builder.setWorkingStatus(isWorkingEnabled, hasSpace)
+        builder.setWorkingStatus(isWorkingEnabled, isActive)
                 .addLowPowerLine(!hasEnoughEnergy)
                 .addCustom(tl -> {
                     if (isStructureFormed()) {
@@ -279,9 +281,22 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
                                             TextFormatting.GREEN,
                                             "gtconsolidate.multiblock.tree_farm.status.harvesting_leaf"));
                                 } else {
+                                    double interval = (double) scanInterval / 20;
+                                    double remain = (double) waitTime / 20;
+
+                                    ITextComponent intervalText = TextComponentUtil.translationWithColor(
+                                            TextFormatting.GRAY,
+                                            "gtconsolidate.multiblock.progress_sec",
+                                            String.format("%.2f", interval));
+                                    ITextComponent remainText = TextComponentUtil.translationWithColor(
+                                            TextFormatting.GRAY,
+                                            "gtconsolidate.multiblock.progress_sec",
+                                            String.format("%.2f", remain));
+
                                     tl.add(TextComponentUtil.translationWithColor(
                                             TextFormatting.AQUA,
-                                            "gtconsolidate.multiblock.tree_farm.status.scanning"));
+                                            "gtconsolidate.multiblock.tree_farm.status.scanning", remainText,
+                                            intervalText));
                                 }
                             }
                         }
@@ -295,6 +310,10 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         if (this.getWorld().isRemote) return;
 
         if (!isWorkingEnabled || this.energyContainer == null) return;
+        if (!hasSpace) {
+            if (getOffsetTimer() % 20 == 0) checkHasSpace();
+            return;
+        }
 
         long stored = energyContainer.getEnergyStored();
 
@@ -317,16 +336,18 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
         setWorkPerEnergy();
         setHarvestPerEnergy();
-        if (getOffsetTimer() % energyCheckInterval == 0) {
+
+        --this.waitTime;
+        if (getOffsetTimer() % this.energyCheckInterval == 0) {
             checkHasSpace();
-            if (stored >= workPerEnergy) {
-                this.hasEnoughEnergy = true;
-                if (getOffsetTimer() % scanInterval == 0) {
-                    scanNextBlock();
-                }
-            } else {
-                this.hasEnoughEnergy = false;
+            this.hasEnoughEnergy = stored >= workPerEnergy;
+        }
+        if (getOffsetTimer() % this.scanInterval == 0) {
+            if (hasEnoughEnergy) {
+                resetRemainInterval();
+                scanNextBlock();
             }
+            setScanInterval();
             energyContainer.removeEnergy(Math.min(stored, workPerEnergy));
         }
     }
@@ -342,7 +363,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     // == Setter ==
     private void setWorkPerEnergy() {
-        this.workPerEnergy = getHighestVoltage() / 4;
+        this.workPerEnergy = 10 * getHighestVoltage() / 2;
     }
 
     private void setHarvestPerEnergy() {
@@ -356,6 +377,10 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
     private void setScanInterval() {
         int r = 2 * radiusScanning + 1;
         this.scanInterval = 4000 / (r * r);
+    }
+
+    private void resetRemainInterval() {
+        this.waitTime = this.scanInterval;
     }
 
     // == Getter ==
@@ -395,6 +420,8 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         int z = center.getZ() + zOffset - range;
 
         mutableScanPos.setPos(x, y, z);
+
+        drawParticle(this.getWorld(), mutableScanPos);
 
         // skip if unloading chunk
         if (this.getWorld().isBlockLoaded(mutableScanPos)) {
@@ -444,7 +471,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
             if (block.isWood(world, target)) {
                 harvestedLogs.add(target.toImmutable());
-                breakLogWithAxe((WorldServer) world, target, pendingDrops, !hasSpace);
+                breakLogWithAxe((WorldServer) world, target, pendingDrops, hasSpace);
             }
         }
 
@@ -532,7 +559,8 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
             IBlockState state = world.getBlockState(pos);
 
             if (state.getBlock().isLeaves(state, world, pos)) {
-                TreeFarmUtil.breakLeaves((WorldServer) world, pos, pendingDrops, !hasSpace, getFortuneLevel());
+                TreeFarmUtil.breakLeaves((WorldServer) world, pos, pendingDrops, hasSpace, getFortuneLevel(),
+                        GTUtility.getTierByVoltage(getHighestVoltage()));
             }
         }
 
@@ -674,7 +702,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     @Override
     public boolean isWorkingEnabled() {
-        return isWorkingEnabled && hasSpace;
+        return isWorkingEnabled && this.hasSpace;
     }
 
     @Override
@@ -710,6 +738,8 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         data.setInteger("radius", this.radiusScanning);
         data.setInteger("scanIndex", this.scanIndex);
         data.setLong("harvestPerEnergy", this.harvestPerEnergy);
+        data.setInteger("scanInterval", this.scanInterval);
+        data.setInteger("waitTime", this.waitTime);
         return data;
     }
 
@@ -723,6 +753,8 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         this.radiusScanning = data.getInteger("radius");
         this.scanIndex = data.getInteger("scanIndex");
         this.harvestPerEnergy = data.getLong("harvestPerEnergy");
+        this.scanInterval = data.getInteger("scanInterval");
+        this.waitTime = data.getInteger("waitTime");
     }
 
     @Override
@@ -735,6 +767,8 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         buf.writeInt(this.radiusScanning);
         buf.writeInt(this.scanIndex);
         buf.writeLong(this.harvestPerEnergy);
+        buf.writeInt(this.scanInterval);
+        buf.writeInt(this.waitTime);
     }
 
     @Override
@@ -747,6 +781,8 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         this.radiusScanning = buf.readInt();
         this.scanIndex = buf.readInt();
         this.harvestPerEnergy = buf.readLong();
+        this.scanInterval = buf.readInt();
+        this.waitTime = buf.readInt();
     }
 
     @Override
@@ -772,5 +808,13 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         tooltip.add(I18n.format("gtconsolidate.machine.tree_farm.tooltip.2.3"));
         tooltip.add(I18n.format("gtconsolidate.machine.tree_farm.tooltip.2.4"));
         tooltip.add(I18n.format("gtconsolidate.machine.tree_farm.tooltip.3"));
+    }
+
+    private void drawParticle(World world, BlockPos pos) {
+        if (!(world instanceof WorldServer server)) return;
+
+        server.spawnParticle(EnumParticleTypes.DRAGON_BREATH,
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                8, 0.2, 0.2, 0.2, 0.0);
     }
 }

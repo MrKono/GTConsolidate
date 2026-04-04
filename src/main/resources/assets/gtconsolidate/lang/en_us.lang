@@ -343,8 +343,8 @@ gtconsolidate.machine.tank.tooltip.note=§eWarning§7: Displaying Steel Tank Val
 # Tree Farm
 gtconsolidate.machine.tree_farm.tooltip.1=For only Saplings
 gtconsolidate.machine.tree_farm.tooltip.2=Various parameters are determined by the §eEnergy Hatch§7 used:
-gtconsolidate.machine.tree_farm.tooltip.2.1=    §eWorking Energy§7: Max Voltage / 4
-gtconsolidate.machine.tree_farm.tooltip.2.2=    §eHarvesting Energy§7: Max Voltage / 4
+gtconsolidate.machine.tree_farm.tooltip.2.1=    §eWorking Energy§7: Max Voltage / 2
+gtconsolidate.machine.tree_farm.tooltip.2.2=    §eHarvesting Energy§7: Max Voltage / 2
 gtconsolidate.machine.tree_farm.tooltip.2.3=    §bFortune Level§7: max(0, Max Voltage Count × (Max Voltage Tier − 1))
 gtconsolidate.machine.tree_farm.tooltip.2.4=    §aLeaf Radius§7: max(1, Max Voltage Tier)
 gtconsolidate.machine.tree_farm.tooltip.3=§eNote§7: Multiple Energy Hatches of the same tier do not increase the voltage tier.
@@ -443,7 +443,7 @@ gtconsolidate.multiblock.tree_farm.fortune.hover=Fortune level applied when harv
 gtconsolidate.multiblock.tree_farm.not_enough_space=Output is Full!!
 gtconsolidate.multiblock.tree_farm.status.harvesting_log=Harvesting logs...
 gtconsolidate.multiblock.tree_farm.status.harvesting_leaf=Harvesting leaves...
-gtconsolidate.multiblock.tree_farm.status.scanning=Scanning area...
+gtconsolidate.multiblock.tree_farm.status.scanning=Scanning area... (%s / %s)
 gtconsolidate.multiblock.tree_farm.radius_decrement=Click to decrease the §aRadius§r./nShift[§6 x2§r]. Minimum is §a1§r.
 gtconsolidate.multiblock.tree_farm.radius_increment=Click to increase the §aRadius§r./nShift[§6 x2§r]. Maximum is §a7§r.
 
