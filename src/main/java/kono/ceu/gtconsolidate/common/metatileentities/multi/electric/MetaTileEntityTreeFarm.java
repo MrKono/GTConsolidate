@@ -15,6 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -26,6 +27,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -124,8 +126,8 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     private void resetTileAbilities() {
         this.energyContainer = new EnergyContainerList(Lists.newArrayList());
-        this.importItems = new GTItemStackHandler(this, 0);
-        this.exportItems = new GTItemStackHandler(this, 0);
+        this.importItems = new ItemStackHandler(0);
+        this.exportItems = new ItemStackHandler(0);
     }
 
     @Override
@@ -146,6 +148,9 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     @Override
     protected void updateFormedValid() {}
+
+    @Override
+    public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {}
 
     @NotNull
     @Override
