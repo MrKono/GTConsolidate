@@ -68,9 +68,6 @@ import codechicken.lib.vec.Matrix4;
 
 public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements IControllable {
 
-    private final int energyCheckInterval = 10; // 0.5 /s
-    private final int maxWoodsPerTick = 8;
-    private final int maxLeavesPerTick = 8;
     private int scanInterval;
     private int waitTime;
     private int radiusScanning;
@@ -338,7 +335,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         setHarvestPerEnergy();
 
         --this.waitTime;
-        if (getOffsetTimer() % this.energyCheckInterval == 0) {
+        if (getOffsetTimer() % 10 == 0) {
             checkHasSpace();
             this.hasEnoughEnergy = stored >= workPerEnergy;
         }
@@ -499,7 +496,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     private void tickTreeScan() {
         boolean finished = TreeFarmUtil.scanTreeStep(this.getWorld(), scanStart, scanQueue, visitedLogs,
-                maxWoodsPerTick);
+                MAX_LOGS_PER_TICK);
         if (finished) {
             finishTreeScan();
         }
@@ -548,7 +545,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
     private void tickHarvestingLeaves() {
         World world = this.getWorld();
 
-        for (int i = 0; i < maxLeavesPerTick && !pendingLeaves.isEmpty(); i++) {
+        for (int i = 0; i < MAX_LEAVES_PER_TICK && !pendingLeaves.isEmpty(); i++) {
 
             BlockPos pos = pendingLeaves.removeFirst();
 

@@ -87,5 +87,13 @@ public class GTConsolidateConfig {
         public String[] intakeHatchDimensionMaterials = new String[] {
                 "-1@gregtech:nether_air", "1@gregtech:ender_air"
         };
+
+        @Config.Comment({ "Sets the number of logs broken per tick. Higher values increase load.", "Default: 8" })
+        @Config.RangeInt(min = 1, max = 1024)
+        public int maxLogsPerTick = 8;
+
+        @Config.Comment({ "Sets the number of leaves broken per tick. Higher values increase load.", "Default: 8" })
+        @Config.RangeInt(min = 1, max = 1024)
+        public int maxLeavesPerTick = 8;
     }
 }
