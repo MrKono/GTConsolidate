@@ -264,8 +264,9 @@ gtconsolidate.machine.large_greenhouse.tooltip.1=Thanks to the lamps 24/7!
 gtconsolidate.machine.component_assembly_line.tooltip.1=Establishment of mass production method
 
 # Advanced Multi Smelter
-gtconsolidate.machine.mega_furnace.tooltip.1=More than enough parallelized
-gtconsolidate.machine.mega_furnace.tooltip.2=Can more parallelize with §bParallel Control Hatches§7.
+gtconsolidate.machine.mega_furnace.tooltip.1=Extremely high parallelization. Includes Alloy Smelter functionality.
+gtconsolidate.machine.mega_furnace.tooltip.2=When used as a Furnace, parallelization is further increased by the §bParallel Control Hatch§7.
+gtconsolidate.machine.mega_furnace.tooltip.3=When used as an Alloy Smelter, coil bonuses do not apply.
 
 # Turbo Rotary Hearth Blast Smelter
 gtconsolidate.machine.turbo_blast_furnace.tooltip.1=Integrated EBF and ABS
