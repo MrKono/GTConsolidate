@@ -175,7 +175,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
                         "DDDDDDDDDDDDDDD")
                 .setRepeatable(5)
                 .where('C', states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID))
-                        .or(abilities(MultiblockAbility.IMPORT_ITEMS).setMinGlobalLimited(1, 1).setMaxGlobalLimited(5))
+                        .or(abilities(MultiblockAbility.IMPORT_ITEMS).setExactLimit(1))
                         .or(abilities(MultiblockAbility.EXPORT_ITEMS).setMaxGlobalLimited(1, 1).setMaxGlobalLimited(5))
                         .or(abilities(MultiblockAbility.INPUT_ENERGY).setMaxGlobalLimited(1, 1).setMaxGlobalLimited(5))
                         .or(abilities(MultiblockAbility.MAINTENANCE_HATCH).setExactLimit(1)))
