@@ -7,6 +7,7 @@ import static kono.ceu.gtconsolidate.api.util.TreeFarmUtil.WorkPhase.HARVESTING_
 import java.util.*;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
@@ -33,6 +34,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.Lists;
 
+import gregtech.api.GTValues;
 import gregtech.api.capability.*;
 import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.capability.impl.ItemHandlerList;
@@ -61,6 +63,7 @@ import gregtech.common.blocks.BlockTurbineCasing;
 import gregtech.common.blocks.MetaBlocks;
 
 import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
+import kono.ceu.gtconsolidate.api.util.Logs;
 import kono.ceu.gtconsolidate.api.util.TreeFarmUtil;
 
 import codechicken.lib.render.CCRenderState;
@@ -364,11 +367,11 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     // == Setter ==
     private void setWorkPerEnergy() {
-        this.workPerEnergy = 10 * getHighestVoltage() / 2;
+        this.workPerEnergy = GTValues.VA[getHighestVoltageTier()] * 2 * 10L;
     }
 
     private void setHarvestPerEnergy() {
-        this.harvestPerEnergy = Math.max(1, Math.toIntExact(getHighestVoltage() / 2));
+        this.harvestPerEnergy = Math.max(1, Math.toIntExact(GTValues.VA[getHighestVoltageTier()]));
     }
 
     private void setRadiusLeaf() {
@@ -390,6 +393,10 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
             return Math.max(8L, ((EnergyContainerList) energyContainer).getHighestInputVoltage());
         }
         return 8L;
+    }
+
+    private int getHighestVoltageTier() {
+        return GTUtility.getTierByVoltage(getHighestVoltage());
     }
 
     private int getScanRadius() {
@@ -433,14 +440,13 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     private void processScanPos(BlockPos pos) {
         World world = this.getWorld();
-        // IBlockState state = world.getBlockState(pos);
 
         // if log, try to harvest logs
         if (isLog(world, pos)) {
             startTreeScan(pos);
         }
 
-        // if blow block is air, try to place sapling
+        // if block is air, try to place sapling
         if (world.isAirBlock(pos)) {
             mutableBelowPos.setPos(pos.getX(), pos.getY() - 1, pos.getZ());
             IBlockState belowState = world.getBlockState(mutableBelowPos);
@@ -559,7 +565,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
             IBlockState state = world.getBlockState(pos);
 
-            if (state.getBlock().isLeaves(state, world, pos)) {
+            if (state.getBlock().isLeaves(state, world, pos) && state.getBlock() instanceof BlockLeaves) {
                 TreeFarmUtil.breakLeaves((WorldServer) world, pos, pendingDrops, hasSpace, getFortuneLevel(),
                         GTUtility.getTierByVoltage(getHighestVoltage()));
             }
@@ -624,8 +630,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         slot = GTConsolidateUtil.getFirstUnemptyItemSlot(importItems, slot + 1);
 
         if (slot == -1) return;
-
-        ItemStack stack = importItems.extractItem(slot, 1, true);
+        ItemStack stack = importItems.getStackInSlot(slot).copy();
 
         if (stack.isEmpty()) return;
 
@@ -634,11 +639,13 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
             if (GTTransferUtils.addItemsToItemHandler(exportItems, true, Collections.singletonList(mismatch))) {
                 GTTransferUtils.addItemsToItemHandler(exportItems, false, Collections.singletonList(mismatch));
             }
+            Logs.logger.warn("`{}` is not Saplings!!", stack);
             return;
         }
 
-        TreeFarmUtil.placeSapling(worldServer, pos, stack);
-        importItems.extractItem(slot, 1, false);
+        if (TreeFarmUtil.placeSapling(worldServer, pos, stack)) {
+            importItems.extractItem(slot, 1, false);
+        }
     }
 
     private void moveToOutputInventory() {
