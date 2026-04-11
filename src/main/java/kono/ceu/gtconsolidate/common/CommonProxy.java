@@ -53,7 +53,7 @@ public class CommonProxy {
         GTConsolidateValues.INTAKE_HATCH_DIMENSION_MAPPING = GTConsolidateUtil
                 .parseToMap(GTConsolidateConfig.feature.intakeHatchDimensionMaterials);
         TreeFarmUtil.saplings.addAll(GTConsolidateUtil.parseToPlantableSapling(
-                GTConsolidateConfig.treeFarm.plantableSprings));
+                GTConsolidateConfig.treeFarm.plantableSaplings));
     }
 
     @SubscribeEvent

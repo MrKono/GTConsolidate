@@ -39,7 +39,7 @@ public class TreeFarmUtil {
 
     private static ItemStack axe = getAndSetToolData(ToolItems.AXE, Materials.Steel, 999999, 1, 1.0F, 0.1F);
 
-    private static final Map<WorldServer, FakePlayer> FAKE_PLAYERS = new HashMap<>();
+    private static final Map<WorldServer, FakePlayer> FAKE_PLAYERS = new WeakHashMap<>();
 
     public static final List<ItemStack> saplings = new ArrayList<>();
 
@@ -72,7 +72,7 @@ public class TreeFarmUtil {
     }
 
     public static void breakLogWithAxe(WorldServer server, BlockPos pos, List<ItemStack> drops, boolean hasSpace) {
-        axe = axe.copy();
+        ItemStack axeStack = axe.copy();
         IBlockState state = server.getBlockState(pos);
         Block block = state.getBlock();
 
@@ -84,7 +84,7 @@ public class TreeFarmUtil {
             block.onPlayerDestroy(server, pos, state);
             BlockUtility.startCaptureDrops();
             if (hasSpace) {
-                state.getBlock().harvestBlock(server, lumberjack, pos, state, tileEntity, axe);
+                state.getBlock().harvestBlock(server, lumberjack, pos, state, tileEntity, axeStack);
                 drops.addAll(BlockUtility.stopCaptureDrops());
             } else {
                 double itemSpawnX = pos.getX() + 0.5;
@@ -106,14 +106,13 @@ public class TreeFarmUtil {
         FakePlayer leafBreaker = getFakePlayer(server);
 
         boolean canHarvest = state.getBlock().removedByPlayer(state, server, pos, leafBreaker, true);
-        Random random = new Random();
         NonNullList<ItemStack> blockDrops = NonNullList.create();
 
         if (canHarvest) {
             server.playEvent(null, 2001, pos, Block.getStateId(state));
             int x = tier * 100;
             while (true) {
-                int r = random.nextInt(10000) + 1;
+                int r = server.rand.nextInt(10000) + 1;
 
                 if (r > x) break;
                 block.getDrops(blockDrops, server, pos, state, fortune);
@@ -159,7 +158,6 @@ public class TreeFarmUtil {
         } else {
             EnumActionResult result = placedStack.onItemUse(placer, server, supportPos, EnumHand.MAIN_HAND,
                     EnumFacing.UP, 0.5F, 1.0F, 0.5F);
-            placedStack.onItemUse(placer, server, supportPos, EnumHand.MAIN_HAND, EnumFacing.UP, 0.5F, 1.0F, 0.5F);
 
             return result == EnumActionResult.SUCCESS;
         }
