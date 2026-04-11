@@ -345,7 +345,7 @@ gtconsolidate.machine.tree_farm.tooltip.1=For only Saplings
 gtconsolidate.machine.tree_farm.tooltip.2=Various parameters are determined by the §eEnergy Hatch§7 used:
 gtconsolidate.machine.tree_farm.tooltip.2.1=    §eWorking Energy§7: Max Voltage @ 1.875 A
 gtconsolidate.machine.tree_farm.tooltip.2.2=    §eHarvesting Energy§7: Max Voltage @ 0.9375 A
-gtconsolidate.machine.tree_farm.tooltip.2.3=    §bFortune Level§7: max(0, Max Voltage Count × (Max Voltage Tier − 1))
+gtconsolidate.machine.tree_farm.tooltip.2.3=    §bFortune Level§7: max(0, Max Voltage Count × (Max Voltage Tier))
 gtconsolidate.machine.tree_farm.tooltip.2.4=    §aLeaf Radius§7: max(1, Max Voltage Tier)
 gtconsolidate.machine.tree_farm.tooltip.3=§eNote§7: Multiple Energy Hatches of the same tier do not increase the voltage tier.
 

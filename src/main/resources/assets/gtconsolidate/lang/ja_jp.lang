@@ -345,7 +345,7 @@ gtconsolidate.machine.tree_farm.tooltip.1=苗木専用
 gtconsolidate.machine.tree_farm.tooltip.2=用いる§eエナジーハッチ§7によって様々な値が決定される。
 gtconsolidate.machine.tree_farm.tooltip.2.1=    §e動作エネルギー§7: 最大電圧 @ 1.875 A
 gtconsolidate.machine.tree_farm.tooltip.2.2=    §e伐採エネルギー§7: 最大電圧 @ 0.9375 A
-gtconsolidate.machine.tree_farm.tooltip.2.3=    §b幸運レベル§7: max(0, 最大電圧数 x (最大電圧tier − 1))
+gtconsolidate.machine.tree_farm.tooltip.2.3=    §b幸運レベル§7: max(0, 最大電圧数 x (最大電圧tier))
 gtconsolidate.machine.tree_farm.tooltip.2.4=    §a半径 (葉) §7: max(1, 最大電圧tier)
 gtconsolidate.machine.tree_farm.tooltip.3=§e注意§7: エナジーハッチによる昇圧はされない。
 

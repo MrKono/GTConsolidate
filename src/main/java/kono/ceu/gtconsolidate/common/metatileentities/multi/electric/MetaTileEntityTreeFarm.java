@@ -410,7 +410,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         } else {
             num = 1;
         }
-        return num * Math.max(0, GTUtility.getTierByVoltage(getHighestVoltage()) - 1);
+        return num * Math.max(0, GTUtility.getTierByVoltage(getHighestVoltage()));
     }
 
     // == Tree Farm ==
