@@ -348,6 +348,8 @@ gtconsolidate.machine.tree_farm.tooltip.2.2=    §e伐採エネルギー§7: 最
 gtconsolidate.machine.tree_farm.tooltip.2.3=    §b幸運レベル§7: max(0, 最大電圧数 x (最大電圧tier))
 gtconsolidate.machine.tree_farm.tooltip.2.4=    §a半径 (葉) §7: max(1, 最大電圧tier)
 gtconsolidate.machine.tree_farm.tooltip.3=§e注意§7: エナジーハッチによる昇圧はされない。
+gregtech.multiblock.tree_farm.description=植林場は苗木専用のマルチブロック農耕機械です。\nプレビューでは最上層がすべて土ブロックになっていますが、実際には任意のブロックを設置可能です。ただし、苗木は土系ブロックにのみ設置されます。\n\n動作\n搬出バスが満タンの場合、動作を停止します。搬入バス内の登録されていない苗木以外のアイテムは、自動的に搬出バスへ移動します。
+
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=1種類のアイテムのみ搬入できる。

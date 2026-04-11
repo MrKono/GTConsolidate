@@ -348,6 +348,7 @@ gtconsolidate.machine.tree_farm.tooltip.2.2=    §eHarvesting Energy§7: Max Vol
 gtconsolidate.machine.tree_farm.tooltip.2.3=    §bFortune Level§7: max(0, Max Voltage Count × (Max Voltage Tier))
 gtconsolidate.machine.tree_farm.tooltip.2.4=    §aLeaf Radius§7: max(1, Max Voltage Tier)
 gtconsolidate.machine.tree_farm.tooltip.3=§eNote§7: Multiple Energy Hatches of the same tier do not increase the voltage tier.
+gregtech.multiblock.tree_farm.description=The Tree Farm is a multiblock farming machine dedicated to saplings\nIn the structure preview, the top layer is shown as entirely dirt blocks, but in practice, any blocks can be used. Saplings, however, can only be planted on dirt-type blocks. \n\nBehavior\nThe machine will stop operating if the output bus is full. Items in the input bus that are not registered saplings will be automatically moved to the output bus.
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.
