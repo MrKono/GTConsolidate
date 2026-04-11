@@ -28,8 +28,8 @@ import kono.ceu.gtconsolidate.GTConsolidateConfig;
 
 public class TreeFarmUtil {
 
-    public static final int MAX_LOGS_PER_TICK = Math.max(1, GTConsolidateConfig.feature.maxLogsPerTick);
-    public static final int MAX_LEAVES_PER_TICK = Math.max(1, GTConsolidateConfig.feature.maxLeavesPerTick);
+    public static final int MAX_LOGS_PER_TICK = Math.max(1, GTConsolidateConfig.treeFarm.maxLogsPerTick);
+    public static final int MAX_LEAVES_PER_TICK = Math.max(1, GTConsolidateConfig.treeFarm.maxLeavesPerTick);
 
     private static ItemStack axe = getAndSetToolData(ToolItems.AXE, Materials.Steel, 999999, 1, 1.0F, 0.1F);
 

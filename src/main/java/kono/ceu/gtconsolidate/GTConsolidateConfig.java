@@ -21,6 +21,10 @@ public class GTConsolidateConfig {
     @Config.RequiresMcRestart
     public static FeatureSetting feature = new FeatureSetting();
 
+    @Config.Name("Tree Farm Setting")
+    @Config.RequiresMcRestart
+    public static TreeFarmSetting treeFarm = new TreeFarmSetting();
+
     public static class IdSetting {
 
         @Config.Comment({ "Start ID for Multiblock Machine", "Default: 21500" })
@@ -87,6 +91,9 @@ public class GTConsolidateConfig {
         public String[] intakeHatchDimensionMaterials = new String[] {
                 "-1@gregtech:nether_air", "1@gregtech:ender_air"
         };
+    }
+
+    public static class TreeFarmSetting {
 
         @Config.Comment({ "Sets the number of logs broken per tick. Higher values increase load.", "Default: 8" })
         @Config.RangeInt(min = 1, max = 1024)
@@ -95,5 +102,13 @@ public class GTConsolidateConfig {
         @Config.Comment({ "Sets the number of leaves broken per tick. Higher values increase load.", "Default: 8" })
         @Config.RangeInt(min = 1, max = 1024)
         public int maxLeavesPerTick = 8;
+
+        @Config.Comment({ "Adds saplings that can be planted by the TreeFarm.", "Format: modId:name@meta.",
+                "meta is optional; if omitted, 32767 will be used.",
+                "Vanilla, GregTech, and GregTechFoodOption saplings are registered by default.",
+                "Invalid entries will be skipped." })
+        public String[] plantableSprings = new String[] {
+                "forestry:sapling"
+        };
     }
 }
