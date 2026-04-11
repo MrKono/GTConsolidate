@@ -22,10 +22,7 @@ import gregtech.api.block.VariantItemBlock;
 import gregtech.loaders.recipe.RecyclingRecipes;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
-import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
-import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
-import kono.ceu.gtconsolidate.api.util.Logs;
-import kono.ceu.gtconsolidate.api.util.Mods;
+import kono.ceu.gtconsolidate.api.util.*;
 import kono.ceu.gtconsolidate.common.blocks.BlockTankPart;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
@@ -55,6 +52,8 @@ public class CommonProxy {
     public void postInit(FMLPostInitializationEvent e) {
         GTConsolidateValues.INTAKE_HATCH_DIMENSION_MAPPING = GTConsolidateUtil
                 .parseToMap(GTConsolidateConfig.feature.intakeHatchDimensionMaterials);
+        TreeFarmUtil.saplings.addAll(GTConsolidateUtil.parseToPlantableSapling(
+                GTConsolidateConfig.treeFarm.plantableSaplings));
     }
 
     @SubscribeEvent

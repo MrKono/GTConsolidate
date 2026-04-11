@@ -32,6 +32,7 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityExtendedProcessingArray[] EXTENDED_PROCESSING_ARRAY = new MetaTileEntityExtendedProcessingArray[3];
     public static MetaTileEntityOreFactory[] ORE_FACTORY = new MetaTileEntityOreFactory[2];
     public static MetaTileEntityMultiblockLargeTank[] MULTIBLOCK_LARGE_TANK = new MetaTileEntityMultiblockLargeTank[10];
+    public static MetaTileEntityTreeFarm TREE_FARM;
 
     // Primitive
     public static MetaTileEntityIndustrialBrickedBlastFurnace INDUSTRIAL_BBF;
@@ -136,6 +137,8 @@ public class GTConsolidateMetaTileEntity {
                     modId("multiblock_large_tank." + voltageName), i));
         }
         // next -> id + 34
+        TREE_FARM = registerMetaTileEntity(id + 34, new MetaTileEntityTreeFarm(
+                modId("tree_farm")));
     }
 
     public static void registerMultiblockPart() {

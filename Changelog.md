@@ -1,4 +1,9 @@
 ## Changelog
+### 1.1.4-beta
+- **New Machines**
+  - Tree Farm
+---
+
 ### 1.1.3.5-beta
 - **Fix** could not open GUI in multiplay
 - **Fix** Turbo Rotary Hearth Blast Smelter and Absolute Freezer were not applied temperature bonus when `distinct bus` is true.

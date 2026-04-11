@@ -1,7 +1,13 @@
 package kono.ceu.gtconsolidate.api.util;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.items.IItemHandler;
 
 import org.lwjgl.input.Keyboard;
 
@@ -109,5 +115,51 @@ public class GTConsolidateUtil {
         } else {
             return ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(logic);
         }
+    }
+
+    public static int getFirstUnemptyItemSlot(IItemHandler handler, int startSlot) {
+        for (int i = startSlot; i < handler.getSlots(); i++) {
+            if (!handler.getStackInSlot(i).isEmpty())
+                return i;
+        }
+        for (int i = 0; i < startSlot; i++) {
+            if (!handler.getStackInSlot(i).isEmpty())
+                return i;
+        }
+        return -1;
+    }
+
+    public static List<ItemStack> parseToPlantableSapling(String[] entries) {
+        List<ItemStack> stacks = new ArrayList<>();
+        Logs.logger.info("Plantable sapling registration started...");
+        if (entries.length == 0) {
+            return stacks;
+        }
+
+        for (String entry : entries) {
+            if (entry == null || entry.isEmpty()) {
+                continue;
+            }
+            String[] parts = entry.split("@", -1);
+            int meta;
+            if (parts.length == 2) {
+                try {
+                    meta = Integer.parseInt(parts[1]);
+                } catch (NumberFormatException e) {
+                    Logs.logger.warn("Invalid meta '{}' in '{}'. Skipping entry.", parts[1], entry);
+                    continue;
+                }
+            } else {
+                meta = 32767;
+            }
+            ItemStack sapling = GameRegistry.makeItemStack(parts[0], meta, 1, null);
+            if (sapling.isEmpty()) {
+                Logs.logger.warn("Unable to find item with name `{}`, skipping entry, `{}`", parts[0], entry);
+                continue;
+            }
+            stacks.add(sapling);
+        }
+        Logs.logger.info("Plantable sapling registration finished.");
+        return stacks;
     }
 }
