@@ -194,7 +194,7 @@ public class MetaTileEntityMegaFurnace extends MultiMapMultiblockController {
         return true;
     }
 
-    public int getEUtForParallel(int parallel, int discount) {
+    public static int getEUtForParallel(int parallel, int discount) {
         return RecipeMapFurnace.RECIPE_EUT * Math.max(1, (parallel / 8) / discount);
     }
 
