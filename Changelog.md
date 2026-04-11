@@ -2,6 +2,7 @@
 ### 1.1.4-beta
 - **New Machines**
   - Tree Farm
+- Added support for Alloy Smelter recipes to the _Advanced Multi Smelter_.
 ---
 
 ### 1.1.3.5-beta

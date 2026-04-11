@@ -16,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import gregtech.api.block.IHeatingCoilBlockStats;
-import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.*;
@@ -25,6 +24,7 @@ import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.recipes.RecipeBuilder;
+import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.machines.RecipeMapFurnace;
 import gregtech.api.util.GTUtility;
@@ -37,6 +37,7 @@ import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.core.sound.GTSoundEvents;
 
+import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.api.metatileentity.GCYMMultiblockAbility;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
@@ -45,13 +46,13 @@ import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHel
 import kono.ceu.gtconsolidate.common.blocks.BlockCoolantCasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 
-public class MetaTileEntityMegaFurnace extends RecipeMapMultiblockController {
+public class MetaTileEntityMegaFurnace extends MultiMapMultiblockController {
 
     protected int heatingCoilLevel;
     protected int heatingCoilDiscount;
 
     public MetaTileEntityMegaFurnace(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, RecipeMaps.FURNACE_RECIPES);
+        super(metaTileEntityId, new RecipeMap[] { RecipeMaps.FURNACE_RECIPES, RecipeMaps.ALLOY_SMELTER_RECIPES });
         this.recipeMapWorkable = new MegaSmelterWorkable(this);
     }
 
@@ -98,7 +99,7 @@ public class MetaTileEntityMegaFurnace extends RecipeMapMultiblockController {
                 .addCustom(tl -> {
                     if (isStructureFormed()) {
                         // Heating coil discount
-                        if (heatingCoilDiscount > 1) {
+                        if (this.getRecipeMap() == RecipeMaps.FURNACE_RECIPES && heatingCoilDiscount > 1) {
                             ITextComponent coilDiscount = TextComponentUtil.stringWithColor(
                                     TextFormatting.AQUA,
                                     TextFormattingUtil.formatNumbers(100.0 / heatingCoilDiscount) + "%");
@@ -210,9 +211,10 @@ public class MetaTileEntityMegaFurnace extends RecipeMapMultiblockController {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18n.format("gtconsolidate.machine.mega_furnace.tooltip.1"));
         tooltip.add(I18n.format("gtconsolidate.machine.mega_furnace.tooltip.2"));
+        tooltip.add(I18n.format("gtconsolidate.machine.mega_furnace.tooltip.3"));
     }
 
-    protected class MegaSmelterWorkable extends MultiblockRecipeLogic {
+    protected class MegaSmelterWorkable extends GCYMMultiblockRecipeLogic {
 
         public MegaSmelterWorkable(RecipeMapMultiblockController tileEntity) {
             super(tileEntity);
@@ -221,18 +223,24 @@ public class MetaTileEntityMegaFurnace extends RecipeMapMultiblockController {
         @NotNull
         @Override
         public ParallelLogicType getParallelLogicType() {
-            return ParallelLogicType.APPEND_ITEMS;
+            return this.getRecipeMap() == RecipeMaps.FURNACE_RECIPES ? ParallelLogicType.APPEND_ITEMS :
+                    ParallelLogicType.MULTIPLY;
         }
 
         @Override
         public void applyParallelBonus(@NotNull RecipeBuilder<?> builder) {
-            builder.EUt(getEUtForParallel(builder.getParallel(), heatingCoilDiscount))
-                    .duration(getDurationForParallel(builder.getParallel(), getParallelLimit()));
+            if (this.getRecipeMap() == RecipeMaps.FURNACE_RECIPES) {
+                builder.EUt(getEUtForParallel(builder.getParallel(), heatingCoilDiscount))
+                        .duration(getDurationForParallel(builder.getParallel(), getParallelLimit()));
+            } else {
+                super.applyParallelBonus(builder);
+            }
         }
 
         @Override
         public int getParallelLimit() {
-            return getMaxParallel(heatingCoilLevel) * getParallelFactor();
+            return this.getRecipeMap() == RecipeMaps.FURNACE_RECIPES ?
+                    getMaxParallel(heatingCoilLevel) * getParallelFactor() : getParallelFactor();
         }
     }
 }
