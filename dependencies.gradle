@@ -74,4 +74,6 @@ dependencies {
     if (project.debug_gregifiedenergistics.toBoolean()) {
         runtimeOnlyNonPublishable rfg.deobf("curse.maven:gregified-energistics-1333309:6935586")
     }
+
+    compileOnly rfg.deobf("curse.maven:forestry-59751:5903382") // Forestry 5.8.2.387
 }

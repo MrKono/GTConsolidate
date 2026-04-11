@@ -105,10 +105,9 @@ public class GTConsolidateConfig {
 
         @Config.Comment({ "Adds saplings that can be planted by the TreeFarm.", "Format: modId:name@meta.",
                 "meta is optional; if omitted, 32767 will be used.",
-                "Vanilla, GregTech, and GregTechFoodOption saplings are registered by default.",
+                "Vanilla, GregTech, GregTechFoodOption, and Forestry saplings are registered by default.",
                 "Invalid entries will be skipped." })
         public String[] plantableSprings = new String[] {
-                "forestry:sapling"
         };
     }
 }

@@ -10,6 +10,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
@@ -26,10 +27,15 @@ import gregtech.common.items.ToolItems;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
 
+import forestry.api.arboriculture.ITree;
+import forestry.api.arboriculture.TreeManager;
+import forestry.arboriculture.ModuleArboriculture;
+
 public class TreeFarmUtil {
 
     public static final int MAX_LOGS_PER_TICK = Math.max(1, GTConsolidateConfig.treeFarm.maxLogsPerTick);
     public static final int MAX_LEAVES_PER_TICK = Math.max(1, GTConsolidateConfig.treeFarm.maxLeavesPerTick);
+    private static final boolean checkForestry = gregtech.api.util.Mods.ForestryArboriculture.isModLoaded();
 
     private static ItemStack axe = getAndSetToolData(ToolItems.AXE, Materials.Steel, 999999, 1, 1.0F, 0.1F);
 
@@ -43,6 +49,9 @@ public class TreeFarmUtil {
         if (Mods.GregTechFoodOption.isModLoaded()) {
             saplings.add(Mods.GregTechFoodOption.getItem("gtfo_sapling_0", 1, 32767));
             saplings.add(Mods.GregTechFoodOption.getItem("gtfo_sapling_1", 1, 32767));
+        }
+        if (checkForestry) {
+            saplings.add(ModuleArboriculture.getItems().sapling.getWildcard());
         }
     }
 
@@ -128,18 +137,32 @@ public class TreeFarmUtil {
         }
     }
 
-    public static void placeSapling(WorldServer server, BlockPos pos, ItemStack saplingStack) {
-        if (saplingStack.isEmpty()) {
-            return;
-        }
-
+    public static boolean placeSapling(WorldServer server, BlockPos pos, ItemStack saplingStack) {
         FakePlayer placer = getFakePlayer(server);
+        ItemStack placedStack = saplingStack.copy();
 
-        placer.setHeldItem(EnumHand.MAIN_HAND, saplingStack);
+        placer.inventory.currentItem = 0;
+        placer.inventory.setInventorySlotContents(0, placedStack);
+        placer.setHeldItem(EnumHand.MAIN_HAND, placedStack);
 
         BlockPos supportPos = pos.down();
+        if (checkForestry) {
+            ITree tree = TreeManager.treeRoot.getMember(placedStack);
+            if (tree == null) {
+                return false;
+            }
 
-        saplingStack.onItemUse(placer, server, supportPos, EnumHand.MAIN_HAND, EnumFacing.UP, 0.5F, 1.0F, 0.5F);
+            if (!tree.canStay(server, pos)) {
+                return false;
+            }
+            return TreeManager.treeRoot.plantSapling(server, tree, placer.getGameProfile(), pos);
+        } else {
+            EnumActionResult result = placedStack.onItemUse(placer, server, supportPos, EnumHand.MAIN_HAND,
+                    EnumFacing.UP, 0.5F, 1.0F, 0.5F);
+            placedStack.onItemUse(placer, server, supportPos, EnumHand.MAIN_HAND, EnumFacing.UP, 0.5F, 1.0F, 0.5F);
+
+            return result == EnumActionResult.SUCCESS;
+        }
     }
 
     public static void collectNearbyLeaves(World world, BlockPos center, Deque<BlockPos> pendingLeaves,
