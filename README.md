@@ -43,6 +43,7 @@ _New Multiblock Part_
 - Advanced Tank Valve (Since 1.1.2-beta)
 - Creative Rotor Holder (Since 1.1.3-beta)
 - Intake Hatch (Since 1.1.3-beta)
+- Tree Farm (Since 1.1.4-bata)
 
 ### Planning
 _None so far. We are looking for suggestions._ 
