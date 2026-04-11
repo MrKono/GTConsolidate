@@ -16,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import gregtech.api.block.IHeatingCoilBlockStats;
-import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.*;
@@ -38,6 +37,7 @@ import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.core.sound.GTSoundEvents;
 
+import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.api.metatileentity.GCYMMultiblockAbility;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
@@ -214,7 +214,7 @@ public class MetaTileEntityMegaFurnace extends MultiMapMultiblockController {
         tooltip.add(I18n.format("gtconsolidate.machine.mega_furnace.tooltip.3"));
     }
 
-    protected class MegaSmelterWorkable extends MultiblockRecipeLogic {
+    protected class MegaSmelterWorkable extends GCYMMultiblockRecipeLogic {
 
         public MegaSmelterWorkable(RecipeMapMultiblockController tileEntity) {
             super(tileEntity);
@@ -224,7 +224,7 @@ public class MetaTileEntityMegaFurnace extends MultiMapMultiblockController {
         @Override
         public ParallelLogicType getParallelLogicType() {
             return this.getRecipeMap() == RecipeMaps.FURNACE_RECIPES ? ParallelLogicType.APPEND_ITEMS :
-                    super.getParallelLogicType();
+                    ParallelLogicType.MULTIPLY;
         }
 
         @Override
@@ -232,6 +232,8 @@ public class MetaTileEntityMegaFurnace extends MultiMapMultiblockController {
             if (this.getRecipeMap() == RecipeMaps.FURNACE_RECIPES) {
                 builder.EUt(getEUtForParallel(builder.getParallel(), heatingCoilDiscount))
                         .duration(getDurationForParallel(builder.getParallel(), getParallelLimit()));
+            } else {
+                super.applyParallelBonus(builder);
             }
         }
 
