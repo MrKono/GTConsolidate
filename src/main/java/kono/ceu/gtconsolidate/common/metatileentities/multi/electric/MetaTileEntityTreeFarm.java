@@ -483,10 +483,10 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         }
 
         if (pendingLogs.isEmpty()) {
-            startLeafScan();
+            plantPendingSaplings();
+            moveToOutputInventory();
+            resetWork();
         }
-
-        moveToOutputInventory();
     }
 
     private void startTreeScan(BlockPos start) {
@@ -525,28 +525,30 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
                 .orElse(null);
 
         if (baseLog != null) {
-            pendingSaplingPositions.add(baseLog.toImmutable());
+            pendingSaplingPositions.add(mutableScanPos);
         }
 
         visitedLogs.clear();
         scanQueue.clear();
         scanStart = null;
 
-        workPhase = pendingLogs.isEmpty() ? WorkPhase.IDLE : WorkPhase.HARVESTING_TREE;
+        if (pendingLogs.isEmpty()) {
+            resetWork();
+        } else {
+            startLeafScan();
+        }
     }
 
     private void startLeafScan() {
         pendingLeaves.clear();
         queuedLeaves.clear();
 
-        for (BlockPos logPos : harvestedLogs) {
+        for (BlockPos logPos : pendingLogs) {
             TreeFarmUtil.collectNearbyLeaves(this.getWorld(), logPos, pendingLeaves, queuedLeaves, radiusLeaf);
         }
 
         if (pendingLeaves.isEmpty()) {
-            plantPendingSaplings();
-            moveToOutputInventory();
-            resetWork();
+            workPhase = WorkPhase.HARVESTING_TREE;
         } else {
             workPhase = WorkPhase.HARVESTING_LEAVES;
         }
@@ -572,9 +574,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         }
 
         if (pendingLeaves.isEmpty()) {
-            plantPendingSaplings();
-            moveToOutputInventory();
-            resetWork();
+            workPhase = WorkPhase.HARVESTING_TREE;
         }
     }
 

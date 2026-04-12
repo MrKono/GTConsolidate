@@ -168,7 +168,7 @@ public class TreeFarmUtil {
         BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
 
         for (int dx = -radius; dx <= radius; dx++) {
-            for (int dy = -1; dy <= radius; dy++) {
+            for (int dy = -2; dy <= radius; dy++) {
                 for (int dz = -radius; dz <= radius; dz++) {
                     mutablePos.setPos(center.getX() + dx, center.getY() + dy, center.getZ() + dz);
 
