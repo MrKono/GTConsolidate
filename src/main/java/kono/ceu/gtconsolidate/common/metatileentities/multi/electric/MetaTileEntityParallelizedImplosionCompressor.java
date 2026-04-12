@@ -86,7 +86,7 @@ public class MetaTileEntityParallelizedImplosionCompressor extends GCYMRecipeMap
                 .where('S', selfPredicate())
                 .where('X',
                         states(GTConsolidateMetaBlocks.MULTIBLOCK_CASING
-                                .getState(BlockMultiblockCasing.MultiblockCasingType.NEUTRONIUM_STUDY))
+                                .getState(BlockMultiblockCasing.MultiblockCasingType.NEUTRONIUM_STURDY))
                                         .setMinGlobalLimited(70)
                                         .or(autoAbilities(false, true, true, true, false, false, false))
                                         .or(energyHatchPredicate()))

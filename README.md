@@ -32,7 +32,7 @@ _New Machines_
 - Industrial Coke Oven (Since 1.1.1-beta)
 - Ore Factory (Since 1.1.1-beta, port from [GTMoreOreProcessing](https://github.com/MrKono/GTCEu-MoreOreProcessing))
 - Multiblock Large Tank (Since 1.1.2-beta)
-- Tree Farm (Since 1.1.4-bata)
+- Tree Farm (Since 1.1.4-beta)
 - Parallelized Electric Implosion Compressor (Since 1.1.4-beta)
 
 _New Multiblock Part_
