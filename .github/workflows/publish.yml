@@ -94,6 +94,7 @@ jobs:
             gregtech-food-option(recommended)
             gtwoodprocessing(recommended)
             gregified-energistics(recommended)
+            implosionnobomb(recommended)
           files: |
             build/libs/!(*-@(dev|sources|javadoc)).jar
             build/libs/*-@(sources).jar
