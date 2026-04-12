@@ -106,7 +106,6 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
     private BlockPos scanStart = null;
 
     private final List<ItemStack> pendingDrops = new ArrayList<>();
-    private final List<ItemStack> dummyStacks = new ArrayList<>();
 
     private TreeFarmUtil.WorkPhase workPhase = TreeFarmUtil.WorkPhase.IDLE;
 
@@ -362,7 +361,10 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
     }
 
     private void checkHasSpace() {
-        this.hasSpace = GTTransferUtils.addItemsToItemHandler(exportItems, true, dummyStacks);
+        this.hasSpace = GTTransferUtils.addItemsToItemHandler(exportItems, true, pendingDrops);
+        if (hasSpace && !pendingDrops.isEmpty()) {
+            moveToOutputInventory();
+        }
     }
 
     // == Setter ==
@@ -482,6 +484,8 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
             }
         }
 
+        moveToOutputInventory();
+
         if (pendingLogs.isEmpty()) {
             plantPendingSaplings();
             moveToOutputInventory();
@@ -498,7 +502,6 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         this.pendingLogs.clear();
         this.pendingLeaves.clear();
         this.queuedLeaves.clear();
-        this.pendingDrops.clear();
         this.harvestedLogs.clear();
 
         this.scanQueue.add(this.scanStart);
@@ -572,6 +575,8 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
                         GTUtility.getTierByVoltage(getHighestVoltage()));
             }
         }
+
+        moveToOutputInventory();
 
         if (pendingLeaves.isEmpty()) {
             workPhase = WorkPhase.HARVESTING_TREE;
@@ -651,8 +656,6 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
     private void moveToOutputInventory() {
         if (GTTransferUtils.addItemsToItemHandler(exportItems, true, pendingDrops)) {
             GTTransferUtils.addItemsToItemHandler(exportItems, false, pendingDrops);
-            dummyStacks.clear();
-            dummyStacks.addAll(pendingDrops);
             pendingDrops.clear();
         } else {
             this.hasSpace = false;
