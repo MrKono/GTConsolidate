@@ -56,6 +56,8 @@ gtconsolidate.machine.multiblock_large_tank.uhv.name=Multiblock Quantum Tank V
 
 gtconsolidate.machine.tree_farm.name=Tree Farm
 
+gtconsolidate.machine.quantum_compressor.name=Quantum Compressor
+
 # Multiblock Part
 # Filtered Input Bus
 gtconsolidate.machine.filter_input.ulv.name=ULV Filtered Input Bus
@@ -180,11 +182,12 @@ tile.component_assembly_line_casing.uxv.name=UXV Component Assembly Line Casing
 tile.component_assembly_line_casing.opv.name=OpV Component Assembly Line Casing
 tile.component_assembly_line_casing.max.name=MAX Component Assembly Line Casing
 
-tile.multiblock_casing.osmiridium_sturdy.name=Osmiridium Sturdy Casing
-tile.multiblock_casing.darmstadtium_sturdy.name=Darmstadtium Sturdy Casing
-tile.multiblock_casing.tritanium_sturdy.name=Tritanium Sturdy Casing
+tile.multiblock_casing.osmiridium_sturdy.name=Sturdy Osmiridium Machine Casing
+tile.multiblock_casing.darmstadtium_sturdy.name=Sturdy Darmstadtium Machine Casing
+tile.multiblock_casing.tritanium_sturdy.name=Sturdy Tritanium Machine Casing
 tile.multiblock_casing.iridium_plated.name=Iridium Plated Factory Casing
 tile.multiblock_casing.americium_plated.name=Americium Plated Factory Casing
+tile.multiblock_casing.neutronium_sturdy.name=Sturdy Neutronium Plated Tritanium Casing
 
 tile.pipe_casing.iridium_pipe.name=Iridium Pipe Casing
 tile.pipe_casing.americium_pipe.name=Americium Pipe Casing
@@ -350,6 +353,10 @@ gtconsolidate.machine.tree_farm.tooltip.2.3=    §bFortune Level§7: max(0, Max 
 gtconsolidate.machine.tree_farm.tooltip.2.4=    §aLeaf Radius§7: max(1, Max Voltage Tier)
 gtconsolidate.machine.tree_farm.tooltip.3=§eNote§7: Multiple Energy Hatches of the same tier do not increase the voltage tier.
 gregtech.multiblock.tree_farm.description=The Tree Farm is a multiblock farming machine dedicated to saplings\nIn the structure preview, the top layer is shown as entirely dirt blocks, but in practice, any blocks can be used. Saplings, however, can only be planted on dirt-type blocks. \n\nBehavior\nThe machine will stop operating if the output bus is full. Items in the input bus that are not registered saplings will be automatically moved to the output bus.
+
+# Quantum Compressor
+gtconsolidate.machine.quantum_compressor.tooltip.1=Compress, compress, and keep compressing!
+gtconsolidate.machine.quantum_compressor.tooltip.2=The step-up conditions for the "Max Recipe Tier" have been relaxed.
 
 # Filtered Item Bus
 gtconsolidate.machine.filtered_item_bus.import.tooltip=Only one type of item can input.

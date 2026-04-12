@@ -33,6 +33,7 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityOreFactory[] ORE_FACTORY = new MetaTileEntityOreFactory[2];
     public static MetaTileEntityMultiblockLargeTank[] MULTIBLOCK_LARGE_TANK = new MetaTileEntityMultiblockLargeTank[10];
     public static MetaTileEntityTreeFarm TREE_FARM;
+    public static MetaTileEntityParallelizedImplosionCompressor PARALLELIZED_IC;
 
     // Primitive
     public static MetaTileEntityIndustrialBrickedBlastFurnace INDUSTRIAL_BBF;
@@ -139,6 +140,9 @@ public class GTConsolidateMetaTileEntity {
         // next -> id + 34
         TREE_FARM = registerMetaTileEntity(id + 34, new MetaTileEntityTreeFarm(
                 modId("tree_farm")));
+
+        PARALLELIZED_IC = registerMetaTileEntity(id + 35, new MetaTileEntityParallelizedImplosionCompressor(
+                modId("quantum_compressor")));
     }
 
     public static void registerMultiblockPart() {

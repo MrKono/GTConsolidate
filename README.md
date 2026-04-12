@@ -32,6 +32,8 @@ _New Machines_
 - Industrial Coke Oven (Since 1.1.1-beta)
 - Ore Factory (Since 1.1.1-beta, port from [GTMoreOreProcessing](https://github.com/MrKono/GTCEu-MoreOreProcessing))
 - Multiblock Large Tank (Since 1.1.2-beta)
+- Tree Farm (Since 1.1.4-beta)
+- Parallelized Electric Implosion Compressor (Since 1.1.4-beta)
 
 _New Multiblock Part_
 - Filtered Input Bus (Only one type of item can input, since 1.0.2-beta)
@@ -43,7 +45,6 @@ _New Multiblock Part_
 - Advanced Tank Valve (Since 1.1.2-beta)
 - Creative Rotor Holder (Since 1.1.3-beta)
 - Intake Hatch (Since 1.1.3-beta)
-- Tree Farm (Since 1.1.4-bata)
 
 ### Planning
 _None so far. We are looking for suggestions._ 
