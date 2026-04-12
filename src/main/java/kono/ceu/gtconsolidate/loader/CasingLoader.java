@@ -206,6 +206,12 @@ public class CasingLoader {
                 .fluidInputs(Materials.Americium.getFluid(144))
                 .outputs(MULTIBLOCK_CASING.getItemVariant(AMERICIUM_PLATED))
                 .duration(50).EUt(VA[LV]).buildAndRegister();
+        // Sturdy Neutronium Plated Tritanium Casing
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MULTIBLOCK_CASING.getItemVariant(TRITANIUM_STURDY, 2))
+                .fluidInputs(Materials.Neutronium.getFluid(144))
+                .outputs(MULTIBLOCK_CASING.getItemVariant(NEUTRONIUM_STUDY, 2))
+                .EUt(VA[UV]).duration(50).buildAndRegister();
 
         // Gearbox Casing
         ModHandler.addShapedRecipe("gearbox_iridium",

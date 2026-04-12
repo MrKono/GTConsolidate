@@ -29,6 +29,11 @@
         "textures": {
           "all": "gregtech:blocks/casings/multiblock/americium_plated"
         }
+      },
+      "neutronium_sturdy": {
+        "textures": {
+          "all": "gregtech:blocks/casings/multiblock/neutronium_sturdy"
+        }
       }
     }
   }

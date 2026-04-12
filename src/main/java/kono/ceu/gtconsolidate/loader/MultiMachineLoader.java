@@ -323,6 +323,20 @@ public class MultiMachineLoader {
                 'M', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.STEEL_SOLID),
                 'C', OreDictUnifier.get(circuit, MarkerMaterials.Tier.LV),
                 'E', EMITTER_LV);
+
+        // Quantum Compressor
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(GCYMMetaTileEntities.ELECTRIC_IMPLOSION_COMPRESSOR, 2)
+                .input(ELECTRIC_PISTON_UV, 16)
+                .input(FIELD_GENERATOR_UV, 8)
+                .input(circuit, MarkerMaterials.Tier.UHV, 4)
+                .input(plate, Materials.Neutronium, 16)
+                .input(screw, Materials.Neutronium, 4)
+                .output(GTConsolidateMetaTileEntity.PARALLELIZED_IC)
+                .stationResearch(b -> b
+                        .researchStack(GCYMMetaTileEntities.ELECTRIC_IMPLOSION_COMPRESSOR.getStackForm())
+                        .CWUt(64, 51200))
+                .EUt(VA[UV]).duration(2 * min).buildAndRegister();
     }
 
     public static void GTFOMultiblock() {

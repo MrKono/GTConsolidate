@@ -23,6 +23,7 @@ public class GTConsolidateTextures {
     public static SimpleOverlayRenderer TRITANIUM_STURDY;
     public static SimpleOverlayRenderer IRIDIUM_PLATED;
     public static SimpleOverlayRenderer AMERICIUM_PLATED;
+    public static SimpleOverlayRenderer NEUTRONIUM_STURDY;
     public static SimpleOverlayRenderer IRIDIUM_PIPE;
     public static SimpleOverlayRenderer AMERICIUM_PIPE;
     public static SimpleOverlayRenderer IRIDIUM_GEARBOX;
@@ -54,6 +55,7 @@ public class GTConsolidateTextures {
                 "casings/multiblock/tritanium_sturdy");
         IRIDIUM_PLATED = new SimpleOverlayRenderer("casings/multiblock/iridium_plated");
         AMERICIUM_PLATED = new SimpleOverlayRenderer("casings/multiblock/americium_plated");
+        NEUTRONIUM_STURDY = new SimpleOverlayRenderer("casings/multiblock/neutronium_sturdy");
         IRIDIUM_PIPE = new SimpleOverlayRenderer("casings/pipe/pipe_iridium");
         AMERICIUM_PIPE = new SimpleOverlayRenderer("casings/pipe/pipe_americium");
         IRIDIUM_GEARBOX = new SimpleOverlayRenderer("casings/gearbox/gearbox_iridium");
