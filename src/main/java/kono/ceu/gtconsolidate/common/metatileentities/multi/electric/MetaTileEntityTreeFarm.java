@@ -373,7 +373,8 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
     }
 
     private void setHarvestPerEnergy() {
-        this.harvestPerEnergy = Math.max(1, Math.toIntExact((long) (GTValues.VA[getHighestVoltageTier()] / 2) * getMaintenancePenalty()) / 100);
+        this.harvestPerEnergy = Math.max(1,
+                Math.toIntExact((long) (GTValues.VA[getHighestVoltageTier()] / 2) * getMaintenancePenalty()) / 100);
     }
 
     private void setRadiusLeaf() {
