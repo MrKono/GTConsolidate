@@ -2,6 +2,7 @@
 ### 1.1.4-beta
 - **New Machines**
   - Tree Farm
+  - Quantum Compressor (Parallelized Electric Implosion Compressor)
 - Added support for Alloy Smelter recipes to the _Advanced Multi Smelter_.
 ---
 
