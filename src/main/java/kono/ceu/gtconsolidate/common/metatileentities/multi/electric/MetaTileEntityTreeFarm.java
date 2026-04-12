@@ -369,11 +369,11 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     // == Setter ==
     private void setWorkPerEnergy() {
-        this.workPerEnergy = GTValues.VA[getHighestVoltageTier()] * 2 * 10L;
+        this.workPerEnergy = ((GTValues.V[getHighestVoltageTier()] * getMaintenancePenalty()) / 100) * 15L;
     }
 
     private void setHarvestPerEnergy() {
-        this.harvestPerEnergy = Math.max(1, Math.toIntExact(GTValues.VA[getHighestVoltageTier()]));
+        this.harvestPerEnergy = Math.max(1, Math.toIntExact((long) (GTValues.VA[getHighestVoltageTier()] / 2) * getMaintenancePenalty()) / 100);
     }
 
     private void setRadiusLeaf() {
@@ -382,7 +382,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     private void setScanInterval() {
         int r = 2 * radiusScanning + 1;
-        this.scanInterval = 4000 / (r * r);
+        this.scanInterval = ((4000 / (r * r)) * getMaintenancePenalty()) / 100;
     }
 
     private void resetRemainInterval() {
@@ -399,6 +399,10 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     private int getHighestVoltageTier() {
         return GTUtility.getTierByVoltage(getHighestVoltage());
+    }
+
+    private int getMaintenancePenalty() {
+        return 100 + getNumMaintenanceProblems() * 10;
     }
 
     private int getScanRadius() {
