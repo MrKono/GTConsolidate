@@ -50,6 +50,11 @@ dependencies {
     devOnlyNonPublishable(rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:5519022")) // CEu 2.8.10
     devOnlyNonPublishable(rfg.deobf("curse.maven:gregicality-multiblocks-564858:5619513")) // GCYM 1.2.10
 
+    // CompileOnly
+    compileOnly rfg.deobf("curse.maven:forestry-59751:5903382") // Forestry 5.8.2.387
+    compileOnly rfg.deobf("curse.maven:gte2-coremod-851103:7607958")// GTExpertCore 2.7.2-beta
+
+
     // Optional
     // GTFO 1.12.8
     compileOnly rfg.deobf("curse.maven:gregtech-food-option-477021:7449314")
@@ -63,9 +68,6 @@ dependencies {
         runtimeOnlyNonPublishable rfg.deobf("curse.maven:gtwoodprocessing-1093753:6334967")
     }
 
-    // GTExpertCore 2.7.2-beta
-    compileOnly rfg.deobf("curse.maven:gte2-coremod-851103:7607958")
-
     // Gregified Energistics 0.1.4
     compileOnly rfg.deobf("curse.maven:ae2-extended-life-570458:6302098")
     runtimeOnlyNonPublishable rfg.deobf("curse.maven:ae2-extended-life-570458:6302098") // AE2UEL 0.56.7
@@ -75,5 +77,8 @@ dependencies {
         runtimeOnlyNonPublishable rfg.deobf("curse.maven:gregified-energistics-1333309:6935586")
     }
 
-    compileOnly rfg.deobf("curse.maven:forestry-59751:5903382") // Forestry 5.8.2.387
+    // Implosion No Bomb
+    if (project.debug_inb.toBoolean()) {
+        runtimeOnlyNonPublishable rfg.deobf("curse.maven:implosionnobomb-1094386:5731331")
+    }
 }
