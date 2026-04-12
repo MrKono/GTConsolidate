@@ -182,9 +182,9 @@ tile.component_assembly_line_casing.uxv.name=UXV Component Assembly Line Casing
 tile.component_assembly_line_casing.opv.name=OpV Component Assembly Line Casing
 tile.component_assembly_line_casing.max.name=MAX Component Assembly Line Casing
 
-tile.multiblock_casing.osmiridium_sturdy.name=Osmiridium Sturdy Casing
-tile.multiblock_casing.darmstadtium_sturdy.name=Darmstadtium Sturdy Casing
-tile.multiblock_casing.tritanium_sturdy.name=Tritanium Sturdy Casing
+tile.multiblock_casing.osmiridium_sturdy.name=Sturdy Osmiridium Machine Casing
+tile.multiblock_casing.darmstadtium_sturdy.name=Sturdy Darmstadtium Machine Casing
+tile.multiblock_casing.tritanium_sturdy.name=Sturdy Tritanium Machine Casing
 tile.multiblock_casing.iridium_plated.name=Iridium Plated Factory Casing
 tile.multiblock_casing.americium_plated.name=Americium Plated Factory Casing
 tile.multiblock_casing.neutronium_sturdy.name=Sturdy Neutronium Plated Tritanium Casing
