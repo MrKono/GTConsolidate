@@ -147,12 +147,10 @@ public class TreeFarmUtil {
         BlockPos supportPos = pos.down();
         if (checkForestry) {
             ITree tree = TreeManager.treeRoot.getMember(placedStack);
-            if (tree == null) {
-                return false;
-            }
-
-            if (!tree.canStay(server, pos)) {
-                return false;
+            if (tree == null || !tree.canStay(server, pos)) {
+                EnumActionResult result = placedStack.onItemUse(placer, server, supportPos, EnumHand.MAIN_HAND,
+                        EnumFacing.UP, 0.5F, 1.0F, 0.5F);
+                return result == EnumActionResult.SUCCESS;
             }
             return TreeManager.treeRoot.plantSapling(server, tree, placer.getGameProfile(), pos);
         } else {
