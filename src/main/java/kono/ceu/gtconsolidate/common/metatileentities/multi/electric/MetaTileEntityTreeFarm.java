@@ -62,6 +62,7 @@ import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockTurbineCasing;
 import gregtech.common.blocks.MetaBlocks;
 
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.Logs;
 import kono.ceu.gtconsolidate.api.util.TreeFarmUtil;
@@ -102,6 +103,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     private final BlockPos.MutableBlockPos mutableScanPos = new BlockPos.MutableBlockPos();
     private final BlockPos.MutableBlockPos mutableBelowPos = new BlockPos.MutableBlockPos();
+    private final BlockPos.MutableBlockPos nextScanPos = new BlockPos.MutableBlockPos();
 
     private BlockPos scanStart = null;
 
@@ -340,6 +342,17 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         setWorkPerEnergy();
         setHarvestPerEnergy();
 
+        if (GTConsolidateConfig.treeFarm.showParticle) {
+            if (getWorld() instanceof WorldServer server) {
+                if (this.waitTime % 60 == 0) {
+                    drawParticle(server, mutableScanPos);
+                }
+                if (this.waitTime % 20 == 0) {
+                    drawParticleNextPos(server, nextScanPos);
+                }
+            }
+        }
+
         --this.waitTime;
         if (getOffsetTimer() % 10 == 0) {
             checkHasSpace();
@@ -436,13 +449,27 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
         mutableScanPos.setPos(x, y, z);
 
-        drawParticle(this.getWorld(), mutableScanPos);
-
         // skip if unloading chunk
         if (this.getWorld().isBlockLoaded(mutableScanPos)) {
             processScanPos(mutableScanPos);
         }
         scanIndex = (scanIndex + 1) % total;
+        calculateNextScanPos();
+    }
+
+    private void calculateNextScanPos() {
+        BlockPos center = getPos().offset(getFrontFacing().getOpposite(), 2);
+        int range = getScanRadius();
+        int size = range * 2 + 1;
+
+        int xOffset = scanIndex % size;
+        int zOffset = scanIndex / size;
+
+        int x = center.getX() + xOffset - range;
+        int y = center.getY() + 6;
+        int z = center.getZ() + zOffset - range;
+
+        nextScanPos.setPos(x, y, z);
     }
 
     private void processScanPos(BlockPos pos) {
@@ -826,11 +853,15 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         tooltip.add(I18n.format("gtconsolidate.machine.tree_farm.tooltip.3"));
     }
 
-    private void drawParticle(World world, BlockPos pos) {
-        if (!(world instanceof WorldServer server)) return;
-
+    private void drawParticle(WorldServer server, BlockPos pos) {
         server.spawnParticle(EnumParticleTypes.DRAGON_BREATH,
                 pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                2, 0.0, 0.0, 0.0, 0.0);
+                8, 0.0, 0.0, 0.0, 0.0);
+    }
+
+    private void drawParticleNextPos(WorldServer worldServer, BlockPos pos) {
+        worldServer.spawnParticle(EnumParticleTypes.REDSTONE,
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                8, 0.0, 0.0, 0.0, 0.0);
     }
 }
