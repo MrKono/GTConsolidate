@@ -1,4 +1,13 @@
 ## Changelog
+### 1.1.4.1-beta
+- **Refine** Tree Farm
+  - **Fix** Issue where the machine would stop working when the Output Bus had too few slots.
+  - **Fix** Maintenance mechanism does not work.
+  - **Fix** Failed to place sapling when Forestry is loaded.
+  - **Refactor** Slightly reduced energy consumption.
+  - **Add** Particle effects to display the current (Dragon Breath) and next (Redstone) scan positions.
+---
+
 ### 1.1.4-beta
 - **New Machines**
   - Tree Farm

@@ -54,6 +54,8 @@ dependencies {
     compileOnly rfg.deobf("curse.maven:forestry-59751:5903382") // Forestry 5.8.2.387
     compileOnly rfg.deobf("curse.maven:gte2-coremod-851103:7607958")// GTExpertCore 2.7.2-beta
 
+    //runtimeOnlyNonPublishable rfg.deobf("curse.maven:forestry-59751:5903382")
+
 
     // Optional
     // GTFO 1.12.8

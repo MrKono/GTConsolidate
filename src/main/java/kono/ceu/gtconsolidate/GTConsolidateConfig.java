@@ -109,5 +109,10 @@ public class GTConsolidateConfig {
                 "Invalid entries will be skipped." })
         public String[] plantableSaplings = new String[] {
         };
+
+        @Config.Comment({ "Whether particles are shown at the current scan position and the next scan position.",
+                "Dragon Breath particles are shown at the current scan position",
+                "Redstone particles at the next scan position.", "Default: false" })
+        public boolean showParticle = false;
     }
 }

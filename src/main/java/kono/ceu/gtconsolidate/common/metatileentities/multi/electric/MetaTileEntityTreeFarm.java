@@ -62,6 +62,7 @@ import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockTurbineCasing;
 import gregtech.common.blocks.MetaBlocks;
 
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.Logs;
 import kono.ceu.gtconsolidate.api.util.TreeFarmUtil;
@@ -102,11 +103,11 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     private final BlockPos.MutableBlockPos mutableScanPos = new BlockPos.MutableBlockPos();
     private final BlockPos.MutableBlockPos mutableBelowPos = new BlockPos.MutableBlockPos();
+    private final BlockPos.MutableBlockPos nextScanPos = new BlockPos.MutableBlockPos();
 
     private BlockPos scanStart = null;
 
     private final List<ItemStack> pendingDrops = new ArrayList<>();
-    private final List<ItemStack> dummyStacks = new ArrayList<>();
 
     private TreeFarmUtil.WorkPhase workPhase = TreeFarmUtil.WorkPhase.IDLE;
 
@@ -341,10 +342,22 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         setWorkPerEnergy();
         setHarvestPerEnergy();
 
+        if (GTConsolidateConfig.treeFarm.showParticle) {
+            if (getWorld() instanceof WorldServer server) {
+                if (this.waitTime % 60 == 0) {
+                    drawParticle(server, mutableScanPos);
+                }
+                if (this.waitTime % 20 == 0) {
+                    drawParticleNextPos(server, nextScanPos);
+                }
+            }
+        }
+
         --this.waitTime;
         if (getOffsetTimer() % 10 == 0) {
             checkHasSpace();
             this.hasEnoughEnergy = stored >= workPerEnergy;
+            energyContainer.removeEnergy(Math.min(stored, workPerEnergy));
         }
         if (getOffsetTimer() % this.scanInterval == 0) {
             if (hasEnoughEnergy) {
@@ -352,7 +365,6 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
                 scanNextBlock();
             }
             setScanInterval();
-            energyContainer.removeEnergy(Math.min(stored, workPerEnergy));
         }
     }
 
@@ -362,16 +374,20 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
     }
 
     private void checkHasSpace() {
-        this.hasSpace = GTTransferUtils.addItemsToItemHandler(exportItems, true, dummyStacks);
+        this.hasSpace = GTTransferUtils.addItemsToItemHandler(exportItems, true, pendingDrops);
+        if (hasSpace && !pendingDrops.isEmpty()) {
+            moveToOutputInventory();
+        }
     }
 
     // == Setter ==
     private void setWorkPerEnergy() {
-        this.workPerEnergy = GTValues.VA[getHighestVoltageTier()] * 2 * 10L;
+        this.workPerEnergy = ((GTValues.V[getHighestVoltageTier()] * getMaintenancePenalty()) / 100) * 15L;
     }
 
     private void setHarvestPerEnergy() {
-        this.harvestPerEnergy = Math.max(1, Math.toIntExact(GTValues.VA[getHighestVoltageTier()]));
+        this.harvestPerEnergy = Math.max(1,
+                Math.toIntExact((long) (GTValues.VA[getHighestVoltageTier()] / 2) * getMaintenancePenalty()) / 100);
     }
 
     private void setRadiusLeaf() {
@@ -380,7 +396,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     private void setScanInterval() {
         int r = 2 * radiusScanning + 1;
-        this.scanInterval = 4000 / (r * r);
+        this.scanInterval = ((4000 / (r * r)) * getMaintenancePenalty()) / 100;
     }
 
     private void resetRemainInterval() {
@@ -397,6 +413,10 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
     private int getHighestVoltageTier() {
         return GTUtility.getTierByVoltage(getHighestVoltage());
+    }
+
+    private int getMaintenancePenalty() {
+        return 100 + getNumMaintenanceProblems() * 10;
     }
 
     private int getScanRadius() {
@@ -429,13 +449,27 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
 
         mutableScanPos.setPos(x, y, z);
 
-        drawParticle(this.getWorld(), mutableScanPos);
-
         // skip if unloading chunk
         if (this.getWorld().isBlockLoaded(mutableScanPos)) {
             processScanPos(mutableScanPos);
         }
         scanIndex = (scanIndex + 1) % total;
+        calculateNextScanPos();
+    }
+
+    private void calculateNextScanPos() {
+        BlockPos center = getPos().offset(getFrontFacing().getOpposite(), 2);
+        int range = getScanRadius();
+        int size = range * 2 + 1;
+
+        int xOffset = scanIndex % size;
+        int zOffset = scanIndex / size;
+
+        int x = center.getX() + xOffset - range;
+        int y = center.getY() + 6;
+        int z = center.getZ() + zOffset - range;
+
+        nextScanPos.setPos(x, y, z);
     }
 
     private void processScanPos(BlockPos pos) {
@@ -482,6 +516,8 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
             }
         }
 
+        moveToOutputInventory();
+
         if (pendingLogs.isEmpty()) {
             plantPendingSaplings();
             moveToOutputInventory();
@@ -498,7 +534,6 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         this.pendingLogs.clear();
         this.pendingLeaves.clear();
         this.queuedLeaves.clear();
-        this.pendingDrops.clear();
         this.harvestedLogs.clear();
 
         this.scanQueue.add(this.scanStart);
@@ -572,6 +607,8 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
                         GTUtility.getTierByVoltage(getHighestVoltage()));
             }
         }
+
+        moveToOutputInventory();
 
         if (pendingLeaves.isEmpty()) {
             workPhase = WorkPhase.HARVESTING_TREE;
@@ -651,8 +688,6 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
     private void moveToOutputInventory() {
         if (GTTransferUtils.addItemsToItemHandler(exportItems, true, pendingDrops)) {
             GTTransferUtils.addItemsToItemHandler(exportItems, false, pendingDrops);
-            dummyStacks.clear();
-            dummyStacks.addAll(pendingDrops);
             pendingDrops.clear();
         } else {
             this.hasSpace = false;
@@ -818,11 +853,15 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         tooltip.add(I18n.format("gtconsolidate.machine.tree_farm.tooltip.3"));
     }
 
-    private void drawParticle(World world, BlockPos pos) {
-        if (!(world instanceof WorldServer server)) return;
-
+    private void drawParticle(WorldServer server, BlockPos pos) {
         server.spawnParticle(EnumParticleTypes.DRAGON_BREATH,
                 pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                2, 0.0, 0.0, 0.0, 0.0);
+                8, 0.0, 0.0, 0.0, 0.0);
+    }
+
+    private void drawParticleNextPos(WorldServer worldServer, BlockPos pos) {
+        worldServer.spawnParticle(EnumParticleTypes.REDSTONE,
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                8, 0.0, 0.0, 0.0, 0.0);
     }
 }
