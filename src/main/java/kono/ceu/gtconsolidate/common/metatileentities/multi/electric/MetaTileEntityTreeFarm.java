@@ -357,6 +357,7 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
         if (getOffsetTimer() % 10 == 0) {
             checkHasSpace();
             this.hasEnoughEnergy = stored >= workPerEnergy;
+            energyContainer.removeEnergy(Math.min(stored, workPerEnergy));
         }
         if (getOffsetTimer() % this.scanInterval == 0) {
             if (hasEnoughEnergy) {
@@ -364,7 +365,6 @@ public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements
                 scanNextBlock();
             }
             setScanInterval();
-            energyContainer.removeEnergy(Math.min(stored, workPerEnergy));
         }
     }
 
