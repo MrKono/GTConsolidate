@@ -460,7 +460,7 @@ gtconsolidate.multiblock.tree_farm.radius_increment=Click to increase the §aRad
 gtconsolidate.multiblock.pattern.bus.filtered=§3Using §nFiltered Input Bus§r§3 may be convenient.
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r
 gtconsolidate.multiblock.pattern.any=Any block can be used
-gtconsolidate.multiblock.pattern.coils=§bAvailable Coils§7: %s
+gtconsolidate.multiblock.pattern.coils=§aCan use all coils available for the Electric Blast Furnace.
 
 ## RecipeMaps
 recipemap.component_assembly_line.name=Component Assembly Line
