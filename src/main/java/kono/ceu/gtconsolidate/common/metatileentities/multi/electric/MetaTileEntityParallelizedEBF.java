@@ -15,7 +15,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
@@ -50,9 +49,7 @@ import gregtech.api.util.TextFormattingUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
-import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.*;
-import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.core.sound.GTSoundEvents;
 
 import gregicality.multiblocks.api.capability.IParallelMultiblock;
@@ -62,7 +59,6 @@ import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
-import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 
 public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
                                            implements IHeatingCoil, IParallelMultiblock {
@@ -96,7 +92,7 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
                                 .setMinGlobalLimited(1).setMaxGlobalLimited(2))
                         .or(manualMaintenance()))
                 .where('M', abilities(MultiblockAbility.MUFFLER_HATCH))
-                .where('C', heatingCoils())
+                .where('C', heatingCoils().addTooltips(coilInfo()))
                 .where('I', indicatorPredicate())
                 .where('#', states(modeBlockState()))
                 .build();
@@ -144,29 +140,15 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
         return state;
     }
 
-    @Override
-    public List<MultiblockShapeInfo> getMatchingShapes() {
-        ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder()
-                .aisle("EEM", "CCC", "CCC", "XXX")
-                .aisle("FXD", "C#C", "C#C", "XHX")
-                .aisle("ISO", "CCC", "CCC", "XXX")
-                .where('X', modeCasingState())
-                .where('S', GTConsolidateMetaTileEntity.PARALLELIZED_EBF[maxParallel == 4 ? 0 : 1], EnumFacing.SOUTH)
-                .where('#', modeBlockState())
-                .where('E', maxParallel == 4 ? MetaTileEntities.ENERGY_INPUT_HATCH_4A[GTValues.LV] :
-                        MetaTileEntities.ENERGY_INPUT_HATCH_16A[GTValues.ULV], EnumFacing.NORTH)
-                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
-                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
-                .where('F', MetaTileEntities.FLUID_IMPORT_HATCH[GTValues.LV], EnumFacing.WEST)
-                .where('D', MetaTileEntities.FLUID_EXPORT_HATCH[GTValues.LV], EnumFacing.EAST)
-                .where('H', MetaTileEntities.MUFFLER_HATCH[GTValues.LV], EnumFacing.UP)
-                .where('M', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH :
-                        modeCasingState(), EnumFacing.NORTH);
+    private String coilInfo() {
+        List<String> coilName = new ArrayList<>();
         GregTechAPI.HEATING_COILS.entrySet().stream()
-                .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
-                .forEach(entry -> shapeInfo.add(builder.where('C', entry.getKey()).build()));
-        return shapeInfo;
+                .sorted(Comparator.comparingInt(coils -> coils.getValue().getTier()))
+                .forEach(coils -> coilName.add(TextFormatting.GREEN + I18n.format(
+                        coils.getKey().getBlock().getTranslationKey() + "." + coils.getValue().getName() + ".name") +
+                        TextFormatting.GRAY));
+        String coils = String.join(", ", coilName);
+        return I18n.format("gtconsolidate.multiblock.pattern.coils", coils);
     }
 
     @Override

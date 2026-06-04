@@ -459,6 +459,7 @@ gtconsolidate.multiblock.tree_farm.radius_increment=Click to increase the §aRad
 # Pattern
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r
 gtconsolidate.multiblock.pattern.any=Any block can be used
+gtconsolidate.multiblock.pattern.coils=§bAvailable Coils§7: %s
 
 ## RecipeMaps
 recipemap.component_assembly_line.name=Component Assembly Line
