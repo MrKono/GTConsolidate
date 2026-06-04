@@ -133,6 +133,15 @@ public class MetaTileEntityLoader {
 
         // Tank Valve
         RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.STEEL_SOLID))
+                .input(OrePrefix.ring, Materials.Steel)
+                .input(OrePrefix.rotor, Materials.Steel)
+                .circuitMeta(6)
+                .outputs(MetaTileEntities.STEEL_TANK_VALVE.getStackForm())
+                .EUt(16).duration(50)
+                .buildAndRegister();
+
+        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
                 .input(OrePrefix.ring, Materials.Titanium, 2)
                 .input(OrePrefix.rotor, Materials.Titanium, 2)
                 .inputs(MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.TITANIUM_STABLE))
