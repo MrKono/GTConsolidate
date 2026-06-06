@@ -131,7 +131,7 @@ public class MetaTileEntityParallelizedAssemblyLine extends RecipeMapMultiblockC
                         .or(energyHatchLimit(false, maxParallel == 4, maxParallel != 64, maxParallel == 64)))
                 .where('B', inputBusPredicate())
                 .where('I', abilities(MultiblockAbility.IMPORT_ITEMS)
-                        .addTooltips("gtconsolidate.multiblock.jei.bus.filtered"))
+                        .addTooltips("gtconsolidate.multiblock.pattern.bus.filtered"))
                 .where('G', states(getGrateState()))
                 .where('A', states(getControlCasingState()))
                 .where('R', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)))

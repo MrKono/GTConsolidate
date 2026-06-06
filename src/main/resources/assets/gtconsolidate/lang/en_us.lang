@@ -220,8 +220,6 @@ tile.tank_wall.mk_viii.name=Watertight-Coated Naquadah Alloy Tank Wall
 tile.tank_wall.mk_ix.name=Watertight-Coated Darmstadtium Tank Wall
 tile.tank_wall.mk_x.name=Watertight-Coated Neutronium Tank Wall
 
-## Tooltips
-gtconsolidate.multiblock.jei.bus.filtered=§3Using §nFiltered Input Bus§r§3 may be convenient.
 
 ## Multi
 # Universal
@@ -237,6 +235,10 @@ gtconsolidate.multiblock.tooltip.universal.shift_ctrl=Hold SHIFT & CTRL to show 
 gtconsolidate.multiblock.tooltip.universal.tab.build=Hold Tab to show additional Structure Information.
 gtconsolidate.multiblock.tooltip.pattern_info.not_shown=§eBlocks that are necessary but not displayed in §bMultiblock Pattern
 gtconsolidate.multiblock.tooltip.pattern_info.not_shown.detail=     §e%s§7 x §e%s
+
+# Description
+gregtech.multiblock.turbo_blast_furnace.description=Note: Due to recipe conflicts, some recipes have been changed.\n\nSteel Ingot: Some recipes have been required Programmed Circuit in addition.\nYttrium Ingot: Has been required Programmed Circuit in addition.
+gregtech.multiblock.tree_farm.description=The Tree Farm is a multiblock farming machine dedicated to saplings\nIn the structure preview, the top layer is shown as entirely dirt blocks, but in practice, any blocks can be used. Saplings, however, can only be planted on dirt-type blocks. \n\nBehavior\nThe machine will stop operating if the output bus is full. Items in the input bus that are not registered saplings will be automatically moved to the output bus.
 
 # Adv. Fusion Reactor
 gtconsolidate.machine.parallelized_fusion_reactor.tooltip.1=Parallelized Fusion Reactor, but with limitations.
@@ -280,7 +282,6 @@ gtconsolidate.machine.turbo_blast_furnace.tooltip.5=For every §fdoubling of the
 gtconsolidate.machine.turbo_blast_furnace.tooltip.6=For every §ffivefold increase over the Initial Heat Capacity§7, the §eEnergy Usage§7 is reduced to §f50%%§7.
 gtconsolidate.machine.turbo_blast_furnace.tooltip.ctrl=Hold CTRL to show the §cInitial Heat Capacity Bonus§7.
 gtconsolidate.machine.turbo_blast_furnace.tooltip.alt=Hold ALT to show the §cAdditional Heat Capacity Bonus§7.
-gregtech.multiblock.turbo_blast_furnace.description=Note: Due to recipe conflicts, some recipes have been changed.\n\nSteel Ingot: Some recipes have been required Programmed Circuit in addition.\nYttrium Ingot: Has been required Programmed Circuit in addition.
 gtconsolidate.machine.turbo_blast_furnace.pre_heating.on=Turn §aon§f the §cPre-Heating§f.
 gtconsolidate.machine.turbo_blast_furnace.pre_heating.off=Turn §coff§f the §cPre-Heating§f.
 
@@ -352,7 +353,6 @@ gtconsolidate.machine.tree_farm.tooltip.2.2=    §eHarvesting Energy§7: Max Vol
 gtconsolidate.machine.tree_farm.tooltip.2.3=    §bFortune Level§7: max(0, Max Voltage Count × (Max Voltage Tier))
 gtconsolidate.machine.tree_farm.tooltip.2.4=    §aLeaf Radius§7: max(1, Max Voltage Tier)
 gtconsolidate.machine.tree_farm.tooltip.3=§eNote§7: Multiple Energy Hatches of the same tier do not increase the voltage tier.
-gregtech.multiblock.tree_farm.description=The Tree Farm is a multiblock farming machine dedicated to saplings\nIn the structure preview, the top layer is shown as entirely dirt blocks, but in practice, any blocks can be used. Saplings, however, can only be planted on dirt-type blocks. \n\nBehavior\nThe machine will stop operating if the output bus is full. Items in the input bus that are not registered saplings will be automatically moved to the output bus.
 
 # Quantum Compressor
 gtconsolidate.machine.quantum_compressor.tooltip.1=Compress, compress, and keep compressing!
@@ -457,8 +457,10 @@ gtconsolidate.multiblock.tree_farm.radius_decrement=Click to decrease the §aRad
 gtconsolidate.multiblock.tree_farm.radius_increment=Click to increase the §aRadius§r./nShift[§6 x2§r]. Maximum is §a7§r.
 
 # Pattern
+gtconsolidate.multiblock.pattern.bus.filtered=§3Using §nFiltered Input Bus§r§3 may be convenient.
 gtconsolidate.multiblock.pattern.error.coa_casings=§cAll CoA Casings must be the same§r
 gtconsolidate.multiblock.pattern.any=Any block can be used
+gtconsolidate.multiblock.pattern.coils=§aCan use all coils available for the Electric Blast Furnace.
 
 ## RecipeMaps
 recipemap.component_assembly_line.name=Component Assembly Line

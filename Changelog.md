@@ -1,4 +1,10 @@
 ## Changelog
+### 1.1.4.2-beta
+- **Refactor** Parallelized EBF's Multiblock Info in JEI.
+- **Add** assembler recipe for Tank Valve.
+- **Add** Super Voltage Control Unit recipe (Configurable).
+---
+
 ### 1.1.4.1-beta
 - **Refine** Tree Farm
   - **Fix** Issue where the machine would stop working when the Output Bus had too few slots.
