@@ -102,79 +102,54 @@ public class MetaTileEntityParallelizedEBF extends RecipeMapMultiblockController
                 .build();
     }
 
+    private MultiblockShapeInfo.Builder createShapeBuilder(int repeatable) {
+        String[] aisle1 = new String[repeatable + 3];
+        String[] aisle2 = new String[repeatable + 3];
+        String[] aisle3 = new String[repeatable + 3];
+
+        // Bottom Layer
+        aisle1[0] = "EEM";
+        aisle2[0] = "FXD";
+        aisle3[0] = "ISO";
+
+        // Coils layer
+        for (int i = 1; i <= repeatable + 1; i++) {
+            aisle1[i] = "CCC";
+            aisle2[i] = "C#C";
+            aisle3[i] = "CCC";
+        }
+
+        // Top layer
+        aisle1[repeatable + 2] = "XXX";
+        aisle2[repeatable + 2] = "XHX";
+        aisle3[repeatable + 2] = "XXX";
+
+        return MultiblockShapeInfo.builder()
+                .aisle(aisle1)
+                .aisle(aisle2)
+                .aisle(aisle3)
+                .where('X', modeCasingState())
+                .where('S', GTConsolidateMetaTileEntity.PARALLELIZED_EBF[maxParallel == 4 ? 0 : 1], EnumFacing.SOUTH)
+                .where('#', modeBlockState())
+                .where('E', maxParallel == 4 ? MetaTileEntities.ENERGY_INPUT_HATCH_4A[GTValues.LV] :
+                        MetaTileEntities.ENERGY_INPUT_HATCH_16A[GTValues.ULV], EnumFacing.NORTH)
+                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
+                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
+                .where('F', MetaTileEntities.FLUID_IMPORT_HATCH[GTValues.LV], EnumFacing.WEST)
+                .where('D', MetaTileEntities.FLUID_EXPORT_HATCH[GTValues.LV], EnumFacing.EAST)
+                .where('H', MetaTileEntities.MUFFLER_HATCH[GTValues.LV], EnumFacing.UP)
+                .where('M', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH :
+                        modeCasingState(), EnumFacing.NORTH);
+    }
+
     @Override
     public List<MultiblockShapeInfo> getMatchingShapes() {
         ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-
-        MultiblockShapeInfo.Builder builder1 = MultiblockShapeInfo.builder()
-                .aisle("EEM", "CCC", "CCC", "XXX")
-                .aisle("FXD", "C#C", "C#C", "XHX")
-                .aisle("ISO", "CCC", "CCC", "XXX")
-                .where('X', modeCasingState())
-                .where('S', GTConsolidateMetaTileEntity.PARALLELIZED_EBF[maxParallel == 4 ? 0 : 1], EnumFacing.SOUTH)
-                .where('#', modeBlockState())
-                .where('E', maxParallel == 4 ? MetaTileEntities.ENERGY_INPUT_HATCH_4A[GTValues.LV] :
-                        MetaTileEntities.ENERGY_INPUT_HATCH_16A[GTValues.ULV], EnumFacing.NORTH)
-                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
-                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
-                .where('F', MetaTileEntities.FLUID_IMPORT_HATCH[GTValues.LV], EnumFacing.WEST)
-                .where('D', MetaTileEntities.FLUID_EXPORT_HATCH[GTValues.LV], EnumFacing.EAST)
-                .where('H', MetaTileEntities.MUFFLER_HATCH[GTValues.LV], EnumFacing.UP)
-                .where('M', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH :
-                        modeCasingState(), EnumFacing.NORTH);
-
-        MultiblockShapeInfo.Builder builder2 = MultiblockShapeInfo.builder()
-                .aisle("EEM", "CCC", "CCC", "CCC", "XXX")
-                .aisle("FXD", "C#C", "C#C", "C#C", "XHX")
-                .aisle("ISO", "CCC", "CCC", "CCC", "XXX")
-                .where('X', modeCasingState())
-                .where('S', GTConsolidateMetaTileEntity.PARALLELIZED_EBF[maxParallel == 4 ? 0 : 1], EnumFacing.SOUTH)
-                .where('#', modeBlockState())
-                .where('E', maxParallel == 4 ? MetaTileEntities.ENERGY_INPUT_HATCH_4A[GTValues.LV] :
-                        MetaTileEntities.ENERGY_INPUT_HATCH_16A[GTValues.ULV], EnumFacing.NORTH)
-                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
-                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
-                .where('F', MetaTileEntities.FLUID_IMPORT_HATCH[GTValues.LV], EnumFacing.WEST)
-                .where('D', MetaTileEntities.FLUID_EXPORT_HATCH[GTValues.LV], EnumFacing.EAST)
-                .where('H', MetaTileEntities.MUFFLER_HATCH[GTValues.LV], EnumFacing.UP)
-                .where('M', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH :
-                        modeCasingState(), EnumFacing.NORTH);
-
-        MultiblockShapeInfo.Builder builder3 = MultiblockShapeInfo.builder()
-                .aisle("EEM", "CCC", "CCC", "CCC", "CCC", "XXX")
-                .aisle("FXD", "C#C", "C#C", "C#C", "C#C", "XHX")
-                .aisle("ISO", "CCC", "CCC", "CCC", "CCC", "XXX")
-                .where('X', modeCasingState())
-                .where('S', GTConsolidateMetaTileEntity.PARALLELIZED_EBF[maxParallel == 4 ? 0 : 1], EnumFacing.SOUTH)
-                .where('#', modeBlockState())
-                .where('E', maxParallel == 4 ? MetaTileEntities.ENERGY_INPUT_HATCH_4A[GTValues.LV] :
-                        MetaTileEntities.ENERGY_INPUT_HATCH_16A[GTValues.ULV], EnumFacing.NORTH)
-                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
-                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
-                .where('F', MetaTileEntities.FLUID_IMPORT_HATCH[GTValues.LV], EnumFacing.WEST)
-                .where('D', MetaTileEntities.FLUID_EXPORT_HATCH[GTValues.LV], EnumFacing.EAST)
-                .where('H', MetaTileEntities.MUFFLER_HATCH[GTValues.LV], EnumFacing.UP)
-                .where('M', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH :
-                        modeCasingState(), EnumFacing.NORTH);
-
-        MultiblockShapeInfo.Builder builder4 = MultiblockShapeInfo.builder()
-                .aisle("EEM", "CCC", "CCC", "CCC", "CCC", "CCC", "XXX")
-                .aisle("FXD", "C#C", "C#C", "C#C", "C#C", "C#C", "XHX")
-                .aisle("ISO", "CCC", "CCC", "CCC", "CCC", "CCC", "XXX")
-                .where('X', modeCasingState())
-                .where('S', GTConsolidateMetaTileEntity.PARALLELIZED_EBF[maxParallel == 4 ? 0 : 1], EnumFacing.SOUTH)
-                .where('#', modeBlockState())
-                .where('E', maxParallel == 4 ? MetaTileEntities.ENERGY_INPUT_HATCH_4A[GTValues.LV] :
-                        MetaTileEntities.ENERGY_INPUT_HATCH_16A[GTValues.ULV], EnumFacing.NORTH)
-                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
-                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[GTValues.LV], EnumFacing.SOUTH)
-                .where('F', MetaTileEntities.FLUID_IMPORT_HATCH[GTValues.LV], EnumFacing.WEST)
-                .where('D', MetaTileEntities.FLUID_EXPORT_HATCH[GTValues.LV], EnumFacing.EAST)
-                .where('H', MetaTileEntities.MUFFLER_HATCH[GTValues.LV], EnumFacing.UP)
-                .where('M', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH :
-                        modeCasingState(), EnumFacing.NORTH);
-
-        List<MultiblockShapeInfo.Builder> builders = Arrays.asList(builder1, builder2, builder3, builder4);
+        List<MultiblockShapeInfo.Builder> builders = Arrays.asList(
+                createShapeBuilder(1),
+                createShapeBuilder(2),
+                createShapeBuilder(3),
+                createShapeBuilder(4));
 
         GregTechAPI.HEATING_COILS.entrySet().stream()
                 .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
