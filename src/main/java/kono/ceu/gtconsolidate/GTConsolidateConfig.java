@@ -91,6 +91,9 @@ public class GTConsolidateConfig {
         public String[] intakeHatchDimensionMaterials = new String[] {
                 "-1@gregtech:nether_air", "1@gregtech:ender_air"
         };
+
+        @Config.Comment({ "Whether to add Super Voltage Control Unit recipe.", "Default: true" })
+        public boolean addSuperVoltageControlUnitRecipe = true;
     }
 
     public static class TreeFarmSetting {

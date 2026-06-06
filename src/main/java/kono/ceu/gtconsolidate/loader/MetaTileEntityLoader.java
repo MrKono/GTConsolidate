@@ -30,6 +30,14 @@ public class MetaTileEntityLoader {
     private static final boolean addHighTier = GTConsolidateConfig.feature.addHighTierRotorHolders;
 
     public static void init() {
+        // Super Voltage Control Unit
+        if (GTConsolidateConfig.feature.addSuperVoltageControlUnitRecipe) {
+            ModHandler.addShapedRecipe(true, "gcym.machine.tiered_hatch.uv",
+                    GCYMMetaTileEntities.TIERED_HATCH[8].getStackForm(), "PPP", "PCP", "PPP",
+                    'P', new UnificationEntry(OrePrefix.plate, Materials.Darmstadtium),
+                    'C', new UnificationEntry(OrePrefix.circuit, MarkerMaterials.Tier.UHV));
+        }
+
         // Filtered Input Bus
         for (int i = 0; i < FILTERED_ITEM_INPUT.length; i++) {
             RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
