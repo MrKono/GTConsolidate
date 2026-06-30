@@ -54,6 +54,7 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityNonupleTankValve NONUPLE_TANK_VALVE;
     public static MetaTileEntityIntakeHatch[] INTAKE_HATCH = new MetaTileEntityIntakeHatch[11];
     public static MetaTileEntityAdvancedIntakeHatch[] ADVANCED_INTAKE_HATCH = new MetaTileEntityAdvancedIntakeHatch[11];
+    public static MetaTileEntityPassthroughHatchLaser[] PASSTHROUGH_HATCH_LASER = new MetaTileEntityPassthroughHatchLaser[10]; // IV+
 
     // Creative
     public static MetaTileEntityCreativeRotorHolder CREATIVE_ROTOR_HOLDER;
@@ -234,5 +235,13 @@ public class GTConsolidateMetaTileEntity {
                     modId("advanced_intake_hatch." + i), i));
         }
         id = id + ADVANCED_INTAKE_HATCH.length;
+
+        int endPos = GregTechAPI.isHighTier() ? PASSTHROUGH_HATCH_LASER.length - 1 :
+                Math.min(PASSTHROUGH_HATCH_LASER.length - 1, GTValues.UHV - GTValues.IV);
+        for (int i = 0; i < endPos; i++) {
+            int v = i + GTValues.IV;
+            PASSTHROUGH_HATCH_LASER[0] = registerMetaTileEntity(id + i, new MetaTileEntityPassthroughHatchLaser(
+                    modId("passthrough_hatch.laser" + GTValues.VN[v].toLowerCase()), v));
+        }
     }
 }
