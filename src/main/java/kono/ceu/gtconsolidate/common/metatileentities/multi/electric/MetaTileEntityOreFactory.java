@@ -20,6 +20,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
@@ -82,7 +83,7 @@ public class MetaTileEntityOreFactory extends GCYMRecipeMapMultiblockController 
                         "############")
                 .where('A', states(getCasingState()))
                 .where('B', states(getCasingState())
-                        .or(abilities(MultiblockAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3))
+                        .or(energyPredicate().setMinGlobalLimited(1).setMaxGlobalLimited(3))
                         .or(abilities(MultiblockAbility.IMPORT_FLUIDS).setMaxGlobalLimited(5, 1)))
                 .where('D', states(getCasingState2())
                         .or(abilities(MultiblockAbility.EXPORT_ITEMS).setMaxGlobalLimited(10, 1)))
@@ -149,6 +150,11 @@ public class MetaTileEntityOreFactory extends GCYMRecipeMapMultiblockController 
                 GTConsolidateMetaBlocks.PIPE_CASING.getState(BlockPipeCasing.CasingType.IRIDIUM);
     }
 
+    private TraceabilityPredicate energyPredicate() {
+        return isParallelized ? abilities(MultiblockAbility.INPUT_ENERGY, MultiblockAbility.SUBSTATION_INPUT_ENERGY) :
+                abilities(MultiblockAbility.INPUT_ENERGY);
+    }
+
     @Override
     public boolean canBeDistinct() {
         return true;
@@ -173,6 +179,9 @@ public class MetaTileEntityOreFactory extends GCYMRecipeMapMultiblockController 
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         tooltip.add(I18n.format("gtconsolidate.machine.ore_factory.tooltip1"));
         tooltip.add(I18n.format("gtconsolidate.machine.ore_factory.tooltip2"));
+        if (isParallelized) {
+            tooltip.add(I18n.format("gtconsolidate.multiblock.accept_64a"));
+        }
         if (TooltipHelper.isCtrlDown()) {
             tooltip.add("");
             tooltip.add(I18n.format("gtconsolidate.machine.ore_factory.tooltip.process1"));

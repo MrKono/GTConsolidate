@@ -249,7 +249,7 @@ gtconsolidate.multiblock.tooltip.pattern_info.not_shown=§eBlocks that are neces
 gtconsolidate.multiblock.tooltip.pattern_info.not_shown.detail=     §e%s§7 x §e%s
 
 # Description
-gregtech.multiblock.turbo_blast_furnace.description=Note: Due to recipe conflicts, some recipes have been changed.\n\nSteel Ingot: Some recipes have been required Programmed Circuit in addition.\nYttrium Ingot: Has been required Programmed Circuit in addition.
+gregtech.multiblock.turbo_blast_furnace.description=Note: Due to recipe conflicts, some recipes have been changed.\n\nSteel Ingot: Some recipes now require Programmed Circuit in addition or change Circuit number.\nYttrium Ingot: Now requires an additional Programmed Circuit.
 gregtech.multiblock.tree_farm.description=The Tree Farm is a multiblock farming machine dedicated to saplings\nIn the structure preview, the top layer is shown as entirely dirt blocks, but in practice, any blocks can be used. Saplings, however, can only be planted on dirt-type blocks. \n\nBehavior\nThe machine will stop operating if the output bus is full. Items in the input bus that are not registered saplings will be automatically moved to the output bus.
 
 # Adv. Fusion Reactor
@@ -292,6 +292,7 @@ gtconsolidate.machine.turbo_blast_furnace.tooltip.3=If idle, §bHeat Capacity§7
 gtconsolidate.machine.turbo_blast_furnace.tooltip.4=§eStrongly recommended to enable Distinct Buses.
 gtconsolidate.machine.turbo_blast_furnace.tooltip.5=For every §fdoubling of the Initial Heat Capacity§7, the §erecipe duration§7 is reduced to §f90%%§7
 gtconsolidate.machine.turbo_blast_furnace.tooltip.6=For every §ffivefold increase over the Initial Heat Capacity§7, the §eEnergy Usage§7 is reduced to §f50%%§7.
+gtconsolidate.machine.turbo_blast_furnace.tooltip.7=§eNote§7: Due to recipe conflicts, some recipes have been changed. See the Information tab in JEI.
 gtconsolidate.machine.turbo_blast_furnace.tooltip.ctrl=Hold CTRL to show the §cInitial Heat Capacity Bonus§7.
 gtconsolidate.machine.turbo_blast_furnace.tooltip.alt=Hold ALT to show the §cAdditional Heat Capacity Bonus§7.
 gtconsolidate.machine.turbo_blast_furnace.pre_heating.on=Turn §aon§f the §cPre-Heating§f.
