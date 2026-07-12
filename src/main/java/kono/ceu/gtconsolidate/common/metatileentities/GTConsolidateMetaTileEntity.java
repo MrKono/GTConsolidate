@@ -240,8 +240,10 @@ public class GTConsolidateMetaTileEntity {
                 Math.min(PASSTHROUGH_HATCH_LASER.length - 1, GTValues.UHV - GTValues.IV);
         for (int i = 0; i < endPos; i++) {
             int v = i + GTValues.IV;
-            PASSTHROUGH_HATCH_LASER[0] = registerMetaTileEntity(id + i, new MetaTileEntityPassthroughHatchLaser(
-                    modId("passthrough_hatch.laser" + GTValues.VN[v].toLowerCase()), v));
+            PASSTHROUGH_HATCH_LASER[i] = registerMetaTileEntity(id + i, new MetaTileEntityPassthroughHatchLaser(
+                    modId("passthrough_hatch.laser." + GTValues.VN[v].toLowerCase()), v));
         }
+
+        id = id + PASSTHROUGH_HATCH_LASER.length;
     }
 }
