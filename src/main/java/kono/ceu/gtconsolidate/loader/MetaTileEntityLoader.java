@@ -7,7 +7,9 @@ import static kono.ceu.gtconsolidate.loader.Components.*;
 import net.minecraft.init.Blocks;
 
 import gregtech.api.GTValues;
+import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.MarkerMaterials;
@@ -246,6 +248,25 @@ public class MetaTileEntityLoader {
                     .circuitMeta(2)
                     .output(ADVANCED_INTAKE_HATCH[i], 2)
                     .EUt(VA[ZPM]).duration(20).buildAndRegister();
+        }
+
+        // Laser Passthrough Hatch
+        int endLaserPassthrough = GregTechAPI.isHighTier() ? PASSTHROUGH_HATCH_LASER.length - 1 :
+                Math.min(PASSTHROUGH_HATCH_LASER.length - 1, GTValues.UHV - GTValues.IV);
+        for (int i = 0; i < endLaserPassthrough; i++) {
+            int v = i + IV;
+            RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                    .input(MetaTileEntities.HULL[v])
+                    .input(OrePrefix.lens, Materials.NetherStar)
+                    .input(emitter(v))
+                    .input(sensor(v))
+                    .input(pump(v))
+                    .input(MetaItems.ADVANCED_SMD_DIODE, 4)
+                    .input(MetaBlocks.LASER_PIPES[0], 4)
+                    .fluidInputs(Materials.Polytetrafluoroethylene.getFluid(144))
+                    .output(PASSTHROUGH_HATCH_LASER[i])
+                    .cleanroom(CleanroomType.CLEANROOM)
+                    .EUt(VA[v]).duration(200).buildAndRegister();
         }
     }
 }
