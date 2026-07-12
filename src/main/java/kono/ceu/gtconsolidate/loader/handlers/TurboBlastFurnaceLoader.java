@@ -3,6 +3,9 @@ package kono.ceu.gtconsolidate.loader.handlers;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
 import com.github.gtexpert.core.api.unification.material.GTEMaterials;
 
 import gregtech.api.fluids.store.FluidStorageKeys;
@@ -15,8 +18,6 @@ import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
 
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
 import kono.ceu.gtconsolidate.api.util.Mods;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 
 public class TurboBlastFurnaceLoader {
 
@@ -98,8 +99,9 @@ public class TurboBlastFurnaceLoader {
         // Iron dust + 200 mb of Oxygen -> Steel ingot + Ash
         // change circuit number 2 -> 7
         GTRecipeHandler.removeRecipesByInputs(GTConsolidateRecipeMaps.TURBO_BLAST_RECIPE,
-                new ItemStack[] {OreDictUnifier.get(dust, Materials.Iron), IntCircuitIngredient.getIntegratedCircuit(2)},
-                new FluidStack[]{Materials.Oxygen.getFluid(200)});
+                new ItemStack[] { OreDictUnifier.get(dust, Materials.Iron),
+                        IntCircuitIngredient.getIntegratedCircuit(2) },
+                new FluidStack[] { Materials.Oxygen.getFluid(200) });
         GTConsolidateRecipeMaps.TURBO_BLAST_RECIPE.recipeBuilder()
                 .input(dust, Materials.Iron)
                 .fluidInputs(Materials.Oxygen.getFluid(200))
