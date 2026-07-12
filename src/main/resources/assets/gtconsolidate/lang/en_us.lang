@@ -152,6 +152,18 @@ gtconsolidate.machine.advanced_intake_hatch.8.name=Octuple Compressed Advanced I
 gtconsolidate.machine.advanced_intake_hatch.9.name=Nonuple Compressed Advanced Intake Hatch
 gtconsolidate.machine.advanced_intake_hatch.10.name=Decuple Compressed Advanced Intake Hatch
 
+# Laser Passthrough Hatch
+gtconsolidate.machine.passthrough_hatch.laser.iv.name=Insane Voltage Laser Passthrough Hatch
+gtconsolidate.machine.passthrough_hatch.laser.luv.name=Ludicrous Voltage Laser Passthrough Hatch
+gtconsolidate.machine.passthrough_hatch.laser.zpm.name=Zero Point Module Laser Passthrough Hatch
+gtconsolidate.machine.passthrough_hatch.laser.uv.name=Ultimate Voltage Laser Passthrough Hatch
+gtconsolidate.machine.passthrough_hatch.laser.uhv.name=Ultra High Voltage Laser Passthrough Hatch
+gtconsolidate.machine.passthrough_hatch.laser.uev.name=Ultra Excessive Voltage Laser Passthrough Hatch
+gtconsolidate.machine.passthrough_hatch.laser.uiv.name=Ultra Immense Voltage Laser Passthrough Hatch
+gtconsolidate.machine.passthrough_hatch.laser.uxv.name=Ultra Extreme Voltage Laser Passthrough Hatch
+gtconsolidate.machine.passthrough_hatch.laser.opv.name=Overpowered Voltage Laser Passthrough Hatch
+gtconsolidate.machine.passthrough_hatch.laser.max.name=Maximum Voltage Laser Passthrough Hatch
+
 # Creative
 gtconsolidate.machine.creative_rotor_holder.name=Creative Rotor Holder
 
@@ -393,6 +405,10 @@ gtconsolidate.machine.intake_hatch.dim=Target Dimension:
 gtconsolidate.machine.intake_hatch.dim.tooltip=Set the Dimension ID to collect Gas
 gtconsolidate.machine.intake_hatch.dim_target=%s (DimID: %s)
 gtconsolidate.machine.intake_hatch.dim_unregistered=Unregistered
+
+# Laser Passthrough Hatch
+gtconsolidate.machine.laser_passthrough_hatch.tooltip_starts_at=Starts as §f256A§7, use Soft Mallet to change
+gtconsolidate.machine.laser_passthrough_hatch.tooltip.cleanroom=Can be used as a Cleanroom structural component, just like a Diode.
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=For filling space in your Modular Multiblock Tank.
