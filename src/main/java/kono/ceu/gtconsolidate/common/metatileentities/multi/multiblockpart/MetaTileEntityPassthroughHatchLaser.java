@@ -152,7 +152,7 @@ public class MetaTileEntityPassthroughHatchLaser extends MetaTileEntityMultibloc
     public void addInformation(ItemStack stack, @Nullable World player, @NotNull List<String> tooltip,
                                boolean advanced) {
         tooltip.add(I18n.format("gregtech.machine.diode.tooltip_general"));
-        tooltip.add(I18n.format("gregtech.machine.diode.tooltip_starts_at"));
+        tooltip.add(I18n.format("gtconsolidate.machine.laser_passthrough_hatch.tooltip_starts_at"));
         tooltip.add(I18n.format("gregtech.universal.tooltip.voltage_in_out", GTValues.V[getTier()],
                 GTValues.VNF[getTier()]));
         tooltip.add(I18n.format("gregtech.universal.tooltip.amperage_in_out_till", getMaxAmperage()));
