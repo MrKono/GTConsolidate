@@ -46,7 +46,7 @@ public class TurboBlastFurnaceLoader {
         }
     }
 
-    // fix recipe confit
+    // fix recipe conflict
     public static void resolveRecipeConflict() {
         // Steel dust -> Steel ingot
         // add circuit 1
@@ -59,7 +59,7 @@ public class TurboBlastFurnaceLoader {
                 .blastFurnaceTemp(1000)
                 .duration(800).EUt(VA[MV]).buildAndRegister();
 
-        // Iron dust + Carbone dust -> Steel ingot
+        // Iron dust + Carbon dust -> Steel ingot
         // add circuit 1
         GTRecipeHandler.removeRecipesByInputs(GTConsolidateRecipeMaps.TURBO_BLAST_RECIPE,
                 OreDictUnifier.get(dust, Materials.Iron, 4), OreDictUnifier.get(dust, Materials.Carbon));
