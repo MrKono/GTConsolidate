@@ -25,6 +25,10 @@ public class GTConsolidateConfig {
     @Config.RequiresMcRestart
     public static TreeFarmSetting treeFarm = new TreeFarmSetting();
 
+    @Config.Name("CEu Override Setting")
+    @Config.RequiresMcRestart
+    public static CEuOverride ceuOverride = new CEuOverride();
+
     public static class IdSetting {
 
         @Config.Comment({ "Start ID for Multiblock Machine", "Default: 21500" })
@@ -117,5 +121,12 @@ public class GTConsolidateConfig {
                 "Dragon Breath particles are shown at the current scan position",
                 "Redstone particles at the next scan position.", "Default: false" })
         public boolean showParticle = false;
+    }
+
+    public static class CEuOverride {
+
+        @Config.Comment({ "Whether to register the UHV Laser Hatches and recipes.",
+                "Default: true" })
+        public boolean addUHVLasers = true;
     }
 }

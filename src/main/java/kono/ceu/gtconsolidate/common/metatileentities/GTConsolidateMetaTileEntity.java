@@ -1,10 +1,12 @@
 package kono.ceu.gtconsolidate.common.metatileentities;
 
-import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
+import static gregtech.api.util.GTUtility.gregtechId;
+import static gregtech.common.metatileentities.MetaTileEntities.*;
 import static kono.ceu.gtconsolidate.api.util.GTConsolidateValues.modId;
 
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
+import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityLaserHatch;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityRotorHolder;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
@@ -62,6 +64,7 @@ public class GTConsolidateMetaTileEntity {
     public static void init() {
         registerMultiMachine();
         registerMultiblockPart();
+        registerCEuPart();
     }
 
     public static void registerMultiMachine() {
@@ -243,7 +246,29 @@ public class GTConsolidateMetaTileEntity {
             PASSTHROUGH_HATCH_LASER[i] = registerMetaTileEntity(id + i, new MetaTileEntityPassthroughHatchLaser(
                     modId("passthrough_hatch.laser." + GTValues.VN[v].toLowerCase()), v));
         }
+        if (!GregTechAPI.isHighTier() && GTConsolidateConfig.ceuOverride.addUHVLasers) {
+            PASSTHROUGH_HATCH_LASER[4] = registerMetaTileEntity(id + 4, new MetaTileEntityPassthroughHatchLaser(
+                    modId("passthrough_hatch.laser." + GTValues.VN[GTValues.UHV].toLowerCase()), GTValues.UHV));
+        }
 
         id = id + PASSTHROUGH_HATCH_LASER.length;
+    }
+
+    public static void registerCEuPart() {
+        if (!GregTechAPI.isHighTier() && GTConsolidateConfig.ceuOverride.addUHVLasers) {
+            String voltageName = GTValues.VN[GTValues.UHV].toLowerCase();
+            LASER_INPUT_HATCH_256[4] = registerMetaTileEntity(1424, new MetaTileEntityLaserHatch(
+                    gregtechId("laser_hatch.target_256a." + voltageName), false, GTValues.UHV, 256));
+            LASER_OUTPUT_HATCH_256[4] = registerMetaTileEntity(1433, new MetaTileEntityLaserHatch(
+                    gregtechId("laser_hatch.source_256a." + voltageName), true, GTValues.UHV, 256));
+            LASER_INPUT_HATCH_1024[4] = registerMetaTileEntity(1442, new MetaTileEntityLaserHatch(
+                    gregtechId("laser_hatch.target_1024a." + voltageName), false, GTValues.UHV, 1024));
+            LASER_OUTPUT_HATCH_1024[4] = registerMetaTileEntity(1451, new MetaTileEntityLaserHatch(
+                    gregtechId("laser_hatch.source_1024a." + voltageName), true, GTValues.UHV, 1024));
+            LASER_INPUT_HATCH_4096[4] = registerMetaTileEntity(1460, new MetaTileEntityLaserHatch(
+                    gregtechId("laser_hatch.target_4096a." + voltageName), false, GTValues.UHV, 4096));
+            LASER_OUTPUT_HATCH_4096[4] = registerMetaTileEntity(1469, new MetaTileEntityLaserHatch(
+                    gregtechId("laser_hatch.source_4096a." + voltageName), true, GTValues.UHV, 4096));
+        }
     }
 }
