@@ -48,13 +48,12 @@ import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 
-import kono.ceu.gtconsolidate.api.multiblock.ITankData;
-import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
-
 import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import kono.ceu.gtconsolidate.api.multiblock.ITankData;
+import kono.ceu.gtconsolidate.api.util.GTConsolidateValues;
 
 public class MetaTileEntityTestTankA extends MultiblockWithDisplayBase {
 

@@ -5,8 +5,6 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static kono.ceu.gtconsolidate.loader.Components.markerMaterial;
 
-import com.github.gtexpert.gtwp.common.metatileentities.GTWPMetaTileEntities;
-
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
@@ -23,6 +21,8 @@ import gregtech.common.metatileentities.MetaTileEntities;
 import gregtechfoodoption.machines.GTFOTileEntities;
 
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
+
+import com.github.gtexpert.gtwp.common.metatileentities.GTWPMetaTileEntities;
 
 import kono.ceu.gtconsolidate.api.util.Mods;
 import kono.ceu.gtconsolidate.common.blocks.BlockParallelizedAssemblyLineCasing;

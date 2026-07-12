@@ -51,11 +51,10 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockNotifiablePart;
 
-import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
-
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 
 public class MetaTileEntityAdvancedIntakeHatch extends MetaTileEntityMultiblockNotifiablePart
                                                implements IMultiblockAbilityPart<IFluidTank> {

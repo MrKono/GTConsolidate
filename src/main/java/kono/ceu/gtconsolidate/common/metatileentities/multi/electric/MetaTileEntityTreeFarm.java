@@ -62,14 +62,13 @@ import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockTurbineCasing;
 import gregtech.common.blocks.MetaBlocks;
 
+import codechicken.lib.render.CCRenderState;
+import codechicken.lib.render.pipeline.IVertexOperation;
+import codechicken.lib.vec.Matrix4;
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.Logs;
 import kono.ceu.gtconsolidate.api.util.TreeFarmUtil;
-
-import codechicken.lib.render.CCRenderState;
-import codechicken.lib.render.pipeline.IVertexOperation;
-import codechicken.lib.vec.Matrix4;
 
 public class MetaTileEntityTreeFarm extends MultiblockWithDisplayBase implements IControllable {
 

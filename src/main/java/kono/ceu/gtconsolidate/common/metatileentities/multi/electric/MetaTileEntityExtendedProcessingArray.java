@@ -45,14 +45,13 @@ import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.core.sound.GTSoundEvents;
 
+import codechicken.lib.util.ArrayUtils;
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;
 import kono.ceu.gtconsolidate.api.util.mixinhelper.MultiblockDisplayTextMixinHelper;
 import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
 import kono.ceu.gtconsolidate.common.blocks.BlockMultiblockCasing;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
-
-import codechicken.lib.util.ArrayUtils;
 
 public class MetaTileEntityExtendedProcessingArray extends RecipeMapMultiblockController
                                                    implements IMachineHatchMultiblock {
