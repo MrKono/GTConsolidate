@@ -1,4 +1,9 @@
 ## Changelog
+### 1.1.5-beta
+- **Add** Laser Passthrough Hatch/
+- **Add** a config option to register UHV Laser Hatches without enabling `HighTierContent`.
+---
+
 ### 1.1.4.2-beta
 - **Refactor** Parallelized EBF's Multiblock Info in JEI.
 - **Add** assembler recipe for Tank Valve.

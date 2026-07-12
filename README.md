@@ -45,6 +45,7 @@ _New Multiblock Part_
 - Advanced Tank Valve (Since 1.1.2-beta)
 - Creative Rotor Holder (Since 1.1.3-beta)
 - Intake Hatch (Since 1.1.3-beta)
+- Laser Passthrough Hatch (Since 1.1.5-beta)
 
 ### Planning
 _None so far. We are looking for suggestions._ 
