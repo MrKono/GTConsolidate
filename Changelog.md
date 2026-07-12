@@ -2,6 +2,8 @@
 ### 1.1.5-beta
 - **Add** Laser Passthrough Hatch.
 - **Add** a config option to register UHV Laser Hatches without enabling `HighTierContent`.
+- **Fix** recipe conflict in Turbo Rotary Hearth Blast Smelter (Tin Alloy and Steel).
+- **Refactor** Industrial Ore Processing Factory accepts 64A Energy Hatch
 ---
 
 ### 1.1.4.2-beta
