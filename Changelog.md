@@ -1,6 +1,6 @@
 ## Changelog
 ### 1.1.5-beta
-- **Add** Laser Passthrough Hatch/
+- **Add** Laser Passthrough Hatch.
 - **Add** a config option to register UHV Laser Hatches without enabling `HighTierContent`.
 ---
 
