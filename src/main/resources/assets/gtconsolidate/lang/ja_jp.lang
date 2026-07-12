@@ -409,6 +409,7 @@ gtconsolidate.machine.intake_hatch.dim_unregistered=未定義
 
 # Laser Passthrough Hatch
 gtconsolidate.machine.laser_passthrough_hatch.tooltip_starts_at=ソフトマレットでA数を変更。最初は§f256A§7です。
+gtconsolidate.machine.laser_passthrough_hatch.tooltip.cleanroom=ダイオードと同様にクリーンルームの構造部品として利用可能
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=モジュール式マルチタンクの空間を埋めるために。

@@ -408,6 +408,7 @@ gtconsolidate.machine.intake_hatch.dim_unregistered=Unregistered
 
 # Laser Passthrough Hatch
 gtconsolidate.machine.laser_passthrough_hatch.tooltip_starts_at=Starts as §f256A§7, use Soft Mallet to change
+gtconsolidate.machine.laser_passthrough_hatch.tooltip.cleanroom=Can be used as a Cleanroom structural component, just like a Diode.
 
 # Tank Block
 tile.tank_block.tooltip_empty.1=For filling space in your Modular Multiblock Tank.

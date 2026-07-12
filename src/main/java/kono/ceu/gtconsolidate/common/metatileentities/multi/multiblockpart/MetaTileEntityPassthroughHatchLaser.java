@@ -156,6 +156,7 @@ public class MetaTileEntityPassthroughHatchLaser extends MetaTileEntityMultibloc
         tooltip.add(I18n.format("gregtech.universal.tooltip.voltage_in_out", GTValues.V[getTier()],
                 GTValues.VNF[getTier()]));
         tooltip.add(I18n.format("gregtech.universal.tooltip.amperage_in_out_till", getMaxAmperage()));
+        tooltip.add(I18n.format("gtconsolidate.machine.laser_passthrough_hatch.tooltip.cleanroom"));
     }
 
     @Override
