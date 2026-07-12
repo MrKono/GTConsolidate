@@ -6,8 +6,6 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-import com.github.gtexpert.core.api.unification.material.GTEMaterials;
-
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.GTRecipeHandler;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
@@ -15,6 +13,8 @@ import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 
 import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
+
+import com.github.gtexpert.core.api.unification.material.GTEMaterials;
 
 import kono.ceu.gtconsolidate.api.recipes.GTConsolidateRecipeMaps;
 import kono.ceu.gtconsolidate.api.util.Mods;

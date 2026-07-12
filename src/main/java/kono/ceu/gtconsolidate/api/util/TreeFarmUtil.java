@@ -25,11 +25,10 @@ import gregtech.api.util.GregFakePlayer;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.ToolItems;
 
-import kono.ceu.gtconsolidate.GTConsolidateConfig;
-
 import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.TreeManager;
 import forestry.arboriculture.ModuleArboriculture;
+import kono.ceu.gtconsolidate.GTConsolidateConfig;
 
 public class TreeFarmUtil {
 

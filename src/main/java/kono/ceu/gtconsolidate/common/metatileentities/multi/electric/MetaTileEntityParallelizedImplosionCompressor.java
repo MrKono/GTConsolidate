@@ -35,13 +35,12 @@ import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 
-import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
-import kono.ceu.gtconsolidate.common.blocks.BlockMultiblockCasing;
-import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
-
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import kono.ceu.gtconsolidate.client.GTConsolidateTextures;
+import kono.ceu.gtconsolidate.common.blocks.BlockMultiblockCasing;
+import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 
 public class MetaTileEntityParallelizedImplosionCompressor extends GCYMRecipeMapMultiblockController {
 

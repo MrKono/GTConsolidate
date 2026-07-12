@@ -11,11 +11,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.github.gtexpert.gtwp.api.recipes.GTWPRecipeMaps;
-import com.github.gtexpert.gtwp.client.GTWPTextures;
-import com.github.gtexpert.gtwp.common.blocks.GTWPBlockMetalCasing;
-import com.github.gtexpert.gtwp.common.blocks.GTWPMetaBlocks;
-
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -33,6 +28,11 @@ import gregtech.core.sound.GTSoundEvents;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockUniqueCasing;
+
+import com.github.gtexpert.gtwp.api.recipes.GTWPRecipeMaps;
+import com.github.gtexpert.gtwp.client.GTWPTextures;
+import com.github.gtexpert.gtwp.common.blocks.GTWPBlockMetalCasing;
+import com.github.gtexpert.gtwp.common.blocks.GTWPMetaBlocks;
 
 import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.util.GTConsolidateUtil;

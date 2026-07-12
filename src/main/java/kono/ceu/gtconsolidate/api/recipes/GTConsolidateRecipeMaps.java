@@ -10,12 +10,11 @@ import gregtech.api.recipes.builders.BlastRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.core.sound.GTSoundEvents;
 
+import crafttweaker.annotations.ZenRegister;
 import kono.ceu.gtconsolidate.api.recipes.builder.CircuitFactoryRecipeBuilder;
 import kono.ceu.gtconsolidate.api.recipes.builder.CoARecipeBuilder;
 import kono.ceu.gtconsolidate.api.recipes.machine.RecipeMapCircuitFactory;
 import kono.ceu.gtconsolidate.api.recipes.machine.RecipeMapCoA;
-
-import crafttweaker.annotations.ZenRegister;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenProperty;
 
