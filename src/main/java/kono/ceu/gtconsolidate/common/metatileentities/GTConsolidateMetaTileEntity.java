@@ -26,6 +26,7 @@ public class GTConsolidateMetaTileEntity {
     public static final MetaTileEntityParallelizedAssemblyLine[] PARALLELIZED_ASSEMBLY_LINE = new MetaTileEntityParallelizedAssemblyLine[3];
     public static MetaTileLargeGreenHouse LARGE_GREENHOUSE;
     public static MetaTileEntityComponentAssemblyLine COMPONENT_ASSEMBLY_LINE;
+    public static MetaTileEntityCoAAdvanced COA_ADVANCED;
     public static MetaTileEntityMegaFurnace MEGA_FURNACE;
     public static MetaTileEntityParallelizedSawmill PARALLELIZED_SAWMILL;
     public static MetaTileEntityTurboBlastFurnace TURBO_BLAST_FURNACE;
@@ -147,6 +148,9 @@ public class GTConsolidateMetaTileEntity {
 
         PARALLELIZED_IC = registerMetaTileEntity(id + 35, new MetaTileEntityParallelizedImplosionCompressor(
                 modId("quantum_compressor")));
+
+        COA_ADVANCED = registerMetaTileEntity(id + 36, new MetaTileEntityCoAAdvanced(
+                modId("component_assembly_line_mk_ii")));
     }
 
     public static void registerMultiblockPart() {
