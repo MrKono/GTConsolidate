@@ -150,6 +150,15 @@ public class MultiMachineLoader {
                 .fluidInputs(Materials.Lubricant.getFluid(10000))
                 .output(GTConsolidateMetaTileEntity.COMPONENT_ASSEMBLY_LINE)
                 .EUt(VA[LuV]).duration(2 * min).buildAndRegister();
+        // Mk2
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(GTConsolidateMetaTileEntity.COMPONENT_ASSEMBLY_LINE)
+                .input(circuit, MarkerMaterials.Tier.UV, 8)
+                .input(circuit, MarkerMaterials.Tier.UHV, 8)
+                .input(ROBOT_ARM_ZPM, 8)
+                .input(ROBOT_ARM_UV, 8)
+                .output(GTConsolidateMetaTileEntity.COA_ADVANCED)
+                .EUt(VA[UHV]).duration(2 * min).buildAndRegister();
 
         // Adv. Multi Smelter
         RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder()
