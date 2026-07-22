@@ -135,13 +135,25 @@ public class MetaTileEntityNonupleTankValve extends MetaTileEntityMultiblockPart
         }
     }
 
-    private void setTargetTankByNumber(int amount, int tankNumber) {
+    private void adjustTargetTankByNumber(int tankNumber, int amount) {
         int index = tankNumber - 1;
-        if (index < 0 || index >= this.selectableTanks.length) return;
+        if (index < 0 || index >= selectableTanks.length) {
+            return;
+        }
 
         selectableTanks[index] = MathHelper.clamp(selectableTanks[index] + amount, 1, this.maxTank);
+        setFluidHandler(getController());
+    }
 
-        setFluidHandler(this.getController());
+    private void setTargetTankByNumber(int tankNumber, int value) {
+        int index = tankNumber - 1;
+        if (index < 0 || index >= selectableTanks.length) {
+            return;
+        }
+
+        selectableTanks[index] = MathHelper.clamp(value, 1, this.maxTank);
+
+        setFluidHandler(getController());
     }
 
     private int getTargetTankByNumber(int tankNumber) {
@@ -200,32 +212,43 @@ public class MetaTileEntityNonupleTankValve extends MetaTileEntityMultiblockPart
 
         ServerWidgetGroup selector = new ServerWidgetGroup(() -> true);
         selector.addWidget(new ImageWidget(xPos, yPos, displayWidth, widgetHeight, GuiTextures.DISPLAY)
-                .setTooltip("gtconsolidate.machine.advanced_tank_valve.display"));
-        selector.addWidget(new IncrementButtonWidget(xPos + displayWidth + 3, yPos, buttonWidth, widgetHeight, 1, 4, 16,
-                64, amount -> setTargetTankByNumber(amount, targetTankNo))
+                .setTooltip("gtconsolidate.machine.advanced_tank_valve.display.2"));
+        selector.addWidget(new IncrementButtonWidget(xPos + displayWidth + 3, yPos, buttonWidth, widgetHeight, 1, 5, 10,
+                100, amount -> adjustTargetTankByNumber(targetTankNo, amount))
                         .setDefaultTooltip()
                         .setShouldClientCallback(false));
-        selector.addWidget(new IncrementButtonWidget(xPos - buttonWidth - 3, yPos, buttonWidth, widgetHeight, -1, -4,
-                -16, -64, amount -> setTargetTankByNumber(amount, targetTankNo))
+        selector.addWidget(new IncrementButtonWidget(xPos - buttonWidth - 3, yPos, buttonWidth, widgetHeight, -1, -5,
+                -10, -100, amount -> adjustTargetTankByNumber(targetTankNo, amount))
                         .setDefaultTooltip()
                         .setShouldClientCallback(false));
         selector.addWidget(new TextFieldWidget2(xPos + 1, yPos + 6, textWidth, widgetHeight,
                 () -> getTargetTankToStringByNumber(targetTankNo), val -> {
-                    if (val != null && !val.isEmpty()) {
-                        setTargetTankByNumber(targetTankNo, Integer.parseInt(val));
+                    if (val == null || val.isEmpty()) {
+                        return;
                     }
+                    int value;
+                    try {
+                        value = Integer.parseInt(val);
+                    } catch (NumberFormatException ignored) {
+                        return;
+                    }
+                    if (value < MIN_TANK) {
+                        return;
+                    }
+                    setTargetTankByNumber(targetTankNo, value);
                 })
                         .setCentered(true)
-                        .setNumbersOnly(1, this.maxTank)
-                        .setMaxLength(3)
-                        .setValidator(getTextFieldValidator(() -> this.maxTank)));
+                        .setNumbersOnly(0, this.maxTank)
+                        .setMaxLength(10));
+        // .setValidator(getTextFieldValidator(() -> this.maxTank)));
         return selector;
     }
 
     public static @NotNull Function<String, String> getTextFieldValidator(IntSupplier maxSupplier) {
         return val -> {
-            if (val.isEmpty())
+            if (val.isEmpty()) {
                 return String.valueOf(MIN_TANK);
+            }
             int max = maxSupplier.getAsInt();
             int num;
             try {

@@ -49,9 +49,13 @@ public class MetaTileEntityMoreParallelHatch extends MetaTileEntityParallelHatch
         return currentParallel;
     }
 
+    private void adjustCurrentParallel(int parallelAmount) {
+        this.currentParallel = MathHelper.clamp(this.currentParallel + parallelAmount, 1, this.maxParallel);
+    }
+
     @Override
     public void setCurrentParallel(int parallelAmount) {
-        this.currentParallel = MathHelper.clamp(this.currentParallel + parallelAmount, 1, this.maxParallel);
+        this.currentParallel = MathHelper.clamp(parallelAmount, 1, this.maxParallel);
     }
 
     protected ModularUI createUI(@NotNull EntityPlayer entityPlayer) {
@@ -59,11 +63,12 @@ public class MetaTileEntityMoreParallelHatch extends MetaTileEntityParallelHatch
         parallelAmountGroup.addWidget(new ImageWidget(62, 36, 53, 20, GuiTextures.DISPLAY)
                 .setTooltip("gcym.machine.parallel_hatch.display"));
 
-        parallelAmountGroup.addWidget(new IncrementButtonWidget(118, 36, 30, 20, 1, 4, 16, 64, this::setCurrentParallel)
-                .setDefaultTooltip()
-                .setShouldClientCallback(false));
         parallelAmountGroup
-                .addWidget(new IncrementButtonWidget(29, 36, 30, 20, -1, -4, -16, -64, this::setCurrentParallel)
+                .addWidget(new IncrementButtonWidget(118, 36, 30, 20, 1, 5, 10, 100, this::adjustCurrentParallel)
+                        .setDefaultTooltip()
+                        .setShouldClientCallback(false));
+        parallelAmountGroup
+                .addWidget(new IncrementButtonWidget(29, 36, 30, 20, -1, -5, -10, -100, this::adjustCurrentParallel)
                         .setDefaultTooltip()
                         .setShouldClientCallback(false));
 

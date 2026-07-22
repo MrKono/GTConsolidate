@@ -1,6 +1,12 @@
 ## Changelog
 ### 1.1.6-beta
 - **Add** _Component Assembly Line Mark 2_.
+- **Fix** some issues.
+  - The Text Field in Advanced and higher-tier Tank Valves does not accept values with four or more digits.
+  - Values entered into the Additional Parallel Hatch's Text Field are not applied.
+  - Progress percentage was displayed as 100× the correct value when `modifyProgressLine` was `false`.
+- **New integration**: The One Prove
+  - The Laser Passthrough Hatch now displays information in TOP, just like the Diode.
 ---
 
 ### 1.1.5-beta

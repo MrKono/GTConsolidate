@@ -127,8 +127,13 @@ public class MetaTileEntityAdvancedTankValve extends MetaTileEntityMultiblockPar
         initializeDummyInventory();
     }
 
-    public void setTargetTank(int amount) {
-        this.targetTank = MathHelper.clamp(this.targetTank + amount, 1, this.maxTank);
+    private void adjustTargetTank(int amount) {
+        this.targetTank = MathHelper.clamp(this.targetTank + amount, MIN_TANK, this.maxTank);
+        addToMultiBlock(getController());
+    }
+
+    private void setTargetTank(int value) {
+        this.targetTank = MathHelper.clamp(value, MIN_TANK, this.maxTank);
         addToMultiBlock(getController());
     }
 
@@ -138,11 +143,11 @@ public class MetaTileEntityAdvancedTankValve extends MetaTileEntityMultiblockPar
         targetPageGroup.addWidget(new ImageWidget(62, 36, 53, 20, GuiTextures.DISPLAY)
                 .setTooltip("gtconsolidate.machine.advanced_tank_valve.display"));
 
-        targetPageGroup.addWidget(new IncrementButtonWidget(118, 36, 30, 20, 1, 4, 16, 64, this::setTargetTank)
+        targetPageGroup.addWidget(new IncrementButtonWidget(118, 36, 30, 20, 1, 5, 10, 100, this::adjustTargetTank)
                 .setDefaultTooltip()
                 .setShouldClientCallback(false));
         targetPageGroup
-                .addWidget(new IncrementButtonWidget(29, 36, 30, 20, -1, -4, -16, -64, this::setTargetTank)
+                .addWidget(new IncrementButtonWidget(29, 36, 30, 20, -1, -5, -10, -100, this::adjustTargetTank)
                         .setDefaultTooltip()
                         .setShouldClientCallback(false));
 
@@ -153,7 +158,7 @@ public class MetaTileEntityAdvancedTankValve extends MetaTileEntityMultiblockPar
         })
                 .setCentered(true)
                 .setNumbersOnly(1, this.maxTank)
-                .setMaxLength(3)
+                .setMaxLength(10)
                 .setValidator(getTextFieldValidator(() -> this.maxTank)));
 
         return ModularUI.defaultBuilder()
@@ -179,8 +184,9 @@ public class MetaTileEntityAdvancedTankValve extends MetaTileEntityMultiblockPar
 
     public static @NotNull Function<String, String> getTextFieldValidator(IntSupplier maxSupplier) {
         return val -> {
-            if (val.isEmpty())
+            if (val.isEmpty()) {
                 return String.valueOf(MIN_TANK);
+            }
             int max = maxSupplier.getAsInt();
             int num;
             try {
