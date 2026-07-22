@@ -21,6 +21,7 @@ gtconsolidate.machine.parallelized_assembly_line_mk3.name=Advanced Assembly Line
 gtconsolidate.machine.large_greenhouse.name=Large Greenhouse
 
 gtconsolidate.machine.component_assembly_line.name=Component Assembly Line
+gtconsolidate.machine.component_assembly_line_mk_ii.name=Component Assembly Line Mark 2
 
 gtconsolidate.machine.multi_smelter_advanced.name=Advanced Multi Smelter
 
