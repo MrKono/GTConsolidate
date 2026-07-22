@@ -63,9 +63,10 @@ public class MetaTileEntityMoreParallelHatch extends MetaTileEntityParallelHatch
         parallelAmountGroup.addWidget(new ImageWidget(62, 36, 53, 20, GuiTextures.DISPLAY)
                 .setTooltip("gcym.machine.parallel_hatch.display"));
 
-        parallelAmountGroup.addWidget(new IncrementButtonWidget(118, 36, 30, 20, 1, 5, 10, 100, this::adjustCurrentParallel)
-                .setDefaultTooltip()
-                .setShouldClientCallback(false));
+        parallelAmountGroup
+                .addWidget(new IncrementButtonWidget(118, 36, 30, 20, 1, 5, 10, 100, this::adjustCurrentParallel)
+                        .setDefaultTooltip()
+                        .setShouldClientCallback(false));
         parallelAmountGroup
                 .addWidget(new IncrementButtonWidget(29, 36, 30, 20, -1, -5, -10, -100, this::adjustCurrentParallel)
                         .setDefaultTooltip()

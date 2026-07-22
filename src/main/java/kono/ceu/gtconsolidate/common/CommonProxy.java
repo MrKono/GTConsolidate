@@ -27,6 +27,7 @@ import kono.ceu.gtconsolidate.common.blocks.BlockTankPart;
 import kono.ceu.gtconsolidate.common.blocks.GTConsolidateMetaBlocks;
 import kono.ceu.gtconsolidate.common.metatileentities.GTConsolidateMetaTileEntity;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.MetaTileLargeGreenHouse;
+import kono.ceu.gtconsolidate.integration.TOPIntegration;
 import kono.ceu.gtconsolidate.loader.CasingLoader;
 import kono.ceu.gtconsolidate.loader.GTConsolidateMiscLoader;
 import kono.ceu.gtconsolidate.loader.MetaTileEntityLoader;
@@ -47,7 +48,9 @@ public class CommonProxy {
         }
     }
 
-    public void init(FMLInitializationEvent e) {}
+    public void init(FMLInitializationEvent e) {
+        TOPIntegration.init();
+    }
 
     public void postInit(FMLPostInitializationEvent e) {
         GTConsolidateValues.INTAKE_HATCH_DIMENSION_MAPPING = GTConsolidateUtil
