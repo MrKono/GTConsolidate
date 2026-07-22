@@ -110,8 +110,7 @@ public class GTConsolidateUtil {
     public static MultiblockDisplayText.Builder addExtendedProgressLine(MultiblockDisplayText.Builder builder,
                                                                         AbstractRecipeLogic logic) {
         if (!GTConsolidateConfig.feature.modifyProgressLine) {
-            int currentProgress = (int) (logic.getProgressPercent() * (double) 100.0F);
-            return builder.addProgressLine(currentProgress);
+            return builder.addProgressLine(logic.getProgressPercent());
         } else {
             return ((MultiblockDisplayTextMixinHelper) builder).addExtendedProgressLine(logic);
         }
