@@ -1,4 +1,8 @@
 ## Changelog
+### 1.1.6-beta
+- **Add** _Component Assembly Line Mark 2_.
+---
+
 ### 1.1.5-beta
 - **Add** Laser Passthrough Hatch.
 - **Add** a config option to register UHV Laser Hatches without enabling `HighTierContent`.
