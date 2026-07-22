@@ -454,6 +454,7 @@ gtconsolidate.multiblock.tank.page_next=Click to go to the next page. Pages can 
 gtconsolidate.machine.advanced_tank_valve.fluid.1=Fluid in Tank #%s: %s
 gtconsolidate.machine.advanced_tank_valve.fluid.2=%s
 gtconsolidate.machine.advanced_tank_valve.display=Selects the tank number used for input/output.
+gtconsolidate.machine.advanced_tank_valve.display.2=Selects the tank number used for input/output./n§eWarning: The Text Field is currently broken. Do not enter values manually. Use the buttons to set the value instead.
 
 # Tree Farm
 gtconsolidate.multiblock.tree_farm.radius=Radius: %s
