@@ -13,6 +13,7 @@ import kono.ceu.gtconsolidate.GTConsolidateConfig;
 import kono.ceu.gtconsolidate.api.util.Mods;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.electric.*;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.*;
+import kono.ceu.gtconsolidate.common.metatileentities.multi.multiblockpart.hpca.MetaTileEntityHPCAPowerOptimized;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialBrickedBlastFurnace;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.primitive.MetaTileEntityIndustrialCokeOven;
 import kono.ceu.gtconsolidate.common.metatileentities.multi.tank.*;
@@ -58,6 +59,7 @@ public class GTConsolidateMetaTileEntity {
     public static MetaTileEntityIntakeHatch[] INTAKE_HATCH = new MetaTileEntityIntakeHatch[11];
     public static MetaTileEntityAdvancedIntakeHatch[] ADVANCED_INTAKE_HATCH = new MetaTileEntityAdvancedIntakeHatch[11];
     public static MetaTileEntityPassthroughHatchLaser[] PASSTHROUGH_HATCH_LASER = new MetaTileEntityPassthroughHatchLaser[10]; // IV+
+    public static MetaTileEntityHPCAPowerOptimized[] HPCA_POWER_OPTIMIZED = new MetaTileEntityHPCAPowerOptimized[2];
 
     // Creative
     public static MetaTileEntityCreativeRotorHolder CREATIVE_ROTOR_HOLDER;
@@ -256,6 +258,11 @@ public class GTConsolidateMetaTileEntity {
         }
 
         id = id + PASSTHROUGH_HATCH_LASER.length;
+
+        HPCA_POWER_OPTIMIZED[0] = registerMetaTileEntity(id, new MetaTileEntityHPCAPowerOptimized(
+                modId("hpca_power_optimized"), false));
+        HPCA_POWER_OPTIMIZED[1] = registerMetaTileEntity(id + 1, new MetaTileEntityHPCAPowerOptimized(
+                modId("hpca_power_optimized_advanced"), true));
     }
 
     public static void registerCEuPart() {

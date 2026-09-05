@@ -33,6 +33,8 @@ public class GTConsolidateTextures {
 
     public static TextureArea BUTTON_PRE_COOLING;
     public static TextureArea BUTTON_PRE_HEATING;
+    public static TextureArea POWER_OPTIMIZED;
+    public static TextureArea POWER_OPTIMIZED_ADVANCED;
 
     public static void preInit() {
         PARALLELIZED_ASSEMBLY_LINE_CASING = new SimpleOverlayRenderer(
@@ -70,5 +72,8 @@ public class GTConsolidateTextures {
 
         BUTTON_PRE_COOLING = TextureArea.fullImage("textures/gui/widget/pre_cooling.png");
         BUTTON_PRE_HEATING = TextureArea.fullImage("textures/gui/widget/pre_heating.png");
+        POWER_OPTIMIZED = TextureArea.fullImage("textures/gui/widget/hpca/power_optimizing_component.png");
+        POWER_OPTIMIZED_ADVANCED = TextureArea
+                .fullImage("textures/gui/widget/hpca/advanced_power_optimizing_component.png");
     }
 }
